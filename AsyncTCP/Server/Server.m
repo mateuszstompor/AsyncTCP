@@ -164,8 +164,8 @@
     }
 }
 -(void)shutDown {
-    [thread cancel];
     [resourceLock lock];
+    [thread cancel];
     for (Connection * connection in connections) {
         [connection close];
     }
@@ -185,9 +185,15 @@
     return configurationToReturn;
 }
 -(NSInteger)connectedClientsCount {
-    return [connections count];
+    [resourceLock lock];
+    NSInteger count = [connections count];
+    [resourceLock unlock];
+    return count;
 }
 -(BOOL)isRunning {
-    return thread && thread.isExecuting;
+    [resourceLock lock];
+    BOOL running = thread && thread.isExecuting;
+    [resourceLock unlock];
+    return running;
 }
 @end
