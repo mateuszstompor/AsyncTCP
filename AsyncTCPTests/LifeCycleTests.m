@@ -44,15 +44,16 @@
     if ([client connect] >= 0) {
         XCTFail("Port is not closed");
     }
-    [client close];
+    XCTAssertEqual([client close], 0);
     [asyncServer boot];
     if ([client connect] < 0) {
         XCTFail("Port is closed");
     }
-    [client close];
+    XCTAssertEqual([client close], 0);
     [asyncServer shutDown];
     if ([client connect] >= 0) {
         XCTFail("Port is not closed");
     }
+    XCTAssertEqual([client close], 0);
 }
 @end
