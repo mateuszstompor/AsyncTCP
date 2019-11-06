@@ -12,12 +12,14 @@
 
 #import "Server.h"
 #import "NetworkManager.h"
+#import "Utilities/Client.h"
 #import "IONetworkHandler.h"
 #import "ServerConfiguration.h"
 #import "FileDescriptorConfigurator.h"
 
 @interface LifeCycleTests : XCTestCase
 {
+    Client * client;
     Server * asyncServer;
     struct ServerConfiguration configuration;
 }
@@ -31,40 +33,25 @@
     configuration.maximalConnectionsCount = 1;
     configuration.eventLoopMicrosecondsDelay = 400;
     asyncServer = [[Server alloc] initWithConfiguratoin:configuration];
+    client = [[Client alloc] initWithHost:"localhost" port:47850];
 }
 -(void)testBootAndShutdown {
     [asyncServer boot];
-    char *hostname = "localhost";
-    int sockfd;
-    struct sockaddr_in serv_addr;
-    struct hostent *server;
-    sockfd = socket(AF_INET, SOCK_STREAM, 0);
-    if (sockfd < 0) {
-        XCTFail("Cannot open the socket");
-    }
-    server = gethostbyname(hostname);
-    if (server == NULL) {
-        XCTFail("No such host");
-    }
-    bzero((char *) &serv_addr, sizeof(serv_addr));
-    serv_addr.sin_family = AF_INET;
-    bcopy((char *)server->h_addr, (char *)&serv_addr.sin_addr.s_addr, server->h_length);
-    serv_addr.sin_port = htons(configuration.port);
-    if (connect(sockfd,(struct sockaddr *) &serv_addr,sizeof(serv_addr)) < 0) {
+    if ([client connect] < 0) {
         XCTFail("Port is closed");
     }
     [asyncServer shutDown];
-    if (connect(sockfd,(struct sockaddr *) &serv_addr,sizeof(serv_addr)) >= 0) {
+    if ([client connect] >= 0) {
         XCTFail("Port is not closed");
     }
-    sockfd = socket(AF_INET, SOCK_STREAM, 0);
+    [client close];
     [asyncServer boot];
-    if (connect(sockfd,(struct sockaddr *) &serv_addr,sizeof(serv_addr)) < 0) {
+    if ([client connect] < 0) {
         XCTFail("Port is closed");
     }
-    close(sockfd);
+    [client close];
     [asyncServer shutDown];
-    if (connect(sockfd,(struct sockaddr *) &serv_addr,sizeof(serv_addr)) >= 0) {
+    if ([client connect] >= 0) {
         XCTFail("Port is not closed");
     }
 }

@@ -23,6 +23,7 @@
 		5607F85B2371D742001A9AE9 /* IONetworkHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5607F8592371D742001A9AE9 /* IONetworkHandler.m */; };
 		560C3DA42373217200E711F4 /* ConnectionHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = 560C3DA22373217200E711F4 /* ConnectionHandle.h */; };
 		560C3DA8237321F200E711F4 /* ServerHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = 560C3DA6237321F200E711F4 /* ServerHandle.h */; };
+		560C3DB62373259900E711F4 /* Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 560C3DB52373259900E711F4 /* Client.m */; };
 		56744C212372C32000C2B37D /* FileDescriptorConfigurable.h in Headers */ = {isa = PBXBuildFile; fileRef = 56744C1F2372C32000C2B37D /* FileDescriptorConfigurable.h */; };
 		56744C252372C32D00C2B37D /* FileDescriptorConfigurator.h in Headers */ = {isa = PBXBuildFile; fileRef = 56744C232372C32D00C2B37D /* FileDescriptorConfigurator.h */; };
 		56744C262372C32D00C2B37D /* FileDescriptorConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 56744C242372C32D00C2B37D /* FileDescriptorConfigurator.m */; };
@@ -62,6 +63,8 @@
 		5607F85C2371D765001A9AE9 /* IONetworkHandleable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IONetworkHandleable.h; sourceTree = "<group>"; };
 		560C3DA22373217200E711F4 /* ConnectionHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectionHandle.h; sourceTree = "<group>"; };
 		560C3DA6237321F200E711F4 /* ServerHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServerHandle.h; sourceTree = "<group>"; };
+		560C3DB42373259900E711F4 /* Client.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Client.h; sourceTree = "<group>"; };
+		560C3DB52373259900E711F4 /* Client.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Client.m; sourceTree = "<group>"; };
 		56744C1F2372C32000C2B37D /* FileDescriptorConfigurable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileDescriptorConfigurable.h; sourceTree = "<group>"; };
 		56744C232372C32D00C2B37D /* FileDescriptorConfigurator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileDescriptorConfigurator.h; sourceTree = "<group>"; };
 		56744C242372C32D00C2B37D /* FileDescriptorConfigurator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileDescriptorConfigurator.m; sourceTree = "<group>"; };
@@ -123,6 +126,7 @@
 		5607F83623718E92001A9AE9 /* AsyncTCPTests */ = {
 			isa = PBXGroup;
 			children = (
+				560C3DB32373257000E711F4 /* Utilities */,
 				56744C352372DE0600C2B37D /* TestHandlingServerEvents.m */,
 				5607F83723718E92001A9AE9 /* LifeCycleTests.m */,
 				5607F83923718E92001A9AE9 /* Info.plist */,
@@ -162,6 +166,15 @@
 				5607F85C2371D765001A9AE9 /* IONetworkHandleable.h */,
 			);
 			path = IO;
+			sourceTree = "<group>";
+		};
+		560C3DB32373257000E711F4 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				560C3DB42373259900E711F4 /* Client.h */,
+				560C3DB52373259900E711F4 /* Client.m */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		56744C1E2372C2EA00C2B37D /* FileDescriptors */ = {
@@ -317,6 +330,7 @@
 			files = (
 				56744C362372DE0600C2B37D /* TestHandlingServerEvents.m in Sources */,
 				5607F83823718E92001A9AE9 /* LifeCycleTests.m in Sources */,
+				560C3DB62373259900E711F4 /* Client.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

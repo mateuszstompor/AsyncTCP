@@ -12,10 +12,10 @@
 
 #import "Server.h"
 #import "NetworkManager.h"
+#import "Utilities/Client.h"
 #import "IONetworkHandler.h"
 #import "ServerConfiguration.h"
 #import "FileDescriptorConfigurator.h"
-
 
 @interface ServerHandler: NSObject<ServerDelegate>
 @property (atomic, nullable) Connection * lastConnection;
@@ -39,6 +39,7 @@
 {
     Server * asyncServer;
     ServerHandler * serverHandler;
+    Client * client;
     struct ServerConfiguration configuration;
 }
 @end
@@ -52,25 +53,12 @@
     configuration.eventLoopMicrosecondsDelay = 400;
     serverHandler = [[ServerHandler alloc] init];
     asyncServer = [[Server alloc] initWithConfiguratoin:configuration];
+    client = [[Client alloc] initWithHost:"localhost" port:47850];
 }
 -(void)testReceivingEvents {
     asyncServer.delegate = serverHandler;
     [asyncServer boot];
-    char *hostname = "localhost";
-    struct sockaddr_in serv_addr;
-    int sockfd = socket(AF_INET, SOCK_STREAM, 0);
-    if (sockfd < 0) {
-        XCTFail("Cannot open the socket");
-    }
-    struct hostent * server = gethostbyname(hostname);
-    if (server == NULL) {
-        XCTFail("No such host");
-    }
-    bzero((char *) &serv_addr, sizeof(serv_addr));
-    serv_addr.sin_family = AF_INET;
-    bcopy((char *)server->h_addr, (char *)&serv_addr.sin_addr.s_addr, server->h_length);
-    serv_addr.sin_port = htons(configuration.port);
-    if (connect(sockfd,(struct sockaddr *) &serv_addr,sizeof(serv_addr)) < 0) {
+    if ([client connect] < 0) {
         XCTFail("Port is closed");
     }
     dispatch_group_t group = dispatch_group_create();
