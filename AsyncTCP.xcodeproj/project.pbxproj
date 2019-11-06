@@ -24,11 +24,13 @@
 		560C3DA42373217200E711F4 /* ConnectionHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = 560C3DA22373217200E711F4 /* ConnectionHandle.h */; };
 		560C3DA8237321F200E711F4 /* ServerHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = 560C3DA6237321F200E711F4 /* ServerHandle.h */; };
 		560C3DB62373259900E711F4 /* Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 560C3DB52373259900E711F4 /* Client.m */; };
+		560C3DBD23732CE200E711F4 /* SingleClientConnectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 560C3DBC23732CE200E711F4 /* SingleClientConnectionTests.m */; };
+		560C3DC023737D9D00E711F4 /* ServerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 560C3DBF23737D9D00E711F4 /* ServerHandler.m */; };
 		56744C212372C32000C2B37D /* FileDescriptorConfigurable.h in Headers */ = {isa = PBXBuildFile; fileRef = 56744C1F2372C32000C2B37D /* FileDescriptorConfigurable.h */; };
 		56744C252372C32D00C2B37D /* FileDescriptorConfigurator.h in Headers */ = {isa = PBXBuildFile; fileRef = 56744C232372C32D00C2B37D /* FileDescriptorConfigurator.h */; };
 		56744C262372C32D00C2B37D /* FileDescriptorConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 56744C242372C32D00C2B37D /* FileDescriptorConfigurator.m */; };
 		56744C322372C66900C2B37D /* NetworkManageable.h in Headers */ = {isa = PBXBuildFile; fileRef = 56744C302372C66900C2B37D /* NetworkManageable.h */; };
-		56744C362372DE0600C2B37D /* TestHandlingServerEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 56744C352372DE0600C2B37D /* TestHandlingServerEvents.m */; };
+		56744C362372DE0600C2B37D /* HandlingServerEventsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56744C352372DE0600C2B37D /* HandlingServerEventsTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,11 +67,14 @@
 		560C3DA6237321F200E711F4 /* ServerHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServerHandle.h; sourceTree = "<group>"; };
 		560C3DB42373259900E711F4 /* Client.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Client.h; sourceTree = "<group>"; };
 		560C3DB52373259900E711F4 /* Client.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Client.m; sourceTree = "<group>"; };
+		560C3DBC23732CE200E711F4 /* SingleClientConnectionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SingleClientConnectionTests.m; sourceTree = "<group>"; };
+		560C3DBE23737D9D00E711F4 /* ServerHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServerHandler.h; sourceTree = "<group>"; };
+		560C3DBF23737D9D00E711F4 /* ServerHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ServerHandler.m; sourceTree = "<group>"; };
 		56744C1F2372C32000C2B37D /* FileDescriptorConfigurable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileDescriptorConfigurable.h; sourceTree = "<group>"; };
 		56744C232372C32D00C2B37D /* FileDescriptorConfigurator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileDescriptorConfigurator.h; sourceTree = "<group>"; };
 		56744C242372C32D00C2B37D /* FileDescriptorConfigurator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileDescriptorConfigurator.m; sourceTree = "<group>"; };
 		56744C302372C66900C2B37D /* NetworkManageable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkManageable.h; sourceTree = "<group>"; };
-		56744C352372DE0600C2B37D /* TestHandlingServerEvents.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestHandlingServerEvents.m; sourceTree = "<group>"; };
+		56744C352372DE0600C2B37D /* HandlingServerEventsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HandlingServerEventsTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,8 +132,9 @@
 			isa = PBXGroup;
 			children = (
 				560C3DB32373257000E711F4 /* Utilities */,
-				56744C352372DE0600C2B37D /* TestHandlingServerEvents.m */,
 				5607F83723718E92001A9AE9 /* LifeCycleTests.m */,
+				56744C352372DE0600C2B37D /* HandlingServerEventsTests.m */,
+				560C3DBC23732CE200E711F4 /* SingleClientConnectionTests.m */,
 				5607F83923718E92001A9AE9 /* Info.plist */,
 			);
 			path = AsyncTCPTests;
@@ -173,6 +179,8 @@
 			children = (
 				560C3DB42373259900E711F4 /* Client.h */,
 				560C3DB52373259900E711F4 /* Client.m */,
+				560C3DBE23737D9D00E711F4 /* ServerHandler.h */,
+				560C3DBF23737D9D00E711F4 /* ServerHandler.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -204,6 +212,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5607F81F237189AC001A9AE9 /* AsyncTCP.h in Headers */,
 				560C3DA42373217200E711F4 /* ConnectionHandle.h in Headers */,
 				5607F85A2371D742001A9AE9 /* IONetworkHandler.h in Headers */,
 				56744C322372C66900C2B37D /* NetworkManageable.h in Headers */,
@@ -211,7 +220,6 @@
 				56744C252372C32D00C2B37D /* FileDescriptorConfigurator.h in Headers */,
 				5607F82B23718AD5001A9AE9 /* Server.h in Headers */,
 				5607F82723718AC6001A9AE9 /* Connection.h in Headers */,
-				5607F81F237189AC001A9AE9 /* AsyncTCP.h in Headers */,
 				5607F8462371937D001A9AE9 /* NetworkManager.h in Headers */,
 				560C3DA8237321F200E711F4 /* ServerHandle.h in Headers */,
 				56744C212372C32000C2B37D /* FileDescriptorConfigurable.h in Headers */,
@@ -328,9 +336,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56744C362372DE0600C2B37D /* TestHandlingServerEvents.m in Sources */,
+				56744C362372DE0600C2B37D /* HandlingServerEventsTests.m in Sources */,
 				5607F83823718E92001A9AE9 /* LifeCycleTests.m in Sources */,
 				560C3DB62373259900E711F4 /* Client.m in Sources */,
+				560C3DBD23732CE200E711F4 /* SingleClientConnectionTests.m in Sources */,
+				560C3DC023737D9D00E711F4 /* ServerHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

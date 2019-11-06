@@ -17,9 +17,8 @@
 #import "ServerConfiguration.h"
 #import "FileDescriptorConfigurator.h"
 
-@interface LifeCycleTests : XCTestCase
+@interface LifeCycleTests: XCTestCase
 {
-    Client * client;
     Server * asyncServer;
     struct ServerConfiguration configuration;
 }
@@ -27,33 +26,21 @@
 
 @implementation LifeCycleTests
 -(void)setUp {
-    configuration.port = 47850;
+    configuration.port = 47851;
     configuration.chunkSize = 36;
     configuration.connectionTimeout = 5;
     configuration.maximalConnectionsCount = 1;
     configuration.eventLoopMicrosecondsDelay = 400;
     asyncServer = [[Server alloc] initWithConfiguratoin:configuration];
-    client = [[Client alloc] initWithHost:"localhost" port:47850];
 }
 -(void)testBootAndShutdown {
     [asyncServer boot];
-    if ([client connect] < 0) {
-        XCTFail("Port is closed");
-    }
-    [asyncServer shutDown];
-    if ([client connect] >= 0) {
-        XCTFail("Port is not closed");
-    }
-    XCTAssertEqual([client close], 0);
+    usleep(50);
+    XCTAssertTrue([asyncServer isRunning]);
     [asyncServer boot];
-    if ([client connect] < 0) {
-        XCTFail("Port is closed");
-    }
-    XCTAssertEqual([client close], 0);
+    XCTAssertTrue([asyncServer isRunning]);
     [asyncServer shutDown];
-    if ([client connect] >= 0) {
-        XCTFail("Port is not closed");
-    }
-    XCTAssertEqual([client close], 0);
+    sleep(2);
+    XCTAssertFalse([asyncServer isRunning]);
 }
 @end

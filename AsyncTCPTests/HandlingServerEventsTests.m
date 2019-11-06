@@ -11,40 +11,24 @@
 #import <netdb.h>
 
 #import "Server.h"
+#import "ServerHandler.h"
 #import "NetworkManager.h"
 #import "Utilities/Client.h"
 #import "IONetworkHandler.h"
 #import "ServerConfiguration.h"
 #import "FileDescriptorConfigurator.h"
 
-@interface ServerHandler: NSObject<ServerDelegate>
-@property (atomic, nullable) Connection * lastConnection;
-@end
-
-@implementation ServerHandler
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        self.lastConnection = nil;
-    }
-    return self;
-}
--(void)newClientHasConnected: (Connection*) connection {
-    [self setLastConnection:connection];
-}
-@end
-
-
-@interface TestHandlingServerEvents : XCTestCase
+@interface ServerEventsTests: XCTestCase
 {
     Server * asyncServer;
     ServerHandler * serverHandler;
     Client * client;
+    Client * anotherClient;
     struct ServerConfiguration configuration;
 }
 @end
 
-@implementation TestHandlingServerEvents
+@implementation ServerEventsTests
 -(void)setUp {
     configuration.port = 47850;
     configuration.chunkSize = 36;
@@ -54,6 +38,7 @@
     serverHandler = [[ServerHandler alloc] init];
     asyncServer = [[Server alloc] initWithConfiguratoin:configuration];
     client = [[Client alloc] initWithHost:"localhost" port:47850];
+    anotherClient = [[Client alloc] initWithHost:"localhost" port:47850];
 }
 -(void)testReceivingEvents {
     asyncServer.delegate = serverHandler;
@@ -64,12 +49,16 @@
     dispatch_group_t group = dispatch_group_create();
     dispatch_group_async(group,dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^ {
         sleep(1);
-        XCTAssertNotNil(self->serverHandler.lastConnection);
-        XCTAssertEqual([self->serverHandler.lastConnection state], active);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            XCTAssertNotNil(self->serverHandler.lastConnection);
+            XCTAssertEqual([self->serverHandler.lastConnection state], active);
+        });
     });
     dispatch_group_notify(group,dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^ {
-        [self->asyncServer shutDown];
-        XCTAssertEqual([self->serverHandler.lastConnection state], closed);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self->asyncServer shutDown];
+            XCTAssertEqual([self->serverHandler.lastConnection state], closed);
+        });
     });
 }
 @end

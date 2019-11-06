@@ -23,15 +23,15 @@
 @interface Server()
 {
     int descriptor;
-    struct sockaddr_in address;
     NSThread * thread;
     NSLock * resourceLock;
+    struct sockaddr_in address;
+    dispatch_queue_t notificationQueue;
     struct ServerConfiguration configuration;
     NSMutableArray<Connection*>* connections;
     NSObject<IONetworkHandleable>* ioHandler;
-    NSObject<FileDescriptorConfigurable>* fileDescriptorConfigurator;
     NSObject<NetworkManageable>* networkManager;
-    dispatch_queue_t notificationQueue;
+    NSObject<FileDescriptorConfigurable>* fileDescriptorConfigurator;
 }
 @end
 
@@ -66,6 +66,10 @@
 }
 -(void)boot {
     [resourceLock lock];
+    if([thread isExecuting] && ![thread isCancelled]) {
+        [resourceLock unlock];
+        return;
+    }
     if (![networkManager isValidOpenFileDescriptor:descriptor]) {
         descriptor = socket(AF_INET, SOCK_STREAM, 0);
         if (descriptor < 0) {
@@ -104,8 +108,9 @@
                                      selector:@selector(serve)
                                        object:nil];
     thread.name = @"ServerThread";
-    [resourceLock unlock];
     [thread start];
+    [resourceLock unlock];
+    
 }
 -(void)serve {
     while(true) {
@@ -116,9 +121,6 @@
             for (ssize_t i=0; i<[connections count]; ++i) {
                 Connection * connection = [connections objectAtIndex:i];
                 if ([connection lastInteractionInterval] > configuration.connectionTimeout) {
-                    [connection close];
-                }
-                if (connection.state == closed) {
                     [connectionsToRemove addObject:connection];
                 } else {
                     [connection performIO];
@@ -126,6 +128,7 @@
             }
             // remove timed out or not open connections
             for (Connection * connection in connectionsToRemove) {
+                [connection close];
                 [connections removeObject:connection];
             }
             // accept new connections if amount of clients do not exceeds max
@@ -180,5 +183,11 @@
     struct ServerConfiguration configurationToReturn = configuration;
     [resourceLock unlock];
     return configurationToReturn;
+}
+-(NSInteger)connectedClientsCount {
+    return [connections count];
+}
+-(BOOL)isRunning {
+    return thread && thread.isExecuting;
 }
 @end
