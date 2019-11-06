@@ -10,10 +10,9 @@
 
 #import <netdb.h>
 
-
+#import "../IO/IONetworkHandler.h"
 #import "../NetworkManager/NetworkManager.h"
 #import "../FileDescriptors/FileDescriptorConfigurator.h"
-#import "../IO/IONetworkHandler.h"
 
 @implementation BootingException
 @end
