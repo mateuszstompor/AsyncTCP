@@ -20,3 +20,5 @@ FOUNDATION_EXPORT const unsigned char AsyncTCPVersionString[];
 #import "Connection.h"
 #import "IONetworkHandler.h"
 #import "Server/ServerConfiguration.h"
+#import "NetworkManager/NetworkManager.h"
+#import "FileDescriptors/NetworkManager.h"

@@ -8,13 +8,12 @@
 
 #import "Connection.h"
 
-#include <netdb.h>
-#include <errno.h>
-#include <stdint.h>
-#include <sys/types.h>
-#include <sys/socket.h>
+#import <netdb.h>
+#import <errno.h>
+#import <stdint.h>
+#import <sys/types.h>
+#import <sys/socket.h>
 
-#import "Utilities.h"
 #import "ConnectionDelegate.h"
 
 @interface Connection()
@@ -28,6 +27,7 @@
     ssize_t chunkSize;
     NSObject<IONetworkHandleable>* ioHandler;
     NSMutableArray<NSData*>* outgoingMessages;
+    NSObject<NetworkManageable>* networkManager;
 }
 @end
 
@@ -36,7 +36,8 @@
                   addressLength: (socklen_t) addressLength
                      descriptor: (int) descriptor
                       chunkSize: (ssize_t) chunkSize
-                      ioHandler: (NSObject<IONetworkHandleable>*) ioHandler {
+                      ioHandler: (NSObject<IONetworkHandleable>*) ioHandler
+                 networkManager: (NSObject<NetworkManageable>*) networkManager {
     self = [super init];
     if (self) {
         self->descriptor = descriptor;
@@ -47,6 +48,7 @@
         self->lastActivity = nil;
         self->chunkSize = chunkSize;
         self->state = active;
+        self->networkManager = networkManager;
         self->outgoingMessages = [NSMutableArray new];
     }
     return self;

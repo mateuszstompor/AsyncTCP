@@ -12,6 +12,7 @@
 #import "ServerDelegate.h"
 #import "ServerConfiguration.h"
 #import "../IO/IONetworkHandleable.h"
+#import "../FileDescriptors/FileDescriptorConfigurable.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -24,7 +25,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Server : NSObject
 @property (atomic, nullable) NSObject<ServerDelegate>* delegate;
 -(instancetype)initWithConfiguratoin: (struct ServerConfiguration) configuration
-                           ioHandler: (NSObject<IONetworkHandleable>*) ioHandler;
+                           ioHandler: (NSObject<IONetworkHandleable>*) ioHandler
+          fileDescriptorConfigurator: (NSObject<FileDescriptorConfigurable>*) fileDescriptorConfigurator
+                      networkManager: (NSObject<NetworkManageable>*) networkManager;
+-(instancetype)initWithConfiguratoin: (struct ServerConfiguration) configuration;
 -(void)boot;
 -(int)port;
 -(void)shutDown;

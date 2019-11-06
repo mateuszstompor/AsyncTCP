@@ -8,7 +8,7 @@
 
 #import "IONetworkHandler.h"
 
-#include <netdb.h>
+#import <netdb.h>
 
 @implementation IOException : NSException
 @end

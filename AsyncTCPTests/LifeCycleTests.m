@@ -8,17 +8,18 @@
 
 #import <XCTest/XCTest.h>
 
-#include <netdb.h>
+#import <netdb.h>
 
 #import "Server.h"
+#import "NetworkManager.h"
 #import "IONetworkHandler.h"
+#import "FileDescriptorConfigurator.h"
 #import "ServerConfiguration.h"
 
 @interface LifeCycleTests : XCTestCase
 {
     Server * asyncServer;
     struct ServerConfiguration configuration;
-    NSObject<IONetworkHandleable>* ioHandler;
 }
 @end
 
@@ -29,8 +30,7 @@
     configuration.chunkSize = 36;
     configuration.eventLoopMicrosecondsDelay = 400;
     configuration.maximalConnectionsCount = 1;
-    ioHandler = [[IONetworkHandler alloc] init];
-    asyncServer = [[Server alloc] initWithConfiguratoin:configuration ioHandler:ioHandler];
+    asyncServer = [[Server alloc] initWithConfiguratoin:configuration];
 }
 -(void)testBootAndShutdown {
     [asyncServer boot];

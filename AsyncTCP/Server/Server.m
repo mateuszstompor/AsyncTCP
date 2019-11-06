@@ -8,9 +8,12 @@
 
 #import "Server.h"
 
-#include <netdb.h>
+#import <netdb.h>
 
-#import "Utilities.h"
+
+#import "../NetworkManager/NetworkManager.h"
+#import "../FileDescriptors/FileDescriptorConfigurator.h"
+#import "../IO/IONetworkHandler.h"
 
 @implementation BootingException
 @end
@@ -27,46 +30,58 @@
     struct ServerConfiguration configuration;
     NSMutableArray<Connection*>* connections;
     NSObject<IONetworkHandleable>* ioHandler;
+    NSObject<FileDescriptorConfigurable>* fileDescriptorConfigurator;
+    NSObject<NetworkManageable>* networkManager;
 }
 @end
 
 @implementation Server
+-(instancetype)initWithConfiguratoin: (struct ServerConfiguration) configuration {
+    return [self initWithConfiguratoin:configuration
+                             ioHandler:[[IONetworkHandler alloc] init]
+            fileDescriptorConfigurator:[[FileDescriptorConfigurator alloc] init]
+                        networkManager:[[NetworkManager alloc] init]];
+}
 - (instancetype)initWithConfiguratoin:(struct ServerConfiguration)configuration
-                            ioHandler: (NSObject<IONetworkHandleable>*) ioHandler {
+                            ioHandler: (NSObject<IONetworkHandleable>*) ioHandler
+           fileDescriptorConfigurator: (NSObject<FileDescriptorConfigurable>*) fileDescriptorConfigurator
+                       networkManager: (NSObject<NetworkManageable>*) networkManager {
     self = [super init];
     if (self) {
-        NSAssert([Utilities isPortInRange: configuration.port], @"Port number should be within the range");
+        NSAssert([networkManager isPortInRange: configuration.port], @"Port number should be within the range");
         self->descriptor = -1;
         self->configuration = configuration;
         self->connections = [NSMutableArray new];
         self->resourceLock = [NSLock new];
         self->thread = nil;
+        self->fileDescriptorConfigurator = fileDescriptorConfigurator;
         self->ioHandler = ioHandler;
         self->_delegate = nil;
+        self->networkManager = networkManager;
     }
     return self;
 }
 -(void)boot {
     [resourceLock lock];
-    if (![Utilities isValidOpenFileDescriptor:descriptor]) {
+    if (![networkManager isValidOpenFileDescriptor:descriptor]) {
         descriptor = socket(AF_INET, SOCK_STREAM, 0);
         if (descriptor < 0) {
             [resourceLock unlock];
             @throw [BootingException exceptionWithName:@"BootingException"
                                                 reason:@"Could not create a new socket" userInfo:nil];
         }
-        address = [Utilities localServerAddressWithPort:configuration.port];
-        if (![Utilities reuseAddress:descriptor]) {
+        address = [networkManager localServerAddressWithPort:configuration.port];
+        if (![fileDescriptorConfigurator reuseAddress:descriptor]) {
             [resourceLock unlock];
             @throw [BootingException exceptionWithName:@"BootingException"
                                                 reason:@"Could not reuse exisitng address" userInfo:nil];
         }
-        if (![Utilities noSigPipe:descriptor]) {
+        if (![fileDescriptorConfigurator noSigPipe:descriptor]) {
             [resourceLock unlock];
             @throw [BootingException exceptionWithName:@"BootingException"
                                                 reason:@"Could not protect against sigPipe" userInfo:nil];
         }
-        if (![Utilities noSigPipe:descriptor]) {
+        if (![fileDescriptorConfigurator noSigPipe:descriptor]) {
             [resourceLock unlock];
             @throw [BootingException exceptionWithName:@"BootingException"
                                                 reason:@"Could not make the socket nonblocking" userInfo:nil];
@@ -117,12 +132,13 @@
                 int clientSocketDescriptor;
                 memset(&clientAddress, 0, sizeof(struct sockaddr_in));
                 clientSocketDescriptor = accept(descriptor, (struct sockaddr *)&clientAddress, &clientAddressLength);
-                if(clientSocketDescriptor >= 0 && [Utilities noSigPipe:clientSocketDescriptor]) {
+                if(clientSocketDescriptor >= 0 && [fileDescriptorConfigurator noSigPipe:clientSocketDescriptor]) {
                     Connection * connection = [[Connection alloc] initWithAddress:clientAddress
                                                                     addressLength:clientAddressLength
                                                                        descriptor:clientSocketDescriptor
                                                                         chunkSize:configuration.chunkSize
-                                                                        ioHandler:ioHandler];
+                                                                        ioHandler:ioHandler
+                                                                   networkManager:networkManager];
                     [_delegate newClientHasConnected:connection];
                     [connections addObject:connection];
                 }
@@ -137,7 +153,7 @@
 -(void)shutDown {
     [resourceLock lock];
     [thread cancel];
-    if (![Utilities close:descriptor]) {
+    if (![networkManager close:descriptor]) {
         [resourceLock unlock];
         @throw [BootingException exceptionWithName:@"ShuttingDownException"
                                             reason:@"Could close server's socket" userInfo:nil];

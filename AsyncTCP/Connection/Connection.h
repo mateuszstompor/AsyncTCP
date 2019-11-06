@@ -11,6 +11,8 @@
 #import "ConnectionState.h"
 #import "ConnectionDelegate.h"
 #import "../IO/IONetworkHandleable.h"
+#import "../NetworkManager/NetworkManageable.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -20,7 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
                   addressLength: (socklen_t) addressLength
                      descriptor: (int) descriptor
                       chunkSize: (ssize_t) chunkSize
-                      ioHandler: (NSObject<IONetworkHandleable>*) ioHandler;
+                      ioHandler: (NSObject<IONetworkHandleable>*) ioHandler
+                 networkManager: (NSObject<NetworkManageable>*) networkManager;
 -(BOOL)enqueueDataForSending: (NSData*) data;
 -(void)performIO;
 -(ConnectionState)state;
