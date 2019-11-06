@@ -120,7 +120,7 @@
             // perform IO
             for (ssize_t i=0; i<[connections count]; ++i) {
                 Connection * connection = [connections objectAtIndex:i];
-                if ([connection lastInteractionInterval] > configuration.connectionTimeout) {
+                if ([connection lastInteractionInterval] > configuration.connectionTimeout || [connection state] == closed) {
                     [connectionsToRemove addObject:connection];
                 } else {
                     [connection performIO];
