@@ -25,6 +25,7 @@
 		56744C252372C32D00C2B37D /* FileDescriptorConfigurator.h in Headers */ = {isa = PBXBuildFile; fileRef = 56744C232372C32D00C2B37D /* FileDescriptorConfigurator.h */; };
 		56744C262372C32D00C2B37D /* FileDescriptorConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 56744C242372C32D00C2B37D /* FileDescriptorConfigurator.m */; };
 		56744C322372C66900C2B37D /* NetworkManageable.h in Headers */ = {isa = PBXBuildFile; fileRef = 56744C302372C66900C2B37D /* NetworkManageable.h */; };
+		56744C362372DE0600C2B37D /* TestHandlingServerEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 56744C352372DE0600C2B37D /* TestHandlingServerEvents.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		56744C232372C32D00C2B37D /* FileDescriptorConfigurator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileDescriptorConfigurator.h; sourceTree = "<group>"; };
 		56744C242372C32D00C2B37D /* FileDescriptorConfigurator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileDescriptorConfigurator.m; sourceTree = "<group>"; };
 		56744C302372C66900C2B37D /* NetworkManageable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkManageable.h; sourceTree = "<group>"; };
+		56744C352372DE0600C2B37D /* TestHandlingServerEvents.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestHandlingServerEvents.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 		5607F83623718E92001A9AE9 /* AsyncTCPTests */ = {
 			isa = PBXGroup;
 			children = (
+				56744C352372DE0600C2B37D /* TestHandlingServerEvents.m */,
 				5607F83723718E92001A9AE9 /* LifeCycleTests.m */,
 				5607F83923718E92001A9AE9 /* Info.plist */,
 			);
@@ -304,6 +307,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56744C362372DE0600C2B37D /* TestHandlingServerEvents.m in Sources */,
 				5607F83823718E92001A9AE9 /* LifeCycleTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

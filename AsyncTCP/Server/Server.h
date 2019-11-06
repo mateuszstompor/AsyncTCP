@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Server : NSObject
 @property (atomic, nullable) NSObject<ServerDelegate>* delegate;
 -(instancetype)initWithConfiguratoin: (struct ServerConfiguration) configuration
+                   notificationQueue: (dispatch_queue_t) notificationQueue
                            ioHandler: (NSObject<IONetworkHandleable>*) ioHandler
           fileDescriptorConfigurator: (NSObject<FileDescriptorConfigurable>*) fileDescriptorConfigurator
                       networkManager: (NSObject<NetworkManageable>*) networkManager;

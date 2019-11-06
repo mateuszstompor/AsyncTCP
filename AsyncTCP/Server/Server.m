@@ -32,17 +32,20 @@
     NSObject<IONetworkHandleable>* ioHandler;
     NSObject<FileDescriptorConfigurable>* fileDescriptorConfigurator;
     NSObject<NetworkManageable>* networkManager;
+    dispatch_queue_t notificationQueue;
 }
 @end
 
 @implementation Server
 -(instancetype)initWithConfiguratoin: (struct ServerConfiguration) configuration {
     return [self initWithConfiguratoin:configuration
+                     notificationQueue: dispatch_get_main_queue()
                              ioHandler:[[IONetworkHandler alloc] init]
             fileDescriptorConfigurator:[[FileDescriptorConfigurator alloc] init]
                         networkManager:[[NetworkManager alloc] init]];
 }
 - (instancetype)initWithConfiguratoin:(struct ServerConfiguration)configuration
+                    notificationQueue: (dispatch_queue_t) notificationQueue
                             ioHandler: (NSObject<IONetworkHandleable>*) ioHandler
            fileDescriptorConfigurator: (NSObject<FileDescriptorConfigurable>*) fileDescriptorConfigurator
                        networkManager: (NSObject<NetworkManageable>*) networkManager {
@@ -54,6 +57,7 @@
         self->connections = [NSMutableArray new];
         self->resourceLock = [NSLock new];
         self->thread = nil;
+        self->notificationQueue = notificationQueue;
         self->fileDescriptorConfigurator = fileDescriptorConfigurator;
         self->ioHandler = ioHandler;
         self->_delegate = nil;
@@ -107,13 +111,13 @@
 -(void)serve {
     while(true) {
         [resourceLock lock];
-        if(![thread isCancelled]) {
+        if(!thread.cancelled) {
             NSMutableArray<Connection*>* connectionsToRemove = [NSMutableArray new];
             // perform IO
             for (ssize_t i=0; i<[connections count]; ++i) {
                 Connection * connection = [connections objectAtIndex:i];
                 if ([connection lastInteractionInterval] > configuration.connectionTimeout) {
-                    [connection requestClosing];
+                    [connection close];
                 }
                 if (connection.state == closed) {
                     [connectionsToRemove addObject:connection];
@@ -132,31 +136,41 @@
                 int clientSocketDescriptor;
                 memset(&clientAddress, 0, sizeof(struct sockaddr_in));
                 clientSocketDescriptor = accept(descriptor, (struct sockaddr *)&clientAddress, &clientAddressLength);
-                if(clientSocketDescriptor >= 0 && [fileDescriptorConfigurator noSigPipe:clientSocketDescriptor]) {
+                if(clientSocketDescriptor >= 0
+                   && [fileDescriptorConfigurator noSigPipe:clientSocketDescriptor]
+                   && [fileDescriptorConfigurator makeNonBlocking:clientSocketDescriptor]) {
                     Connection * connection = [[Connection alloc] initWithAddress:clientAddress
                                                                     addressLength:clientAddressLength
                                                                        descriptor:clientSocketDescriptor
                                                                         chunkSize:configuration.chunkSize
+                                                                notificationQueue: notificationQueue
                                                                         ioHandler:ioHandler
                                                                    networkManager:networkManager];
-                    [_delegate newClientHasConnected:connection];
+                    __weak Server * weakSelf = self;
+                    dispatch_async(notificationQueue, ^{
+                        [weakSelf.delegate newClientHasConnected:connection];
+                    });
                     [connections addObject:connection];
                 }
             }
         } else {
             [resourceLock unlock];
+            break;
         }
         [resourceLock unlock];
         usleep(configuration.eventLoopMicrosecondsDelay);
     }
 }
 -(void)shutDown {
-    [resourceLock lock];
     [thread cancel];
+    [resourceLock lock];
+    for (Connection * connection in connections) {
+        [connection close];
+    }
     if (![networkManager close:descriptor]) {
         [resourceLock unlock];
-        @throw [BootingException exceptionWithName:@"ShuttingDownException"
-                                            reason:@"Could close server's socket" userInfo:nil];
+        @throw [ShuttingDownException exceptionWithName:@"ShuttingDownException"
+                                                 reason:@"Could close server's socket" userInfo:nil];
     }
     descriptor = -1;
     [resourceLock unlock];

@@ -28,6 +28,7 @@
     NSObject<IONetworkHandleable>* ioHandler;
     NSMutableArray<NSData*>* outgoingMessages;
     NSObject<NetworkManageable>* networkManager;
+    dispatch_queue_t notificationQueue;
 }
 @end
 
@@ -36,6 +37,7 @@
                   addressLength: (socklen_t) addressLength
                      descriptor: (int) descriptor
                       chunkSize: (ssize_t) chunkSize
+              notificationQueue: (dispatch_queue_t) notificationQueue
                       ioHandler: (NSObject<IONetworkHandleable>*) ioHandler
                  networkManager: (NSObject<NetworkManageable>*) networkManager {
     self = [super init];
@@ -47,6 +49,7 @@
         self->resourceLock = [NSLock new];
         self->lastActivity = nil;
         self->chunkSize = chunkSize;
+        self->notificationQueue = notificationQueue;
         self->state = active;
         self->networkManager = networkManager;
         self->outgoingMessages = [NSMutableArray new];
@@ -64,7 +67,7 @@
         return NO;
     }
 }
--(void)requestClosing {
+-(void)close {
     [resourceLock lock];
     [self unsafeClose];
     [resourceLock unlock];
@@ -97,18 +100,23 @@
             lastActivity = [NSDate new];
             [ioHandler send:data fileDescriptor:descriptor];
         }
-        dataRead = [ioHandler readBytes:36 fileDescriptor:descriptor];
+        dataRead = [ioHandler readBytes:self->chunkSize fileDescriptor:descriptor];
         lastActivity = [NSDate new];
     } @catch (IOException *exception) {
         [self unsafeClose];
         stateChanged = true;
     }
     [resourceLock unlock];
+    __weak Connection * weakSelf = self;
     if (dataRead) {
-        [_delegate connection:self chunkHasArrived:dataRead];
+        dispatch_async(notificationQueue, ^{
+            [weakSelf.delegate connection:self chunkHasArrived:dataRead];
+        });
     }
     if (stateChanged) {
-        [_delegate connection:self stateHasChanged:state];
+        dispatch_async(notificationQueue, ^{
+            [weakSelf.delegate connection:self stateHasChanged:state];
+        });
     }
 }
 @end

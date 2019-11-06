@@ -22,12 +22,13 @@ NS_ASSUME_NONNULL_BEGIN
                   addressLength: (socklen_t) addressLength
                      descriptor: (int) descriptor
                       chunkSize: (ssize_t) chunkSize
+              notificationQueue: (dispatch_queue_t) notificationQueue
                       ioHandler: (NSObject<IONetworkHandleable>*) ioHandler
                  networkManager: (NSObject<NetworkManageable>*) networkManager;
 -(BOOL)enqueueDataForSending: (NSData*) data;
 -(void)performIO;
 -(ConnectionState)state;
--(void)requestClosing;
+-(void)close;
 -(NSTimeInterval)lastInteractionInterval;
 @end
 

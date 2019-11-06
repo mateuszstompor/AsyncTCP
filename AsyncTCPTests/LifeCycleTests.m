@@ -13,8 +13,8 @@
 #import "Server.h"
 #import "NetworkManager.h"
 #import "IONetworkHandler.h"
-#import "FileDescriptorConfigurator.h"
 #import "ServerConfiguration.h"
+#import "FileDescriptorConfigurator.h"
 
 @interface LifeCycleTests : XCTestCase
 {
@@ -26,10 +26,10 @@
 @implementation LifeCycleTests
 -(void)setUp {
     configuration.port = 47850;
-    configuration.connectionTimeout = 5;
     configuration.chunkSize = 36;
-    configuration.eventLoopMicrosecondsDelay = 400;
+    configuration.connectionTimeout = 5;
     configuration.maximalConnectionsCount = 1;
+    configuration.eventLoopMicrosecondsDelay = 400;
     asyncServer = [[Server alloc] initWithConfiguratoin:configuration];
 }
 -(void)testBootAndShutdown {
