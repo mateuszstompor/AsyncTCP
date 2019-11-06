@@ -8,28 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		5607F81F237189AC001A9AE9 /* AsyncTCP.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F81D237189AC001A9AE9 /* AsyncTCP.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5607F82723718AC6001A9AE9 /* Connection.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F82523718AC6001A9AE9 /* Connection.h */; };
+		5607F82723718AC6001A9AE9 /* Connection.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F82523718AC6001A9AE9 /* Connection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5607F82823718AC6001A9AE9 /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5607F82623718AC6001A9AE9 /* Connection.m */; };
-		5607F82B23718AD5001A9AE9 /* Server.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F82923718AD5001A9AE9 /* Server.h */; };
+		5607F82B23718AD5001A9AE9 /* Server.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F82923718AD5001A9AE9 /* Server.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5607F82C23718AD5001A9AE9 /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = 5607F82A23718AD5001A9AE9 /* Server.m */; };
-		5607F82F23718E06001A9AE9 /* ServerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F82D23718E06001A9AE9 /* ServerDelegate.h */; };
+		5607F82F23718E06001A9AE9 /* ServerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F82D23718E06001A9AE9 /* ServerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5607F83823718E92001A9AE9 /* LifeCycleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5607F83723718E92001A9AE9 /* LifeCycleTests.m */; };
 		5607F83A23718E92001A9AE9 /* AsyncTCP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5607F81A237189AC001A9AE9 /* AsyncTCP.framework */; };
-		5607F8462371937D001A9AE9 /* NetworkManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F8442371937D001A9AE9 /* NetworkManager.h */; };
+		5607F8462371937D001A9AE9 /* NetworkManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F8442371937D001A9AE9 /* NetworkManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5607F8472371937D001A9AE9 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5607F8452371937D001A9AE9 /* NetworkManager.m */; };
-		5607F84F2371AA57001A9AE9 /* ConnectionDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F84D2371AA57001A9AE9 /* ConnectionDelegate.h */; };
-		5607F8542371B02A001A9AE9 /* ServerConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F8522371B02A001A9AE9 /* ServerConfiguration.h */; };
-		5607F85A2371D742001A9AE9 /* IONetworkHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F8582371D742001A9AE9 /* IONetworkHandler.h */; };
+		5607F84F2371AA57001A9AE9 /* ConnectionDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F84D2371AA57001A9AE9 /* ConnectionDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5607F8542371B02A001A9AE9 /* ServerConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F8522371B02A001A9AE9 /* ServerConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5607F85A2371D742001A9AE9 /* IONetworkHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F8582371D742001A9AE9 /* IONetworkHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5607F85B2371D742001A9AE9 /* IONetworkHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5607F8592371D742001A9AE9 /* IONetworkHandler.m */; };
-		560C3DA42373217200E711F4 /* ConnectionHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = 560C3DA22373217200E711F4 /* ConnectionHandle.h */; };
-		560C3DA8237321F200E711F4 /* ServerHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = 560C3DA6237321F200E711F4 /* ServerHandle.h */; };
+		560C3DA42373217200E711F4 /* ConnectionHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = 560C3DA22373217200E711F4 /* ConnectionHandle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		560C3DA8237321F200E711F4 /* ServerHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = 560C3DA6237321F200E711F4 /* ServerHandle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		560C3DB62373259900E711F4 /* Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 560C3DB52373259900E711F4 /* Client.m */; };
 		560C3DBD23732CE200E711F4 /* SingleClientConnectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 560C3DBC23732CE200E711F4 /* SingleClientConnectionTests.m */; };
 		560C3DC023737D9D00E711F4 /* ServerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 560C3DBF23737D9D00E711F4 /* ServerHandler.m */; };
-		56744C212372C32000C2B37D /* FileDescriptorConfigurable.h in Headers */ = {isa = PBXBuildFile; fileRef = 56744C1F2372C32000C2B37D /* FileDescriptorConfigurable.h */; };
-		56744C252372C32D00C2B37D /* FileDescriptorConfigurator.h in Headers */ = {isa = PBXBuildFile; fileRef = 56744C232372C32D00C2B37D /* FileDescriptorConfigurator.h */; };
+		564D447323738F2E00FA0140 /* IONetworkHandleable.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F85C2371D765001A9AE9 /* IONetworkHandleable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		564D447423738F2E00FA0140 /* ConnectionState.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F8562371CCD0001A9AE9 /* ConnectionState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		56744C212372C32000C2B37D /* FileDescriptorConfigurable.h in Headers */ = {isa = PBXBuildFile; fileRef = 56744C1F2372C32000C2B37D /* FileDescriptorConfigurable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		56744C252372C32D00C2B37D /* FileDescriptorConfigurator.h in Headers */ = {isa = PBXBuildFile; fileRef = 56744C232372C32D00C2B37D /* FileDescriptorConfigurator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56744C262372C32D00C2B37D /* FileDescriptorConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 56744C242372C32D00C2B37D /* FileDescriptorConfigurator.m */; };
-		56744C322372C66900C2B37D /* NetworkManageable.h in Headers */ = {isa = PBXBuildFile; fileRef = 56744C302372C66900C2B37D /* NetworkManageable.h */; };
+		56744C322372C66900C2B37D /* NetworkManageable.h in Headers */ = {isa = PBXBuildFile; fileRef = 56744C302372C66900C2B37D /* NetworkManageable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56744C362372DE0600C2B37D /* HandlingServerEventsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56744C352372DE0600C2B37D /* HandlingServerEventsTests.m */; };
 /* End PBXBuildFile section */
 
@@ -224,6 +226,8 @@
 				560C3DA8237321F200E711F4 /* ServerHandle.h in Headers */,
 				56744C212372C32000C2B37D /* FileDescriptorConfigurable.h in Headers */,
 				5607F84F2371AA57001A9AE9 /* ConnectionDelegate.h in Headers */,
+				564D447323738F2E00FA0140 /* IONetworkHandleable.h in Headers */,
+				564D447423738F2E00FA0140 /* ConnectionState.h in Headers */,
 				5607F8542371B02A001A9AE9 /* ServerConfiguration.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

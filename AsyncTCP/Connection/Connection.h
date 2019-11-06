@@ -10,9 +10,9 @@
 
 #import "ConnectionState.h"
 #import "ConnectionHandle.h"
+#import "NetworkManageable.h"
 #import "ConnectionDelegate.h"
-#import "../IO/IONetworkHandleable.h"
-#import "../NetworkManager/NetworkManageable.h"
+#import "IONetworkHandleable.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

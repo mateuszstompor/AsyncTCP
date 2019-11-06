@@ -12,8 +12,8 @@
 #import "ServerHandle.h"
 #import "ServerDelegate.h"
 #import "ServerConfiguration.h"
-#import "../IO/IONetworkHandleable.h"
-#import "../FileDescriptors/FileDescriptorConfigurable.h"
+#import "IONetworkHandleable.h"
+#import "FileDescriptorConfigurable.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

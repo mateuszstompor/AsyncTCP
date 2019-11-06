@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "../Connection/ConnectionDelegate.h"
+#import "ConnectionDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
