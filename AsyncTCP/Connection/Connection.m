@@ -68,11 +68,15 @@
     }
 }
 -(void)close {
+    BOOL notifyDelegate = NO;
     [resourceLock lock];
-    [self unsafeClose];
+    if(state != closed) {
+        notifyDelegate = YES;
+        [self unsafeClose];
+    }
     [resourceLock unlock];
     __weak Connection * weakSelf = self;
-    if (weakSelf == nil) {
+    if (weakSelf == nil || notifyDelegate == NO) {
         return;
     }
     [weakSelf.delegate connection:weakSelf stateHasChangedTo:weakSelf.state];
