@@ -166,6 +166,7 @@
     for (Connection * connection in connections) {
         [connection close];
     }
+    connections = [NSMutableArray new];
     if (![networkManager close:descriptor]) {
         [resourceLock unlock];
         @throw [ShuttingDownException exceptionWithName:@"ShuttingDownException"
