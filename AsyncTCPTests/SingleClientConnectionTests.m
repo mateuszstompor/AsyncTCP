@@ -33,7 +33,7 @@
     handler = [[ServerHandler alloc] init];
     configuration.port = 47853;
     configuration.chunkSize = 36;
-    configuration.connectionTimeout = 5;
+    configuration.connectionTimeout = 2;
     configuration.maximalConnectionsCount = 1;
     configuration.eventLoopMicrosecondsDelay = 400;
     asyncServer = [[Server alloc] initWithConfiguratoin:configuration];
@@ -68,9 +68,19 @@
     XCTAssertEqual([client connect], 0);
     sleep(1);
     XCTAssertEqual([asyncServer connectedClientsCount], 1);
-//    XCTAssertLessThan([anotherClient connect], 0);
-    XCTAssertEqual([asyncServer connectedClientsCount], 1);
     [asyncServer shutDown];
     XCTAssertEqual([asyncServer connectedClientsCount], 0);
 }
+-(void)testTimeout {
+    asyncServer.delegate = handler;
+    XCTAssertEqual([asyncServer connectedClientsCount], 0);
+    [asyncServer boot];
+    XCTAssertEqual([client connect], 0);
+    sleep(1);
+    XCTAssertEqual([asyncServer connectedClientsCount], 1);
+    sleep(2);
+    XCTAssertEqual([asyncServer connectedClientsCount], 0);
+    [asyncServer shutDown];
+}
+
 @end
