@@ -175,7 +175,10 @@
     descriptor = -1;
     [resourceLock unlock];
 }
--(int)port {
-    return self->configuration.port;
+-(struct ServerConfiguration)configuration {
+    [resourceLock lock];
+    struct ServerConfiguration configurationToReturn = configuration;
+    [resourceLock unlock];
+    return configurationToReturn;
 }
 @end

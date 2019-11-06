@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "ConnectionState.h"
+#import "ConnectionHandle.h"
 #import "ConnectionDelegate.h"
 #import "../IO/IONetworkHandleable.h"
 #import "../NetworkManager/NetworkManageable.h"
@@ -16,7 +17,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Connection : NSObject
+@interface Connection: NSObject<ConnectionHandle>
 @property (atomic, nullable) NSObject<ConnectionDelegate>* delegate;
 -(instancetype) initWithAddress: (struct sockaddr_in) address
                   addressLength: (socklen_t) addressLength
@@ -25,10 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
               notificationQueue: (dispatch_queue_t) notificationQueue
                       ioHandler: (NSObject<IONetworkHandleable>*) ioHandler
                  networkManager: (NSObject<NetworkManageable>*) networkManager;
--(BOOL)enqueueDataForSending: (NSData*) data;
 -(void)performIO;
--(ConnectionState)state;
--(void)close;
 -(NSTimeInterval)lastInteractionInterval;
 @end
 

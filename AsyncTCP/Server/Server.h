@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "Connection.h"
+#import "ServerHandle.h"
 #import "ServerDelegate.h"
 #import "ServerConfiguration.h"
 #import "../IO/IONetworkHandleable.h"
@@ -22,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ShuttingDownException : NSException
 @end
 
-@interface Server : NSObject
+@interface Server: NSObject<ServerHandle>
 @property (atomic, nullable) NSObject<ServerDelegate>* delegate;
 -(instancetype)initWithConfiguratoin: (struct ServerConfiguration) configuration
                    notificationQueue: (dispatch_queue_t) notificationQueue
@@ -30,9 +31,6 @@ NS_ASSUME_NONNULL_BEGIN
           fileDescriptorConfigurator: (NSObject<FileDescriptorConfigurable>*) fileDescriptorConfigurator
                       networkManager: (NSObject<NetworkManageable>*) networkManager;
 -(instancetype)initWithConfiguratoin: (struct ServerConfiguration) configuration;
--(void)boot;
--(int)port;
--(void)shutDown;
 @end
 
 NS_ASSUME_NONNULL_END

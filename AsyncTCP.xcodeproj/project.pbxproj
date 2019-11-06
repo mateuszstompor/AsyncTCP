@@ -21,6 +21,8 @@
 		5607F8542371B02A001A9AE9 /* ServerConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F8522371B02A001A9AE9 /* ServerConfiguration.h */; };
 		5607F85A2371D742001A9AE9 /* IONetworkHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F8582371D742001A9AE9 /* IONetworkHandler.h */; };
 		5607F85B2371D742001A9AE9 /* IONetworkHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5607F8592371D742001A9AE9 /* IONetworkHandler.m */; };
+		560C3DA42373217200E711F4 /* ConnectionHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = 560C3DA22373217200E711F4 /* ConnectionHandle.h */; };
+		560C3DA8237321F200E711F4 /* ServerHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = 560C3DA6237321F200E711F4 /* ServerHandle.h */; };
 		56744C212372C32000C2B37D /* FileDescriptorConfigurable.h in Headers */ = {isa = PBXBuildFile; fileRef = 56744C1F2372C32000C2B37D /* FileDescriptorConfigurable.h */; };
 		56744C252372C32D00C2B37D /* FileDescriptorConfigurator.h in Headers */ = {isa = PBXBuildFile; fileRef = 56744C232372C32D00C2B37D /* FileDescriptorConfigurator.h */; };
 		56744C262372C32D00C2B37D /* FileDescriptorConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 56744C242372C32D00C2B37D /* FileDescriptorConfigurator.m */; };
@@ -58,6 +60,8 @@
 		5607F8582371D742001A9AE9 /* IONetworkHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IONetworkHandler.h; sourceTree = "<group>"; };
 		5607F8592371D742001A9AE9 /* IONetworkHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IONetworkHandler.m; sourceTree = "<group>"; };
 		5607F85C2371D765001A9AE9 /* IONetworkHandleable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IONetworkHandleable.h; sourceTree = "<group>"; };
+		560C3DA22373217200E711F4 /* ConnectionHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectionHandle.h; sourceTree = "<group>"; };
+		560C3DA6237321F200E711F4 /* ServerHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServerHandle.h; sourceTree = "<group>"; };
 		56744C1F2372C32000C2B37D /* FileDescriptorConfigurable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileDescriptorConfigurable.h; sourceTree = "<group>"; };
 		56744C232372C32D00C2B37D /* FileDescriptorConfigurator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileDescriptorConfigurator.h; sourceTree = "<group>"; };
 		56744C242372C32D00C2B37D /* FileDescriptorConfigurator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileDescriptorConfigurator.m; sourceTree = "<group>"; };
@@ -131,6 +135,7 @@
 			children = (
 				5607F82523718AC6001A9AE9 /* Connection.h */,
 				5607F82623718AC6001A9AE9 /* Connection.m */,
+				560C3DA22373217200E711F4 /* ConnectionHandle.h */,
 				5607F84D2371AA57001A9AE9 /* ConnectionDelegate.h */,
 				5607F8562371CCD0001A9AE9 /* ConnectionState.h */,
 			);
@@ -142,6 +147,7 @@
 			children = (
 				5607F82923718AD5001A9AE9 /* Server.h */,
 				5607F82A23718AD5001A9AE9 /* Server.m */,
+				560C3DA6237321F200E711F4 /* ServerHandle.h */,
 				5607F82D23718E06001A9AE9 /* ServerDelegate.h */,
 				5607F8522371B02A001A9AE9 /* ServerConfiguration.h */,
 			);
@@ -185,6 +191,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				560C3DA42373217200E711F4 /* ConnectionHandle.h in Headers */,
 				5607F85A2371D742001A9AE9 /* IONetworkHandler.h in Headers */,
 				56744C322372C66900C2B37D /* NetworkManageable.h in Headers */,
 				5607F82F23718E06001A9AE9 /* ServerDelegate.h in Headers */,
@@ -193,6 +200,7 @@
 				5607F82723718AC6001A9AE9 /* Connection.h in Headers */,
 				5607F81F237189AC001A9AE9 /* AsyncTCP.h in Headers */,
 				5607F8462371937D001A9AE9 /* NetworkManager.h in Headers */,
+				560C3DA8237321F200E711F4 /* ServerHandle.h in Headers */,
 				56744C212372C32000C2B37D /* FileDescriptorConfigurable.h in Headers */,
 				5607F84F2371AA57001A9AE9 /* ConnectionDelegate.h in Headers */,
 				5607F8542371B02A001A9AE9 /* ServerConfiguration.h in Headers */,

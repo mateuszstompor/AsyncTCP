@@ -15,8 +15,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol ConnectionDelegate<NSObject>
--(void)connection: (Connection*) connection chunkHasArrived: (NSData*) data;
--(void)connection: (Connection*) connection stateHasChanged: (ConnectionState) state;
+-(void)connection: (NSObject<ConnectionHandle>*) connection chunkHasArrived: (NSData*) data;
+-(void)connection: (NSObject<ConnectionHandle>*) connection stateHasChangedTo: (ConnectionState) state;
 @end
 
 NS_ASSUME_NONNULL_END
