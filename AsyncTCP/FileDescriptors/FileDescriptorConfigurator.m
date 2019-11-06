@@ -11,7 +11,6 @@
 #import <netdb.h>
 #import <errno.h>
 
-
 @implementation FileDescriptorConfigurator
 -(BOOL)makeNonBlocking: (int) fileDescriptor {
     return fcntl(fileDescriptor, F_SETFL, O_NONBLOCK) != -1;

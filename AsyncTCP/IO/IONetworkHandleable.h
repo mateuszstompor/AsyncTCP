@@ -8,7 +8,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface IOException : NSException
+@interface IOException: NSException
 @end
 
 @protocol IONetworkHandleable<NSObject>

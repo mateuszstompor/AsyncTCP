@@ -71,7 +71,11 @@
     [resourceLock lock];
     [self unsafeClose];
     [resourceLock unlock];
-    [_delegate connection:self stateHasChanged:state];
+    __weak Connection * weakSelf = self;
+    if (weakSelf == nil) {
+        return;
+    }
+    [weakSelf.delegate connection:weakSelf stateHasChanged:weakSelf.state];
 }
 -(void)unsafeClose {
     state = closed;
@@ -100,22 +104,25 @@
             lastActivity = [NSDate new];
             [ioHandler send:data fileDescriptor:descriptor];
         }
-        dataRead = [ioHandler readBytes:self->chunkSize fileDescriptor:descriptor];
+        dataRead = [ioHandler readBytes:chunkSize fileDescriptor:descriptor];
         lastActivity = [NSDate new];
     } @catch (IOException *exception) {
         [self unsafeClose];
-        stateChanged = true;
+        stateChanged = YES;
     }
     [resourceLock unlock];
     __weak Connection * weakSelf = self;
+    if (weakSelf == nil) {
+        return;
+    }
     if (dataRead) {
         dispatch_async(notificationQueue, ^{
-            [weakSelf.delegate connection:self chunkHasArrived:dataRead];
+            [weakSelf.delegate connection:weakSelf chunkHasArrived:dataRead];
         });
     }
     if (stateChanged) {
         dispatch_async(notificationQueue, ^{
-            [weakSelf.delegate connection:self stateHasChanged:state];
+            [weakSelf.delegate connection:weakSelf stateHasChanged:weakSelf.state];
         });
     }
 }
