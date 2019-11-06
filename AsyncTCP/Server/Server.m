@@ -84,7 +84,7 @@
             @throw [BootingException exceptionWithName:@"BootingException"
                                                 reason:@"Could not protect against sigPipe" userInfo:nil];
         }
-        if (![fileDescriptorConfigurator noSigPipe:descriptor]) {
+        if (![fileDescriptorConfigurator makeNonBlocking:descriptor]) {
             [resourceLock unlock];
             @throw [BootingException exceptionWithName:@"BootingException"
                                                 reason:@"Could not make the socket nonblocking" userInfo:nil];
