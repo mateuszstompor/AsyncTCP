@@ -19,7 +19,7 @@
 @end
 
 @implementation Client
--(instancetype)initWithHost:(const char *)hostname port: (int) port {
+-(instancetype)initWithHost: (const char *)hostname port: (int) port {
     self = [super init];
     if (self) {
         bzero((char *) &address, sizeof(address));
@@ -42,7 +42,7 @@
                                        reason:@"Could not create a socket"
                                      userInfo:nil];
     }
-    return connect(self.descriptor, (struct sockaddr *) &address, sizeof(address));
+    return connect(_descriptor, (struct sockaddr *) &address, sizeof(address));
 }
 -(int)close {
     return close(_descriptor);
