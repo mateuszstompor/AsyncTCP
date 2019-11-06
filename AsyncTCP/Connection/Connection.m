@@ -47,7 +47,7 @@
         self->ioHandler = ioHandler;
         self->addressLength = addressLength;
         self->resourceLock = [NSLock new];
-        self->lastActivity = nil;
+        self->lastActivity = [NSDate new];
         self->chunkSize = chunkSize;
         self->notificationQueue = notificationQueue;
         self->state = active;
@@ -105,7 +105,6 @@
             [ioHandler send:data fileDescriptor:descriptor];
         }
         dataRead = [ioHandler readBytes:chunkSize fileDescriptor:descriptor];
-        lastActivity = [NSDate new];
     } @catch (IOException *exception) {
         [self unsafeClose];
         stateChanged = YES;
@@ -116,6 +115,7 @@
         return;
     }
     if (dataRead) {
+        lastActivity = [NSDate new];
         dispatch_async(notificationQueue, ^{
             [weakSelf.delegate connection:weakSelf chunkHasArrived:dataRead];
         });
