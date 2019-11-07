@@ -31,11 +31,11 @@
     NSData * data = nil;
     uint8_t * buffer = malloc(amount);
     ssize_t result = recv(fileDescriptor, buffer, amount, 0);
-    if (result == amount) {
+    if (result > 0) {
         data = [NSData dataWithBytes:buffer length:result];
         free(buffer);
         return data;
-    } else if ((result == -1 && (errno == EAGAIN || errno == EWOULDBLOCK)) || result > 0) {
+    } else if (result == -1 && (errno == EAGAIN || errno == EWOULDBLOCK)) {
         free(buffer);
         return nil;
     } else {

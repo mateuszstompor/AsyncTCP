@@ -20,6 +20,7 @@
 {
     int descriptor;
     NSDate * lastActivity;
+    NSMutableData * buffer;
     NSLock * resourceLock;
     struct sockaddr_in address;
     socklen_t addressLength;
@@ -49,6 +50,7 @@
         self->addressLength = addressLength;
         self->resourceLock = [NSLock new];
         self->lastActivity = [NSDate new];
+        self->buffer = [NSMutableData new];
         self->chunkSize = chunkSize;
         self->notificationQueue = notificationQueue;
         self->state = active;
@@ -100,7 +102,7 @@
 }
 -(void)performIO {
     [resourceLock lock];
-    NSData * dataRead = nil;
+    NSData * dataToSent = nil;
     BOOL stateChanged = NO;
     @try {
         if ([outgoingMessages count] > 0) {
@@ -109,7 +111,15 @@
             lastActivity = [NSDate new];
             [ioHandler send:data fileDescriptor:descriptor];
         }
-        dataRead = [ioHandler readBytes:chunkSize fileDescriptor:descriptor];
+        NSData * dataRead = [ioHandler readBytes:chunkSize fileDescriptor:descriptor];
+        if(dataRead) {
+            lastActivity = [NSDate new];
+            [buffer appendData:dataRead];
+            if([buffer length] >= chunkSize) {
+                dataToSent = [buffer subdataWithRange:NSMakeRange(0, chunkSize)];
+                buffer = [[buffer subdataWithRange:NSMakeRange(chunkSize, [buffer length] - chunkSize)] mutableCopy];
+            }
+        }
     } @catch (IOException *exception) {
         [self unsafeClose];
         stateChanged = YES;
@@ -119,10 +129,9 @@
     if (weakSelf == nil) {
         return;
     }
-    if (dataRead) {
-        lastActivity = [NSDate new];
+    if (dataToSent) {
         dispatch_async(notificationQueue, ^{
-            [weakSelf.delegate connection:weakSelf chunkHasArrived:dataRead];
+            [weakSelf.delegate connection:weakSelf chunkHasArrived:dataToSent];
         });
     }
     if (stateChanged) {
