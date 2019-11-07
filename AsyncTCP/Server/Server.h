@@ -29,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
           fileDescriptorConfigurator: (NSObject<FileDescriptorConfigurable>*) fileDescriptorConfigurator
                       networkManager: (NSObject<NetworkManageable>*) networkManager;
 -(instancetype)initWithConfiguratoin: (struct ServerConfiguration) configuration;
+-(instancetype)initWithConfiguratoin: (struct ServerConfiguration) configuration
+                   notificationQueue: (dispatch_queue_t) notificationQueue;
 @end
 
 NS_ASSUME_NONNULL_END

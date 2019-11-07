@@ -38,8 +38,12 @@
 @implementation Server
 @synthesize delegate=_delegate;
 -(instancetype)initWithConfiguratoin: (struct ServerConfiguration) configuration {
+    return [self initWithConfiguratoin:configuration notificationQueue:dispatch_get_main_queue()];
+}
+-(instancetype)initWithConfiguratoin: (struct ServerConfiguration) configuration
+                   notificationQueue: (dispatch_queue_t) notificationQueue {
     return [self initWithConfiguratoin:configuration
-                     notificationQueue: dispatch_get_main_queue()
+                     notificationQueue:notificationQueue
                              ioHandler:[[IONetworkHandler alloc] init]
             fileDescriptorConfigurator:[[FileDescriptorConfigurator alloc] init]
                         networkManager:[[NetworkManager alloc] init]];
