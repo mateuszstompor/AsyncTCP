@@ -26,6 +26,8 @@
 		560C3DB62373259900E711F4 /* Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 560C3DB52373259900E711F4 /* Client.m */; };
 		560C3DBD23732CE200E711F4 /* SingleClientConnectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 560C3DBC23732CE200E711F4 /* SingleClientConnectionTests.m */; };
 		560C3DC023737D9D00E711F4 /* ServerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 560C3DBF23737D9D00E711F4 /* ServerHandler.m */; };
+		561240C22374B2B000B2F08D /* SendingDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 561240C12374B2B000B2F08D /* SendingDataTests.m */; };
+		561240C52374BE5A00B2F08D /* ConnectionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 561240C42374BE5A00B2F08D /* ConnectionHandler.m */; };
 		564D447323738F2E00FA0140 /* IONetworkHandleable.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F85C2371D765001A9AE9 /* IONetworkHandleable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		564D447423738F2E00FA0140 /* ConnectionState.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F8562371CCD0001A9AE9 /* ConnectionState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56744C212372C32000C2B37D /* FileDescriptorConfigurable.h in Headers */ = {isa = PBXBuildFile; fileRef = 56744C1F2372C32000C2B37D /* FileDescriptorConfigurable.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -72,6 +74,9 @@
 		560C3DBC23732CE200E711F4 /* SingleClientConnectionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SingleClientConnectionTests.m; sourceTree = "<group>"; };
 		560C3DBE23737D9D00E711F4 /* ServerHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServerHandler.h; sourceTree = "<group>"; };
 		560C3DBF23737D9D00E711F4 /* ServerHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ServerHandler.m; sourceTree = "<group>"; };
+		561240C12374B2B000B2F08D /* SendingDataTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SendingDataTests.m; sourceTree = "<group>"; };
+		561240C32374BE5A00B2F08D /* ConnectionHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectionHandler.h; sourceTree = "<group>"; };
+		561240C42374BE5A00B2F08D /* ConnectionHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectionHandler.m; sourceTree = "<group>"; };
 		56744C1F2372C32000C2B37D /* FileDescriptorConfigurable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileDescriptorConfigurable.h; sourceTree = "<group>"; };
 		56744C232372C32D00C2B37D /* FileDescriptorConfigurator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileDescriptorConfigurator.h; sourceTree = "<group>"; };
 		56744C242372C32D00C2B37D /* FileDescriptorConfigurator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileDescriptorConfigurator.m; sourceTree = "<group>"; };
@@ -135,6 +140,7 @@
 			children = (
 				560C3DB32373257000E711F4 /* Utilities */,
 				5607F83723718E92001A9AE9 /* LifeCycleTests.m */,
+				561240C12374B2B000B2F08D /* SendingDataTests.m */,
 				56744C352372DE0600C2B37D /* HandlingServerEventsTests.m */,
 				560C3DBC23732CE200E711F4 /* SingleClientConnectionTests.m */,
 				5607F83923718E92001A9AE9 /* Info.plist */,
@@ -183,6 +189,8 @@
 				560C3DB52373259900E711F4 /* Client.m */,
 				560C3DBE23737D9D00E711F4 /* ServerHandler.h */,
 				560C3DBF23737D9D00E711F4 /* ServerHandler.m */,
+				561240C32374BE5A00B2F08D /* ConnectionHandler.h */,
+				561240C42374BE5A00B2F08D /* ConnectionHandler.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -340,8 +348,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				561240C52374BE5A00B2F08D /* ConnectionHandler.m in Sources */,
 				56744C362372DE0600C2B37D /* HandlingServerEventsTests.m in Sources */,
 				5607F83823718E92001A9AE9 /* LifeCycleTests.m in Sources */,
+				561240C22374B2B000B2F08D /* SendingDataTests.m in Sources */,
 				560C3DB62373259900E711F4 /* Client.m in Sources */,
 				560C3DBD23732CE200E711F4 /* SingleClientConnectionTests.m in Sources */,
 				560C3DC023737D9D00E711F4 /* ServerHandler.m in Sources */,

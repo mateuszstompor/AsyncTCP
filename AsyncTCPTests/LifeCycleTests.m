@@ -30,17 +30,17 @@
     configuration.chunkSize = 36;
     configuration.connectionTimeout = 5;
     configuration.maximalConnectionsCount = 1;
-    configuration.eventLoopMicrosecondsDelay = 400;
+    configuration.eventLoopMicrosecondsDelay = 0;
     asyncServer = [[Server alloc] initWithConfiguratoin:configuration];
 }
 -(void)testBootAndShutdown {
     [asyncServer boot];
-    usleep(50);
+    usleep(100);
     XCTAssertTrue([asyncServer isRunning]);
     [asyncServer boot];
     XCTAssertTrue([asyncServer isRunning]);
     [asyncServer shutDown];
-    sleep(2);
+    usleep(100);
     XCTAssertFalse([asyncServer isRunning]);
 }
 @end

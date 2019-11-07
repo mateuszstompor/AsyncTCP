@@ -44,6 +44,9 @@
     }
     return connect(_descriptor, (struct sockaddr *) &address, sizeof(address));
 }
+-(int)send: (char *) data length: (size_t) length {
+    return send(_descriptor, data, length, 0);
+}
 -(int)close {
     return close(_descriptor);
 }

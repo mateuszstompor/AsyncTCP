@@ -30,15 +30,16 @@
 
 @implementation ServerEventsTests
 -(void)setUp {
-    configuration.port = 47850;
+    configuration.port = 47856;
     configuration.chunkSize = 36;
     configuration.connectionTimeout = 5;
     configuration.maximalConnectionsCount = 1;
     configuration.eventLoopMicrosecondsDelay = 400;
     serverHandler = [[ServerHandler alloc] init];
-    asyncServer = [[Server alloc] initWithConfiguratoin:configuration];
-    client = [[Client alloc] initWithHost:"localhost" port:47850];
-    anotherClient = [[Client alloc] initWithHost:"localhost" port:47850];
+    asyncServer = [[Server alloc] initWithConfiguratoin:configuration
+                                      notificationQueue:dispatch_get_global_queue(0, 0)];
+    client = [[Client alloc] initWithHost:"localhost" port:47856];
+    anotherClient = [[Client alloc] initWithHost:"localhost" port:47856];
 }
 -(void)testReceivingEvents {
     asyncServer.delegate = serverHandler;

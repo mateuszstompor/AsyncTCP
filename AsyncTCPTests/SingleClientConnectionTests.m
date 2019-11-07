@@ -33,10 +33,11 @@
     handler = [[ServerHandler alloc] init];
     configuration.port = 47853;
     configuration.chunkSize = 36;
-    configuration.connectionTimeout = 2;
+    configuration.connectionTimeout = 1;
     configuration.maximalConnectionsCount = 1;
-    configuration.eventLoopMicrosecondsDelay = 400;
-    asyncServer = [[Server alloc] initWithConfiguratoin:configuration];
+    configuration.eventLoopMicrosecondsDelay = 0;
+    asyncServer = [[Server alloc] initWithConfiguratoin:configuration
+                                      notificationQueue:dispatch_get_global_queue(0, 0)];
     client = [[Client alloc] initWithHost:"localhost" port:47853];
     anotherClient = [[Client alloc] initWithHost:"localhost" port:47853];
 }
@@ -66,7 +67,7 @@
     XCTAssertEqual([asyncServer connectedClientsCount], 0);
     [asyncServer boot];
     XCTAssertEqual([client connect], 0);
-    sleep(1);
+    usleep(100);
     XCTAssertEqual([asyncServer connectedClientsCount], 1);
     [asyncServer shutDown];
     XCTAssertEqual([asyncServer connectedClientsCount], 0);
@@ -76,11 +77,10 @@
     XCTAssertEqual([asyncServer connectedClientsCount], 0);
     [asyncServer boot];
     XCTAssertEqual([client connect], 0);
-    sleep(1);
+    usleep(100);
     XCTAssertEqual([asyncServer connectedClientsCount], 1);
     sleep(2);
     XCTAssertEqual([asyncServer connectedClientsCount], 0);
     [asyncServer shutDown];
 }
-
 @end

@@ -12,8 +12,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol ConnectionDelegate;
+
 @interface ServerHandler: NSObject<ServerDelegate>
+-(instancetype)init;
+-(instancetype)initWithConnectionHandler: (nullable NSObject<ConnectionDelegate>*) connectionHandler;
 @property (atomic, nullable) NSObject<ConnectionHandle> * lastConnection;
+@property (atomic, nullable) NSObject<ConnectionDelegate> * connectionHandler;
 @end
 
 NS_ASSUME_NONNULL_END

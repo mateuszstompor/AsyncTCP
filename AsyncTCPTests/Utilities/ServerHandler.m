@@ -9,14 +9,20 @@
 #import "ServerHandler.h"
 
 @implementation ServerHandler
-- (instancetype)init {
+-(instancetype)init {
+    self = [self initWithConnectionHandler:nil];
+    return self;
+}
+-(instancetype)initWithConnectionHandler: (NSObject<ConnectionDelegate>*) connectionHandler {
     self = [super init];
     if (self) {
         self.lastConnection = nil;
+        self.connectionHandler = connectionHandler;
     }
     return self;
 }
 -(void)newClientHasConnected: (Connection*) connection {
+    connection.delegate = self.connectionHandler;
     [self setLastConnection:connection];
 }
 @end
