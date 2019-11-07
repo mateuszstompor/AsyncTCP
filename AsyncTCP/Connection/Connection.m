@@ -82,7 +82,9 @@
     if (weakSelf == nil || notifyDelegate == NO) {
         return;
     }
-    [weakSelf.delegate connection:weakSelf stateHasChangedTo:weakSelf.state];
+    dispatch_async(notificationQueue, ^{
+        [weakSelf.delegate connection:weakSelf stateHasChangedTo:weakSelf.state];
+    });
 }
 -(void)unsafeClose {
     state = closed;
