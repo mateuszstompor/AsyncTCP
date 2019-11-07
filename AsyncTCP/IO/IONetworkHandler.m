@@ -35,7 +35,7 @@
         data = [NSData dataWithBytes:buffer length:result];
         free(buffer);
         return data;
-    } else if (result == -1 && (errno == EAGAIN || errno == EWOULDBLOCK)) {
+    } else if ((result == -1 && (errno == EAGAIN || errno == EWOULDBLOCK)) || result > 0) {
         free(buffer);
         return nil;
     } else {
