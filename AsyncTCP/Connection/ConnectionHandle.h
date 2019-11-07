@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+#import "ConnectionDelegate.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol ConnectionHandle<NSObject>
+@property (atomic, nullable) NSObject<ConnectionDelegate>* delegate;
 -(BOOL)enqueueDataForSending: (NSData*) data;
 -(ConnectionState)state;
 -(void)close;

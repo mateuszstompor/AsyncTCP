@@ -8,9 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import "ConnectionState.h"
-
 @class Connection;
+@protocol ConnectionHandle;
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -19,7 +19,7 @@
 
 @interface LifeCycleTests: XCTestCase
 {
-    Server * asyncServer;
+    NSObject<ServerHandle> * asyncServer;
     struct ServerConfiguration configuration;
 }
 @end

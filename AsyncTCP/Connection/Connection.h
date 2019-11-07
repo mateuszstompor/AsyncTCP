@@ -11,13 +11,11 @@
 #import "ConnectionState.h"
 #import "ConnectionHandle.h"
 #import "NetworkManageable.h"
-#import "ConnectionDelegate.h"
 #import "IONetworkHandleable.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Connection: NSObject<ConnectionHandle>
-@property (atomic, nullable) NSObject<ConnectionDelegate>* delegate;
 -(instancetype) initWithAddress: (struct sockaddr_in) address
                   addressLength: (socklen_t) addressLength
                      descriptor: (int) descriptor

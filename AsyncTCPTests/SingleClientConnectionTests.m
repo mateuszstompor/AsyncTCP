@@ -22,7 +22,7 @@
 {
     Client * client;
     Client * anotherClient;
-    Server * asyncServer;
+    NSObject<ServerHandle> * asyncServer;
     ServerHandler * handler;
     struct ServerConfiguration configuration;
 }

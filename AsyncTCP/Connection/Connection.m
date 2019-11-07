@@ -33,6 +33,7 @@
 @end
 
 @implementation Connection
+@synthesize delegate=_delegate;
 -(instancetype) initWithAddress: (struct sockaddr_in) address
                   addressLength: (socklen_t) addressLength
                      descriptor: (int) descriptor

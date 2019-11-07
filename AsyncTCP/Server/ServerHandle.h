@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+#import "ServerDelegate.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol ServerHandle<NSObject>
+@property (atomic, nullable) NSObject<ServerDelegate>* delegate;
 -(void)boot;
 -(BOOL)isRunning;
 -(void)shutDown;

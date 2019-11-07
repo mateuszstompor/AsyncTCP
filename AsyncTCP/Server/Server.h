@@ -10,7 +10,6 @@
 
 #import "Connection.h"
 #import "ServerHandle.h"
-#import "ServerDelegate.h"
 #import "ServerConfiguration.h"
 #import "IONetworkHandleable.h"
 #import "FileDescriptorConfigurable.h"
@@ -24,7 +23,6 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface Server: NSObject<ServerHandle>
-@property (atomic, nullable) NSObject<ServerDelegate>* delegate;
 -(instancetype)initWithConfiguratoin: (struct ServerConfiguration) configuration
                    notificationQueue: (dispatch_queue_t) notificationQueue
                            ioHandler: (NSObject<IONetworkHandleable>*) ioHandler

@@ -20,7 +20,7 @@
 
 @interface ServerEventsTests: XCTestCase
 {
-    Server * asyncServer;
+    NSObject<ServerHandle> * asyncServer;
     ServerHandler * serverHandler;
     Client * client;
     Client * anotherClient;

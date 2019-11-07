@@ -36,6 +36,7 @@
 @end
 
 @implementation Server
+@synthesize delegate=_delegate;
 -(instancetype)initWithConfiguratoin: (struct ServerConfiguration) configuration {
     return [self initWithConfiguratoin:configuration
                      notificationQueue: dispatch_get_main_queue()
