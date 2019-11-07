@@ -167,6 +167,12 @@
 -(void)shutDown {
     [resourceLock lock];
     [thread cancel];
+    // wait for server to shutdown
+    while([thread isExecuting]) {
+        [resourceLock unlock];
+        usleep(configuration.eventLoopMicrosecondsDelay);
+        [resourceLock lock];
+    }
     for (Connection * connection in connections) {
         [connection close];
     }
