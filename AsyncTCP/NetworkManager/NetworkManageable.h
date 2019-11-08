@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(BOOL)isValidOpenFileDescriptor: (int) fileDescriptor;
 -(struct sockaddr_in)localServerAddressWithPort: (int) port;
 -(BOOL)close: (int) fileDescriptor;
+-(int)socket;
 -(BOOL)isPortInRange: (int) port;
 @end
 

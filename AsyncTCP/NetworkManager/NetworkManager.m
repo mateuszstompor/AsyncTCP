@@ -38,4 +38,7 @@
 -(BOOL)isValidOpenFileDescriptor: (int) fileDescriptor {
     return fcntl(fileDescriptor, F_GETFL) != -1;
 }
+-(int)socket {
+    return socket(AF_INET, SOCK_STREAM, 0);
+}
 @end
