@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(BOOL)noSigPipe: (int) fileDescriptor;
 -(BOOL)isValidOpenFileDescriptor: (int) fileDescriptor;
 -(BOOL)reuseAddress: (int) fileDescriptor;
+-(BOOL)reusePort: (int) fileDescriptor;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -76,7 +76,7 @@
         return;
     }
     if (![networkManager isValidOpenFileDescriptor:descriptor]) {
-        descriptor = socket(AF_INET, SOCK_STREAM, 0);
+        descriptor = [networkManager socket];
         if (descriptor < 0) {
             [resourceLock unlock];
             @throw [BootingException exceptionWithName:@"BootingException"
@@ -87,6 +87,11 @@
             [resourceLock unlock];
             @throw [BootingException exceptionWithName:@"BootingException"
                                                 reason:@"Could not reuse exisitng address" userInfo:nil];
+        }
+        if (![fileDescriptorConfigurator reusePort:descriptor]) {
+            [resourceLock unlock];
+            @throw [BootingException exceptionWithName:@"BootingException"
+                                                reason:@"Could not reuse exisitng port" userInfo:nil];
         }
         if (![fileDescriptorConfigurator noSigPipe:descriptor]) {
             [resourceLock unlock];
@@ -103,7 +108,7 @@
             @throw [BootingException exceptionWithName:@"BootingException"
                                                 reason:@"Could not bind the address" userInfo:nil];
         }
-        if(listen(descriptor, configuration.maximalConnectionsCount) < 0 ) {
+        if(listen(descriptor, configuration.maximalConnectionsCount) < 0) {
             [resourceLock unlock];
             @throw [BootingException exceptionWithName:@"BootingException"
                                                 reason:@"Could not listen for new clients" userInfo:nil];
@@ -167,6 +172,11 @@
         [resourceLock unlock];
         usleep(configuration.eventLoopMicrosecondsDelay);
     }
+    [resourceLock lock];
+    for (Connection * connection in connections) {
+        [connection close];
+    }
+    [resourceLock unlock];
 }
 -(void)shutDown {
     [resourceLock lock];
@@ -177,9 +187,7 @@
         usleep(configuration.eventLoopMicrosecondsDelay);
         [resourceLock lock];
     }
-    for (Connection * connection in connections) {
-        [connection close];
-    }
+    
     connections = [NSMutableArray new];
     if (![networkManager close:descriptor]) {
         [resourceLock unlock];

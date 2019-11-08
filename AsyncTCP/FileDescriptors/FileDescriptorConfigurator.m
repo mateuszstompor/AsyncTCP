@@ -21,7 +21,10 @@
 -(BOOL)isValidOpenFileDescriptor: (int) fileDescriptor {
     return fcntl(fileDescriptor, F_GETFL) != -1;
 }
--(BOOL)reuseAddress:(int)fileDescriptor {
+-(BOOL)reuseAddress:(int) fileDescriptor {
     return setsockopt(fileDescriptor, SOL_SOCKET, SO_REUSEADDR, &(int){ 1 }, sizeof(int)) >= 0;
+}
+-(BOOL)reusePort: (int) fileDescriptor {
+    return setsockopt(fileDescriptor, SOL_SOCKET, SO_REUSEPORT, &(int){ 1 }, sizeof(int)) >= 0;
 }
 @end
