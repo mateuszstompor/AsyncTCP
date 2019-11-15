@@ -19,9 +19,9 @@
 @interface Connection()
 {
     int descriptor;
-    NSDate * lastActivity;
-    NSMutableData * buffer;
-    NSLock * resourceLock;
+    NSDate* lastActivity;
+    NSMutableData* buffer;
+    NSLock* resourceLock;
     struct sockaddr_in address;
     socklen_t addressLength;
     ConnectionState state;

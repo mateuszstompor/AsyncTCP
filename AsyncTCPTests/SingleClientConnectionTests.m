@@ -13,15 +13,15 @@
 #import "Server.h"
 #import "ServerHandler.h"
 #import "NetworkManager.h"
-#import "Utilities/Client.h"
+#import "Utilities/TestsClient.h"
 #import "IONetworkHandler.h"
 #import "ServerConfiguration.h"
 #import "FileDescriptorConfigurator.h"
 
 @interface SingleClientConnectionTests: XCTestCase
 {
-    Client * client;
-    Client * anotherClient;
+    TestsClient * client;
+    TestsClient * anotherClient;
     NSObject<ServerHandle> * asyncServer;
     ServerHandler * handler;
     struct ServerConfiguration configuration;
@@ -38,8 +38,8 @@
     configuration.eventLoopMicrosecondsDelay = 0;
     asyncServer = [[Server alloc] initWithConfiguratoin:configuration
                                       notificationQueue:dispatch_get_global_queue(0, 0)];
-    client = [[Client alloc] initWithHost:"localhost" port:47853];
-    anotherClient = [[Client alloc] initWithHost:"localhost" port:47853];
+    client = [[TestsClient alloc] initWithHost:"localhost" port:47853];
+    anotherClient = [[TestsClient alloc] initWithHost:"localhost" port:47853];
 }
 -(void)testOneClient {
     [asyncServer boot];

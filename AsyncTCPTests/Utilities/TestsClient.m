@@ -1,16 +1,16 @@
 //
-//  Client.m
+//  TestsClient.m
 //  AsyncTCPTests
 //
 //  Created by Mateusz Stompór on 06/11/2019.
 //  Copyright © 2019 Mateusz Stompór. All rights reserved.
 //
 
-#import "Client.h"
+#import "TestsClient.h"
 
 #import <netdb.h>
 
-@interface Client()
+@interface TestsClient()
 {
     const char * hostname;
     struct sockaddr_in address;
@@ -18,7 +18,7 @@
 }
 @end
 
-@implementation Client
+@implementation TestsClient
 -(instancetype)initWithHost: (const char *)hostname port: (int) port {
     self = [super init];
     if (self) {

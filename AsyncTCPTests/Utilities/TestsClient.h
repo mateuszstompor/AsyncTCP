@@ -1,5 +1,5 @@
 //
-//  Client.h
+//  TestsClient.h
 //  AsyncTCPTests
 //
 //  Created by Mateusz Stompór on 06/11/2019.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Client : NSObject
+@interface TestsClient : NSObject
 @property (atomic) int descriptor;
 -(instancetype)initWithHost: (const char *)hostname port: (int) port;
 -(int)connect;

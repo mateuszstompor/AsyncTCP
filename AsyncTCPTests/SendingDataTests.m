@@ -9,7 +9,7 @@
 #import <XCTest/XCTest.h>
 
 #import "Server.h"
-#import "Client.h"
+#import "TestsClient.h"
 #import "Utilities/ServerHandler.h"
 #import "Utilities/ConnectionHandler.h"
 
@@ -19,7 +19,7 @@
     ServerHandler * serverHandler;
     ConnectionHandler * connectionHandler;
     struct ServerConfiguration configuration;
-    Client * client;
+    TestsClient * client;
 }
 @end
 
@@ -34,7 +34,7 @@
                                       notificationQueue:dispatch_get_global_queue(0, 0)];
     connectionHandler = [[ConnectionHandler alloc] init];
     serverHandler = [[ServerHandler alloc] initWithConnectionHandler:connectionHandler];
-    client = [[Client alloc] initWithHost:"localhost" port:47856];
+    client = [[TestsClient alloc] initWithHost:"localhost" port:47856];
     asyncServer.delegate = serverHandler;
 }
 -(void)testSendManyChunks {

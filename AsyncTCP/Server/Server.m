@@ -11,14 +11,9 @@
 #import <netdb.h>
 
 #import "../IO/IONetworkHandler.h"
+#import "../Exceptions/Exceptions.h"
 #import "../NetworkManager/NetworkManager.h"
 #import "../FileDescriptors/FileDescriptorConfigurator.h"
-
-@implementation BootingException
-@end
-
-@implementation ShuttingDownException
-@end
 
 @interface Server()
 {

@@ -12,7 +12,7 @@
 
 #import "Server.h"
 #import "NetworkManager.h"
-#import "Utilities/Client.h"
+#import "Utilities/TestsClient.h"
 #import "IONetworkHandler.h"
 #import "ServerConfiguration.h"
 #import "FileDescriptorConfigurator.h"

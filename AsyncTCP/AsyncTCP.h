@@ -17,8 +17,11 @@ FOUNDATION_EXPORT const unsigned char AsyncTCPVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <AsyncTCP/PublicHeader.h>
 
 #import "Server.h"
+#import "Client.h"
+#import "Exceptions.h"
 #import "NetworkManager.h"
 #import "ConnectionState.h"
 #import "IONetworkHandler.h"
 #import "ServerConfiguration.h"
+#import "FileDescriptorConfigurable.h"
 #import "FileDescriptorConfigurator.h"

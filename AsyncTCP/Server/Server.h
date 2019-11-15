@@ -16,12 +16,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BootingException : NSException
-@end
-
-@interface ShuttingDownException : NSException
-@end
-
 @interface Server: NSObject<ServerHandle>
 -(instancetype)initWithConfiguratoin: (struct ServerConfiguration) configuration
                    notificationQueue: (dispatch_queue_t) notificationQueue

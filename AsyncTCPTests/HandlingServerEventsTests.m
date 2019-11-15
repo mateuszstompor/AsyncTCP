@@ -13,7 +13,7 @@
 #import "Server.h"
 #import "ServerHandler.h"
 #import "NetworkManager.h"
-#import "Utilities/Client.h"
+#import "Utilities/TestsClient.h"
 #import "IONetworkHandler.h"
 #import "ServerConfiguration.h"
 #import "FileDescriptorConfigurator.h"
@@ -22,8 +22,8 @@
 {
     NSObject<ServerHandle> * asyncServer;
     ServerHandler * serverHandler;
-    Client * client;
-    Client * anotherClient;
+    TestsClient * client;
+    TestsClient * anotherClient;
     struct ServerConfiguration configuration;
 }
 @end
@@ -38,8 +38,8 @@
     serverHandler = [[ServerHandler alloc] init];
     asyncServer = [[Server alloc] initWithConfiguratoin:configuration
                                       notificationQueue:dispatch_get_global_queue(0, 0)];
-    client = [[Client alloc] initWithHost:"localhost" port:47856];
-    anotherClient = [[Client alloc] initWithHost:"localhost" port:47856];
+    client = [[TestsClient alloc] initWithHost:"localhost" port:47856];
+    anotherClient = [[TestsClient alloc] initWithHost:"localhost" port:47856];
 }
 -(void)testReceivingEvents {
     asyncServer.delegate = serverHandler;

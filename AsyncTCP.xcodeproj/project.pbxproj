@@ -23,7 +23,7 @@
 		5607F85B2371D742001A9AE9 /* IONetworkHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5607F8592371D742001A9AE9 /* IONetworkHandler.m */; };
 		560C3DA42373217200E711F4 /* ConnectionHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = 560C3DA22373217200E711F4 /* ConnectionHandle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		560C3DA8237321F200E711F4 /* ServerHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = 560C3DA6237321F200E711F4 /* ServerHandle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		560C3DB62373259900E711F4 /* Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 560C3DB52373259900E711F4 /* Client.m */; };
+		560C3DB62373259900E711F4 /* TestsClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 560C3DB52373259900E711F4 /* TestsClient.m */; };
 		560C3DBD23732CE200E711F4 /* SingleClientConnectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 560C3DBC23732CE200E711F4 /* SingleClientConnectionTests.m */; };
 		560C3DC023737D9D00E711F4 /* ServerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 560C3DBF23737D9D00E711F4 /* ServerHandler.m */; };
 		561240C22374B2B000B2F08D /* SendingDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 561240C12374B2B000B2F08D /* SendingDataTests.m */; };
@@ -35,6 +35,14 @@
 		56744C262372C32D00C2B37D /* FileDescriptorConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 56744C242372C32D00C2B37D /* FileDescriptorConfigurator.m */; };
 		56744C322372C66900C2B37D /* NetworkManageable.h in Headers */ = {isa = PBXBuildFile; fileRef = 56744C302372C66900C2B37D /* NetworkManageable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56744C362372DE0600C2B37D /* HandlingServerEventsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56744C352372DE0600C2B37D /* HandlingServerEventsTests.m */; };
+		56BB01E0237ECF0100A1618C /* Client.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BB01DE237ECF0100A1618C /* Client.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		56BB01E1237ECF0100A1618C /* Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BB01DF237ECF0100A1618C /* Client.m */; };
+		56BB01E5237ED14C00A1618C /* ClientLifeCycleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BB01E4237ED14C00A1618C /* ClientLifeCycleTests.m */; };
+		56BB01E7237ED4F100A1618C /* ClientHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BB01E2237ECF5600A1618C /* ClientHandle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		56BB01E8237ED4F100A1618C /* ClientDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BB01E3237ECF6000A1618C /* ClientDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		56BB01E9237ED4F100A1618C /* ClientConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BB01E6237ED21400A1618C /* ClientConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		56BB01ED237EDD4A00A1618C /* Exceptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BB01EB237EDD4A00A1618C /* Exceptions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		56BB01EE237EDD4A00A1618C /* Exceptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BB01EC237EDD4A00A1618C /* Exceptions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,8 +77,8 @@
 		5607F85C2371D765001A9AE9 /* IONetworkHandleable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IONetworkHandleable.h; sourceTree = "<group>"; };
 		560C3DA22373217200E711F4 /* ConnectionHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectionHandle.h; sourceTree = "<group>"; };
 		560C3DA6237321F200E711F4 /* ServerHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServerHandle.h; sourceTree = "<group>"; };
-		560C3DB42373259900E711F4 /* Client.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Client.h; sourceTree = "<group>"; };
-		560C3DB52373259900E711F4 /* Client.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Client.m; sourceTree = "<group>"; };
+		560C3DB42373259900E711F4 /* TestsClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestsClient.h; sourceTree = "<group>"; };
+		560C3DB52373259900E711F4 /* TestsClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestsClient.m; sourceTree = "<group>"; };
 		560C3DBC23732CE200E711F4 /* SingleClientConnectionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SingleClientConnectionTests.m; sourceTree = "<group>"; };
 		560C3DBE23737D9D00E711F4 /* ServerHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServerHandler.h; sourceTree = "<group>"; };
 		560C3DBF23737D9D00E711F4 /* ServerHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ServerHandler.m; sourceTree = "<group>"; };
@@ -82,6 +90,14 @@
 		56744C242372C32D00C2B37D /* FileDescriptorConfigurator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileDescriptorConfigurator.m; sourceTree = "<group>"; };
 		56744C302372C66900C2B37D /* NetworkManageable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkManageable.h; sourceTree = "<group>"; };
 		56744C352372DE0600C2B37D /* HandlingServerEventsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HandlingServerEventsTests.m; sourceTree = "<group>"; };
+		56BB01DE237ECF0100A1618C /* Client.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Client.h; sourceTree = "<group>"; };
+		56BB01DF237ECF0100A1618C /* Client.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Client.m; sourceTree = "<group>"; };
+		56BB01E2237ECF5600A1618C /* ClientHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClientHandle.h; sourceTree = "<group>"; };
+		56BB01E3237ECF6000A1618C /* ClientDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClientDelegate.h; sourceTree = "<group>"; };
+		56BB01E4237ED14C00A1618C /* ClientLifeCycleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClientLifeCycleTests.m; sourceTree = "<group>"; };
+		56BB01E6237ED21400A1618C /* ClientConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClientConfiguration.h; sourceTree = "<group>"; };
+		56BB01EB237EDD4A00A1618C /* Exceptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Exceptions.h; sourceTree = "<group>"; };
+		56BB01EC237EDD4A00A1618C /* Exceptions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Exceptions.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,10 +141,12 @@
 			isa = PBXGroup;
 			children = (
 				5607F81D237189AC001A9AE9 /* AsyncTCP.h */,
+				56BB01EA237EDD3600A1618C /* Exceptions */,
 				56744C342372C73F00C2B37D /* NetworkManager */,
 				56744C1E2372C2EA00C2B37D /* FileDescriptors */,
 				5607F8572371D71E001A9AE9 /* IO */,
 				5607F8512371AFF2001A9AE9 /* Server */,
+				56BB01DD237ECEE100A1618C /* Client */,
 				5607F84C2371A559001A9AE9 /* Connection */,
 				5607F81E237189AC001A9AE9 /* Info.plist */,
 			);
@@ -141,6 +159,7 @@
 				560C3DB32373257000E711F4 /* Utilities */,
 				5607F83723718E92001A9AE9 /* LifeCycleTests.m */,
 				561240C12374B2B000B2F08D /* SendingDataTests.m */,
+				56BB01E4237ED14C00A1618C /* ClientLifeCycleTests.m */,
 				56744C352372DE0600C2B37D /* HandlingServerEventsTests.m */,
 				560C3DBC23732CE200E711F4 /* SingleClientConnectionTests.m */,
 				5607F83923718E92001A9AE9 /* Info.plist */,
@@ -185,8 +204,8 @@
 		560C3DB32373257000E711F4 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				560C3DB42373259900E711F4 /* Client.h */,
-				560C3DB52373259900E711F4 /* Client.m */,
+				560C3DB42373259900E711F4 /* TestsClient.h */,
+				560C3DB52373259900E711F4 /* TestsClient.m */,
 				560C3DBE23737D9D00E711F4 /* ServerHandler.h */,
 				560C3DBF23737D9D00E711F4 /* ServerHandler.m */,
 				561240C32374BE5A00B2F08D /* ConnectionHandler.h */,
@@ -215,6 +234,27 @@
 			path = NetworkManager;
 			sourceTree = "<group>";
 		};
+		56BB01DD237ECEE100A1618C /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				56BB01DE237ECF0100A1618C /* Client.h */,
+				56BB01DF237ECF0100A1618C /* Client.m */,
+				56BB01E2237ECF5600A1618C /* ClientHandle.h */,
+				56BB01E3237ECF6000A1618C /* ClientDelegate.h */,
+				56BB01E6237ED21400A1618C /* ClientConfiguration.h */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
+		56BB01EA237EDD3600A1618C /* Exceptions */ = {
+			isa = PBXGroup;
+			children = (
+				56BB01EB237EDD4A00A1618C /* Exceptions.h */,
+				56BB01EC237EDD4A00A1618C /* Exceptions.m */,
+			);
+			path = Exceptions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -236,7 +276,12 @@
 				5607F84F2371AA57001A9AE9 /* ConnectionDelegate.h in Headers */,
 				564D447323738F2E00FA0140 /* IONetworkHandleable.h in Headers */,
 				564D447423738F2E00FA0140 /* ConnectionState.h in Headers */,
+				56BB01E0237ECF0100A1618C /* Client.h in Headers */,
 				5607F8542371B02A001A9AE9 /* ServerConfiguration.h in Headers */,
+				56BB01E7237ED4F100A1618C /* ClientHandle.h in Headers */,
+				56BB01E8237ED4F100A1618C /* ClientDelegate.h in Headers */,
+				56BB01ED237EDD4A00A1618C /* Exceptions.h in Headers */,
+				56BB01E9237ED4F100A1618C /* ClientConfiguration.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +383,8 @@
 			files = (
 				5607F82C23718AD5001A9AE9 /* Server.m in Sources */,
 				5607F85B2371D742001A9AE9 /* IONetworkHandler.m in Sources */,
+				56BB01EE237EDD4A00A1618C /* Exceptions.m in Sources */,
+				56BB01E1237ECF0100A1618C /* Client.m in Sources */,
 				56744C262372C32D00C2B37D /* FileDescriptorConfigurator.m in Sources */,
 				5607F8472371937D001A9AE9 /* NetworkManager.m in Sources */,
 				5607F82823718AC6001A9AE9 /* Connection.m in Sources */,
@@ -351,8 +398,9 @@
 				561240C52374BE5A00B2F08D /* ConnectionHandler.m in Sources */,
 				56744C362372DE0600C2B37D /* HandlingServerEventsTests.m in Sources */,
 				5607F83823718E92001A9AE9 /* LifeCycleTests.m in Sources */,
+				56BB01E5237ED14C00A1618C /* ClientLifeCycleTests.m in Sources */,
 				561240C22374B2B000B2F08D /* SendingDataTests.m in Sources */,
-				560C3DB62373259900E711F4 /* Client.m in Sources */,
+				560C3DB62373259900E711F4 /* TestsClient.m in Sources */,
 				560C3DBD23732CE200E711F4 /* SingleClientConnectionTests.m in Sources */,
 				560C3DC023737D9D00E711F4 /* ServerHandler.m in Sources */,
 			);
