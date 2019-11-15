@@ -88,7 +88,9 @@
         [resourceLock lock];
         if(!thread.cancelled) {
             if (connection == nil) {
-                if (connect(clientSocket, (const struct sockaddr*)&server_addr, server_addr_len) > 0) {
+                if ([networkManager connect:clientSocket
+                                withAddress:(struct sockaddr const *)&server_addr
+                                     length:server_addr_len] > 0) {
                     Connection * newConnection = [[Connection alloc] initWithAddress:self->server_addr
                                                                        addressLength:self->server_addr_len
                                                                           descriptor:self->clientSocket

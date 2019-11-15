@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(int)socket;
 -(int)bind: (int) descriptor withAddress: (struct sockaddr *) address length: (socklen_t) length;
 -(int)accept: (int) descriptor withAddress: (struct sockaddr *) address length: (socklen_t *) length;
+-(int)connect: (int) descriptor withAddress: (struct sockaddr const *) address length: (socklen_t) length;
 -(int)listen: (int) descriptor maximalConnectionsCount: (int) maximalConnectionsCount;
 -(BOOL)isPortInRange: (int) port;
 @end

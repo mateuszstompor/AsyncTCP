@@ -63,4 +63,7 @@
 -(int)accept: (int)descriptor withAddress: (struct sockaddr *)address length: (socklen_t *)length {
     return accept(descriptor, address, length);
 }
+-(int)connect: (int) descriptor withAddress: (struct sockaddr const *) address length: (socklen_t) length {
+    return connect(descriptor, address, length);
+}
 @end
