@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (atomic) int descriptor;
 -(instancetype)initWithHost: (const char *)hostname port: (int) port;
 -(int)connect;
--(int)send: (char *) data length: (size_t) length;
+-(ssize_t)send: (char *) data length: (size_t) length;
 -(int)close;
 @end
 
