@@ -54,4 +54,13 @@
 -(int)socket {
     return socket(AF_INET, SOCK_STREAM, 0);
 }
+-(int)bind: (int) descriptor withAddress: (struct sockaddr *) address length: (socklen_t) length {
+    return bind(descriptor, address, length);
+}
+-(int)listen: (int) descriptor maximalConnectionsCount: (int) maximalConnectionsCount {
+    return listen(descriptor, maximalConnectionsCount);
+}
+-(int)accept: (int)descriptor withAddress: (struct sockaddr *)address length: (socklen_t *)length {
+    return accept(descriptor, address, length);
+}
 @end

@@ -98,12 +98,12 @@
             @throw [BootingException exceptionWithName:@"BootingException"
                                                 reason:@"Could not make the socket nonblocking" userInfo:nil];
         }
-        if(bind(descriptor, (struct sockaddr *)&address, sizeof(struct sockaddr_in)) < 0) {
+        if([networkManager bind:descriptor withAddress:(struct sockaddr *)&address length:sizeof(struct sockaddr_in)] < 0) {
             [resourceLock unlock];
             @throw [BootingException exceptionWithName:@"BootingException"
                                                 reason:@"Could not bind the address" userInfo:nil];
         }
-        if(listen(descriptor, configuration.maximalConnectionsCount) < 0) {
+        if([networkManager listen:descriptor maximalConnectionsCount:configuration.maximalConnectionsCount] < 0) {
             [resourceLock unlock];
             @throw [BootingException exceptionWithName:@"BootingException"
                                                 reason:@"Could not listen for new clients" userInfo:nil];
@@ -142,7 +142,9 @@
                 socklen_t clientAddressLength;
                 int clientSocketDescriptor;
                 memset(&clientAddress, 0, sizeof(struct sockaddr_in));
-                clientSocketDescriptor = accept(descriptor, (struct sockaddr *)&clientAddress, &clientAddressLength);
+                clientSocketDescriptor = [networkManager accept:descriptor
+                                                    withAddress:(struct sockaddr *)&clientAddress
+                                                         length:&clientAddressLength];
                 if(clientSocketDescriptor >= 0
                    && [fileDescriptorConfigurator noSigPipe:clientSocketDescriptor]
                    && [fileDescriptorConfigurator makeNonBlocking:clientSocketDescriptor]) {
