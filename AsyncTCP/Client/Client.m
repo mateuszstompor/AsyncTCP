@@ -27,7 +27,6 @@
     NSObject<IONetworkHandleable>* ioHandler;
     int clientSocket;
     struct sockaddr_in server_addr;
-    in_addr_t server_address;
     socklen_t server_addr_len;
 }
 @end
@@ -68,12 +67,12 @@
         return;
     }
     self->server_addr_len = sizeof(struct sockaddr_in);
-    self->server_addr = [networkManager identityWithHost:configuration.address withPort:configuration.port];
-    self->server_address = inet_addr([self->configuration.address cStringUsingEncoding:NSASCIIStringEncoding]);
-    if((int)server_address == 0) {
+    @try {
+        self->server_addr = [networkManager identityWithHost:configuration.address withPort:configuration.port];
+    } @catch (IdentityCreationException *exception) {
         [BootingException exceptionWithName:@"BootingException" reason:@"Could not resolve address" userInfo:nil];
     }
-    if((clientSocket = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
+    if((clientSocket = [networkManager socket]) < 0) {
         [BootingException exceptionWithName:@"BootingException" reason:@"Could not create socket" userInfo:nil];
     }
     thread = [[NSThread alloc] initWithTarget:self

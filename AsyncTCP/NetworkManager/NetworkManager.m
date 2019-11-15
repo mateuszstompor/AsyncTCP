@@ -16,6 +16,7 @@
 #import <sys/socket.h>
 
 #import "Connection.h"
+#import "Exceptions.h"
 
 @implementation NetworkManager
 -(BOOL)isPortInRange: (int) port {
@@ -34,6 +35,9 @@
 }
 -(struct sockaddr_in)identityWithHost: (NSString*) host withPort: (int) port {
     in_addr_t address = inet_addr([host cStringUsingEncoding:NSASCIIStringEncoding]);
+    if((int)address == 0) {
+        [IdentityCreationException exceptionWithName:@"IdentityCreationException" reason:@"Could not resolve address" userInfo:nil];
+    }
     return [self identityWithAddress: address
                             withPort:port];
 }

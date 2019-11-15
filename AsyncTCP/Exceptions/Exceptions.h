@@ -10,10 +10,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BootingException : NSException
+@interface BootingException: NSException
 @end
 
-@interface ShuttingDownException : NSException
+@interface ShuttingDownException: NSException
+@end
+
+@interface IdentityCreationException: NSException
 @end
 
 NS_ASSUME_NONNULL_END

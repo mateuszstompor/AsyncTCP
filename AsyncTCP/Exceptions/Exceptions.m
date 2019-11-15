@@ -13,3 +13,6 @@
 
 @implementation ShuttingDownException
 @end
+
+@implementation IdentityCreationException: NSException
+@end
