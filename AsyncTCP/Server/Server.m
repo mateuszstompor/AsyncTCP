@@ -77,7 +77,7 @@
             @throw [BootingException exceptionWithName:@"BootingException"
                                                 reason:@"Could not create a new socket" userInfo:nil];
         }
-        address = [networkManager localServerAddressWithPort:configuration.port];
+        address = [networkManager localServerIdentityWithPort:configuration.port];
         if (![fileDescriptorConfigurator reuseAddress:descriptor]) {
             [resourceLock unlock];
             @throw [BootingException exceptionWithName:@"BootingException"

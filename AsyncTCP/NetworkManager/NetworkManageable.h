@@ -12,7 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol NetworkManageable<NSObject>
 -(BOOL)isValidOpenFileDescriptor: (int) fileDescriptor;
--(struct sockaddr_in)localServerAddressWithPort: (int) port;
+-(struct sockaddr_in)localServerIdentityWithPort: (int) port;
+-(struct sockaddr_in)identityWithAddress: (in_addr_t) address withPort: (int) port;
+-(struct sockaddr_in)identityWithHost: (NSString*) host withPort: (int) port;
 -(BOOL)close: (int) fileDescriptor;
 -(int)socket;
 -(BOOL)isPortInRange: (int) port;

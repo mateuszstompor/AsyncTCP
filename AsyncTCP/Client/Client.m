@@ -68,6 +68,7 @@
         return;
     }
     self->server_addr_len = sizeof(struct sockaddr_in);
+    self->server_addr = [networkManager identityWithHost:configuration.address withPort:configuration.port];
     self->server_address = inet_addr([self->configuration.address cStringUsingEncoding:NSASCIIStringEncoding]);
     if((int)server_address == 0) {
         [BootingException exceptionWithName:@"BootingException" reason:@"Could not resolve address" userInfo:nil];
@@ -75,10 +76,6 @@
     if((clientSocket = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
         [BootingException exceptionWithName:@"BootingException" reason:@"Could not create socket" userInfo:nil];
     }
-    memset(&server_addr, 0, sizeof(struct sockaddr));
-    self->server_addr.sin_family = AF_INET;
-    self->server_addr.sin_addr.s_addr = server_address;
-    self->server_addr.sin_port = htons(self->configuration.port);
     thread = [[NSThread alloc] initWithTarget:self
                                      selector:@selector(serve)
                                        object:nil];
