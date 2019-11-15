@@ -50,9 +50,10 @@
         XCTAssertEqual(strcmp([[connectionHandler.data objectAtIndex:0] bytes], "ab"), 0);
         [connectionHandler.data removeAllObjects];
     }
+    [client close];
     [asyncServer shutDown];
 }
--(void)testWholeChunkAtOnce {
+-(void)testSendWholeChunkAtOnce {
     [asyncServer boot];
     [client connect];
     for(int i=0; i<10; ++i) {
@@ -62,6 +63,20 @@
         XCTAssertEqual(strcmp([[connectionHandler.data objectAtIndex:0] bytes], "ab"), 0);
         [connectionHandler.data removeAllObjects];
     }
+    [client close];
     [asyncServer shutDown];
+}
+-(void)testReceiveManyChunks {
+    [asyncServer boot];
+    [client connect];
+    void * buffer = malloc(10000);
+    usleep(1000);
+    XCTAssertNotNil(serverHandler.lastConnection);
+    XCTAssertTrue([serverHandler.lastConnection enqueueDataForSending:[@"ab" dataUsingEncoding:NSUTF8StringEncoding]]);
+    usleep(100000);
+    XCTAssertEqual([client readToBuffer:buffer size:10000], 2);
+    [client close];
+    [asyncServer shutDown];
+    free(buffer);
 }
 @end

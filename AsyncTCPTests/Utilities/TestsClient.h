@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(instancetype)initWithHost: (const char *)hostname port: (int) port;
 -(int)connect;
 -(ssize_t)send: (char *) data length: (size_t) length;
+-(ssize_t)readToBuffer: (void *) buffer size: (size_t) size;
 -(int)close;
 @end
 

@@ -47,6 +47,9 @@
 -(ssize_t)send: (char *) data length: (size_t) length {
     return send(_descriptor, data, length, 0);
 }
+-(ssize_t)readToBuffer: (void *) buffer size: (size_t) size {
+    return read(_descriptor, buffer, size);
+}
 -(int)close {
     return close(_descriptor);
 }

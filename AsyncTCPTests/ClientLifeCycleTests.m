@@ -29,7 +29,7 @@
 -(void)testBooting {
     XCTAssertFalse([client isRunning]);
     [client boot];
-    sleep(1);
+    usleep(100);
     XCTAssertTrue([client isRunning]);
     [client shutDown];
     XCTAssertFalse([client isRunning]);
