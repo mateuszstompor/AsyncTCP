@@ -1,13 +1,12 @@
 <p align="center">
-<a href="https://opensource.org/licenses/MIT">
-<img src="https://img.shields.io/badge/License-MIT-yellow.svg"/>
-</a>
-</p>
-
-<p align="center">
-  <img src="./Assets/icon.png" width="45%">
+  <img src="./Assets/icon.png" width="40%">
 </p>
 <h1 align="center">AsyncTCP</h1>
+<p align="center">
+<a href="https://opensource.org/licenses/MIT">
+<img src="https://img.shields.io/badge/License-MIT-yellow.svg" width="70px"/>
+</a>
+</p>
 
 ## About
 
