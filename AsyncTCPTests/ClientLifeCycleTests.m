@@ -7,8 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-
-#import "Client.h"
+#import <AsyncTCP/AsyncTCP.h>
 
 @interface ClientLifeCycleTests: XCTestCase
 {

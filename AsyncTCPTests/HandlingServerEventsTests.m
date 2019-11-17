@@ -6,17 +6,12 @@
 //  Copyright © 2019 Mateusz Stompór. All rights reserved.
 //
 
-#import <XCTest/XCTest.h>
-
 #import <netdb.h>
+#import <XCTest/XCTest.h>
+#import <AsyncTCP/AsyncTCP.h>
 
-#import "Server.h"
+#import "TestsClient.h"
 #import "ServerHandler.h"
-#import "NetworkManager.h"
-#import "Utilities/TestsClient.h"
-#import "IONetworkHandler.h"
-#import "ServerConfiguration.h"
-#import "FileDescriptorConfigurator.h"
 
 @interface ServerEventsTests: XCTestCase
 {

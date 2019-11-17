@@ -7,9 +7,9 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <AsyncTCP/AsyncTCP.h>
 
-#import "Server.h"
-#import "TestsClient.h"
+#import "Utilities/TestsClient.h"
 #import "Utilities/ServerHandler.h"
 #import "Utilities/ConnectionHandler.h"
 
