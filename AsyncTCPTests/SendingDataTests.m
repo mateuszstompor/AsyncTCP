@@ -56,13 +56,11 @@
 -(void)testSendWholeChunkAtOnce {
     [asyncServer boot];
     [client connect];
-    for(int i=0; i<10; ++i) {
-        XCTAssertEqual([connectionHandler.data count], 0);
-        XCTAssertEqual([client send:"ab" length:2], 2);
-        usleep(100);
-        XCTAssertEqual(strcmp([[connectionHandler.data objectAtIndex:0] bytes], "ab"), 0);
-        [connectionHandler.data removeAllObjects];
-    }
+    XCTAssertEqual([connectionHandler.data count], 0);
+    XCTAssertEqual([client send:"ab" length:2], 2);
+    sleep(1);
+    XCTAssertEqual(strcmp([[connectionHandler.data objectAtIndex:0] bytes], "ab"), 0);
+    [connectionHandler.data removeAllObjects];
     [client close];
     [asyncServer shutDown];
 }
