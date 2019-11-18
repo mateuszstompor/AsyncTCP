@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "ConnectionState.h"
+
 @class Connection;
 @protocol ConnectionHandle;
 

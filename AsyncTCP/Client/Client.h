@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 
 #import "ClientHandle.h"
-#import "ClientDelegate.h"
 #import "NetworkManager.h"
 #import "ClientConfiguration.h"
 #import "IONetworkHandleable.h"

@@ -6,6 +6,10 @@
 //  Copyright © 2019 Mateusz Stompór. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+
+#import "ConnectionDelegate.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @class Connection;

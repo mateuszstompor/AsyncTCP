@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 struct ClientConfiguration {
-    NSString * address;
+    const char * address;
     int port;
     ssize_t chunkSize;
     useconds_t connectionTimeout;
