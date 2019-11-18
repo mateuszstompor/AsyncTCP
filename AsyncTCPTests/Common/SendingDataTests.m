@@ -42,10 +42,10 @@
     [client connect];
     for(int i=0; i<10; ++i) {
         XCTAssertEqual([client send:"a" length:1], 1);
-        usleep(100);
+        usleep(1000);
         XCTAssertEqual([connectionHandler.data count], 0);
         XCTAssertEqual([client send:"b" length:1], 1);
-        usleep(100);
+        usleep(1000);
         XCTAssertEqual([connectionHandler.data count], 1);
         XCTAssertEqual(strcmp([[connectionHandler.data objectAtIndex:0] bytes], "ab"), 0);
         [connectionHandler.data removeAllObjects];

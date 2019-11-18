@@ -17,6 +17,12 @@ default_platform(:ios)
 
 platform :ios do
     lane :tests do
-        run_tests(scheme: "AsyncTCPTests")
+        run_tests(scheme: "AsyncTCPTests-iOS")
+    end
+end
+
+platform :mac do
+    lane :tests do
+        run_tests(scheme: "AsyncTCPTests-macOS")
     end
 end

@@ -9,14 +9,14 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5607F819237189AC001A9AE9"
-               BuildableName = "AsyncTCP.framework"
-               BlueprintName = "AsyncTCP"
+               BlueprintIdentifier = "56A177B323829F5200C9AA63"
+               BuildableName = "AsyncTCPTests-iOS.xctest"
+               BlueprintName = "AsyncTCPTests-iOS"
                ReferencedContainer = "container:AsyncTCP.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,22 +33,13 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5607F83423718E92001A9AE9"
-               BuildableName = "AsyncTCPTests.xctest"
-               BlueprintName = "AsyncTCPTests"
+               BlueprintIdentifier = "56A177B323829F5200C9AA63"
+               BuildableName = "AsyncTCPTests-iOS.xctest"
+               BlueprintName = "AsyncTCPTests-iOS"
                ReferencedContainer = "container:AsyncTCP.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5607F819237189AC001A9AE9"
-            BuildableName = "AsyncTCP.framework"
-            BlueprintName = "AsyncTCP"
-            ReferencedContainer = "container:AsyncTCP.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -65,9 +56,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5607F819237189AC001A9AE9"
-            BuildableName = "AsyncTCP.framework"
-            BlueprintName = "AsyncTCP"
+            BlueprintIdentifier = "56A177B323829F5200C9AA63"
+            BuildableName = "AsyncTCPTests-iOS.xctest"
+            BlueprintName = "AsyncTCPTests-iOS"
             ReferencedContainer = "container:AsyncTCP.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -83,9 +74,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5607F819237189AC001A9AE9"
-            BuildableName = "AsyncTCP.framework"
-            BlueprintName = "AsyncTCP"
+            BlueprintIdentifier = "56A177B323829F5200C9AA63"
+            BuildableName = "AsyncTCPTests-iOS.xctest"
+            BlueprintName = "AsyncTCPTests-iOS"
             ReferencedContainer = "container:AsyncTCP.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

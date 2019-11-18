@@ -8,5 +8,13 @@ branches:
 before_script:
 - bundle install
 
-script:
-- fastlane tests
+git:
+  quiet: true
+
+jobs:
+  include:
+    - stage: "Tests"
+      name: "iOS"
+      script: fastlane ios tests
+    - name: "macOS"
+      script: fastlane mac tests
