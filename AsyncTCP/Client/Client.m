@@ -43,6 +43,8 @@
         self->clientSocket = -1;
         self->notificationQueue = notificationQueue;
         self->fileDescriptorConfigurator = fileDescriptorConfigurator;
+        self->ioHandler = ioHandler;
+        self->networkManager = networkManager;
         self->resourceLock = [NSLock new];
         self->_configuration = configuration;
     }
@@ -67,13 +69,20 @@
     }
     self->server_addr_len = sizeof(struct sockaddr_in);
     @try {
-        self->server_addr = [networkManager identityWithHost:self.configuration.address
-                                                    withPort:self.configuration.port];
+        self->server_addr = [networkManager identityWithHost:[NSString stringWithCString:_configuration.address
+                                                                                encoding:NSUTF8StringEncoding]
+                                                    withPort:_configuration.port];
     } @catch (IdentityCreationException *exception) {
         [BootingException exceptionWithName:@"BootingException" reason:@"Could not resolve address" userInfo:nil];
     }
     if((clientSocket = [networkManager socket]) < 0) {
         [BootingException exceptionWithName:@"BootingException" reason:@"Could not create socket" userInfo:nil];
+    }
+    if (![fileDescriptorConfigurator makeNonBlocking:clientSocket]) {
+        [BootingException exceptionWithName:@"BootingException" reason:@"Could not make socket non blocking" userInfo:nil];
+    }
+    if (![fileDescriptorConfigurator noSigPipe:clientSocket]) {
+        [BootingException exceptionWithName:@"BootingException" reason:@"Could not avoid sigpipe" userInfo:nil];
     }
     thread = [[NSThread alloc] initWithTarget:self
                                      selector:@selector(serve)
