@@ -1,0 +1,12 @@
+language: objective-c
+osx_image: xcode10.3
+
+branches:
+ only:
+ - master
+
+before_script:
+- bundle install
+
+script:
+- fastlane tests
