@@ -41,6 +41,8 @@ Create a server with this specific configuration. By default all notification wi
 NSObject<ServerHandle> * asyncServer = [[Server alloc] initWithConfiguratoin:configuration];
 ```
 Notifications will be send only if the delegate of the server is set. Otherwise connections won't be accepted and data received. To receive notifications implement `ServerDelegate` protocol.
+<h4>ServerDelegate</h4>
+
 **Interface**
 ```objective-c
 @interface ServerHandler: NSObject<ServerDelegate>
@@ -55,6 +57,8 @@ Notifications will be send only if the delegate of the server is set. Otherwise 
 @end
 ```
 One additional step to make is to implement `ConnectionDelegate` protocol. It is an interface which lets you receive a notification when data is received or connection's state updated.
+<h4>ConnectionDelegate</h4>
+
 **Interface**
 ```objective-c
 @interface ConnectionHandler: NSObject<ConnectionDelegate>
