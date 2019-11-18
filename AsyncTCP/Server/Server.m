@@ -22,7 +22,6 @@
     NSLock * resourceLock;
     struct sockaddr_in address;
     dispatch_queue_t notificationQueue;
-    struct ServerConfiguration configuration;
     NSMutableArray<Connection*>* connections;
     NSObject<IONetworkHandleable>* ioHandler;
     NSObject<NetworkManageable>* networkManager;
@@ -52,7 +51,7 @@
     if (self) {
         NSAssert([networkManager isPortInRange: configuration.port], @"Port number should be within the range");
         self->descriptor = -1;
-        self->configuration = configuration;
+        self->networkManager = networkManager;
         self->connections = [NSMutableArray new];
         self->resourceLock = [NSLock new];
         self->thread = nil;
@@ -60,7 +59,7 @@
         self->fileDescriptorConfigurator = fileDescriptorConfigurator;
         self->ioHandler = ioHandler;
         self->_delegate = nil;
-        self->networkManager = networkManager;
+        self->_configuration = configuration;
     }
     return self;
 }
@@ -77,7 +76,7 @@
             @throw [BootingException exceptionWithName:@"BootingException"
                                                 reason:@"Could not create a new socket" userInfo:nil];
         }
-        address = [networkManager localServerIdentityWithPort:configuration.port];
+        address = [networkManager localServerIdentityWithPort:self.configuration.port];
         if (![fileDescriptorConfigurator reuseAddress:descriptor]) {
             [resourceLock unlock];
             @throw [BootingException exceptionWithName:@"BootingException"
@@ -103,7 +102,7 @@
             @throw [BootingException exceptionWithName:@"BootingException"
                                                 reason:@"Could not bind the address" userInfo:nil];
         }
-        if([networkManager listen:descriptor maximalConnectionsCount:configuration.maximalConnectionsCount] < 0) {
+        if([networkManager listen:descriptor maximalConnectionsCount:self.configuration.maximalConnectionsCount] < 0) {
             [resourceLock unlock];
             @throw [BootingException exceptionWithName:@"BootingException"
                                                 reason:@"Could not listen for new clients" userInfo:nil];
@@ -125,7 +124,7 @@
             // perform IO
             for (ssize_t i=0; i<[connections count]; ++i) {
                 Connection * connection = [connections objectAtIndex:i];
-                if ([connection lastInteractionInterval] > configuration.connectionTimeout || [connection state] == closed) {
+                if ([connection lastInteractionInterval] > self.configuration.connectionTimeout || [connection state] == closed) {
                     [connectionsToRemove addObject:connection];
                 } else {
                     [connection performIO];
@@ -137,7 +136,7 @@
                 [connections removeObject:connection];
             }
             // accept new connections if amount of clients do not exceeds max
-            if (configuration.maximalConnectionsCount > [connections count] && _delegate != nil) {
+            if (self.configuration.maximalConnectionsCount > [connections count] && _delegate != nil) {
                 struct sockaddr_in clientAddress;
                 socklen_t clientAddressLength;
                 int clientSocketDescriptor;
@@ -151,7 +150,7 @@
                     Connection * connection = [[Connection alloc] initWithAddress:clientAddress
                                                                     addressLength:clientAddressLength
                                                                        descriptor:clientSocketDescriptor
-                                                                        chunkSize:configuration.chunkSize
+                                                                        chunkSize:self.configuration.chunkSize
                                                                 notificationQueue: notificationQueue
                                                                         ioHandler:ioHandler
                                                                    networkManager:networkManager];
@@ -167,7 +166,7 @@
             break;
         }
         [resourceLock unlock];
-        usleep(configuration.eventLoopMicrosecondsDelay);
+        usleep(self.configuration.eventLoopMicrosecondsDelay);
     }
     [resourceLock lock];
     for (Connection * connection in connections) {
@@ -181,7 +180,7 @@
     // wait for server to shutdown
     while([thread isExecuting]) {
         [resourceLock unlock];
-        usleep(configuration.eventLoopMicrosecondsDelay);
+        usleep(self.configuration.eventLoopMicrosecondsDelay);
         [resourceLock lock];
     }
     
@@ -193,12 +192,6 @@
     }
     descriptor = -1;
     [resourceLock unlock];
-}
--(struct ServerConfiguration)configuration {
-    [resourceLock lock];
-    struct ServerConfiguration configurationToReturn = configuration;
-    [resourceLock unlock];
-    return configurationToReturn;
 }
 -(NSInteger)connectedClientsCount {
     [resourceLock lock];

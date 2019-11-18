@@ -13,12 +13,13 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol ServerHandle<NSObject>
+@required
+@property (atomic, readonly) struct ServerConfiguration configuration;
 @property (atomic, nullable) NSObject<ServerDelegate>* delegate;
 -(void)boot;
 -(BOOL)isRunning;
 -(void)shutDown;
 -(NSInteger)connectedClientsCount;
--(struct ServerConfiguration)configuration;
 @end
 
 NS_ASSUME_NONNULL_END

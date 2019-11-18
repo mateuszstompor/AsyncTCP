@@ -11,10 +11,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol ClientHandle<NSObject>
+@required
+@property (atomic, readonly) struct ClientConfiguration configuration;
 -(void)boot;
 -(BOOL)isRunning;
 -(void)shutDown;
--(struct ClientConfiguration)configuration;
 @end
 
 NS_ASSUME_NONNULL_END

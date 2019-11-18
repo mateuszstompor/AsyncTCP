@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol FileDescriptorConfigurable<NSObject>
+@required
 -(BOOL)makeNonBlocking: (int) fileDescriptor;
 -(BOOL)noSigPipe: (int) fileDescriptor;
 -(BOOL)isValidOpenFileDescriptor: (int) fileDescriptor;

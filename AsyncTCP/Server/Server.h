@@ -17,6 +17,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Server: NSObject<ServerHandle>
+@property (atomic, readonly) struct ServerConfiguration configuration;
 -(instancetype)initWithConfiguratoin: (struct ServerConfiguration) configuration
                    notificationQueue: (dispatch_queue_t) notificationQueue
                            ioHandler: (NSObject<IONetworkHandleable>*) ioHandler

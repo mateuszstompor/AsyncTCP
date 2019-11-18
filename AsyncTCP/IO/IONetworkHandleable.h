@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @protocol IONetworkHandleable<NSObject>
+@required
 -(BOOL)send: (NSData*) data fileDescriptor: (int) fileDescriptor;
 -(NSData*)readBytes: (ssize_t) amount fileDescriptor: (int) fileDescriptor;
 @end

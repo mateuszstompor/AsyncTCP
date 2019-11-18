@@ -18,6 +18,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Client: NSObject<ClientHandle>
+@property (atomic, readonly) struct ClientConfiguration configuration;
 @property (nullable, atomic) NSObject<ClientDelegate> * delegate;
 -(instancetype)initWithConfiguration: (struct ClientConfiguration) configuration;
 -(instancetype)initWithConfiguration: (struct ClientConfiguration) configuration

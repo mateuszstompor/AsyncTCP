@@ -19,7 +19,6 @@
 {
     NSLock * resourceLock;
     dispatch_queue_t notificationQueue;
-    struct ClientConfiguration configuration;
     NSThread * thread;
     Connection * connection;
     NSObject<FileDescriptorConfigurable> * fileDescriptorConfigurator;
@@ -43,9 +42,9 @@
         self->connection = nil;
         self->clientSocket = -1;
         self->notificationQueue = notificationQueue;
-        self->configuration = configuration;
         self->fileDescriptorConfigurator = fileDescriptorConfigurator;
         self->resourceLock = [NSLock new];
+        self->_configuration = configuration;
     }
     return self;
 }
@@ -68,7 +67,8 @@
     }
     self->server_addr_len = sizeof(struct sockaddr_in);
     @try {
-        self->server_addr = [networkManager identityWithHost:configuration.address withPort:configuration.port];
+        self->server_addr = [networkManager identityWithHost:self.configuration.address
+                                                    withPort:self.configuration.port];
     } @catch (IdentityCreationException *exception) {
         [BootingException exceptionWithName:@"BootingException" reason:@"Could not resolve address" userInfo:nil];
     }
@@ -94,7 +94,7 @@
                     Connection * newConnection = [[Connection alloc] initWithAddress:self->server_addr
                                                                        addressLength:self->server_addr_len
                                                                           descriptor:self->clientSocket
-                                                                           chunkSize:configuration.chunkSize
+                                                                           chunkSize:self.configuration.chunkSize
                                                                    notificationQueue:notificationQueue
                                                                            ioHandler:ioHandler
                                                                       networkManager:networkManager];
@@ -114,19 +114,13 @@
             break;
         }
         [resourceLock unlock];
-        usleep(configuration.eventLoopMicrosecondsDelay);
+        usleep(self.configuration.eventLoopMicrosecondsDelay);
     }
     [resourceLock lock];
     if (connection) {
         [self->connection close];
     }
     [resourceLock unlock];
-}
--(struct ClientConfiguration)configuration {
-    [resourceLock lock];
-    struct ClientConfiguration config = self->configuration;
-    [resourceLock unlock];
-    return config;
 }
 -(BOOL)isRunning {
     [resourceLock lock];
@@ -139,7 +133,7 @@
     [thread cancel];
     while([thread isExecuting]) {
         [resourceLock unlock];
-        usleep(configuration.eventLoopMicrosecondsDelay);
+        usleep(self.configuration.eventLoopMicrosecondsDelay);
         [resourceLock lock];
     }
     clientSocket = -1;
