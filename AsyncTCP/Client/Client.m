@@ -84,7 +84,7 @@
 
 }
 -(void)serve {
-    while(true) {
+    while(YES) {
         [resourceLock lock];
         if(!thread.cancelled) {
             if (connection == nil) {
