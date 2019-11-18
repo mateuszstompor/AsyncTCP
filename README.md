@@ -4,7 +4,10 @@
 <h1 align="center">AsyncTCP</h1>
 <p align="center">
 <a href="https://opensource.org/licenses/MIT">
-<img src="https://img.shields.io/badge/License-MIT-yellow.svg" width="70px"/>
+<img src="https://img.shields.io/badge/License-MIT-yellow.svg" height="15px"/>
+</a>
+<a href="https://www.travis-ci.org/mateuszstompor/AsyncTCP">
+<img src="https://www.travis-ci.org/mateuszstompor/AsyncTCP.svg?branch=master" height="15px"/>
 </a>
 </p>
 
