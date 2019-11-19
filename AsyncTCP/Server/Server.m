@@ -18,17 +18,12 @@
 
 @interface Server()
 {
-    int descriptor;
+    Identity * identity;
     NSThread * thread;
     NSLock * resourceLock;
-    struct sockaddr_in address;
     dispatch_queue_t notificationQueue;
     NSMutableArray<Connection*>* connections;
-    NSObject<IONetworkHandleable>* ioHandler;
     NSObject<NetworkManageable>* networkManager;
-    NSObject<NetworkWrappable>* networkWrapper;
-    NSObject<SocketOptionsWrappable>* socketOptionsWrapper;
-    NSObject<DescriptorControlWrappable>* descriptorControlWrapper;
 }
 @end
 
@@ -41,33 +36,21 @@
                    notificationQueue: (dispatch_queue_t) notificationQueue {
     return [self initWithConfiguratoin:configuration
                      notificationQueue:notificationQueue
-                             ioHandler:[IONetworkHandler new]
-                        networkManager:[NetworkManager new]
-              descriptorControlWrapper:[DescriptorControlWrapper new]
-                  socketOptionsWrapper:[SocketOptionsWrapper new]
-                        networkWrapper:[NetworkWrapper new]];
+                        networkManager:[NetworkManager new]];
 }
 -(instancetype)initWithConfiguratoin: (struct ServerConfiguration) configuration
                    notificationQueue: (dispatch_queue_t) notificationQueue
-                           ioHandler: (NSObject<IONetworkHandleable>*) ioHandler
-                      networkManager: (NSObject<NetworkManageable>*) networkManager
-            descriptorControlWrapper: (NSObject<DescriptorControlWrappable>*) descriptorControlWrapper
-                socketOptionsWrapper: (NSObject<SocketOptionsWrappable>*) socketOptionsWrapper
-                      networkWrapper: (NSObject<NetworkWrappable>*) networkWrapper {
+                      networkManager: (NSObject<NetworkManageable>*) networkManager {
     self = [super init];
     if (self) {
         NSAssert([networkManager hasPortValidRange: configuration.port],
                  @"Port number should be within the range");
-        self->descriptor = -1;
+        self->identity = nil;
         self->thread = nil;
-        self->ioHandler = ioHandler;
         self->resourceLock = [NSLock new];
         self->networkManager = networkManager;
-        self->networkWrapper = networkWrapper;
         self->connections = [NSMutableArray new];
         self->notificationQueue = notificationQueue;
-        self->socketOptionsWrapper = socketOptionsWrapper;
-        self->descriptorControlWrapper = descriptorControlWrapper;
         self->_delegate = nil;
         self->_configuration = configuration;
     }
@@ -79,43 +62,14 @@
         [resourceLock unlock];
         return;
     }
-    if (![networkManager isValidOpenFileDescriptor:descriptor]) {
-        descriptor = [networkWrapper socket];
-        if (descriptor < 0) {
+    if (identity == nil || ![networkManager isValidAndHealthy:identity]) {
+        @try {
+            identity = [networkManager localIdentityOnPort: _configuration.port maximalConnectionsCount:_configuration.maximalConnectionsCount];
+        } @catch (IdentityCreationException * exception) {
             [resourceLock unlock];
             @throw [BootingException exceptionWithName:@"BootingException"
-                                                reason:@"Could not create a new socket" userInfo:nil];
-        }
-        address = [networkManager localServerIdentityWithPort:self.configuration.port];
-        if ([socketOptionsWrapper reuseAddress:descriptor] == -1) {
-            [resourceLock unlock];
-            @throw [BootingException exceptionWithName:@"BootingException"
-                                                reason:@"Could not reuse exisitng address" userInfo:nil];
-        }
-        if ([socketOptionsWrapper reusePort:descriptor] == -1) {
-            [resourceLock unlock];
-            @throw [BootingException exceptionWithName:@"BootingException"
-                                                reason:@"Could not reuse exisitng port" userInfo:nil];
-        }
-        if ([socketOptionsWrapper noSigPipe:descriptor] == -1) {
-            [resourceLock unlock];
-            @throw [BootingException exceptionWithName:@"BootingException"
-                                                reason:@"Could not protect against sigPipe" userInfo:nil];
-        }
-        if ([descriptorControlWrapper makeNonBlocking:descriptor] == -1) {
-            [resourceLock unlock];
-            @throw [BootingException exceptionWithName:@"BootingException"
-                                                reason:@"Could not make the socket nonblocking" userInfo:nil];
-        }
-        if([networkWrapper bind:descriptor withAddress:(struct sockaddr *)&address length:sizeof(struct sockaddr_in)] < 0) {
-            [resourceLock unlock];
-            @throw [BootingException exceptionWithName:@"BootingException"
-                                                reason:@"Could not bind the address" userInfo:nil];
-        }
-        if([networkWrapper listen:descriptor maximalConnectionsCount:self.configuration.maximalConnectionsCount] < 0) {
-            [resourceLock unlock];
-            @throw [BootingException exceptionWithName:@"BootingException"
-                                                reason:@"Could not listen for new clients" userInfo:nil];
+                                                reason:exception.reason
+                                              userInfo:nil];
         }
     }
     thread = [[NSThread alloc] initWithTarget:self
@@ -146,24 +100,12 @@
             }
             // accept new connections if amount of clients do not exceeds max
             if (self.configuration.maximalConnectionsCount > [connections count] && _delegate != nil) {
-                struct sockaddr_in clientAddress;
-                socklen_t clientAddressLength;
-                int clientSocketDescriptor;
-                memset(&clientAddress, 0, sizeof(struct sockaddr_in));
-                clientSocketDescriptor = [networkWrapper accept:descriptor
-                                                    withAddress:(struct sockaddr *)&clientAddress
-                                                         length:&clientAddressLength];
-                if(clientSocketDescriptor >= 0
-                   && [socketOptionsWrapper noSigPipe:clientSocketDescriptor] != -1
-                   && [descriptorControlWrapper makeNonBlocking:clientSocketDescriptor] != -1) {
-                    Connection * connection = [[Connection alloc] initWithAddress:clientAddress
-                                                                    addressLength:clientAddressLength
-                                                                       descriptor:clientSocketDescriptor
-                                                                        chunkSize:self.configuration.chunkSize
-                                                                notificationQueue: notificationQueue
-                                                                        ioHandler:ioHandler
-                                                                   networkManager:networkManager
-                                                                   networkWrapper:networkWrapper];
+                Identity * newClientIdentity = [networkManager acceptNewIdentity:identity];
+                if (newClientIdentity) {
+                    Connection * connection = [[Connection alloc] initWithIdentity: newClientIdentity
+                                                                         chunkSize:self.configuration.chunkSize
+                                                                 notificationQueue: notificationQueue
+                                                                    networkManager:networkManager];
                     __weak Server * weakSelf = self;
                     dispatch_async(notificationQueue, ^{
                         [weakSelf.delegate newClientHasConnected:connection];
@@ -194,12 +136,11 @@
         [resourceLock lock];
     }
     [connections removeAllObjects];
-    if (![networkManager close:descriptor]) {
+    if (![networkManager close:identity]) {
         [resourceLock unlock];
         @throw [ShuttingDownException exceptionWithName:@"ShuttingDownException"
                                                  reason:@"Could close server's socket" userInfo:nil];
     }
-    descriptor = -1;
     [resourceLock unlock];
 }
 -(NSInteger)connectedClientsCount {

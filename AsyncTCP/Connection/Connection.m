@@ -22,17 +22,13 @@
 
 @interface Connection()
 {
-    int descriptor;
+    ssize_t chunkSize;
     NSDate* lastActivity;
     NSMutableData* buffer;
     NSLock* resourceLock;
-    struct sockaddr_in address;
-    socklen_t addressLength;
     ConnectionState state;
-    ssize_t chunkSize;
-    NSObject<IONetworkHandleable>* ioHandler;
+    Identity * identity;
     NSMutableArray<NSData*>* outgoingMessages;
-    NSObject<NetworkWrappable>* networkWrapper;
     NSObject<NetworkManageable>* networkManager;
     dispatch_queue_t notificationQueue;
 }
@@ -40,55 +36,23 @@
 
 @implementation Connection
 @synthesize delegate=_delegate;
--(instancetype) initWithAddress: (struct sockaddr_in) address
-                  addressLength: (socklen_t) addressLength
-                     descriptor: (int) descriptor
+-(instancetype)initWithIdentity: (Identity*) identity
                       chunkSize: (ssize_t) chunkSize
               notificationQueue: (dispatch_queue_t) notificationQueue
-                      ioHandler: (NSObject<IONetworkHandleable>*) ioHandler
-                 networkManager: (NSObject<NetworkManageable>*) networkManager
-                 networkWrapper: (NSObject<NetworkWrappable>*) networkWrapper {
+                 networkManager: (NSObject<NetworkManageable>*) networkManager {
     self = [super init];
     if (self) {
-        self->descriptor = descriptor;
-        self->address = address;
-        self->ioHandler = ioHandler;
-        self->addressLength = addressLength;
+        self->identity = identity;
         self->resourceLock = [NSLock new];
         self->lastActivity = [NSDate new];
         self->buffer = [NSMutableData new];
         self->chunkSize = chunkSize;
-        self->networkWrapper = networkWrapper;
         self->notificationQueue = notificationQueue;
         self->state = active;
         self->networkManager = networkManager;
         self->outgoingMessages = [NSMutableArray new];
     }
     return self;
-}
--(instancetype) initWithAddress: (struct sockaddr_in) address
-                  addressLength: (socklen_t) addressLength
-                     descriptor: (int) descriptor
-                      chunkSize: (ssize_t) chunkSize {
-    return [self initWithAddress:address
-                   addressLength:addressLength
-                      descriptor:descriptor
-                       chunkSize:chunkSize
-               notificationQueue:dispatch_get_main_queue()];
-}
--(instancetype) initWithAddress: (struct sockaddr_in) address
-                  addressLength: (socklen_t) addressLength
-                     descriptor: (int) descriptor
-                      chunkSize: (ssize_t) chunkSize
-              notificationQueue: (dispatch_queue_t) notificationQueue {
-    return [self initWithAddress:address
-                   addressLength:addressLength
-                      descriptor:descriptor
-                       chunkSize:chunkSize
-               notificationQueue:notificationQueue
-                       ioHandler:[IONetworkHandler new]
-                  networkManager:[NetworkManager new]
-                  networkWrapper:[NetworkWrapper new]];
 }
 -(BOOL)enqueueDataForSending: (NSData*) data {
     [resourceLock lock];
@@ -119,8 +83,7 @@
 }
 -(void)unsafeClose {
     state = closed;
-    [networkWrapper close:descriptor];
-    descriptor = -1;
+    [networkManager close:identity];
 }
 -(ConnectionState)state {
     [resourceLock lock];
@@ -149,12 +112,12 @@
             NSData * data = [outgoingMessages objectAtIndex:0];
             [outgoingMessages removeObjectAtIndex:0];
             lastActivity = [NSDate new];
-            NSData * dataLeft = [ioHandler send:data fileDescriptor:descriptor];
+            NSData * dataLeft = [networkManager send:data identity:identity];
             if (dataLeft) {
                 [outgoingMessages insertObject:dataLeft atIndex:0];
             }
         }
-        NSData * dataRead = [ioHandler readBytes:chunkSize fileDescriptor:descriptor];
+        NSData * dataRead = [networkManager readBytes:chunkSize identity:identity];
         if(dataRead) {
             lastActivity = [NSDate new];
             [buffer appendData:dataRead];

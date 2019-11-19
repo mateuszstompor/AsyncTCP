@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#import "Identity.h"
 #import "ConnectionState.h"
 #import "ConnectionHandle.h"
 #import "NetworkWrappable.h"
@@ -17,25 +18,12 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Connection: NSObject<ConnectionHandle>
--(instancetype) initWithAddress: (struct sockaddr_in) address
-                  addressLength: (socklen_t) addressLength
-                     descriptor: (int) descriptor
-                      chunkSize: (ssize_t) chunkSize;
--(instancetype) initWithAddress: (struct sockaddr_in) address
-                  addressLength: (socklen_t) addressLength
-                     descriptor: (int) descriptor
-                      chunkSize: (ssize_t) chunkSize
-              notificationQueue: (dispatch_queue_t) notificationQueue;
--(instancetype) initWithAddress: (struct sockaddr_in) address
-                  addressLength: (socklen_t) addressLength
-                     descriptor: (int) descriptor
+-(instancetype)initWithIdentity: (Identity*) identity
                       chunkSize: (ssize_t) chunkSize
               notificationQueue: (dispatch_queue_t) notificationQueue
-                      ioHandler: (NSObject<IONetworkHandleable>*) ioHandler
-                 networkManager: (NSObject<NetworkManageable>*) networkManager
-                 networkWrapper: (NSObject<NetworkWrappable>*) networkWrapper;
--(void)performIO;
+                 networkManager: (NSObject<NetworkManageable>*) networkManager;
 -(NSTimeInterval)lastInteractionInterval;
+-(void)performIO;
 @end
 
 NS_ASSUME_NONNULL_END

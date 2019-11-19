@@ -8,16 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
+#import "Identity.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol NetworkManageable<NSObject>
 @required
--(BOOL)isValidOpenFileDescriptor: (int) fileDescriptor;
+-(BOOL)isValidAndHealthy: (Identity *) identity;
 -(struct sockaddr_in)localServerIdentityWithPort: (int) port;
 -(struct sockaddr_in)identityWithAddress: (in_addr_t) address withPort: (int) port;
 -(struct sockaddr_in)identityWithHost: (NSString*) host withPort: (int) port;
--(BOOL)close: (int) fileDescriptor;
 -(BOOL)hasPortValidRange: (int) port;
+-(BOOL)close: (Identity *) identity;
+-(nullable NSData*)send: (NSData*) data identity: (Identity*) identity;
+-(NSData*)readBytes: (ssize_t) amount identity: (Identity*) identity;
+-(Identity*)acceptNewIdentity: (Identity*) serverIdentity;
+-(Identity*)localIdentityOnPort: (int) port maximalConnectionsCount: (int) maximalConnectionsCount;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -18,6 +18,7 @@ FOUNDATION_EXPORT const unsigned char AsyncTCP_macOSVersionString[];
 
 #import "Server.h"
 #import "Client.h"
+#import "Identity.h"
 #import "Exceptions.h"
 #import "ClientHandle.h"
 #import "ClientDelegate.h"

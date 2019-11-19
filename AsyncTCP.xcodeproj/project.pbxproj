@@ -40,6 +40,10 @@
 		567CE12E23842A4800C4EBF8 /* SocketOptionsWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 567CE12A23842A4800C4EBF8 /* SocketOptionsWrapper.m */; };
 		567CE13323842F9900C4EBF8 /* SocketOptionsWrappable.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE12F23842A5400C4EBF8 /* SocketOptionsWrappable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		567CE13423842FA800C4EBF8 /* SocketOptionsWrappable.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE12F23842A5400C4EBF8 /* SocketOptionsWrappable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		567CE13A23843E7D00C4EBF8 /* Identity.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE13823843E7D00C4EBF8 /* Identity.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		567CE13B23843E7D00C4EBF8 /* Identity.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE13823843E7D00C4EBF8 /* Identity.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		567CE13C23843E7D00C4EBF8 /* Identity.m in Sources */ = {isa = PBXBuildFile; fileRef = 567CE13923843E7D00C4EBF8 /* Identity.m */; };
+		567CE13D23843E7D00C4EBF8 /* Identity.m in Sources */ = {isa = PBXBuildFile; fileRef = 567CE13923843E7D00C4EBF8 /* Identity.m */; };
 		56A177C623829F7B00C9AA63 /* ServerConfigurationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 567744EB2381AFCD00CDB409 /* ServerConfigurationTests.m */; };
 		56A177CB2382A02F00C9AA63 /* Exceptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BB01EB237EDD4A00A1618C /* Exceptions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56A177CC2382A02F00C9AA63 /* NetworkManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F8442371937D001A9AE9 /* NetworkManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -132,6 +136,8 @@
 		567CE12923842A4800C4EBF8 /* SocketOptionsWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocketOptionsWrapper.h; sourceTree = "<group>"; };
 		567CE12A23842A4800C4EBF8 /* SocketOptionsWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocketOptionsWrapper.m; sourceTree = "<group>"; };
 		567CE12F23842A5400C4EBF8 /* SocketOptionsWrappable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocketOptionsWrappable.h; sourceTree = "<group>"; };
+		567CE13823843E7D00C4EBF8 /* Identity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Identity.h; sourceTree = "<group>"; };
+		567CE13923843E7D00C4EBF8 /* Identity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Identity.m; sourceTree = "<group>"; };
 		56A1779523829E6300C9AA63 /* AsyncTCP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AsyncTCP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		56A1779723829E6300C9AA63 /* AsyncTCP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AsyncTCP.h; sourceTree = "<group>"; };
 		56A1779823829E6300C9AA63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -222,6 +228,8 @@
 		5607F84C2371A559001A9AE9 /* Connection */ = {
 			isa = PBXGroup;
 			children = (
+				567CE13823843E7D00C4EBF8 /* Identity.h */,
+				567CE13923843E7D00C4EBF8 /* Identity.m */,
 				5607F82523718AC6001A9AE9 /* Connection.h */,
 				5607F82623718AC6001A9AE9 /* Connection.m */,
 				560C3DA22373217200E711F4 /* ConnectionHandle.h */,
@@ -414,6 +422,7 @@
 				56BB01ED237EDD4A00A1618C /* Exceptions.h in Headers */,
 				567CE12B23842A4800C4EBF8 /* SocketOptionsWrapper.h in Headers */,
 				56A177E92382A1E600C9AA63 /* AsyncTCP.h in Headers */,
+				567CE13A23843E7D00C4EBF8 /* Identity.h in Headers */,
 				567CE13323842F9900C4EBF8 /* SocketOptionsWrappable.h in Headers */,
 				56BB01E9237ED4F100A1618C /* ClientConfiguration.h in Headers */,
 			);
@@ -445,6 +454,7 @@
 				56A177DC2382A02F00C9AA63 /* ConnectionDelegate.h in Headers */,
 				567CE12C23842A4800C4EBF8 /* SocketOptionsWrapper.h in Headers */,
 				567CE13423842FA800C4EBF8 /* SocketOptionsWrappable.h in Headers */,
+				567CE13B23843E7D00C4EBF8 /* Identity.h in Headers */,
 				56A177DD2382A02F00C9AA63 /* ConnectionState.h in Headers */,
 				56A177DE2382A04100C9AA63 /* AsyncTCP.h in Headers */,
 			);
@@ -611,6 +621,7 @@
 				567CE12D23842A4800C4EBF8 /* SocketOptionsWrapper.m in Sources */,
 				56BB01E1237ECF0100A1618C /* Client.m in Sources */,
 				56744C262372C32D00C2B37D /* DescriptorControlWrapper.m in Sources */,
+				567CE13C23843E7D00C4EBF8 /* Identity.m in Sources */,
 				5607F8472371937D001A9AE9 /* NetworkManager.m in Sources */,
 				5607F82823718AC6001A9AE9 /* Connection.m in Sources */,
 			);
@@ -627,6 +638,7 @@
 				567CE12E23842A4800C4EBF8 /* SocketOptionsWrapper.m in Sources */,
 				56A177F92382A73D00C9AA63 /* IONetworkHandler.m in Sources */,
 				56A177FA2382A73D00C9AA63 /* Server.m in Sources */,
+				567CE13D23843E7D00C4EBF8 /* Identity.m in Sources */,
 				56A177FB2382A73D00C9AA63 /* Client.m in Sources */,
 				56A177FC2382A73D00C9AA63 /* Connection.m in Sources */,
 			);

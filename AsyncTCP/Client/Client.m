@@ -110,14 +110,13 @@
                 if ([networkWrapper connect:clientSocket
                                 withAddress:(struct sockaddr const *)&server_addr
                                      length:server_addr_len] > 0) {
-                    Connection * newConnection = [[Connection alloc] initWithAddress:self->server_addr
-                                                                       addressLength:self->server_addr_len
-                                                                          descriptor:self->clientSocket
-                                                                           chunkSize:self.configuration.chunkSize
+                    Identity * identity = [[Identity alloc] initWithDescriptor:clientSocket
+                                                                 addressLength:server_addr_len
+                                                                       address:server_addr];
+                    Connection * newConnection = [[Connection alloc] initWithIdentity: identity
+                                                                           chunkSize:_configuration.chunkSize
                                                                    notificationQueue:notificationQueue
-                                                                           ioHandler:ioHandler
-                                                                      networkManager:networkManager
-                                                                      networkWrapper:networkWrapper];
+                                                                      networkManager:networkManager];
                     connection = newConnection;
                     [resourceLock unlock];
                     __weak Client * weakSelf = self;
