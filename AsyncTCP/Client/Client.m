@@ -9,9 +9,11 @@
 #import "Client.h"
 #import "Connection.h"
 #import "Exceptions.h"
+#import "NetworkWrapper.h"
 #import "NetworkManager.h"
 #import "IONetworkHandler.h"
-#import "FileDescriptorConfigurator.h"
+#import "SocketOptionsWrapper.h"
+#import "DescriptorControlWrapper.h"
 
 #include <arpa/inet.h>
 
@@ -21,9 +23,11 @@
     dispatch_queue_t notificationQueue;
     NSThread * thread;
     Connection * connection;
-    NSObject<FileDescriptorConfigurable> * fileDescriptorConfigurator;
+    NSObject<DescriptorControlWrappable> * descriptorControlWrapper;
+    NSObject<SocketOptionsWrappable> * socketOptionsWrapper;
     NSObject<NetworkManageable>* networkManager;
     NSObject<IONetworkHandleable>* ioHandler;
+    NSObject<NetworkWrappable>* networkWrapper;
     int clientSocket;
     struct sockaddr_in server_addr;
     socklen_t server_addr_len;
@@ -31,35 +35,41 @@
 @end
 
 @implementation Client
--(instancetype)initWithConfiguration: (struct ClientConfiguration) configuration
-                   notificationQueue: (dispatch_queue_t) notificationQueue
-                           ioHandler: (NSObject<IONetworkHandleable>*) ioHandler
-          fileDescriptorConfigurator: (NSObject<FileDescriptorConfigurable>*) fileDescriptorConfigurator
-                      networkManager: (NSObject<NetworkManageable>*) networkManager {
-    self = [super init];
-    if(self) {
-        self->thread = nil;
-        self->connection = nil;
-        self->clientSocket = -1;
-        self->notificationQueue = notificationQueue;
-        self->fileDescriptorConfigurator = fileDescriptorConfigurator;
-        self->ioHandler = ioHandler;
-        self->networkManager = networkManager;
-        self->resourceLock = [NSLock new];
-        self->_configuration = configuration;
-    }
-    return self;
+-(instancetype)initWithConfiguration:(struct ClientConfiguration)configuration {
+    return [self initWithConfiguration:configuration notificationQueue:dispatch_get_main_queue()];
 }
 -(instancetype)initWithConfiguration:(struct ClientConfiguration)configuration
                    notificationQueue: (dispatch_queue_t) notificationQueue {
     return [self initWithConfiguration:configuration
                      notificationQueue:notificationQueue
                              ioHandler:[IONetworkHandler new]
-            fileDescriptorConfigurator:[FileDescriptorConfigurator new]
-                        networkManager:[NetworkManager new]];
+                        networkManager:[NetworkManager new]
+              descriptorControlWrapper:[DescriptorControlWrapper new]
+                  socketOptionsWrapper:[SocketOptionsWrapper new]
+                        networkWrapper:[NetworkWrapper new]];
 }
--(instancetype)initWithConfiguration:(struct ClientConfiguration)configuration {
-    return [self initWithConfiguration:configuration notificationQueue:dispatch_get_main_queue()];
+-(instancetype)initWithConfiguration: (struct ClientConfiguration) configuration
+                   notificationQueue: (dispatch_queue_t) notificationQueue
+                           ioHandler: (NSObject<IONetworkHandleable>*) ioHandler
+                      networkManager: (NSObject<NetworkManageable>*) networkManager
+            descriptorControlWrapper: (NSObject<DescriptorControlWrappable>*) descriptorControlWrapper
+                socketOptionsWrapper: (NSObject<SocketOptionsWrappable>*) socketOptionsWrapper
+                      networkWrapper: (NSObject<NetworkWrappable>*) networkWrapper {
+    self = [super init];
+    if(self) {
+        self->thread = nil;
+        self->connection = nil;
+        self->clientSocket = -1;
+        self->notificationQueue = notificationQueue;
+        self->descriptorControlWrapper = descriptorControlWrapper;
+        self->socketOptionsWrapper = socketOptionsWrapper;
+        self->ioHandler = ioHandler;
+        self->networkManager = networkManager;
+        self->resourceLock = [NSLock new];
+        self->networkWrapper = networkWrapper;
+        self->_configuration = configuration;
+    }
+    return self;
 }
 -(void)boot {
     [resourceLock lock];
@@ -75,13 +85,13 @@
     } @catch (IdentityCreationException *exception) {
         [BootingException exceptionWithName:@"BootingException" reason:@"Could not resolve address" userInfo:nil];
     }
-    if((clientSocket = [networkManager socket]) < 0) {
+    if((clientSocket = [networkWrapper socket]) < 0) {
         [BootingException exceptionWithName:@"BootingException" reason:@"Could not create socket" userInfo:nil];
     }
-    if (![fileDescriptorConfigurator makeNonBlocking:clientSocket]) {
+    if ([descriptorControlWrapper makeNonBlocking:clientSocket] == -1) {
         [BootingException exceptionWithName:@"BootingException" reason:@"Could not make socket non blocking" userInfo:nil];
     }
-    if (![fileDescriptorConfigurator noSigPipe:clientSocket]) {
+    if ([socketOptionsWrapper noSigPipe:clientSocket] == -1) {
         [BootingException exceptionWithName:@"BootingException" reason:@"Could not avoid sigpipe" userInfo:nil];
     }
     thread = [[NSThread alloc] initWithTarget:self
@@ -97,7 +107,7 @@
         [resourceLock lock];
         if(!thread.cancelled) {
             if (connection == nil) {
-                if ([networkManager connect:clientSocket
+                if ([networkWrapper connect:clientSocket
                                 withAddress:(struct sockaddr const *)&server_addr
                                      length:server_addr_len] > 0) {
                     Connection * newConnection = [[Connection alloc] initWithAddress:self->server_addr

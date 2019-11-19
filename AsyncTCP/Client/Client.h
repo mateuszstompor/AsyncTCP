@@ -10,9 +10,11 @@
 
 #import "ClientHandle.h"
 #import "NetworkManager.h"
+#import "NetworkWrappable.h"
 #import "ClientConfiguration.h"
 #import "IONetworkHandleable.h"
-#import "FileDescriptorConfigurable.h"
+#import "SocketOptionsWrappable.h"
+#import "DescriptorControlWrappable.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -25,8 +27,10 @@ NS_ASSUME_NONNULL_BEGIN
 -(instancetype)initWithConfiguration: (struct ClientConfiguration) configuration
                    notificationQueue: (dispatch_queue_t) notificationQueue
                            ioHandler: (NSObject<IONetworkHandleable>*) ioHandler
-          fileDescriptorConfigurator: (NSObject<FileDescriptorConfigurable>*) fileDescriptorConfigurator
-                      networkManager: (NSObject<NetworkManageable>*) networkManager;
+                      networkManager: (NSObject<NetworkManageable>*) networkManager
+            descriptorControlWrapper: (NSObject<DescriptorControlWrappable>*) descriptorControlWrapper
+                socketOptionsWrapper: (NSObject<SocketOptionsWrappable>*) socketOptionsWrapper
+                      networkWrapper: (NSObject<NetworkWrappable>*) networkWrapper;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -13,33 +13,43 @@
 @implementation IOException : NSException
 @end
 
+@interface IONetworkHandler()
+{
+    NSObject<NetworkWrappable> * networkWrapper;
+}
+@end
+
 @implementation IONetworkHandler
--(BOOL)send: (NSData*) data fileDescriptor: (int) fileDescriptor {
+-(instancetype)initWithWrapper:(NSObject<NetworkWrappable> *)networkWrapper {
+    self = [super init];
+    if(self) {
+        self->networkWrapper = networkWrapper;
+    }
+    return self;
+}
+-(NSData*)send: (NSData*) data fileDescriptor: (int) fileDescriptor {
     uint8_t * rawData = (uint8_t*)[data bytes];
     ssize_t size = sizeof(uint8_t) * data.length;
-    ssize_t result = send(fileDescriptor, rawData, size, 0);
+    ssize_t result = [networkWrapper send:fileDescriptor buffer:rawData size:size flags:0];
     if (result == size) {
-        return YES;
-    } else if (result == -1 && (errno == EAGAIN || errno == EWOULDBLOCK)) {
-        return NO;
+        return nil;
+    } else if (result > 0) {
+        return [data subdataWithRange:NSMakeRange(result, [data length]-result)];
+    } else if (result == -1 && ([networkWrapper errnoValue] == EAGAIN || [networkWrapper errnoValue] == EWOULDBLOCK)) {
+        return data;
     } else {
         NSString * explanation = [[NSString alloc] initWithFormat:@"Data cannot be sent, errno: %i", errno];
         @throw [IOException exceptionWithName:@"IOException" reason:explanation userInfo:nil];
     }
 }
 -(NSData*)readBytes: (ssize_t) amount fileDescriptor: (int) fileDescriptor {
-    NSData * data = nil;
-    uint8_t * buffer = malloc(amount);
-    ssize_t result = recv(fileDescriptor, buffer, amount, 0);
+    uint8_t buffer[amount];
+    ssize_t result = [networkWrapper receive:fileDescriptor buffer:buffer size:amount flags:0];
     if (result > 0) {
-        data = [NSData dataWithBytes:buffer length:result];
-        free(buffer);
-        return data;
-    } else if (result == -1 && (errno == EAGAIN || errno == EWOULDBLOCK)) {
-        free(buffer);
+        return [NSData dataWithBytes:buffer length:result];
+    } else if (result == -1 && ([networkWrapper errnoValue] == EAGAIN || [networkWrapper errnoValue] == EWOULDBLOCK)) {
         return nil;
     } else {
-        free(buffer);
         NSString * explanation = [[NSString alloc] initWithFormat:@"Data cannot be read, errno: %i", errno];
         @throw [IOException exceptionWithName:@"IOException" reason:explanation userInfo:nil];
     }

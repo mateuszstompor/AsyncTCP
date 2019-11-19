@@ -10,10 +10,11 @@
 
 #import <netdb.h>
 
-#import "../IO/IONetworkHandler.h"
-#import "../Exceptions/Exceptions.h"
-#import "../NetworkManager/NetworkManager.h"
-#import "../FileDescriptors/FileDescriptorConfigurator.h"
+#import "Exceptions.h"
+#import "NetworkManager.h"
+#import "NetworkWrapper.h"
+#import "IONetworkHandler.h"
+#import "DescriptorControlWrapper.h"
 
 @interface Server()
 {
@@ -25,7 +26,9 @@
     NSMutableArray<Connection*>* connections;
     NSObject<IONetworkHandleable>* ioHandler;
     NSObject<NetworkManageable>* networkManager;
-    NSObject<FileDescriptorConfigurable>* fileDescriptorConfigurator;
+    NSObject<NetworkWrappable>* networkWrapper;
+    NSObject<SocketOptionsWrappable>* socketOptionsWrapper;
+    NSObject<DescriptorControlWrappable>* descriptorControlWrapper;
 }
 @end
 
@@ -38,27 +41,33 @@
                    notificationQueue: (dispatch_queue_t) notificationQueue {
     return [self initWithConfiguratoin:configuration
                      notificationQueue:notificationQueue
-                             ioHandler:[[IONetworkHandler alloc] init]
-            fileDescriptorConfigurator:[[FileDescriptorConfigurator alloc] init]
-                        networkManager:[[NetworkManager alloc] init]];
+                             ioHandler:[IONetworkHandler new]
+                        networkManager:[NetworkManager new]
+              descriptorControlWrapper:[DescriptorControlWrapper new]
+                  socketOptionsWrapper:[SocketOptionsWrapper new]
+                        networkWrapper:[NetworkWrapper new]];
 }
-- (instancetype)initWithConfiguratoin:(struct ServerConfiguration)configuration
-                    notificationQueue: (dispatch_queue_t) notificationQueue
-                            ioHandler: (NSObject<IONetworkHandleable>*) ioHandler
-           fileDescriptorConfigurator: (NSObject<FileDescriptorConfigurable>*) fileDescriptorConfigurator
-                       networkManager: (NSObject<NetworkManageable>*) networkManager {
+-(instancetype)initWithConfiguratoin: (struct ServerConfiguration) configuration
+                   notificationQueue: (dispatch_queue_t) notificationQueue
+                           ioHandler: (NSObject<IONetworkHandleable>*) ioHandler
+                      networkManager: (NSObject<NetworkManageable>*) networkManager
+            descriptorControlWrapper: (NSObject<DescriptorControlWrappable>*) descriptorControlWrapper
+                socketOptionsWrapper: (NSObject<SocketOptionsWrappable>*) socketOptionsWrapper
+                      networkWrapper: (NSObject<NetworkWrappable>*) networkWrapper {
     self = [super init];
     if (self) {
         NSAssert([networkManager hasPortValidRange: configuration.port],
                  @"Port number should be within the range");
         self->descriptor = -1;
-        self->networkManager = networkManager;
-        self->connections = [NSMutableArray new];
-        self->resourceLock = [NSLock new];
         self->thread = nil;
-        self->notificationQueue = notificationQueue;
-        self->fileDescriptorConfigurator = fileDescriptorConfigurator;
         self->ioHandler = ioHandler;
+        self->resourceLock = [NSLock new];
+        self->networkManager = networkManager;
+        self->networkWrapper = networkWrapper;
+        self->connections = [NSMutableArray new];
+        self->notificationQueue = notificationQueue;
+        self->socketOptionsWrapper = socketOptionsWrapper;
+        self->descriptorControlWrapper = descriptorControlWrapper;
         self->_delegate = nil;
         self->_configuration = configuration;
     }
@@ -71,39 +80,39 @@
         return;
     }
     if (![networkManager isValidOpenFileDescriptor:descriptor]) {
-        descriptor = [networkManager socket];
+        descriptor = [networkWrapper socket];
         if (descriptor < 0) {
             [resourceLock unlock];
             @throw [BootingException exceptionWithName:@"BootingException"
                                                 reason:@"Could not create a new socket" userInfo:nil];
         }
         address = [networkManager localServerIdentityWithPort:self.configuration.port];
-        if (![fileDescriptorConfigurator reuseAddress:descriptor]) {
+        if ([socketOptionsWrapper reuseAddress:descriptor] == -1) {
             [resourceLock unlock];
             @throw [BootingException exceptionWithName:@"BootingException"
                                                 reason:@"Could not reuse exisitng address" userInfo:nil];
         }
-        if (![fileDescriptorConfigurator reusePort:descriptor]) {
+        if ([socketOptionsWrapper reusePort:descriptor] == -1) {
             [resourceLock unlock];
             @throw [BootingException exceptionWithName:@"BootingException"
                                                 reason:@"Could not reuse exisitng port" userInfo:nil];
         }
-        if (![fileDescriptorConfigurator noSigPipe:descriptor]) {
+        if ([socketOptionsWrapper noSigPipe:descriptor] == -1) {
             [resourceLock unlock];
             @throw [BootingException exceptionWithName:@"BootingException"
                                                 reason:@"Could not protect against sigPipe" userInfo:nil];
         }
-        if (![fileDescriptorConfigurator makeNonBlocking:descriptor]) {
+        if ([descriptorControlWrapper makeNonBlocking:descriptor] == -1) {
             [resourceLock unlock];
             @throw [BootingException exceptionWithName:@"BootingException"
                                                 reason:@"Could not make the socket nonblocking" userInfo:nil];
         }
-        if([networkManager bind:descriptor withAddress:(struct sockaddr *)&address length:sizeof(struct sockaddr_in)] < 0) {
+        if([networkWrapper bind:descriptor withAddress:(struct sockaddr *)&address length:sizeof(struct sockaddr_in)] < 0) {
             [resourceLock unlock];
             @throw [BootingException exceptionWithName:@"BootingException"
                                                 reason:@"Could not bind the address" userInfo:nil];
         }
-        if([networkManager listen:descriptor maximalConnectionsCount:self.configuration.maximalConnectionsCount] < 0) {
+        if([networkWrapper listen:descriptor maximalConnectionsCount:self.configuration.maximalConnectionsCount] < 0) {
             [resourceLock unlock];
             @throw [BootingException exceptionWithName:@"BootingException"
                                                 reason:@"Could not listen for new clients" userInfo:nil];
@@ -141,12 +150,12 @@
                 socklen_t clientAddressLength;
                 int clientSocketDescriptor;
                 memset(&clientAddress, 0, sizeof(struct sockaddr_in));
-                clientSocketDescriptor = [networkManager accept:descriptor
+                clientSocketDescriptor = [networkWrapper accept:descriptor
                                                     withAddress:(struct sockaddr *)&clientAddress
                                                          length:&clientAddressLength];
                 if(clientSocketDescriptor >= 0
-                   && [fileDescriptorConfigurator noSigPipe:clientSocketDescriptor]
-                   && [fileDescriptorConfigurator makeNonBlocking:clientSocketDescriptor]) {
+                   && [socketOptionsWrapper noSigPipe:clientSocketDescriptor] != -1
+                   && [descriptorControlWrapper makeNonBlocking:clientSocketDescriptor] != -1) {
                     Connection * connection = [[Connection alloc] initWithAddress:clientAddress
                                                                     addressLength:clientAddressLength
                                                                        descriptor:clientSocketDescriptor

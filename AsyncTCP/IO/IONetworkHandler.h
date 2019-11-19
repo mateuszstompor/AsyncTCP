@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+#import "NetworkWrappable.h"
 #import "IONetworkHandleable.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface IONetworkHandler: NSObject<IONetworkHandleable>
+-(instancetype)initWithWrapper: (NSObject<NetworkWrappable>*) networkWrapper;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -111,7 +111,10 @@
             NSData * data = [outgoingMessages objectAtIndex:0];
             [outgoingMessages removeObjectAtIndex:0];
             lastActivity = [NSDate new];
-            [ioHandler send:data fileDescriptor:descriptor];
+            NSData * dataLeft = [ioHandler send:data fileDescriptor:descriptor];
+            if (dataLeft) {
+                [outgoingMessages insertObject:dataLeft atIndex:0];
+            }
         }
         NSData * dataRead = [ioHandler readBytes:chunkSize fileDescriptor:descriptor];
         if(dataRead) {
