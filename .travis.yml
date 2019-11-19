@@ -5,6 +5,9 @@ branches:
  only:
  - master
 
+before_install:
+  - gem install slather
+
 before_script:
 - bundle install
 
@@ -18,3 +21,6 @@ jobs:
       script: fastlane ios tests
     - name: "macOS"
       script: fastlane mac tests
+
+after_success:
+  - slather
