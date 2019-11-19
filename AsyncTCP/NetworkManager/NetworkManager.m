@@ -101,7 +101,8 @@
         @throw [IdentityCreationException exceptionWithName:@"IdentityCreationException"
                                             reason:@"Could not make the socket nonblocking" userInfo:nil];
     }
-    if([networkWrapper bind:descriptor withAddress:(struct sockaddr *)&address length:sizeof(struct sockaddr_in)] < 0) {
+    if([networkWrapper bind:descriptor
+                withAddress:(struct sockaddr *)&address length:sizeof(struct sockaddr_in)] < 0) {
         @throw [IdentityCreationException exceptionWithName:@"IdentityCreationException"
                                             reason:@"Could not bind the address" userInfo:nil];
     }
@@ -120,8 +121,11 @@
                                         withAddress:(struct sockaddr *)&clientAddress
                                              length:&clientAddressLength];
     if (clientSocketDescriptor != -1) {
-        if ([socketOptionsWrapper noSigPipe:clientSocketDescriptor] != -1 && [descriptorControlWrapper makeNonBlocking:clientSocketDescriptor] != -1) {
-            return [[Identity alloc] initWithDescriptor:clientSocketDescriptor addressLength:clientAddressLength address:clientAddress];
+        if ([socketOptionsWrapper noSigPipe:clientSocketDescriptor] != -1 &&
+            [descriptorControlWrapper makeNonBlocking:clientSocketDescriptor] != -1) {
+            return [[Identity alloc] initWithDescriptor:clientSocketDescriptor
+                                          addressLength:clientAddressLength
+                                                address:clientAddress];
         } else {
             [networkWrapper close:clientSocketDescriptor];
         }
@@ -145,6 +149,8 @@
     return [ioNetworkHandler send:data fileDescriptor:identity.descriptor];
 }
 -(BOOL)connect: (Identity*) identity {
-    return [networkWrapper connect:identity.descriptor withAddress:(struct sockaddr *)identity.addressPointer length:identity.addressLength] != -1;
+    return [networkWrapper connect:identity.descriptor
+                       withAddress:(struct sockaddr *)identity.addressPointer
+                            length:identity.addressLength] != -1;
 }
 @end
