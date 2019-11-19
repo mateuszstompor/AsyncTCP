@@ -18,7 +18,7 @@
 @implementation ClientLifeCycleTests
 -(void)setUp {
     struct ClientConfiguration configuration;
-    configuration.address = @"localhost";
+    configuration.address = "localhost";
     configuration.chunkSize = 30;
     configuration.port = 45870;
     configuration.eventLoopMicrosecondsDelay = 400;
