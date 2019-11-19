@@ -114,7 +114,6 @@
     thread.name = @"ServerThread";
     [thread start];
     [resourceLock unlock];
-    
 }
 -(void)serve {
     while(YES) {
@@ -183,8 +182,7 @@
         usleep(self.configuration.eventLoopMicrosecondsDelay);
         [resourceLock lock];
     }
-    
-    connections = [NSMutableArray new];
+    [connections removeAllObjects];
     if (![networkManager close:descriptor]) {
         [resourceLock unlock];
         @throw [ShuttingDownException exceptionWithName:@"ShuttingDownException"
