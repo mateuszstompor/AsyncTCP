@@ -1,0 +1,6 @@
+coverage_service: coveralls
+xcodeproj: AsyncTCP.xcodeproj
+scheme: AsyncTCP-macOS
+ignore:
+  - AsyncTCPTests/*
+  - Assets/*
