@@ -49,7 +49,8 @@
                        networkManager: (NSObject<NetworkManageable>*) networkManager {
     self = [super init];
     if (self) {
-        NSAssert([networkManager isPortInRange: configuration.port], @"Port number should be within the range");
+        NSAssert([networkManager hasPortValidRange: configuration.port],
+                 @"Port number should be within the range");
         self->descriptor = -1;
         self->networkManager = networkManager;
         self->connections = [NSMutableArray new];

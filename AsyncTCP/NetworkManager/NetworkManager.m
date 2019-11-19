@@ -19,7 +19,7 @@
 #import "Exceptions.h"
 
 @implementation NetworkManager
--(BOOL)isPortInRange: (int) port {
+-(BOOL)hasPortValidRange: (int) port {
     return port > 0 && port < 65535;
 }
 -(struct sockaddr_in)localServerIdentityWithPort: (int) port {
