@@ -19,6 +19,15 @@ NS_ASSUME_NONNULL_BEGIN
 -(instancetype) initWithAddress: (struct sockaddr_in) address
                   addressLength: (socklen_t) addressLength
                      descriptor: (int) descriptor
+                      chunkSize: (ssize_t) chunkSize;
+-(instancetype) initWithAddress: (struct sockaddr_in) address
+                  addressLength: (socklen_t) addressLength
+                     descriptor: (int) descriptor
+                      chunkSize: (ssize_t) chunkSize
+              notificationQueue: (dispatch_queue_t) notificationQueue;
+-(instancetype) initWithAddress: (struct sockaddr_in) address
+                  addressLength: (socklen_t) addressLength
+                     descriptor: (int) descriptor
                       chunkSize: (ssize_t) chunkSize
               notificationQueue: (dispatch_queue_t) notificationQueue
                       ioHandler: (NSObject<IONetworkHandleable>*) ioHandler

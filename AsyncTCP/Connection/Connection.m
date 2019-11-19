@@ -14,7 +14,10 @@
 #import <sys/types.h>
 #import <sys/socket.h>
 
+#import "NetworkManager.h"
+#import "IONetworkHandler.h"
 #import "ConnectionDelegate.h"
+
 
 @interface Connection()
 {
@@ -59,6 +62,29 @@
     }
     return self;
 }
+-(instancetype) initWithAddress: (struct sockaddr_in) address
+                  addressLength: (socklen_t) addressLength
+                     descriptor: (int) descriptor
+                      chunkSize: (ssize_t) chunkSize {
+    return [self initWithAddress:address
+                   addressLength:addressLength
+                      descriptor:descriptor
+                       chunkSize:chunkSize
+               notificationQueue:dispatch_get_main_queue()];
+}
+-(instancetype) initWithAddress: (struct sockaddr_in) address
+                  addressLength: (socklen_t) addressLength
+                     descriptor: (int) descriptor
+                      chunkSize: (ssize_t) chunkSize
+              notificationQueue: (dispatch_queue_t) notificationQueue {
+    return [self initWithAddress:address
+                   addressLength:addressLength
+                      descriptor:descriptor
+                       chunkSize:chunkSize
+               notificationQueue:notificationQueue
+                       ioHandler:[IONetworkHandler new]
+                  networkManager:[NetworkManager new]];
+}
 -(BOOL)enqueueDataForSending: (NSData*) data {
     [resourceLock lock];
     if (state == active) {
@@ -101,6 +127,12 @@
     NSTimeInterval interval = [[NSDate new] timeIntervalSinceDate:lastActivity];
     [resourceLock unlock];
     return interval;
+}
+-(NSData*)buffer {
+    [resourceLock lock];
+    NSData* currentBuffer = [buffer copy];
+    [resourceLock unlock];
+    return currentBuffer;
 }
 -(void)performIO {
     [resourceLock lock];
