@@ -11,6 +11,7 @@
 #import <netdb.h>
 
 #import "Exceptions.h"
+#import "ResourceLock.h"
 #import "NetworkManager.h"
 #import "NetworkWrapper.h"
 #import "IONetworkHandler.h"
@@ -20,7 +21,7 @@
 {
     Identity * identity;
     NSThread * thread;
-    NSLock * resourceLock;
+    NSObject<Lockable> * resourceLock;
     dispatch_queue_t notificationQueue;
     NSMutableArray<Connection*>* connections;
     NSObject<NetworkManageable>* networkManager;
@@ -36,18 +37,20 @@
                    notificationQueue: (dispatch_queue_t) notificationQueue {
     return [self initWithConfiguratoin:configuration
                      notificationQueue:notificationQueue
-                        networkManager:[NetworkManager new]];
+                        networkManager:[NetworkManager new]
+                          resourceLock:[ResourceLock new]];
 }
 -(instancetype)initWithConfiguratoin: (struct ServerConfiguration) configuration
                    notificationQueue: (dispatch_queue_t) notificationQueue
-                      networkManager: (NSObject<NetworkManageable>*) networkManager {
+                      networkManager: (NSObject<NetworkManageable>*) networkManager
+                        resourceLock: (NSObject<Lockable>*) resourceLock {
     self = [super init];
     if (self) {
         NSAssert([networkManager hasPortValidRange: configuration.port],
                  @"Port number should be within the range");
         self->identity = nil;
         self->thread = nil;
-        self->resourceLock = [NSLock new];
+        self->resourceLock = resourceLock;
         self->networkManager = networkManager;
         self->connections = [NSMutableArray new];
         self->notificationQueue = notificationQueue;
@@ -57,16 +60,16 @@
     return self;
 }
 -(void)boot {
-    [resourceLock lock];
+    [resourceLock aquireLock];
     if([thread isExecuting] && ![thread isCancelled]) {
-        [resourceLock unlock];
+        [resourceLock releaseLock];
         return;
     }
     if (identity == nil || ![networkManager isValidAndHealthy:identity]) {
         @try {
             identity = [networkManager localIdentityOnPort: _configuration.port maximalConnectionsCount:_configuration.maximalConnectionsCount];
         } @catch (IdentityCreationException * exception) {
-            [resourceLock unlock];
+            [resourceLock releaseLock];
             @throw [BootingException exceptionWithName:@"BootingException"
                                                 reason:exception.reason
                                               userInfo:nil];
@@ -77,11 +80,11 @@
                                        object:nil];
     thread.name = @"ServerThread";
     [thread start];
-    [resourceLock unlock];
+    [resourceLock releaseLock];
 }
 -(void)serve {
     while(YES) {
-        [resourceLock lock];
+        [resourceLock aquireLock];
         if(!thread.cancelled) {
             NSMutableArray<Connection*>* connectionsToRemove = [NSMutableArray new];
             // perform IO
@@ -114,45 +117,45 @@
                 }
             }
         } else {
-            [resourceLock unlock];
+            [resourceLock releaseLock];
             break;
         }
-        [resourceLock unlock];
+        [resourceLock releaseLock];
         usleep(self.configuration.eventLoopMicrosecondsDelay);
     }
-    [resourceLock lock];
+    [resourceLock aquireLock];
     for (Connection * connection in connections) {
         [connection close];
     }
-    [resourceLock unlock];
+    [resourceLock releaseLock];
 }
 -(void)shutDown {
-    [resourceLock lock];
+    [resourceLock aquireLock];
     [thread cancel];
     // wait for server to shutdown
     while([thread isExecuting]) {
-        [resourceLock unlock];
+        [resourceLock releaseLock];
         usleep(self.configuration.eventLoopMicrosecondsDelay);
-        [resourceLock lock];
+        [resourceLock aquireLock];
     }
     [connections removeAllObjects];
     if (![networkManager close:identity]) {
-        [resourceLock unlock];
+        [resourceLock releaseLock];
         @throw [ShuttingDownException exceptionWithName:@"ShuttingDownException"
                                                  reason:@"Could close server's socket" userInfo:nil];
     }
-    [resourceLock unlock];
+    [resourceLock releaseLock];
 }
 -(NSInteger)connectedClientsCount {
-    [resourceLock lock];
+    [resourceLock aquireLock];
     NSInteger count = [connections count];
-    [resourceLock unlock];
+    [resourceLock releaseLock];
     return count;
 }
 -(BOOL)isRunning {
-    [resourceLock lock];
+    [resourceLock aquireLock];
     BOOL running = thread && thread.isExecuting;
-    [resourceLock unlock];
+    [resourceLock releaseLock];
     return running;
 }
 @end

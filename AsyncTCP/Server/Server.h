@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#import "Lockable.h"
 #import "Connection.h"
 #import "ServerHandle.h"
 #import "NetworkWrappable.h"
@@ -25,7 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
                    notificationQueue: (dispatch_queue_t) notificationQueue;
 -(instancetype)initWithConfiguratoin: (struct ServerConfiguration) configuration
                    notificationQueue: (dispatch_queue_t) notificationQueue
-                      networkManager: (NSObject<NetworkManageable>*) networkManager;
+                      networkManager: (NSObject<NetworkManageable>*) networkManager
+                        resourceLock: (NSObject<Lockable>*) resourceLock;
 @end
 
 NS_ASSUME_NONNULL_END

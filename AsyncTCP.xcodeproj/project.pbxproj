@@ -44,6 +44,12 @@
 		567CE13B23843E7D00C4EBF8 /* Identity.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE13823843E7D00C4EBF8 /* Identity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		567CE13C23843E7D00C4EBF8 /* Identity.m in Sources */ = {isa = PBXBuildFile; fileRef = 567CE13923843E7D00C4EBF8 /* Identity.m */; };
 		567CE13D23843E7D00C4EBF8 /* Identity.m in Sources */ = {isa = PBXBuildFile; fileRef = 567CE13923843E7D00C4EBF8 /* Identity.m */; };
+		567CE141238479F300C4EBF8 /* Lockable.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE13F238479F300C4EBF8 /* Lockable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		567CE142238479F300C4EBF8 /* Lockable.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE13F238479F300C4EBF8 /* Lockable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		567CE14723847B3800C4EBF8 /* ResourceLock.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE14523847B3800C4EBF8 /* ResourceLock.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		567CE14823847B3800C4EBF8 /* ResourceLock.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE14523847B3800C4EBF8 /* ResourceLock.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		567CE14923847B3800C4EBF8 /* ResourceLock.m in Sources */ = {isa = PBXBuildFile; fileRef = 567CE14623847B3800C4EBF8 /* ResourceLock.m */; };
+		567CE14A23847B3800C4EBF8 /* ResourceLock.m in Sources */ = {isa = PBXBuildFile; fileRef = 567CE14623847B3800C4EBF8 /* ResourceLock.m */; };
 		56A177C623829F7B00C9AA63 /* ServerConfigurationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 567744EB2381AFCD00CDB409 /* ServerConfigurationTests.m */; };
 		56A177CB2382A02F00C9AA63 /* Exceptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BB01EB237EDD4A00A1618C /* Exceptions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56A177CC2382A02F00C9AA63 /* NetworkManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F8442371937D001A9AE9 /* NetworkManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -138,6 +144,9 @@
 		567CE12F23842A5400C4EBF8 /* SocketOptionsWrappable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocketOptionsWrappable.h; sourceTree = "<group>"; };
 		567CE13823843E7D00C4EBF8 /* Identity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Identity.h; sourceTree = "<group>"; };
 		567CE13923843E7D00C4EBF8 /* Identity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Identity.m; sourceTree = "<group>"; };
+		567CE13F238479F300C4EBF8 /* Lockable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Lockable.h; sourceTree = "<group>"; };
+		567CE14523847B3800C4EBF8 /* ResourceLock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResourceLock.h; sourceTree = "<group>"; };
+		567CE14623847B3800C4EBF8 /* ResourceLock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResourceLock.m; sourceTree = "<group>"; };
 		56A1779523829E6300C9AA63 /* AsyncTCP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AsyncTCP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		56A1779723829E6300C9AA63 /* AsyncTCP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AsyncTCP.h; sourceTree = "<group>"; };
 		56A1779823829E6300C9AA63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -274,6 +283,7 @@
 		567CE119238414DF00C4EBF8 /* Wrappers */ = {
 			isa = PBXGroup;
 			children = (
+				567CE13E238479CE00C4EBF8 /* Lock */,
 				567CE13223842C7300C4EBF8 /* SocketOptions */,
 				567CE13123842C6B00C4EBF8 /* Network */,
 				567CE13023842C6000C4EBF8 /* DescriptorControl */,
@@ -309,6 +319,16 @@
 				567CE12A23842A4800C4EBF8 /* SocketOptionsWrapper.m */,
 			);
 			path = SocketOptions;
+			sourceTree = "<group>";
+		};
+		567CE13E238479CE00C4EBF8 /* Lock */ = {
+			isa = PBXGroup;
+			children = (
+				567CE13F238479F300C4EBF8 /* Lockable.h */,
+				567CE14523847B3800C4EBF8 /* ResourceLock.h */,
+				567CE14623847B3800C4EBF8 /* ResourceLock.m */,
+			);
+			path = Lock;
 			sourceTree = "<group>";
 		};
 		56A1779D23829E9C00C9AA63 /* iOS */ = {
@@ -401,6 +421,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				560C3DA42373217200E711F4 /* ConnectionHandle.h in Headers */,
+				567CE14723847B3800C4EBF8 /* ResourceLock.h in Headers */,
 				567CE1222384153600C4EBF8 /* NetworkWrapper.h in Headers */,
 				5607F85A2371D742001A9AE9 /* IONetworkHandler.h in Headers */,
 				56744C322372C66900C2B37D /* NetworkManageable.h in Headers */,
@@ -411,6 +432,7 @@
 				5607F8462371937D001A9AE9 /* NetworkManager.h in Headers */,
 				560C3DA8237321F200E711F4 /* ServerHandle.h in Headers */,
 				56744C212372C32000C2B37D /* DescriptorControlWrappable.h in Headers */,
+				567CE141238479F300C4EBF8 /* Lockable.h in Headers */,
 				5607F84F2371AA57001A9AE9 /* ConnectionDelegate.h in Headers */,
 				564D447323738F2E00FA0140 /* IONetworkHandleable.h in Headers */,
 				564D447423738F2E00FA0140 /* ConnectionState.h in Headers */,
@@ -433,6 +455,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				56A177CB2382A02F00C9AA63 /* Exceptions.h in Headers */,
+				567CE14823847B3800C4EBF8 /* ResourceLock.h in Headers */,
 				567CE1232384153600C4EBF8 /* NetworkWrapper.h in Headers */,
 				56A177CC2382A02F00C9AA63 /* NetworkManager.h in Headers */,
 				56A177CD2382A02F00C9AA63 /* NetworkManageable.h in Headers */,
@@ -443,6 +466,7 @@
 				56A177D22382A02F00C9AA63 /* Server.h in Headers */,
 				56A177D32382A02F00C9AA63 /* ServerHandle.h in Headers */,
 				56A177D42382A02F00C9AA63 /* ServerDelegate.h in Headers */,
+				567CE142238479F300C4EBF8 /* Lockable.h in Headers */,
 				56A177D52382A02F00C9AA63 /* ServerConfiguration.h in Headers */,
 				56A177D62382A02F00C9AA63 /* Client.h in Headers */,
 				56A177D72382A02F00C9AA63 /* ClientHandle.h in Headers */,
@@ -616,6 +640,7 @@
 			files = (
 				5607F82C23718AD5001A9AE9 /* Server.m in Sources */,
 				567CE1242384153600C4EBF8 /* NetworkWrapper.m in Sources */,
+				567CE14923847B3800C4EBF8 /* ResourceLock.m in Sources */,
 				5607F85B2371D742001A9AE9 /* IONetworkHandler.m in Sources */,
 				56BB01EE237EDD4A00A1618C /* Exceptions.m in Sources */,
 				567CE12D23842A4800C4EBF8 /* SocketOptionsWrapper.m in Sources */,
@@ -633,6 +658,7 @@
 			files = (
 				56A177F62382A73D00C9AA63 /* Exceptions.m in Sources */,
 				567CE1252384153600C4EBF8 /* NetworkWrapper.m in Sources */,
+				567CE14A23847B3800C4EBF8 /* ResourceLock.m in Sources */,
 				56A177F72382A73D00C9AA63 /* NetworkManager.m in Sources */,
 				56A177F82382A73D00C9AA63 /* DescriptorControlWrapper.m in Sources */,
 				567CE12E23842A4800C4EBF8 /* SocketOptionsWrapper.m in Sources */,

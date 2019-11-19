@@ -9,6 +9,7 @@
 #import "Client.h"
 #import "Connection.h"
 #import "Exceptions.h"
+#import "ResourceLock.h"
 #import "NetworkWrapper.h"
 #import "NetworkManager.h"
 #import "IONetworkHandler.h"
@@ -19,11 +20,11 @@
 
 @interface Client()
 {
-    NSLock * resourceLock;
-    dispatch_queue_t notificationQueue;
     NSThread * thread;
     Identity* identity;
     Connection * connection;
+    NSObject<Lockable> * resourceLock;
+    dispatch_queue_t notificationQueue;
     NSObject<NetworkManageable>* networkManager;
 }
 @end
@@ -36,26 +37,28 @@
                    notificationQueue: (dispatch_queue_t) notificationQueue {
     return [self initWithConfiguration:configuration
                      notificationQueue:notificationQueue
-                        networkManager:[NetworkManager new]];
+                        networkManager:[NetworkManager new]
+                          resourceLock:[ResourceLock new]];
 }
 -(instancetype)initWithConfiguration: (struct ClientConfiguration) configuration
                    notificationQueue: (dispatch_queue_t) notificationQueue
-                      networkManager: (NSObject<NetworkManageable>*) networkManager {
+                      networkManager: (NSObject<NetworkManageable>*) networkManager
+                        resourceLock: (NSObject<Lockable>*) resourceLock {
     self = [super init];
     if(self) {
         self->thread = nil;
         self->connection = nil;
         self->notificationQueue = notificationQueue;
         self->networkManager = networkManager;
-        self->resourceLock = [NSLock new];
+        self->resourceLock = [ResourceLock new];
         self->_configuration = configuration;
     }
     return self;
 }
 -(void)boot {
-    [resourceLock lock];
+    [resourceLock aquireLock];
     if([thread isExecuting] && ![thread isCancelled]) {
-        [resourceLock unlock];
+        [resourceLock releaseLock];
         return;
     }
     @try {
@@ -72,12 +75,12 @@
                                        object:nil];
     thread.name = @"ClientThread";
     [thread start];
-    [resourceLock unlock];
+    [resourceLock releaseLock];
 
 }
 -(void)serve {
     while(YES) {
-        [resourceLock lock];
+        [resourceLock aquireLock];
         if(!thread.cancelled) {
             if (connection == nil) {
                 
@@ -87,44 +90,44 @@
                                                                     notificationQueue:notificationQueue
                                                                        networkManager:networkManager];
                     connection = newConnection;
-                    [resourceLock unlock];
+                    [resourceLock releaseLock];
                     __weak Client * weakSelf = self;
                     dispatch_async(notificationQueue, ^{
                         [weakSelf.delegate connectionHasBeenEstablished:newConnection];
                     });
-                    [resourceLock lock];
+                    [resourceLock aquireLock];
                 }
             } else {
                 [connection performIO];
             }
         } else {
-            [resourceLock unlock];
+            [resourceLock releaseLock];
             break;
         }
-        [resourceLock unlock];
+        [resourceLock releaseLock];
         usleep(_configuration.eventLoopMicrosecondsDelay);
     }
-    [resourceLock lock];
+    [resourceLock aquireLock];
     if (connection) {
         [connection close];
     }
-    [resourceLock unlock];
+    [resourceLock releaseLock];
 }
 -(BOOL)isRunning {
-    [resourceLock lock];
+    [resourceLock aquireLock];
     BOOL running = thread && thread.isExecuting;
-    [resourceLock unlock];
+    [resourceLock releaseLock];
     return running;
 }
 -(void)shutDown {
-    [resourceLock lock];
+    [resourceLock aquireLock];
     [thread cancel];
     while([thread isExecuting]) {
-        [resourceLock unlock];
+        [resourceLock releaseLock];
         usleep(_configuration.eventLoopMicrosecondsDelay);
-        [resourceLock lock];
+        [resourceLock aquireLock];
     }
     connection = nil;
-    [resourceLock unlock];
+    [resourceLock releaseLock];
 }
 @end
