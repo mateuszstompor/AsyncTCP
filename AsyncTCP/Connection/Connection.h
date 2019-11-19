@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#import "Lockable.h"
 #import "Identity.h"
 #import "ConnectionState.h"
 #import "ConnectionHandle.h"
@@ -21,7 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(instancetype)initWithIdentity: (Identity*) identity
                       chunkSize: (ssize_t) chunkSize
               notificationQueue: (dispatch_queue_t) notificationQueue
-                 networkManager: (NSObject<NetworkManageable>*) networkManager;
+                 networkManager: (NSObject<NetworkManageable>*) networkManager
+                   resourceLock: (NSObject<Lockable>*) resourceLock;
 -(NSTimeInterval)lastInteractionInterval;
 -(void)performIO;
 @end

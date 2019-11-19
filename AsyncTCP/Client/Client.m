@@ -83,12 +83,12 @@
         [resourceLock aquireLock];
         if(!thread.cancelled) {
             if (connection == nil) {
-                
                 if ([networkManager connect:identity]) {
                     Connection * newConnection = [[Connection alloc] initWithIdentity:identity
                                                                             chunkSize:_configuration.chunkSize
                                                                     notificationQueue:notificationQueue
-                                                                       networkManager:networkManager];
+                                                                       networkManager:networkManager
+                                                                         resourceLock:[ResourceLock new]];
                     connection = newConnection;
                     [resourceLock releaseLock];
                     __weak Client * weakSelf = self;

@@ -67,7 +67,8 @@
     }
     if (identity == nil || ![networkManager isValidAndHealthy:identity]) {
         @try {
-            identity = [networkManager localIdentityOnPort: _configuration.port maximalConnectionsCount:_configuration.maximalConnectionsCount];
+            identity = [networkManager localIdentityOnPort: _configuration.port
+                                   maximalConnectionsCount:_configuration.maximalConnectionsCount];
         } @catch (IdentityCreationException * exception) {
             [resourceLock releaseLock];
             @throw [BootingException exceptionWithName:@"BootingException"
@@ -108,7 +109,8 @@
                     Connection * connection = [[Connection alloc] initWithIdentity: newClientIdentity
                                                                          chunkSize:self.configuration.chunkSize
                                                                  notificationQueue: notificationQueue
-                                                                    networkManager:networkManager];
+                                                                    networkManager:networkManager
+                                                                      resourceLock:[ResourceLock new]];
                     __weak Server * weakSelf = self;
                     dispatch_async(notificationQueue, ^{
                         [weakSelf.delegate newClientHasConnected:connection];

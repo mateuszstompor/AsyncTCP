@@ -14,6 +14,7 @@
 #import <sys/types.h>
 #import <sys/socket.h>
 
+#import "ResourceLock.h"
 #import "NetworkManager.h"
 #import "NetworkWrapper.h"
 #import "IONetworkHandler.h"
@@ -25,7 +26,7 @@
     ssize_t chunkSize;
     NSDate* lastActivity;
     NSMutableData* buffer;
-    NSLock* resourceLock;
+    NSObject<Lockable>* resourceLock;
     ConnectionState state;
     Identity * identity;
     NSMutableArray<NSData*>* outgoingMessages;
@@ -39,11 +40,12 @@
 -(instancetype)initWithIdentity: (Identity*) identity
                       chunkSize: (ssize_t) chunkSize
               notificationQueue: (dispatch_queue_t) notificationQueue
-                 networkManager: (NSObject<NetworkManageable>*) networkManager {
+                 networkManager: (NSObject<NetworkManageable>*) networkManager
+                   resourceLock: (NSObject<Lockable>*) resourceLock {
     self = [super init];
     if (self) {
         self->identity = identity;
-        self->resourceLock = [NSLock new];
+        self->resourceLock = resourceLock;
         self->lastActivity = [NSDate new];
         self->buffer = [NSMutableData new];
         self->chunkSize = chunkSize;
@@ -55,24 +57,24 @@
     return self;
 }
 -(BOOL)enqueueDataForSending: (NSData*) data {
-    [resourceLock lock];
+    [resourceLock aquireLock];
     if (state == active) {
         [outgoingMessages addObject:data];
-        [resourceLock unlock];
+        [resourceLock aquireLock];
         return YES;
     } else {
-        [resourceLock unlock];
+        [resourceLock releaseLock];
         return NO;
     }
 }
 -(void)close {
     BOOL notifyDelegate = NO;
-    [resourceLock lock];
+    [resourceLock aquireLock];
     if(state != closed) {
         notifyDelegate = YES;
         [self unsafeClose];
     }
-    [resourceLock unlock];
+    [resourceLock releaseLock];
     __weak Connection * weakSelf = self;
     if (weakSelf == nil || notifyDelegate == NO) {
         return;
@@ -86,25 +88,25 @@
     [networkManager close:identity];
 }
 -(ConnectionState)state {
-    [resourceLock lock];
+    [resourceLock aquireLock];
     ConnectionState stateToReturn = state;
-    [resourceLock unlock];
+    [resourceLock releaseLock];
     return stateToReturn;
 }
 -(NSTimeInterval)lastInteractionInterval {
-    [resourceLock lock];
+    [resourceLock aquireLock];
     NSTimeInterval interval = [[NSDate new] timeIntervalSinceDate:lastActivity];
-    [resourceLock unlock];
+    [resourceLock releaseLock];
     return interval;
 }
 -(NSData*)buffer {
-    [resourceLock lock];
+    [resourceLock aquireLock];
     NSData* currentBuffer = [buffer copy];
-    [resourceLock unlock];
+    [resourceLock releaseLock];
     return currentBuffer;
 }
 -(void)performIO {
-    [resourceLock lock];
+    [resourceLock aquireLock];
     NSData * dataToSent = nil;
     BOOL stateChanged = NO;
     @try {
@@ -130,7 +132,7 @@
         [self unsafeClose];
         stateChanged = YES;
     }
-    [resourceLock unlock];
+    [resourceLock releaseLock];
     __weak Connection * weakSelf = self;
     if (weakSelf == nil) {
         return;
