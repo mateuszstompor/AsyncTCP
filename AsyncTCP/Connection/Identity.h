@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(instancetype)initWithDescriptor: (int) descriptor
                     addressLength: (socklen_t) addressLength
                           address: (struct sockaddr_in) address;
+-(struct sockaddr_in *)addressPointer;
 @end
 
 NS_ASSUME_NONNULL_END

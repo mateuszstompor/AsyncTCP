@@ -22,15 +22,9 @@
     NSLock * resourceLock;
     dispatch_queue_t notificationQueue;
     NSThread * thread;
+    Identity* identity;
     Connection * connection;
-    NSObject<DescriptorControlWrappable> * descriptorControlWrapper;
-    NSObject<SocketOptionsWrappable> * socketOptionsWrapper;
     NSObject<NetworkManageable>* networkManager;
-    NSObject<IONetworkHandleable>* ioHandler;
-    NSObject<NetworkWrappable>* networkWrapper;
-    int clientSocket;
-    struct sockaddr_in server_addr;
-    socklen_t server_addr_len;
 }
 @end
 
@@ -42,31 +36,18 @@
                    notificationQueue: (dispatch_queue_t) notificationQueue {
     return [self initWithConfiguration:configuration
                      notificationQueue:notificationQueue
-                             ioHandler:[IONetworkHandler new]
-                        networkManager:[NetworkManager new]
-              descriptorControlWrapper:[DescriptorControlWrapper new]
-                  socketOptionsWrapper:[SocketOptionsWrapper new]
-                        networkWrapper:[NetworkWrapper new]];
+                        networkManager:[NetworkManager new]];
 }
 -(instancetype)initWithConfiguration: (struct ClientConfiguration) configuration
                    notificationQueue: (dispatch_queue_t) notificationQueue
-                           ioHandler: (NSObject<IONetworkHandleable>*) ioHandler
-                      networkManager: (NSObject<NetworkManageable>*) networkManager
-            descriptorControlWrapper: (NSObject<DescriptorControlWrappable>*) descriptorControlWrapper
-                socketOptionsWrapper: (NSObject<SocketOptionsWrappable>*) socketOptionsWrapper
-                      networkWrapper: (NSObject<NetworkWrappable>*) networkWrapper {
+                      networkManager: (NSObject<NetworkManageable>*) networkManager {
     self = [super init];
     if(self) {
         self->thread = nil;
         self->connection = nil;
-        self->clientSocket = -1;
         self->notificationQueue = notificationQueue;
-        self->descriptorControlWrapper = descriptorControlWrapper;
-        self->socketOptionsWrapper = socketOptionsWrapper;
-        self->ioHandler = ioHandler;
         self->networkManager = networkManager;
         self->resourceLock = [NSLock new];
-        self->networkWrapper = networkWrapper;
         self->_configuration = configuration;
     }
     return self;
@@ -77,22 +58,14 @@
         [resourceLock unlock];
         return;
     }
-    self->server_addr_len = sizeof(struct sockaddr_in);
     @try {
-        self->server_addr = [networkManager identityWithHost:[NSString stringWithCString:_configuration.address
-                                                                                encoding:NSUTF8StringEncoding]
-                                                    withPort:_configuration.port];
+        identity = [networkManager clientIdentityToHost:[NSString stringWithCString:_configuration.address
+                                                                                 encoding:NSUTF8StringEncoding]
+                                               withPort:_configuration.port];
     } @catch (IdentityCreationException *exception) {
-        [BootingException exceptionWithName:@"BootingException" reason:@"Could not resolve address" userInfo:nil];
-    }
-    if((clientSocket = [networkWrapper socket]) < 0) {
-        [BootingException exceptionWithName:@"BootingException" reason:@"Could not create socket" userInfo:nil];
-    }
-    if ([descriptorControlWrapper makeNonBlocking:clientSocket] == -1) {
-        [BootingException exceptionWithName:@"BootingException" reason:@"Could not make socket non blocking" userInfo:nil];
-    }
-    if ([socketOptionsWrapper noSigPipe:clientSocket] == -1) {
-        [BootingException exceptionWithName:@"BootingException" reason:@"Could not avoid sigpipe" userInfo:nil];
+        [BootingException exceptionWithName:@"BootingException"
+                                     reason:exception.reason
+                                   userInfo:nil];
     }
     thread = [[NSThread alloc] initWithTarget:self
                                      selector:@selector(serve)
@@ -107,16 +80,12 @@
         [resourceLock lock];
         if(!thread.cancelled) {
             if (connection == nil) {
-                if ([networkWrapper connect:clientSocket
-                                withAddress:(struct sockaddr const *)&server_addr
-                                     length:server_addr_len] > 0) {
-                    Identity * identity = [[Identity alloc] initWithDescriptor:clientSocket
-                                                                 addressLength:server_addr_len
-                                                                       address:server_addr];
-                    Connection * newConnection = [[Connection alloc] initWithIdentity: identity
-                                                                           chunkSize:_configuration.chunkSize
-                                                                   notificationQueue:notificationQueue
-                                                                      networkManager:networkManager];
+                
+                if ([networkManager connect:identity]) {
+                    Connection * newConnection = [[Connection alloc] initWithIdentity:identity
+                                                                            chunkSize:_configuration.chunkSize
+                                                                    notificationQueue:notificationQueue
+                                                                       networkManager:networkManager];
                     connection = newConnection;
                     [resourceLock unlock];
                     __weak Client * weakSelf = self;
@@ -133,11 +102,11 @@
             break;
         }
         [resourceLock unlock];
-        usleep(self.configuration.eventLoopMicrosecondsDelay);
+        usleep(_configuration.eventLoopMicrosecondsDelay);
     }
     [resourceLock lock];
     if (connection) {
-        [self->connection close];
+        [connection close];
     }
     [resourceLock unlock];
 }
@@ -152,10 +121,9 @@
     [thread cancel];
     while([thread isExecuting]) {
         [resourceLock unlock];
-        usleep(self.configuration.eventLoopMicrosecondsDelay);
+        usleep(_configuration.eventLoopMicrosecondsDelay);
         [resourceLock lock];
     }
-    clientSocket = -1;
     connection = nil;
     [resourceLock unlock];
 }

@@ -29,4 +29,7 @@
     }
     return self;
 }
+-(struct sockaddr_in *)addressPointer {
+    return &_address;
+}
 @end

@@ -26,11 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
                    notificationQueue: (dispatch_queue_t) notificationQueue;
 -(instancetype)initWithConfiguration: (struct ClientConfiguration) configuration
                    notificationQueue: (dispatch_queue_t) notificationQueue
-                           ioHandler: (NSObject<IONetworkHandleable>*) ioHandler
-                      networkManager: (NSObject<NetworkManageable>*) networkManager
-            descriptorControlWrapper: (NSObject<DescriptorControlWrappable>*) descriptorControlWrapper
-                socketOptionsWrapper: (NSObject<SocketOptionsWrappable>*) socketOptionsWrapper
-                      networkWrapper: (NSObject<NetworkWrappable>*) networkWrapper;
+                      networkManager: (NSObject<NetworkManageable>*) networkManager;
 @end
 
 NS_ASSUME_NONNULL_END

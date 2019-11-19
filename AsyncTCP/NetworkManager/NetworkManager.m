@@ -63,6 +63,20 @@
     return [self identityWithAddress: address
                             withPort:port];
 }
+-(Identity*)clientIdentityToHost: (NSString*) host withPort: (int) port {
+    struct sockaddr_in address = [self identityWithHost: host withPort:port];
+    int clientSocket;
+    if((clientSocket = [networkWrapper socket]) < 0) {
+        [IdentityCreationException exceptionWithName:@"IdentityCreationException" reason:@"Could not create socket" userInfo:nil];
+    }
+    if ([descriptorControlWrapper makeNonBlocking:clientSocket] == -1) {
+        [IdentityCreationException exceptionWithName:@"IdentityCreationException" reason:@"Could not make socket non blocking" userInfo:nil];
+    }
+    if ([socketOptionsWrapper noSigPipe:clientSocket] == -1) {
+        [IdentityCreationException exceptionWithName:@"IdentityCreationException" reason:@"Could not avoid sigpipe" userInfo:nil];
+    }
+    return [[Identity alloc] initWithDescriptor:clientSocket addressLength:sizeof(struct sockaddr_in) address:address];
+}
 -(Identity *)localIdentityOnPort:(int)port maximalConnectionsCount: (int) maximalConnectionsCount {
     int descriptor = [networkWrapper socket];
     if (descriptor < 0) {
@@ -129,5 +143,8 @@
 }
 -(nullable NSData *)send:(nonnull NSData *)data identity:(nonnull Identity *)identity {
     return [ioNetworkHandler send:data fileDescriptor:identity.descriptor];
+}
+-(BOOL)connect: (Identity*) identity {
+    return [networkWrapper connect:identity.descriptor withAddress:(struct sockaddr *)identity.addressPointer length:identity.addressLength] != -1;
 }
 @end

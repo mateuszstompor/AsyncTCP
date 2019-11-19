@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSData*)readBytes: (ssize_t) amount identity: (Identity*) identity;
 -(Identity*)acceptNewIdentity: (Identity*) serverIdentity;
 -(Identity*)localIdentityOnPort: (int) port maximalConnectionsCount: (int) maximalConnectionsCount;
+-(Identity*)clientIdentityToHost: (NSString*) host withPort: (int) port;
+-(BOOL)connect: (Identity*) identity;
 @end
 
 NS_ASSUME_NONNULL_END
