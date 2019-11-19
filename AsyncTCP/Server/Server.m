@@ -162,7 +162,8 @@
                                                                         chunkSize:self.configuration.chunkSize
                                                                 notificationQueue: notificationQueue
                                                                         ioHandler:ioHandler
-                                                                   networkManager:networkManager];
+                                                                   networkManager:networkManager
+                                                                   networkWrapper:networkWrapper];
                     __weak Server * weakSelf = self;
                     dispatch_async(notificationQueue, ^{
                         [weakSelf.delegate newClientHasConnected:connection];

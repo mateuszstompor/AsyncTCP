@@ -10,6 +10,7 @@
 
 #import "ConnectionState.h"
 #import "ConnectionHandle.h"
+#import "NetworkWrappable.h"
 #import "NetworkManageable.h"
 #import "IONetworkHandleable.h"
 
@@ -31,7 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
                       chunkSize: (ssize_t) chunkSize
               notificationQueue: (dispatch_queue_t) notificationQueue
                       ioHandler: (NSObject<IONetworkHandleable>*) ioHandler
-                 networkManager: (NSObject<NetworkManageable>*) networkManager;
+                 networkManager: (NSObject<NetworkManageable>*) networkManager
+                 networkWrapper: (NSObject<NetworkWrappable>*) networkWrapper;
 -(void)performIO;
 -(NSTimeInterval)lastInteractionInterval;
 @end

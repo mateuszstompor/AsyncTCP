@@ -116,7 +116,8 @@
                                                                            chunkSize:self.configuration.chunkSize
                                                                    notificationQueue:notificationQueue
                                                                            ioHandler:ioHandler
-                                                                      networkManager:networkManager];
+                                                                      networkManager:networkManager
+                                                                      networkWrapper:networkWrapper];
                     connection = newConnection;
                     [resourceLock unlock];
                     __weak Client * weakSelf = self;

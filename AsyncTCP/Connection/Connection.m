@@ -15,6 +15,7 @@
 #import <sys/socket.h>
 
 #import "NetworkManager.h"
+#import "NetworkWrapper.h"
 #import "IONetworkHandler.h"
 #import "ConnectionDelegate.h"
 
@@ -31,6 +32,7 @@
     ssize_t chunkSize;
     NSObject<IONetworkHandleable>* ioHandler;
     NSMutableArray<NSData*>* outgoingMessages;
+    NSObject<NetworkWrappable>* networkWrapper;
     NSObject<NetworkManageable>* networkManager;
     dispatch_queue_t notificationQueue;
 }
@@ -44,7 +46,8 @@
                       chunkSize: (ssize_t) chunkSize
               notificationQueue: (dispatch_queue_t) notificationQueue
                       ioHandler: (NSObject<IONetworkHandleable>*) ioHandler
-                 networkManager: (NSObject<NetworkManageable>*) networkManager {
+                 networkManager: (NSObject<NetworkManageable>*) networkManager
+                 networkWrapper: (NSObject<NetworkWrappable>*) networkWrapper {
     self = [super init];
     if (self) {
         self->descriptor = descriptor;
@@ -55,6 +58,7 @@
         self->lastActivity = [NSDate new];
         self->buffer = [NSMutableData new];
         self->chunkSize = chunkSize;
+        self->networkWrapper = networkWrapper;
         self->notificationQueue = notificationQueue;
         self->state = active;
         self->networkManager = networkManager;
@@ -83,7 +87,8 @@
                        chunkSize:chunkSize
                notificationQueue:notificationQueue
                        ioHandler:[IONetworkHandler new]
-                  networkManager:[NetworkManager new]];
+                  networkManager:[NetworkManager new]
+                  networkWrapper:[NetworkWrapper new]];
 }
 -(BOOL)enqueueDataForSending: (NSData*) data {
     [resourceLock lock];
@@ -114,7 +119,8 @@
 }
 -(void)unsafeClose {
     state = closed;
-    close(descriptor);
+    [networkWrapper close:descriptor];
+    descriptor = -1;
 }
 -(ConnectionState)state {
     [resourceLock lock];
