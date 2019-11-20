@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 #import <AsyncTCP/AsyncTCP.h>
 
+#import "Dispatch.h"
 #import "TCPTestsClient.h"
 
 @interface CountingLock: ResourceLock
@@ -74,7 +75,7 @@
     serverLock = [CountingLock new];
     serverHandler = [[ServerHandlerLocks alloc] initWithConnectionHandler:[ConnectionHandlerLocks new]];
     server = [[Server alloc] initWithConfiguratoin:configuration
-                                 notificationQueue:dispatch_get_main_queue()
+                                 notificationQueue:[[Dispatch alloc] initWithDispatchQueue: dispatch_get_main_queue()]
                                     networkManager:[NetworkManager new]
                                       resourceLock:serverLock
                                      threadFactory:[ThreadFactory new]];

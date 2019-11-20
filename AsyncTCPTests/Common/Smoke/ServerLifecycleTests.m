@@ -39,7 +39,7 @@
     configuration.chunkSize = 50;
     factory = [CountingThreadFactory new];
     server = [[Server alloc] initWithConfiguratoin:configuration
-                                 notificationQueue:dispatch_get_main_queue()
+                                 notificationQueue:[Dispatch new] 
                                     networkManager:[NetworkManager new]
                                       resourceLock:[ResourceLock new]
                                      threadFactory:factory];

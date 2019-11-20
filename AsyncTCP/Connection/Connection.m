@@ -24,14 +24,14 @@
 @interface Connection()
 {
     ssize_t chunkSize;
+    Identity * identity;
     NSDate* lastActivity;
     NSMutableData* buffer;
-    NSObject<Lockable>* resourceLock;
     ConnectionState state;
-    Identity * identity;
+    NSObject<Lockable>* resourceLock;
     NSMutableArray<NSData*>* outgoingMessages;
     NSObject<NetworkManageable>* networkManager;
-    dispatch_queue_t notificationQueue;
+    NSObject<Dispatchable>* notificationQueue;
 }
 @end
 
@@ -39,7 +39,7 @@
 @synthesize delegate=_delegate;
 -(instancetype)initWithIdentity: (Identity*) identity
                       chunkSize: (ssize_t) chunkSize
-              notificationQueue: (dispatch_queue_t) notificationQueue
+              notificationQueue: (NSObject<Dispatchable>*) notificationQueue
                  networkManager: (NSObject<NetworkManageable>*) networkManager
                    resourceLock: (NSObject<Lockable>*) resourceLock {
     self = [super init];
@@ -79,9 +79,9 @@
     if (weakSelf == nil || notifyDelegate == NO) {
         return;
     }
-    dispatch_async(notificationQueue, ^{
+    [notificationQueue async:^{
         [weakSelf.delegate connection:weakSelf stateHasChangedTo:weakSelf.state];
-    });
+    }];
 }
 -(void)unsafeClose {
     state = closed;
@@ -135,14 +135,14 @@
     [resourceLock releaseLock];
     __weak Connection * weakSelf = self;
     if (dataToSent) {
-        dispatch_async(notificationQueue, ^{
+        [notificationQueue async:^{
             [weakSelf.delegate connection:weakSelf chunkHasArrived:dataToSent];
-        });
+        }];
     }
     if (stateChanged) {
-        dispatch_async(notificationQueue, ^{
+        [notificationQueue async:^{
             [weakSelf.delegate connection:weakSelf stateHasChangedTo:weakSelf.state];
-        });
+        }];
     }
 }
 @end

@@ -9,8 +9,12 @@
 #import <Foundation/Foundation.h>
 
 #import "Lockable.h"
+
+#import "Threadable.h"
+#import "Dispatchable.h"
 #import "ClientHandle.h"
 #import "NetworkManager.h"
+#import "ThreadProducible.h"
 #import "NetworkWrappable.h"
 #import "ClientConfiguration.h"
 #import "IONetworkHandleable.h"
@@ -26,9 +30,10 @@ NS_ASSUME_NONNULL_BEGIN
 -(instancetype)initWithConfiguration: (struct ClientConfiguration) configuration
                    notificationQueue: (dispatch_queue_t) notificationQueue;
 -(instancetype)initWithConfiguration: (struct ClientConfiguration) configuration
-                   notificationQueue: (dispatch_queue_t) notificationQueue
+                   notificationQueue: (NSObject<Dispatchable>*) notificationQueue
                       networkManager: (NSObject<NetworkManageable>*) networkManager
-                        resourceLock: (NSObject<Lockable>*) resourceLock;
+                        resourceLock: (NSObject<Lockable>*) resourceLock
+                       threadFactory: (NSObject<ThreadProducible>*) threadFactory;
 @end
 
 NS_ASSUME_NONNULL_END

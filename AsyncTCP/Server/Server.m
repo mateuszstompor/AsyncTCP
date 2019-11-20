@@ -10,6 +10,7 @@
 
 #import <netdb.h>
 
+#import "Dispatch.h"
 #import "Exceptions.h"
 #import "ResourceLock.h"
 #import "ThreadFactory.h"
@@ -23,8 +24,8 @@
     Identity * identity;
     NSObject<Threadable> * thread;
     NSObject<Lockable> * resourceLock;
-    dispatch_queue_t notificationQueue;
-    NSMutableArray<Connection*>* connections;
+    NSMutableArray<Connection*> * connections;
+    NSObject<Dispatchable> * notificationQueue;
     NSObject<ThreadProducible> * threadFactory;
     NSObject<NetworkManageable>* networkManager;
 }
@@ -38,13 +39,13 @@
 -(instancetype)initWithConfiguratoin: (struct ServerConfiguration) configuration
                    notificationQueue: (dispatch_queue_t) notificationQueue {
     return [self initWithConfiguratoin:configuration
-                     notificationQueue:notificationQueue
+                     notificationQueue:[[Dispatch alloc] initWithDispatchQueue: notificationQueue]
                         networkManager:[NetworkManager new]
                           resourceLock:[ResourceLock new]
                          threadFactory:[ThreadFactory new]];
 }
 -(instancetype)initWithConfiguratoin: (struct ServerConfiguration) configuration
-                   notificationQueue: (dispatch_queue_t) notificationQueue
+                   notificationQueue: (NSObject<Dispatchable>*) notificationQueue
                       networkManager: (NSObject<NetworkManageable>*) networkManager
                         resourceLock: (NSObject<Lockable>*) resourceLock
                        threadFactory: (NSObject<ThreadProducible>*) threadFactory {
@@ -57,8 +58,8 @@
         self->threadFactory = threadFactory;
         self->resourceLock = resourceLock;
         self->networkManager = networkManager;
-        self->connections = [NSMutableArray new];
         self->notificationQueue = notificationQueue;
+        self->connections = [NSMutableArray new];
         self->_delegate = nil;
         self->_configuration = configuration;
     }
@@ -115,9 +116,9 @@
                                                                     networkManager:networkManager
                                                                       resourceLock:[ResourceLock new]];
                     __weak Server * weakSelf = self;
-                    dispatch_async(notificationQueue, ^{
+                    [notificationQueue async:^{
                         [weakSelf.delegate newClientHasConnected:connection];
-                    });
+                    }];
                     [connections addObject:connection];
                 }
             }

@@ -112,7 +112,7 @@
                                                                    handler:nil];
     [self waitForExpectations:@[clientHasConnected] timeout:3];
     [client close];
-    [self waitForExpectations:@[connectionStateHasChanged] timeout:7];
+    [self waitForExpectations:@[connectionStateHasChanged] timeout:10];
     [server shutDown];
 }
 -(void)testCallbackIsReceivedWhenDataIsSent {

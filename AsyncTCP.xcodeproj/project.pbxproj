@@ -32,6 +32,12 @@
 		5638750B2385855100E85106 /* ReceivingConnectionEventsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 563875092385855100E85106 /* ReceivingConnectionEventsTests.m */; };
 		563875102385BC9700E85106 /* LockingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5638750F2385BC9700E85106 /* LockingTests.m */; };
 		563875112385BC9700E85106 /* LockingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5638750F2385BC9700E85106 /* LockingTests.m */; };
+		563875162385E9ED00E85106 /* Dispatch.h in Headers */ = {isa = PBXBuildFile; fileRef = 563875142385E9ED00E85106 /* Dispatch.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		563875172385E9ED00E85106 /* Dispatch.h in Headers */ = {isa = PBXBuildFile; fileRef = 563875142385E9ED00E85106 /* Dispatch.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		563875182385E9ED00E85106 /* Dispatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 563875152385E9ED00E85106 /* Dispatch.m */; };
+		563875192385E9ED00E85106 /* Dispatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 563875152385E9ED00E85106 /* Dispatch.m */; };
+		5638751C2385EA5600E85106 /* Dispatchable.h in Headers */ = {isa = PBXBuildFile; fileRef = 5638751B2385EA0600E85106 /* Dispatchable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5638751D2385EA5700E85106 /* Dispatchable.h in Headers */ = {isa = PBXBuildFile; fileRef = 5638751B2385EA0600E85106 /* Dispatchable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		564D447323738F2E00FA0140 /* IONetworkHandleable.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F85C2371D765001A9AE9 /* IONetworkHandleable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		564D447423738F2E00FA0140 /* ConnectionState.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F8562371CCD0001A9AE9 /* ConnectionState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56744C212372C32000C2B37D /* DescriptorControlWrappable.h in Headers */ = {isa = PBXBuildFile; fileRef = 56744C1F2372C32000C2B37D /* DescriptorControlWrappable.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -165,6 +171,9 @@
 		5638750523856FC600E85106 /* TCPTestsClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCPTestsClient.m; sourceTree = "<group>"; };
 		563875092385855100E85106 /* ReceivingConnectionEventsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReceivingConnectionEventsTests.m; sourceTree = "<group>"; };
 		5638750F2385BC9700E85106 /* LockingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LockingTests.m; sourceTree = "<group>"; };
+		563875142385E9ED00E85106 /* Dispatch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Dispatch.h; sourceTree = "<group>"; };
+		563875152385E9ED00E85106 /* Dispatch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Dispatch.m; sourceTree = "<group>"; };
+		5638751B2385EA0600E85106 /* Dispatchable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Dispatchable.h; sourceTree = "<group>"; };
 		56744C1F2372C32000C2B37D /* DescriptorControlWrappable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DescriptorControlWrappable.h; sourceTree = "<group>"; };
 		56744C232372C32D00C2B37D /* DescriptorControlWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DescriptorControlWrapper.h; sourceTree = "<group>"; };
 		56744C242372C32D00C2B37D /* DescriptorControlWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DescriptorControlWrapper.m; sourceTree = "<group>"; };
@@ -365,6 +374,16 @@
 			path = Server;
 			sourceTree = "<group>";
 		};
+		563875132385E9C100E85106 /* DispatchQueue */ = {
+			isa = PBXGroup;
+			children = (
+				563875142385E9ED00E85106 /* Dispatch.h */,
+				563875152385E9ED00E85106 /* Dispatch.m */,
+				5638751B2385EA0600E85106 /* Dispatchable.h */,
+			);
+			path = DispatchQueue;
+			sourceTree = "<group>";
+		};
 		56744C342372C73F00C2B37D /* NetworkManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -380,6 +399,7 @@
 			children = (
 				567CE13E238479CE00C4EBF8 /* Lock */,
 				567CE15623853D7A00C4EBF8 /* Thread */,
+				563875132385E9C100E85106 /* DispatchQueue */,
 				567CE13223842C7300C4EBF8 /* SocketOptions */,
 				567CE13123842C6B00C4EBF8 /* Network */,
 				567CE13023842C6000C4EBF8 /* DescriptorControl */,
@@ -553,11 +573,13 @@
 				5607F82723718AC6001A9AE9 /* Connection.h in Headers */,
 				5607F8462371937D001A9AE9 /* NetworkManager.h in Headers */,
 				567CE166238541A300C4EBF8 /* Threadable.h in Headers */,
+				5638751C2385EA5600E85106 /* Dispatchable.h in Headers */,
 				560C3DA8237321F200E711F4 /* ServerHandle.h in Headers */,
 				56744C212372C32000C2B37D /* DescriptorControlWrappable.h in Headers */,
 				567CE141238479F300C4EBF8 /* Lockable.h in Headers */,
 				5607F84F2371AA57001A9AE9 /* ConnectionDelegate.h in Headers */,
 				564D447323738F2E00FA0140 /* IONetworkHandleable.h in Headers */,
+				563875162385E9ED00E85106 /* Dispatch.h in Headers */,
 				564D447423738F2E00FA0140 /* ConnectionState.h in Headers */,
 				56BB01E0237ECF0100A1618C /* Client.h in Headers */,
 				5607F8542371B02A001A9AE9 /* ServerConfiguration.h in Headers */,
@@ -591,11 +613,13 @@
 				56A177D12382A02F00C9AA63 /* IONetworkHandleable.h in Headers */,
 				56A177D22382A02F00C9AA63 /* Server.h in Headers */,
 				567CE165238541A300C4EBF8 /* Threadable.h in Headers */,
+				5638751D2385EA5700E85106 /* Dispatchable.h in Headers */,
 				56A177D32382A02F00C9AA63 /* ServerHandle.h in Headers */,
 				56A177D42382A02F00C9AA63 /* ServerDelegate.h in Headers */,
 				567CE142238479F300C4EBF8 /* Lockable.h in Headers */,
 				56A177D52382A02F00C9AA63 /* ServerConfiguration.h in Headers */,
 				56A177D62382A02F00C9AA63 /* Client.h in Headers */,
+				563875172385E9ED00E85106 /* Dispatch.h in Headers */,
 				56A177D72382A02F00C9AA63 /* ClientHandle.h in Headers */,
 				56A177D82382A02F00C9AA63 /* ClientDelegate.h in Headers */,
 				56A177D92382A02F00C9AA63 /* ClientConfiguration.h in Headers */,
@@ -854,6 +878,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5607F82C23718AD5001A9AE9 /* Server.m in Sources */,
+				563875182385E9ED00E85106 /* Dispatch.m in Sources */,
 				567CE1242384153600C4EBF8 /* NetworkWrapper.m in Sources */,
 				567CE14923847B3800C4EBF8 /* ResourceLock.m in Sources */,
 				5607F85B2371D742001A9AE9 /* IONetworkHandler.m in Sources */,
@@ -874,6 +899,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				56A177F62382A73D00C9AA63 /* Exceptions.m in Sources */,
+				563875192385E9ED00E85106 /* Dispatch.m in Sources */,
 				567CE1252384153600C4EBF8 /* NetworkWrapper.m in Sources */,
 				567CE14A23847B3800C4EBF8 /* ResourceLock.m in Sources */,
 				56A177F72382A73D00C9AA63 /* NetworkManager.m in Sources */,

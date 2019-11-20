@@ -7,9 +7,12 @@
 //
 
 #import "Client.h"
+#import "Thread.h"
+#import "Dispatch.h"
 #import "Connection.h"
 #import "Exceptions.h"
 #import "ResourceLock.h"
+#import "ThreadFactory.h"
 #import "NetworkWrapper.h"
 #import "NetworkManager.h"
 #import "IONetworkHandler.h"
@@ -20,11 +23,12 @@
 
 @interface Client()
 {
-    NSThread * thread;
     Identity* identity;
     Connection * connection;
+    NSObject<Threadable> * thread;
     NSObject<Lockable> * resourceLock;
-    dispatch_queue_t notificationQueue;
+    NSObject<ThreadProducible> * threadFactory;
+    NSObject<Dispatchable> * notificationQueue;
     NSObject<NetworkManageable>* networkManager;
 }
 @end
@@ -36,21 +40,24 @@
 -(instancetype)initWithConfiguration:(struct ClientConfiguration)configuration
                    notificationQueue: (dispatch_queue_t) notificationQueue {
     return [self initWithConfiguration:configuration
-                     notificationQueue:notificationQueue
+                     notificationQueue:[[Dispatch alloc] initWithDispatchQueue:notificationQueue]
                         networkManager:[NetworkManager new]
-                          resourceLock:[ResourceLock new]];
+                          resourceLock:[ResourceLock new]
+                         threadFactory:[ThreadFactory new]];
 }
 -(instancetype)initWithConfiguration: (struct ClientConfiguration) configuration
-                   notificationQueue: (dispatch_queue_t) notificationQueue
+                   notificationQueue: (NSObject<Dispatchable>*) notificationQueue
                       networkManager: (NSObject<NetworkManageable>*) networkManager
-                        resourceLock: (NSObject<Lockable>*) resourceLock {
+                        resourceLock: (NSObject<Lockable>*) resourceLock
+                       threadFactory: (NSObject<ThreadProducible>*) threadFactory {
     self = [super init];
     if(self) {
         self->thread = nil;
         self->connection = nil;
         self->notificationQueue = notificationQueue;
         self->networkManager = networkManager;
-        self->resourceLock = [ResourceLock new];
+        self->resourceLock = resourceLock;
+        self->threadFactory = threadFactory;
         self->_configuration = configuration;
     }
     return self;
@@ -70,9 +77,10 @@
                                      reason:exception.reason
                                    userInfo:nil];
     }
-    thread = [[NSThread alloc] initWithTarget:self
-                                     selector:@selector(serve)
-                                       object:nil];
+    
+    thread = [threadFactory createNewThreadWithTarget:self
+                                             selector:@selector(serve)
+                                               object:nil];
     thread.name = @"ClientThread";
     [thread start];
     [resourceLock releaseLock];
@@ -92,9 +100,9 @@
                     connection = newConnection;
                     [resourceLock releaseLock];
                     __weak Client * weakSelf = self;
-                    dispatch_async(notificationQueue, ^{
+                    [notificationQueue async:^{
                         [weakSelf.delegate connectionHasBeenEstablished:newConnection];
-                    });
+                    }];
                     [resourceLock aquireLock];
                 }
             } else {
