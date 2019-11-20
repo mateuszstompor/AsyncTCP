@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -215,7 +215,6 @@
 				26A16A2635B97DBDCD6859AF /* Pods-AsyncTCPTests-macOS.debug.xcconfig */,
 				39B40B24F1B2CA1569DF4F38 /* Pods-AsyncTCPTests-macOS.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -244,9 +243,9 @@
 		5607F81C237189AC001A9AE9 /* AsyncTCP */ = {
 			isa = PBXGroup;
 			children = (
-				567CE119238414DF00C4EBF8 /* Wrappers */,
 				56A1779E23829EA100C9AA63 /* macOS */,
 				56A1779D23829E9C00C9AA63 /* iOS */,
+				567CE119238414DF00C4EBF8 /* Wrappers */,
 				56BB01EA237EDD3600A1618C /* Exceptions */,
 				56744C342372C73F00C2B37D /* NetworkManager */,
 				5607F8572371D71E001A9AE9 /* IO */,
@@ -264,9 +263,9 @@
 				567CE13923843E7D00C4EBF8 /* Identity.m */,
 				5607F82523718AC6001A9AE9 /* Connection.h */,
 				5607F82623718AC6001A9AE9 /* Connection.m */,
+				5607F8562371CCD0001A9AE9 /* ConnectionState.h */,
 				560C3DA22373217200E711F4 /* ConnectionHandle.h */,
 				5607F84D2371AA57001A9AE9 /* ConnectionDelegate.h */,
-				5607F8562371CCD0001A9AE9 /* ConnectionState.h */,
 			);
 			path = Connection;
 			sourceTree = "<group>";
