@@ -2,9 +2,6 @@ language: objective-c
 osx_image: xcode10.3
 
 before_install:
-  - gem install slather
-
-before_script:
 - bundle install
 
 git:
