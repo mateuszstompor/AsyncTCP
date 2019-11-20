@@ -385,6 +385,16 @@
 			path = Thread;
 			sourceTree = "<group>";
 		};
+		567CE1692385546E00C4EBF8 /* Unit */ = {
+			isa = PBXGroup;
+			children = (
+				567CE1262384182C00C4EBF8 /* IONetworkHandlerTests.m */,
+				567744E82381AEDF00CDB409 /* ClientConfigurationTests.m */,
+				567744EB2381AFCD00CDB409 /* ServerConfigurationTests.m */,
+			);
+			path = Unit;
+			sourceTree = "<group>";
+		};
 		56A1779D23829E9C00C9AA63 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -424,9 +434,7 @@
 		56A177AF23829F2100C9AA63 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				567CE1262384182C00C4EBF8 /* IONetworkHandlerTests.m */,
-				567744E82381AEDF00CDB409 /* ClientConfigurationTests.m */,
-				567744EB2381AFCD00CDB409 /* ServerConfigurationTests.m */,
+				567CE1692385546E00C4EBF8 /* Unit */,
 			);
 			path = Common;
 			sourceTree = "<group>";
