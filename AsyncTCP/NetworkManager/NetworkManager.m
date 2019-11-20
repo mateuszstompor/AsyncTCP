@@ -144,7 +144,9 @@
 }
 -(BOOL)close:(nonnull Identity *)identity {
     if (identity.descriptor != -1 && [self isValidAndHealthy: identity]) {
-        return [networkWrapper close:identity.descriptor] >= 0;
+        int result = [networkWrapper close:identity.descriptor];
+        identity.descriptor = -1;
+        return result >= 0;
     } else {
         return YES;
     }

@@ -52,13 +52,11 @@
     XCTestExpectation * delegateHasReceivedEvent = [[XCTestExpectation alloc]
                                                     initWithDescription:@"Make sure that delegate receives an event when new client connects"];
     TCPTestsClient * client = [[TCPTestsClient alloc] initWithHost:"localhost" port:8090];
-    XCTestExpectation * clientHasConnected = [self expectationForPredicate:[NSPredicate predicateWithFormat:@"connect >= 0"]
-                                                       evaluatedWithObject:client
-                                                                   handler:nil];
     serverEventsHandler = [[ServerEventsHandler alloc] initWithClientConnectedExpectation:delegateHasReceivedEvent];
     server.delegate = serverEventsHandler;
     [server boot];
-    [self waitForExpectations:@[clientHasConnected, delegateHasReceivedEvent] timeout:10 enforceOrder:YES];
+    [client connect];
+    [self waitForExpectations:@[delegateHasReceivedEvent] timeout:10 enforceOrder:YES];
     [client close];
     [server shutDown];
 }

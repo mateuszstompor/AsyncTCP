@@ -66,7 +66,7 @@
 }
 -(void)boot {
     [resourceLock aquireLock];
-    if([thread isExecuting] && ![thread isCancelled]) {
+    if(thread) {
         [resourceLock releaseLock];
         return;
     }
@@ -143,11 +143,12 @@
         usleep(self.configuration.eventLoopMicrosecondsDelay);
         [resourceLock aquireLock];
     }
+    thread = nil;
     [connections removeAllObjects];
     if (![networkManager close:identity]) {
         [resourceLock releaseLock];
         @throw [ShuttingDownException exceptionWithName:@"ShuttingDownException"
-                                                 reason:@"Could close server's socket" userInfo:nil];
+                                                 reason:@"Could not close server's socket" userInfo:nil];
     }
     [resourceLock releaseLock];
 }

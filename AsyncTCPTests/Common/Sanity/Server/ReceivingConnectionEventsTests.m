@@ -91,7 +91,6 @@
     XCTestExpectation * clientHasConnected = [self expectationForPredicate:[NSPredicate predicateWithFormat:@"connect >= 0"]
                                                        evaluatedWithObject:client
                                                                    handler:nil];
-    [client connect];
     [self waitForExpectations:@[clientHasConnected] timeout:3];
     [dataHasBeenReceived setInverted:YES];
     [connectionStateHasChanged setInverted:YES];
@@ -111,10 +110,9 @@
     XCTestExpectation * clientHasConnected = [self expectationForPredicate:[NSPredicate predicateWithFormat:@"connect >= 0"]
                                                        evaluatedWithObject:client
                                                                    handler:nil];
-    [client connect];
     [self waitForExpectations:@[clientHasConnected] timeout:3];
     [client close];
-    [self waitForExpectations:@[connectionStateHasChanged] timeout:6];
+    [self waitForExpectations:@[connectionStateHasChanged] timeout:7];
     [server shutDown];
 }
 -(void)testCallbackIsReceivedWhenDataIsSent {
@@ -129,7 +127,6 @@
     XCTestExpectation * clientHasConnected = [self expectationForPredicate:[NSPredicate predicateWithFormat:@"connect >= 0"]
                                                        evaluatedWithObject:client
                                                                    handler:nil];
-    [client connect];
     [self waitForExpectations:@[clientHasConnected] timeout:3];
     [client send:"hello" length:10];
     [self waitForExpectations:@[dataHasBeenReceived] timeout:6];

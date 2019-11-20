@@ -9,9 +9,23 @@
 #import <XCTest/XCTest.h>
 #import <AsyncTCP/AsyncTCP.h>
 
-@interface ServerLifecycleTests : XCTestCase
+@interface CountingThreadFactory: ThreadFactory
+@property (atomic) int instancesCreated;
+@end
+
+@implementation CountingThreadFactory
+-(NSObject<Threadable> *)createNewThreadWithTarget:(id)target selector:(SEL)selector object:(id)argument {
+    id newThread = [super createNewThreadWithTarget:target selector:selector object:argument];
+    _instancesCreated += 1;
+    return newThread;
+}
+@end
+
+
+@interface ServerLifecycleTests: XCTestCase
 {
     Server * server;
+    CountingThreadFactory * factory;
 }
 @end
 
@@ -23,7 +37,12 @@
     configuration.eventLoopMicrosecondsDelay = 2;
     configuration.connectionTimeout = 3;
     configuration.chunkSize = 50;
-    server = [[Server alloc] initWithConfiguratoin:configuration];
+    factory = [CountingThreadFactory new];
+    server = [[Server alloc] initWithConfiguratoin:configuration
+                                 notificationQueue:dispatch_get_main_queue()
+                                    networkManager:[NetworkManager new]
+                                      resourceLock:[ResourceLock new]
+                                     threadFactory:factory];
 }
 -(void)testLifecycleState {
     XCTAssertFalse([server isRunning]);
@@ -44,5 +63,28 @@
                                           evaluatedWithObject:server handler:nil]] timeout:10];
     [server shutDown];
     XCTAssertEqual([server connectedClientsCount], 0);
+}
+-(void)testRepeatableBoots {
+    XCTAssertEqual(factory.instancesCreated, 0);
+    [server boot];
+    XCTAssertEqual(factory.instancesCreated, 1);
+    [server boot];
+    XCTAssertEqual(factory.instancesCreated, 1);
+    [server boot];
+    [server boot];
+    [server boot];
+    XCTAssertEqual(factory.instancesCreated, 1);
+    [server shutDown];
+    XCTAssertEqual(factory.instancesCreated, 1);
+}
+-(void)testRepeatableShutdowns {
+    XCTAssertEqual(factory.instancesCreated, 0);
+    [server boot];
+    XCTAssertEqual(factory.instancesCreated, 1);
+    [server shutDown];
+    [server shutDown];
+    [server shutDown];
+    [server shutDown];
+    XCTAssertEqual(factory.instancesCreated, 1);
 }
 @end

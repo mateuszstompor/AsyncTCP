@@ -30,6 +30,8 @@
 		5638750723856FC600E85106 /* TCPTestsClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5638750523856FC600E85106 /* TCPTestsClient.m */; };
 		5638750A2385855100E85106 /* ReceivingConnectionEventsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 563875092385855100E85106 /* ReceivingConnectionEventsTests.m */; };
 		5638750B2385855100E85106 /* ReceivingConnectionEventsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 563875092385855100E85106 /* ReceivingConnectionEventsTests.m */; };
+		563875102385BC9700E85106 /* LockingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5638750F2385BC9700E85106 /* LockingTests.m */; };
+		563875112385BC9700E85106 /* LockingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5638750F2385BC9700E85106 /* LockingTests.m */; };
 		564D447323738F2E00FA0140 /* IONetworkHandleable.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F85C2371D765001A9AE9 /* IONetworkHandleable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		564D447423738F2E00FA0140 /* ConnectionState.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F8562371CCD0001A9AE9 /* ConnectionState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56744C212372C32000C2B37D /* DescriptorControlWrappable.h in Headers */ = {isa = PBXBuildFile; fileRef = 56744C1F2372C32000C2B37D /* DescriptorControlWrappable.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -162,6 +164,7 @@
 		5638750423856FC600E85106 /* TCPTestsClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCPTestsClient.h; sourceTree = "<group>"; };
 		5638750523856FC600E85106 /* TCPTestsClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCPTestsClient.m; sourceTree = "<group>"; };
 		563875092385855100E85106 /* ReceivingConnectionEventsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReceivingConnectionEventsTests.m; sourceTree = "<group>"; };
+		5638750F2385BC9700E85106 /* LockingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LockingTests.m; sourceTree = "<group>"; };
 		56744C1F2372C32000C2B37D /* DescriptorControlWrappable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DescriptorControlWrappable.h; sourceTree = "<group>"; };
 		56744C232372C32D00C2B37D /* DescriptorControlWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DescriptorControlWrapper.h; sourceTree = "<group>"; };
 		56744C242372C32D00C2B37D /* DescriptorControlWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DescriptorControlWrapper.m; sourceTree = "<group>"; };
@@ -329,8 +332,7 @@
 		563874F7238558E000E85106 /* Sanity */ = {
 			isa = PBXGroup;
 			children = (
-				563874FF23856D5300E85106 /* ReceivingEventsAfterConnectingTests.m */,
-				563875092385855100E85106 /* ReceivingConnectionEventsTests.m */,
+				563875122385BC9B00E85106 /* Server */,
 			);
 			path = Sanity;
 			sourceTree = "<group>";
@@ -351,6 +353,16 @@
 				5638750523856FC600E85106 /* TCPTestsClient.m */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		563875122385BC9B00E85106 /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				563874FF23856D5300E85106 /* ReceivingEventsAfterConnectingTests.m */,
+				563875092385855100E85106 /* ReceivingConnectionEventsTests.m */,
+				5638750F2385BC9700E85106 /* LockingTests.m */,
+			);
+			path = Server;
 			sourceTree = "<group>";
 		};
 		56744C342372C73F00C2B37D /* NetworkManager */ = {
@@ -883,6 +895,7 @@
 			files = (
 				5638750723856FC600E85106 /* TCPTestsClient.m in Sources */,
 				5638750123856D5300E85106 /* ReceivingEventsAfterConnectingTests.m in Sources */,
+				563875112385BC9700E85106 /* LockingTests.m in Sources */,
 				56A177F42382A6D000C9AA63 /* ClientConfigurationTests.m in Sources */,
 				563874FE23855D3900E85106 /* ClientLifeCycleTests.m in Sources */,
 				56A177C623829F7B00C9AA63 /* ServerConfigurationTests.m in Sources */,
@@ -898,6 +911,7 @@
 			files = (
 				5638750623856FC600E85106 /* TCPTestsClient.m in Sources */,
 				5638750023856D5300E85106 /* ReceivingEventsAfterConnectingTests.m in Sources */,
+				563875102385BC9700E85106 /* LockingTests.m in Sources */,
 				56A177E52382A1B000C9AA63 /* ClientConfigurationTests.m in Sources */,
 				563874FD23855D3900E85106 /* ClientLifeCycleTests.m in Sources */,
 				56A177E62382A1B000C9AA63 /* ServerConfigurationTests.m in Sources */,
