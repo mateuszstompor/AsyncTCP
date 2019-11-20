@@ -1,0 +1,20 @@
+PODS:
+  - OCHamcrest (7.1.2)
+  - OCMockito (5.1.2):
+    - OCHamcrest (~> 7.0)
+
+DEPENDENCIES:
+  - OCMockito
+
+SPEC REPOS:
+  trunk:
+    - OCHamcrest
+    - OCMockito
+
+SPEC CHECKSUMS:
+  OCHamcrest: b284c9592c28c1e4025a8542e67ea41a635d0d73
+  OCMockito: 51a534e667194e1ecae88c5def301cc8b0ab3cc7
+
+PODFILE CHECKSUM: 55d2146db37ec2c8fbd05f8d389a6bcfe64a47b9
+
+COCOAPODS: 1.8.4
