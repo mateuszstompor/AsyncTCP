@@ -38,4 +38,7 @@
 -(BOOL)isFinished {
     return [thread isFinished];
 }
+-(void)setName:(NSString *)name {
+    [thread setName:name];
+}
 @end
