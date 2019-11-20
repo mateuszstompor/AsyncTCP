@@ -51,8 +51,8 @@
     _aquireCounts += 1;
 }
 -(void)releaseLock {
-    [super releaseLock];
     _releaseCounts += 1;
+    [super releaseLock];
 }
 @end
 
