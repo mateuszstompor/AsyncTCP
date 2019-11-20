@@ -16,5 +16,5 @@ jobs:
       script: fastlane mac tests
 
 after_success:
-  - slather
-  - bash <(curl -s https://codecov.io/bash) -f path/to/xml_report/cobertura.xml -X coveragepy -X gcov -X xcode
+  - fastlane slather
+  - bash <(curl -s https://codecov.io/bash) -f report/cobertura.xml -X coveragepy -X gcov -X xcode

@@ -1,7 +1,8 @@
 coverage_service: cobertura_xml
 source_directory: AsyncTCP
-output_directory: path/to/xml_report
+output_directory: report
 xcodeproj: AsyncTCP.xcodeproj
+workspace: AsyncTCP.xcworkspace
 scheme: AsyncTCP-macOS
 ignore:
   - AsyncTCPTests/*

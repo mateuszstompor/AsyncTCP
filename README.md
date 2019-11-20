@@ -3,12 +3,12 @@
 </p>
 <h1 align="center">AsyncTCP</h1>
 <p align="center">
-<a href='https://coveralls.io/github/mateuszstompor/AsyncTCP?branch=master'><img src='https://coveralls.io/repos/github/mateuszstompor/AsyncTCP/badge.svg?branch=master' alt='Coverage Status' height="15px"/></a>
+<a href='https://coveralls.io/github/mateuszstompor/AsyncTCP?branch=master'><img src='https://coveralls.io/repos/github/mateuszstompor/AsyncTCP/badge.svg?branch=master' alt='Coverage Status' height="18pt"/></a>
 <a href="https://opensource.org/licenses/MIT">
-<img src="https://img.shields.io/badge/License-MIT-yellow.svg" height="15px" alt="License"/>
+<img src="https://img.shields.io/badge/License-MIT-yellow.svg" height="18pt" alt="License"/>
 </a>
 <a href="https://www.travis-ci.org/mateuszstompor/AsyncTCP">
-<img src="https://www.travis-ci.org/mateuszstompor/AsyncTCP.svg?branch=master" height="15px" alt="Build status"/>
+<img src="https://www.travis-ci.org/mateuszstompor/AsyncTCP.svg?branch=master" height="18pt" alt="Build status"/>
 </a>
 </p>
 
