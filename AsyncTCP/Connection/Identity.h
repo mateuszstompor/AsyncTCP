@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) int descriptor;
 @property (nonatomic) socklen_t addressLength;
 @property (nonatomic) struct sockaddr_in address;
--(instancetype)init;
+-(instancetype)init NS_UNAVAILABLE;
 -(instancetype)initWithDescriptor: (int) descriptor
                     addressLength: (socklen_t) addressLength
                           address: (struct sockaddr_in) address;
