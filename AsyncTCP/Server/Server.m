@@ -12,6 +12,7 @@
 
 #import "Exceptions.h"
 #import "ResourceLock.h"
+#import "ThreadFactory.h"
 #import "NetworkManager.h"
 #import "NetworkWrapper.h"
 #import "IONetworkHandler.h"
@@ -20,10 +21,11 @@
 @interface Server()
 {
     Identity * identity;
-    NSThread * thread;
+    NSObject<Threadable> * thread;
     NSObject<Lockable> * resourceLock;
     dispatch_queue_t notificationQueue;
     NSMutableArray<Connection*>* connections;
+    NSObject<ThreadProducible> * threadFactory;
     NSObject<NetworkManageable>* networkManager;
 }
 @end
@@ -38,18 +40,21 @@
     return [self initWithConfiguratoin:configuration
                      notificationQueue:notificationQueue
                         networkManager:[NetworkManager new]
-                          resourceLock:[ResourceLock new]];
+                          resourceLock:[ResourceLock new]
+                         threadFactory:[ThreadFactory new]];
 }
 -(instancetype)initWithConfiguratoin: (struct ServerConfiguration) configuration
                    notificationQueue: (dispatch_queue_t) notificationQueue
                       networkManager: (NSObject<NetworkManageable>*) networkManager
-                        resourceLock: (NSObject<Lockable>*) resourceLock {
+                        resourceLock: (NSObject<Lockable>*) resourceLock
+                       threadFactory: (NSObject<ThreadProducible>*) threadFactory {
     self = [super init];
     if (self) {
         NSAssert([networkManager hasPortValidRange: configuration.port],
                  @"Port number should be within the range");
         self->identity = nil;
         self->thread = nil;
+        self->threadFactory = threadFactory;
         self->resourceLock = resourceLock;
         self->networkManager = networkManager;
         self->connections = [NSMutableArray new];
@@ -76,9 +81,7 @@
                                               userInfo:nil];
         }
     }
-    thread = [[NSThread alloc] initWithTarget:self
-                                     selector:@selector(serve)
-                                       object:nil];
+    thread = [threadFactory createNewThreadWithTarget:self selector:@selector(serve) object:nil];
     thread.name = @"ServerThread";
     [thread start];
     [resourceLock releaseLock];

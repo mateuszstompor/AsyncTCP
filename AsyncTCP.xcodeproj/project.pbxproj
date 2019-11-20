@@ -50,6 +50,18 @@
 		567CE14823847B3800C4EBF8 /* ResourceLock.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE14523847B3800C4EBF8 /* ResourceLock.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		567CE14923847B3800C4EBF8 /* ResourceLock.m in Sources */ = {isa = PBXBuildFile; fileRef = 567CE14623847B3800C4EBF8 /* ResourceLock.m */; };
 		567CE14A23847B3800C4EBF8 /* ResourceLock.m in Sources */ = {isa = PBXBuildFile; fileRef = 567CE14623847B3800C4EBF8 /* ResourceLock.m */; };
+		567CE15923853D9300C4EBF8 /* Thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE15723853D9300C4EBF8 /* Thread.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		567CE15A23853D9300C4EBF8 /* Thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE15723853D9300C4EBF8 /* Thread.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		567CE15B23853D9300C4EBF8 /* Thread.m in Sources */ = {isa = PBXBuildFile; fileRef = 567CE15823853D9300C4EBF8 /* Thread.m */; };
+		567CE15C23853D9300C4EBF8 /* Thread.m in Sources */ = {isa = PBXBuildFile; fileRef = 567CE15823853D9300C4EBF8 /* Thread.m */; };
+		567CE16023853F1B00C4EBF8 /* ThreadFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE15E23853F1B00C4EBF8 /* ThreadFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		567CE16123853F1B00C4EBF8 /* ThreadFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE15E23853F1B00C4EBF8 /* ThreadFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		567CE16223853F1B00C4EBF8 /* ThreadFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 567CE15F23853F1B00C4EBF8 /* ThreadFactory.m */; };
+		567CE16323853F1B00C4EBF8 /* ThreadFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 567CE15F23853F1B00C4EBF8 /* ThreadFactory.m */; };
+		567CE165238541A300C4EBF8 /* Threadable.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE15D23853D9D00C4EBF8 /* Threadable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		567CE166238541A300C4EBF8 /* Threadable.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE15D23853D9D00C4EBF8 /* Threadable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		567CE167238541AF00C4EBF8 /* ThreadProducible.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE16423853F3900C4EBF8 /* ThreadProducible.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		567CE168238541AF00C4EBF8 /* ThreadProducible.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE16423853F3900C4EBF8 /* ThreadProducible.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56A177C623829F7B00C9AA63 /* ServerConfigurationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 567744EB2381AFCD00CDB409 /* ServerConfigurationTests.m */; };
 		56A177CB2382A02F00C9AA63 /* Exceptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BB01EB237EDD4A00A1618C /* Exceptions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56A177CC2382A02F00C9AA63 /* NetworkManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F8442371937D001A9AE9 /* NetworkManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -152,6 +164,12 @@
 		567CE13F238479F300C4EBF8 /* Lockable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Lockable.h; sourceTree = "<group>"; };
 		567CE14523847B3800C4EBF8 /* ResourceLock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResourceLock.h; sourceTree = "<group>"; };
 		567CE14623847B3800C4EBF8 /* ResourceLock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResourceLock.m; sourceTree = "<group>"; };
+		567CE15723853D9300C4EBF8 /* Thread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Thread.h; sourceTree = "<group>"; };
+		567CE15823853D9300C4EBF8 /* Thread.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Thread.m; sourceTree = "<group>"; };
+		567CE15D23853D9D00C4EBF8 /* Threadable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Threadable.h; sourceTree = "<group>"; };
+		567CE15E23853F1B00C4EBF8 /* ThreadFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThreadFactory.h; sourceTree = "<group>"; };
+		567CE15F23853F1B00C4EBF8 /* ThreadFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThreadFactory.m; sourceTree = "<group>"; };
+		567CE16423853F3900C4EBF8 /* ThreadProducible.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThreadProducible.h; sourceTree = "<group>"; };
 		56A1779523829E6300C9AA63 /* AsyncTCP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AsyncTCP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		56A1779723829E6300C9AA63 /* AsyncTCP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AsyncTCP.h; sourceTree = "<group>"; };
 		56A1779823829E6300C9AA63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -306,6 +324,7 @@
 			isa = PBXGroup;
 			children = (
 				567CE13E238479CE00C4EBF8 /* Lock */,
+				567CE15623853D7A00C4EBF8 /* Thread */,
 				567CE13223842C7300C4EBF8 /* SocketOptions */,
 				567CE13123842C6B00C4EBF8 /* Network */,
 				567CE13023842C6000C4EBF8 /* DescriptorControl */,
@@ -351,6 +370,19 @@
 				567CE14623847B3800C4EBF8 /* ResourceLock.m */,
 			);
 			path = Lock;
+			sourceTree = "<group>";
+		};
+		567CE15623853D7A00C4EBF8 /* Thread */ = {
+			isa = PBXGroup;
+			children = (
+				567CE15D23853D9D00C4EBF8 /* Threadable.h */,
+				567CE15723853D9300C4EBF8 /* Thread.h */,
+				567CE15823853D9300C4EBF8 /* Thread.m */,
+				567CE16423853F3900C4EBF8 /* ThreadProducible.h */,
+				567CE15E23853F1B00C4EBF8 /* ThreadFactory.h */,
+				567CE15F23853F1B00C4EBF8 /* ThreadFactory.m */,
+			);
+			path = Thread;
 			sourceTree = "<group>";
 		};
 		56A1779D23829E9C00C9AA63 /* iOS */ = {
@@ -454,6 +486,7 @@
 				5607F82B23718AD5001A9AE9 /* Server.h in Headers */,
 				5607F82723718AC6001A9AE9 /* Connection.h in Headers */,
 				5607F8462371937D001A9AE9 /* NetworkManager.h in Headers */,
+				567CE166238541A300C4EBF8 /* Threadable.h in Headers */,
 				560C3DA8237321F200E711F4 /* ServerHandle.h in Headers */,
 				56744C212372C32000C2B37D /* DescriptorControlWrappable.h in Headers */,
 				567CE141238479F300C4EBF8 /* Lockable.h in Headers */,
@@ -462,6 +495,7 @@
 				564D447423738F2E00FA0140 /* ConnectionState.h in Headers */,
 				56BB01E0237ECF0100A1618C /* Client.h in Headers */,
 				5607F8542371B02A001A9AE9 /* ServerConfiguration.h in Headers */,
+				567CE168238541AF00C4EBF8 /* ThreadProducible.h in Headers */,
 				56BB01E7237ED4F100A1618C /* ClientHandle.h in Headers */,
 				56BB01E8237ED4F100A1618C /* ClientDelegate.h in Headers */,
 				567CE11C2384152800C4EBF8 /* NetworkWrappable.h in Headers */,
@@ -470,6 +504,8 @@
 				56A177E92382A1E600C9AA63 /* AsyncTCP.h in Headers */,
 				567CE13A23843E7D00C4EBF8 /* Identity.h in Headers */,
 				567CE13323842F9900C4EBF8 /* SocketOptionsWrappable.h in Headers */,
+				567CE16023853F1B00C4EBF8 /* ThreadFactory.h in Headers */,
+				567CE15923853D9300C4EBF8 /* Thread.h in Headers */,
 				56BB01E9237ED4F100A1618C /* ClientConfiguration.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -488,6 +524,7 @@
 				56A177D02382A02F00C9AA63 /* IONetworkHandler.h in Headers */,
 				56A177D12382A02F00C9AA63 /* IONetworkHandleable.h in Headers */,
 				56A177D22382A02F00C9AA63 /* Server.h in Headers */,
+				567CE165238541A300C4EBF8 /* Threadable.h in Headers */,
 				56A177D32382A02F00C9AA63 /* ServerHandle.h in Headers */,
 				56A177D42382A02F00C9AA63 /* ServerDelegate.h in Headers */,
 				567CE142238479F300C4EBF8 /* Lockable.h in Headers */,
@@ -496,12 +533,15 @@
 				56A177D72382A02F00C9AA63 /* ClientHandle.h in Headers */,
 				56A177D82382A02F00C9AA63 /* ClientDelegate.h in Headers */,
 				56A177D92382A02F00C9AA63 /* ClientConfiguration.h in Headers */,
+				567CE167238541AF00C4EBF8 /* ThreadProducible.h in Headers */,
 				56A177DA2382A02F00C9AA63 /* Connection.h in Headers */,
 				56A177DB2382A02F00C9AA63 /* ConnectionHandle.h in Headers */,
 				567CE11D2384152800C4EBF8 /* NetworkWrappable.h in Headers */,
 				56A177DC2382A02F00C9AA63 /* ConnectionDelegate.h in Headers */,
 				567CE12C23842A4800C4EBF8 /* SocketOptionsWrapper.h in Headers */,
 				567CE13423842FA800C4EBF8 /* SocketOptionsWrappable.h in Headers */,
+				567CE16123853F1B00C4EBF8 /* ThreadFactory.h in Headers */,
+				567CE15A23853D9300C4EBF8 /* Thread.h in Headers */,
 				567CE13B23843E7D00C4EBF8 /* Identity.h in Headers */,
 				56A177DD2382A02F00C9AA63 /* ConnectionState.h in Headers */,
 				56A177DE2382A04100C9AA63 /* AsyncTCP.h in Headers */,
@@ -757,7 +797,9 @@
 				56744C262372C32D00C2B37D /* DescriptorControlWrapper.m in Sources */,
 				567CE13C23843E7D00C4EBF8 /* Identity.m in Sources */,
 				5607F8472371937D001A9AE9 /* NetworkManager.m in Sources */,
+				567CE16223853F1B00C4EBF8 /* ThreadFactory.m in Sources */,
 				5607F82823718AC6001A9AE9 /* Connection.m in Sources */,
+				567CE15B23853D9300C4EBF8 /* Thread.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -775,7 +817,9 @@
 				56A177FA2382A73D00C9AA63 /* Server.m in Sources */,
 				567CE13D23843E7D00C4EBF8 /* Identity.m in Sources */,
 				56A177FB2382A73D00C9AA63 /* Client.m in Sources */,
+				567CE16323853F1B00C4EBF8 /* ThreadFactory.m in Sources */,
 				56A177FC2382A73D00C9AA63 /* Connection.m in Sources */,
+				567CE15C23853D9300C4EBF8 /* Thread.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
