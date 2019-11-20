@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol ServerHandle<NSObject>
 @required
 @property (atomic, readonly) struct ServerConfiguration configuration;
-@property (atomic, nullable) NSObject<ServerDelegate>* delegate;
+@property (atomic, nullable, weak) NSObject<ServerDelegate>* delegate;
 -(void)boot;
 -(BOOL)isRunning;
 -(void)shutDown;

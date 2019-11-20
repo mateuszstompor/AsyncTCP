@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol ConnectionHandle<NSObject>
 @required
-@property (atomic, nullable) NSObject<ConnectionDelegate>* delegate;
+@property (atomic, nullable, weak) NSObject<ConnectionDelegate>* delegate;
 -(BOOL)enqueueDataForSending: (NSData*) data;
 -(ConnectionState)state;
 -(NSData*)buffer;
