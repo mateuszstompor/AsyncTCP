@@ -82,13 +82,17 @@
     server.delegate = serverHandler;
 }
 -(void)testLifeCycle {
-    XCTAssertEqual(serverLock.aquireCounts, 0);
-    XCTAssertEqual(serverLock.aquireCounts, serverLock.releaseCounts);
+    [serverLock aquireLock];
+    XCTAssertEqual(serverLock.releaseCounts + 1, serverLock.aquireCounts);
+    [serverLock releaseLock];
     [server boot];
-    XCTAssertNotEqual(serverLock.aquireCounts, 0);
-    XCTAssertEqual(serverLock.releaseCounts, serverLock.aquireCounts);
+    [serverLock aquireLock];
+    XCTAssertEqual(serverLock.releaseCounts + 1, serverLock.aquireCounts);
+    [serverLock releaseLock];
     [server shutDown];
-    XCTAssertEqual(serverLock.releaseCounts, serverLock.aquireCounts);
+    [serverLock aquireLock];
+    XCTAssertEqual(serverLock.releaseCounts + 1, serverLock.aquireCounts);
+    [serverLock releaseLock];
 }
 -(void)testAfterClientConnects {
     TCPTestsClient * client = [[TCPTestsClient alloc] initWithHost:"127.0.0.1" port:8092];
@@ -97,10 +101,14 @@
                                                        evaluatedWithObject:client
                                                                    handler:nil];
     [self waitForExpectations:@[clientHasConnected] timeout:3];
-    XCTAssertEqual(serverLock.releaseCounts, serverLock.aquireCounts);
+    [serverLock aquireLock];
+    XCTAssertEqual(serverLock.releaseCounts + 1, serverLock.aquireCounts);
+    [serverLock releaseLock];
     [client close];
     [server shutDown];
-    XCTAssertEqual(serverLock.releaseCounts, serverLock.aquireCounts);
+    [serverLock aquireLock];
+    XCTAssertEqual(serverLock.releaseCounts + 1, serverLock.aquireCounts);
+    [serverLock releaseLock];
 }
 -(void)testAfterSendingDataFromClient {
     TCPTestsClient * client = [[TCPTestsClient alloc] initWithHost:"127.0.0.1" port:8092];
@@ -110,7 +118,9 @@
                                                                    handler:nil];
     [self waitForExpectations:@[clientHasConnected] timeout:3];
     [client send:"hello" length:5];
-    XCTAssertEqual(serverLock.releaseCounts, serverLock.aquireCounts);
+    [serverLock aquireLock];
+    XCTAssertEqual(serverLock.releaseCounts + 1, serverLock.aquireCounts);
+    [serverLock releaseLock];
     [client close];
     [server shutDown];
 }
