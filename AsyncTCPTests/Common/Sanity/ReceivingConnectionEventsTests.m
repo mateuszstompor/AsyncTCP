@@ -73,11 +73,11 @@
     configuration.port = 8091;
     configuration.maximalConnectionsCount = 1;
     configuration.eventLoopMicrosecondsDelay = 10;
-    configuration.connectionTimeout = 10;
+    configuration.connectionTimeout = 5;
     configuration.chunkSize = 10;
     server = [[Server alloc] initWithConfiguratoin:configuration];
 }
--(void)testReceivingNotificationWhenDataIsReceived {
+-(void)testNoCallbackIsReceivedWhenNothingHappens {
     TCPTestsClient * client = [[TCPTestsClient alloc] initWithHost:"localhost" port:8091];
     XCTestExpectation * connectionStateHasChanged = [[XCTestExpectation alloc]
                                                      initWithDescription:@"Callback informing about connection state change"];
@@ -92,10 +92,48 @@
                                                        evaluatedWithObject:client
                                                                    handler:nil];
     [client connect];
+    [self waitForExpectations:@[clientHasConnected] timeout:3];
     [dataHasBeenReceived setInverted:YES];
     [connectionStateHasChanged setInverted:YES];
-    [self waitForExpectations:@[clientHasConnected, connectionStateHasChanged, dataHasBeenReceived]
-                      timeout:5];
+    [self waitForExpectations:@[connectionStateHasChanged, dataHasBeenReceived] timeout:3];
+    [client close];
+    [server shutDown];
+}
+-(void)testCallbackIsReceivedWhenClientDisconnects {
+    TCPTestsClient * client = [[TCPTestsClient alloc] initWithHost:"localhost" port:8091];
+    XCTestExpectation * connectionStateHasChanged = [[XCTestExpectation alloc]
+                                                     initWithDescription:@"Callback informing about connection state change"];
+    connectionEventsHandler = [[ConnectionEventsHandler alloc] initWithConnectionStateHasChangedExpectation:connectionStateHasChanged
+                                                                                    dataReceivedExpectation:nil];
+    serverHandler = [[ServerHandler alloc] initWithConnectionHandler:connectionEventsHandler];
+    server.delegate = serverHandler;
+    [server boot];
+    XCTestExpectation * clientHasConnected = [self expectationForPredicate:[NSPredicate predicateWithFormat:@"connect >= 0"]
+                                                       evaluatedWithObject:client
+                                                                   handler:nil];
+    [client connect];
+    [self waitForExpectations:@[clientHasConnected] timeout:3];
+    [client close];
+    [self waitForExpectations:@[connectionStateHasChanged] timeout:6];
+    [server shutDown];
+}
+-(void)testCallbackIsReceivedWhenDataIsSent {
+    TCPTestsClient * client = [[TCPTestsClient alloc] initWithHost:"localhost" port:8091];
+    XCTestExpectation * dataHasBeenReceived = [[XCTestExpectation alloc]
+                                               initWithDescription:@"Callback informing about incoming data"];
+    connectionEventsHandler = [[ConnectionEventsHandler alloc] initWithConnectionStateHasChangedExpectation:nil
+                                                                                    dataReceivedExpectation:dataHasBeenReceived];
+    serverHandler = [[ServerHandler alloc] initWithConnectionHandler:connectionEventsHandler];
+    server.delegate = serverHandler;
+    [server boot];
+    XCTestExpectation * clientHasConnected = [self expectationForPredicate:[NSPredicate predicateWithFormat:@"connect >= 0"]
+                                                       evaluatedWithObject:client
+                                                                   handler:nil];
+    [client connect];
+    [self waitForExpectations:@[clientHasConnected] timeout:3];
+    [client send:"hello" length:10];
+    [self waitForExpectations:@[dataHasBeenReceived] timeout:6];
+    XCTAssertEqual([dataHasBeenReceived expectedFulfillmentCount], 1);
     [client close];
     [server shutDown];
 }
