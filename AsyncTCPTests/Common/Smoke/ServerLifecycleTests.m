@@ -28,7 +28,7 @@
 -(void)testLifecycleState {
     XCTAssertFalse([server isRunning]);
     [server boot];
-    NSPredicate * serverIsRunning = [NSPredicate predicateWithFormat:@"isRunning == true"];
+    NSPredicate * serverIsRunning = [NSPredicate predicateWithFormat:@"isRunning == YES"];
     [self waitForExpectations:@[[self expectationForPredicate:serverIsRunning
                                           evaluatedWithObject:server handler:nil]] timeout:10];
     [server shutDown];
