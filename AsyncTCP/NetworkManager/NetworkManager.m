@@ -17,6 +17,10 @@
 
 #import "Connection.h"
 #import "Exceptions.h"
+#import "NetworkWrapper.h"
+#import "IONetworkHandler.h"
+#import "SocketOptionsWrapper.h"
+#import "DescriptorControlWrapper.h"
 
 @interface NetworkManager()
 {
@@ -28,6 +32,12 @@
 @end
 
 @implementation NetworkManager
+-(instancetype)init {
+    return [self initWithSocketOptionsWrapper:[SocketOptionsWrapper new]
+                     descriptorControlWrapper:[DescriptorControlWrapper new]
+                               networkWrapper:[NetworkWrapper new]
+                             ioNetworkHandler:[IONetworkHandler new]];
+}
 -(instancetype)initWithSocketOptionsWrapper: (NSObject<SocketOptionsWrappable>*) socketOptionsWrapper
                    descriptorControlWrapper: (NSObject<DescriptorControlWrappable>*) descriptorControlWrapper
                              networkWrapper: (NSObject<NetworkWrappable>*) networkWrapper
