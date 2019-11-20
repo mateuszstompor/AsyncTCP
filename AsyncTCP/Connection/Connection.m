@@ -134,9 +134,6 @@
     }
     [resourceLock releaseLock];
     __weak Connection * weakSelf = self;
-    if (weakSelf == nil) {
-        return;
-    }
     if (dataToSent) {
         dispatch_async(notificationQueue, ^{
             [weakSelf.delegate connection:weakSelf chunkHasArrived:dataToSent];
