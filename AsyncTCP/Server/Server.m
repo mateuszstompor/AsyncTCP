@@ -94,7 +94,7 @@
             // perform IO
             for (ssize_t i=0; i<[connections count]; ++i) {
                 Connection * connection = [connections objectAtIndex:i];
-                if ([connection lastInteractionInterval] > self.configuration.connectionTimeout || [connection state] == closed) {
+                if ([connection lastInteractionInterval] > _configuration.connectionTimeout || [connection state] == closed) {
                     [connectionsToRemove addObject:connection];
                 } else {
                     [connection performIO];
@@ -109,9 +109,9 @@
             if (self.configuration.maximalConnectionsCount > [connections count] && _delegate != nil) {
                 Identity * newClientIdentity = [networkManager acceptNewIdentity:identity];
                 if (newClientIdentity) {
-                    Connection * connection = [[Connection alloc] initWithIdentity: newClientIdentity
-                                                                         chunkSize:self.configuration.chunkSize
-                                                                 notificationQueue: notificationQueue
+                    Connection * connection = [[Connection alloc] initWithIdentity:newClientIdentity
+                                                                         chunkSize:_configuration.chunkSize
+                                                                 notificationQueue:notificationQueue
                                                                     networkManager:networkManager
                                                                       resourceLock:[ResourceLock new]];
                     __weak Server * weakSelf = self;
@@ -126,7 +126,7 @@
             break;
         }
         [resourceLock releaseLock];
-        usleep(self.configuration.eventLoopMicrosecondsDelay);
+        usleep(_configuration.eventLoopMicrosecondsDelay);
     }
     [resourceLock aquireLock];
     for (Connection * connection in connections) {
