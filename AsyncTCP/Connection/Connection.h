@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
                  networkManager: (NSObject<NetworkManageable>*) networkManager
                    resourceLock: (NSObject<Lockable>*) resourceLock;
 -(NSTimeInterval)lastInteractionInterval;
+-(BOOL)isClosed;
 -(void)performIO;
 @end
 

@@ -93,9 +93,8 @@
         if(!thread.cancelled) {
             NSMutableArray<Connection*>* connectionsToRemove = [NSMutableArray new];
             // perform IO
-            for (ssize_t i=0; i<[connections count]; ++i) {
-                Connection * connection = [connections objectAtIndex:i];
-                if ([connection lastInteractionInterval] > _configuration.connectionTimeout || [connection state] == closed) {
+            for (Connection * connection in connections) {
+                if ([self hasConnectionTimedOut: connection] || [connection isClosed]) {
                     [connectionsToRemove addObject:connection];
                 } else {
                     [connection performIO];
@@ -164,5 +163,8 @@
     BOOL running = thread && thread.isExecuting;
     [resourceLock releaseLock];
     return running;
+}
+-(BOOL)hasConnectionTimedOut: (Connection *) connection {
+    return [connection lastInteractionInterval] > _configuration.connectionTimeout;
 }
 @end

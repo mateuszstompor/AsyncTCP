@@ -145,4 +145,10 @@
         }];
     }
 }
+-(BOOL)isClosed {
+    [resourceLock aquireLock];
+    BOOL is = state == closed;
+    [resourceLock releaseLock];
+    return is;
+}
 @end
