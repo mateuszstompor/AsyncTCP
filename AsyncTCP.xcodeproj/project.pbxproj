@@ -127,6 +127,8 @@
 		56BDB6D723869AFC00D00BF2 /* TasksGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BDB6D323869AFC00D00BF2 /* TasksGroup.m */; };
 		56BDB6D923869CFE00D00BF2 /* TasksGroupable.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BDB6D823869B1C00D00BF2 /* TasksGroupable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56BDB6DA23869CFF00D00BF2 /* TasksGroupable.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BDB6D823869B1C00D00BF2 /* TasksGroupable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		56BDB6DC23872F2800D00BF2 /* SendingDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BDB6DB23872F2800D00BF2 /* SendingDataTests.m */; };
+		56BDB6DD23872F2800D00BF2 /* SendingDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BDB6DB23872F2800D00BF2 /* SendingDataTests.m */; };
 		BC74FD1BBBDEF84F391E8160 /* Pods_AsyncTCPTests_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB18CA55D9379FF5E8636634 /* Pods_AsyncTCPTests_macOS.framework */; };
 		F61E4E903440CD048679E2AA /* Pods_AsyncTCPTests_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC4DD610C29523E0D9AD93E1 /* Pods_AsyncTCPTests_iOS.framework */; };
 /* End PBXBuildFile section */
@@ -221,6 +223,7 @@
 		56BDB6D223869AFC00D00BF2 /* TasksGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TasksGroup.h; sourceTree = "<group>"; };
 		56BDB6D323869AFC00D00BF2 /* TasksGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TasksGroup.m; sourceTree = "<group>"; };
 		56BDB6D823869B1C00D00BF2 /* TasksGroupable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TasksGroupable.h; sourceTree = "<group>"; };
+		56BDB6DB23872F2800D00BF2 /* SendingDataTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SendingDataTests.m; sourceTree = "<group>"; };
 		A3C3EF8AC4D4CC4DB53B392B /* Pods-AsyncTCPTests-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AsyncTCPTests-iOS.debug.xcconfig"; path = "Target Support Files/Pods-AsyncTCPTests-iOS/Pods-AsyncTCPTests-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		AC4DD610C29523E0D9AD93E1 /* Pods_AsyncTCPTests_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AsyncTCPTests_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB18CA55D9379FF5E8636634 /* Pods_AsyncTCPTests_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AsyncTCPTests_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -378,6 +381,7 @@
 			children = (
 				563874FF23856D5300E85106 /* ReceivingEventsAfterConnectingTests.m */,
 				563875092385855100E85106 /* ReceivingConnectionEventsTests.m */,
+				56BDB6DB23872F2800D00BF2 /* SendingDataTests.m */,
 				5638750F2385BC9700E85106 /* LockingTests.m */,
 			);
 			path = Server;
@@ -953,6 +957,7 @@
 				56A177C623829F7B00C9AA63 /* ServerConfigurationTests.m in Sources */,
 				567CE1282384182C00C4EBF8 /* IONetworkHandlerTests.m in Sources */,
 				5638750B2385855100E85106 /* ReceivingConnectionEventsTests.m in Sources */,
+				56BDB6DD23872F2800D00BF2 /* SendingDataTests.m in Sources */,
 				563874FA2385590700E85106 /* ServerLifecycleTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -969,6 +974,7 @@
 				56A177E62382A1B000C9AA63 /* ServerConfigurationTests.m in Sources */,
 				567CE1272384182C00C4EBF8 /* IONetworkHandlerTests.m in Sources */,
 				5638750A2385855100E85106 /* ReceivingConnectionEventsTests.m in Sources */,
+				56BDB6DC23872F2800D00BF2 /* SendingDataTests.m in Sources */,
 				563874F92385590700E85106 /* ServerLifecycleTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -60,7 +60,7 @@
     [resourceLock aquireLock];
     if (state == active) {
         [outgoingMessages addObject:data];
-        [resourceLock aquireLock];
+        [resourceLock releaseLock];
         return YES;
     } else {
         [resourceLock releaseLock];
