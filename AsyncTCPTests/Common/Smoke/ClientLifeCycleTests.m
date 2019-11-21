@@ -35,6 +35,5 @@
     NSPredicate * clientIsStopped = [NSPredicate predicateWithFormat:@"isRunning == NO"];
     [self waitForExpectations:@[[self expectationForPredicate:clientIsStopped
                                           evaluatedWithObject:client handler:nil]] timeout:10];
-    
 }
 @end

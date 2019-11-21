@@ -38,7 +38,6 @@
     return self;
 }
 -(void)clientHasDisconnected:(nonnull Connection *)connection {
-    self->connection = nil;
     [clientHasDisconnected fulfill];
 }
 -(void)newClientHasConnected:(nonnull Connection *)connection {
@@ -84,6 +83,7 @@
     [self waitForExpectations:@[clientHasConnected] timeout:3];
     XCTAssertTrue([handler sendData:[@"hello" dataUsingEncoding:NSUTF8StringEncoding]]);
     [self waitForExpectations:@[clientConnectedCallback, dataSendExpectation, clientDisconnected] timeout:10 enforceOrder:YES];
+    [client close];
     [server shutDown];
 }
 -(void)testSendingDataWhileConnectionDelegateIsNotSet {
@@ -105,6 +105,29 @@
     XCTAssertEqual([client readToBuffer:buffer size:length * 10], length);
     NSData * dataReceived = [NSData dataWithBytes:buffer length:5];
     XCTAssertTrue([[[NSString alloc] initWithData:dataReceived encoding:NSUTF8StringEncoding] isEqualToString:literalToSend]);
+    [client close];
+    [server shutDown];
+}
+-(void)testSendingDataWhileConnectionIsClosed {
+    XCTestExpectation * clientDisconnected = [[XCTestExpectation alloc]
+                                              initWithDescription:@"Client has disconnected"];
+    handler = [[SendingDataServerHandler alloc] initWithExpectectionAfterSuccessfulDataSending:nil
+                                                                            clientHasConnected:nil
+                                                                         clientHasDisconnected:clientDisconnected];
+    server.delegate = handler;
+    [server boot];
+    TCPTestsClient * client = [[TCPTestsClient alloc] initWithHost:"localhost" port:8091];
+    XCTestExpectation * clientHasConnected = [self expectationForPredicate:[NSPredicate predicateWithFormat:@"connect >= 0"]
+                                                       evaluatedWithObject:client
+                                                                   handler:nil];
+    [self waitForExpectations:@[clientHasConnected] timeout:4 enforceOrder:YES];
+    [self waitForExpectations:@[clientDisconnected] timeout:10];
+    NSString * literalToSend = @"hello";
+    NSInteger length = [literalToSend length];
+    XCTAssertFalse([handler sendData:[literalToSend dataUsingEncoding:NSUTF8StringEncoding]]);
+    void * buffer[10];
+    XCTAssertEqual([client readToBuffer:buffer size:length * 10], 0);
+    [client close];
     [server shutDown];
 }
 @end
