@@ -14,19 +14,15 @@
 
 @interface ConnectionEventsHandler: NSObject<ConnectionDelegate>
 {
-    XCTestExpectation * connectionStateChangedExpectation;
     XCTestExpectation * dataReceivedExpectation;
 }
--(instancetype)initWithConnectionStateHasChangedExpectation: (XCTestExpectation*) connectionStateExpectation
-                                    dataReceivedExpectation: (XCTestExpectation*) dataReceivedExpectation;
+-(instancetype)initWithDataReceivedExpectation: (XCTestExpectation*) dataReceivedExpectation;
 @end
 
 @implementation ConnectionEventsHandler
--(instancetype)initWithConnectionStateHasChangedExpectation: (XCTestExpectation*) connectionStateChangedExpectation
-                                    dataReceivedExpectation: (XCTestExpectation*) dataReceivedExpectation {
+-(instancetype)initWithDataReceivedExpectation: (XCTestExpectation*) dataReceivedExpectation {
     self = [super init];
     if (self) {
-        self->connectionStateChangedExpectation = connectionStateChangedExpectation;
         self->dataReceivedExpectation = dataReceivedExpectation;
     }
     return self;
@@ -34,28 +30,37 @@
 -(void)connection:(NSObject<ConnectionHandle> *)connection chunkHasArrived:(NSData *)data {
     [dataReceivedExpectation fulfill];
 }
--(void)connection:(NSObject<ConnectionHandle> *)connection stateHasChangedTo:(ConnectionState)state {
-    [connectionStateChangedExpectation fulfill];
-}
 @end
 
 @interface ServerHandler: NSObject<ServerDelegate>
 {
+    XCTestExpectation * clientConnectedExpectation;
+    XCTestExpectation * clientDisconnectedExpectation;
     NSObject<ConnectionDelegate>* connectionHandler;
 }
--(instancetype)initWithConnectionHandler: (NSObject<ConnectionDelegate>*) connectionHandler;
+-(instancetype)initWithConnectionHandler: (NSObject<ConnectionDelegate>*) connectionHandler
+              clientConnectedExpectation: (XCTestExpectation *) clientConnectedExpectation
+           clientDisconnectedExpectation: (XCTestExpectation *) clientDisconnectedExpectation;
 @end
 
 @implementation ServerHandler
--(instancetype)initWithConnectionHandler: (NSObject<ConnectionDelegate>*) connectionHandler {
+-(instancetype)initWithConnectionHandler: (NSObject<ConnectionDelegate>*) connectionHandler
+              clientConnectedExpectation: (XCTestExpectation *) clientConnectedExpectation
+           clientDisconnectedExpectation: (XCTestExpectation *) clientDisconnectedExpectation {
     self = [super init];
     if (self) {
         self->connectionHandler = connectionHandler;
+        self->clientConnectedExpectation = clientConnectedExpectation;
+        self->clientDisconnectedExpectation = clientDisconnectedExpectation;
     }
     return self;
 }
 -(void)newClientHasConnected: (Connection *)connection {
+    [clientConnectedExpectation fulfill];
     connection.delegate = connectionHandler;
+}
+-(void)clientHasDisconnected:(Connection *)connection {
+    [clientDisconnectedExpectation fulfill];
 }
 @end
 
@@ -83,9 +88,10 @@
                                                      initWithDescription:@"Callback informing about connection state change"];
     XCTestExpectation * dataHasBeenReceived = [[XCTestExpectation alloc]
                                                initWithDescription:@"Callback informing about incoming data"];
-    connectionEventsHandler = [[ConnectionEventsHandler alloc] initWithConnectionStateHasChangedExpectation:connectionStateHasChanged
-                                                                                    dataReceivedExpectation:dataHasBeenReceived];
-    serverHandler = [[ServerHandler alloc] initWithConnectionHandler:connectionEventsHandler];
+    connectionEventsHandler = [[ConnectionEventsHandler alloc] initWithDataReceivedExpectation:dataHasBeenReceived];
+    serverHandler = [[ServerHandler alloc] initWithConnectionHandler:connectionEventsHandler
+                                          clientConnectedExpectation:nil
+                                       clientDisconnectedExpectation:connectionStateHasChanged];
     server.delegate = serverHandler;
     [server boot];
     XCTestExpectation * clientHasConnected = [self expectationForPredicate:[NSPredicate predicateWithFormat:@"connect >= 0"]
@@ -102,9 +108,10 @@
     TCPTestsClient * client = [[TCPTestsClient alloc] initWithHost:"localhost" port:8091];
     XCTestExpectation * connectionStateHasChanged = [[XCTestExpectation alloc]
                                                      initWithDescription:@"Callback informing about connection state change"];
-    connectionEventsHandler = [[ConnectionEventsHandler alloc] initWithConnectionStateHasChangedExpectation:connectionStateHasChanged
-                                                                                    dataReceivedExpectation:nil];
-    serverHandler = [[ServerHandler alloc] initWithConnectionHandler:connectionEventsHandler];
+    connectionEventsHandler = [[ConnectionEventsHandler alloc] initWithDataReceivedExpectation:nil];
+    serverHandler = [[ServerHandler alloc] initWithConnectionHandler:connectionEventsHandler
+                                          clientConnectedExpectation:nil
+                                       clientDisconnectedExpectation:connectionStateHasChanged];
     server.delegate = serverHandler;
     [server boot];
     XCTestExpectation * clientHasConnected = [self expectationForPredicate:[NSPredicate predicateWithFormat:@"connect >= 0"]
@@ -119,9 +126,10 @@
     TCPTestsClient * client = [[TCPTestsClient alloc] initWithHost:"localhost" port:8091];
     XCTestExpectation * dataHasBeenReceived = [[XCTestExpectation alloc]
                                                initWithDescription:@"Callback informing about incoming data"];
-    connectionEventsHandler = [[ConnectionEventsHandler alloc] initWithConnectionStateHasChangedExpectation:nil
-                                                                                    dataReceivedExpectation:dataHasBeenReceived];
-    serverHandler = [[ServerHandler alloc] initWithConnectionHandler:connectionEventsHandler];
+    connectionEventsHandler = [[ConnectionEventsHandler alloc] initWithDataReceivedExpectation:dataHasBeenReceived];
+    serverHandler = [[ServerHandler alloc] initWithConnectionHandler:connectionEventsHandler
+                                          clientConnectedExpectation:nil
+                                       clientDisconnectedExpectation:nil];
     server.delegate = serverHandler;
     [server boot];
     XCTestExpectation * clientHasConnected = [self expectationForPredicate:[NSPredicate predicateWithFormat:@"connect >= 0"]

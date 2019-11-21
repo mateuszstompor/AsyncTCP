@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol ServerDelegate <NSObject>
 -(void)newClientHasConnected: (Connection*) connection;
+-(void)clientHasDisconnected: (Connection*) connection;
 @end
 
 NS_ASSUME_NONNULL_END

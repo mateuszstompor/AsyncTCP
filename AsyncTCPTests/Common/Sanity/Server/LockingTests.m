@@ -22,7 +22,6 @@
 
 @implementation ConnectionHandlerLocks
 -(void)connection:(NSObject<ConnectionHandle> *)connection chunkHasArrived:(NSData *)data { }
--(void)connection:(NSObject<ConnectionHandle> *)connection stateHasChangedTo:(ConnectionState)state { }
 @end
 
 @interface ServerHandlerLocks: NSObject<ServerDelegate>
@@ -43,6 +42,7 @@
 -(void)newClientHasConnected: (Connection *)connection {
     connection.delegate = connectionHandler;
 }
+-(void)clientHasDisconnected:(Connection *)connection { }
 @end
 
 @implementation CountingLock
@@ -73,11 +73,13 @@
     configuration.connectionTimeout = 5;
     configuration.chunkSize = 1;
     serverLock = [CountingLock new];
-    serverHandler = [[ServerHandlerLocks alloc] initWithConnectionHandler:[ConnectionHandlerLocks new]];
+    serverHandler = [[ServerHandlerLocks alloc]
+                     initWithConnectionHandler:[ConnectionHandlerLocks new]];
     server = [[Server alloc] initWithConfiguratoin:configuration
                                  notificationQueue:[[Dispatch alloc] initWithDispatchQueue: dispatch_get_main_queue()]
                                     networkManager:[NetworkManager new]
                                       resourceLock:serverLock
+                                        tasksGroup:[TasksGroup new]
                                      threadFactory:[ThreadFactory new]];
     server.delegate = serverHandler;
 }

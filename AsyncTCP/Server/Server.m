@@ -11,6 +11,7 @@
 #import <netdb.h>
 
 #import "Dispatch.h"
+#import "TasksGroup.h"
 #import "Exceptions.h"
 #import "ResourceLock.h"
 #import "ThreadFactory.h"
@@ -29,6 +30,7 @@
     NSObject<ThreadProducible> * threadFactory;
     NSObject<NetworkManageable>* networkManager;
 }
+@property (nonatomic) NSObject<TasksGroupable> * tasksGroup;
 @end
 
 @implementation Server
@@ -42,12 +44,14 @@
                      notificationQueue:[[Dispatch alloc] initWithDispatchQueue: notificationQueue]
                         networkManager:[NetworkManager new]
                           resourceLock:[ResourceLock new]
+                            tasksGroup:[TasksGroup new]
                          threadFactory:[ThreadFactory new]];
 }
 -(instancetype)initWithConfiguratoin: (struct ServerConfiguration) configuration
                    notificationQueue: (NSObject<Dispatchable>*) notificationQueue
                       networkManager: (NSObject<NetworkManageable>*) networkManager
                         resourceLock: (NSObject<Lockable>*) resourceLock
+                          tasksGroup: (NSObject<TasksGroupable>*) tasksGroup
                        threadFactory: (NSObject<ThreadProducible>*) threadFactory {
     self = [super init];
     if (self) {
@@ -60,6 +64,7 @@
         self->networkManager = networkManager;
         self->notificationQueue = notificationQueue;
         self->connections = [NSMutableArray new];
+        self->_tasksGroup = tasksGroup;
         self->_delegate = nil;
         self->_configuration = configuration;
     }
@@ -103,6 +108,15 @@
             // remove timed out or not open connections
             for (Connection * connection in connectionsToRemove) {
                 [connection close];
+                [_tasksGroup enter];
+                __unsafe_unretained Server * unownedSelf = self;
+                [notificationQueue async:^{
+                    [unownedSelf.delegate clientHasDisconnected:connection];
+                    [unownedSelf.tasksGroup leave];
+                }];
+            }
+            [_tasksGroup waitForever];
+            for (Connection * connection in connectionsToRemove) {
                 [connections removeObject:connection];
             }
             // accept new connections if amount of clients do not exceeds max

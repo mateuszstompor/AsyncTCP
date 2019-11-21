@@ -68,20 +68,11 @@
     }
 }
 -(void)close {
-    BOOL notifyDelegate = NO;
     [resourceLock aquireLock];
     if(state != closed) {
-        notifyDelegate = YES;
         [self unsafeClose];
     }
     [resourceLock releaseLock];
-    __weak Connection * weakSelf = self;
-    if (weakSelf == nil || notifyDelegate == NO) {
-        return;
-    }
-    [notificationQueue async:^{
-        [weakSelf.delegate connection:weakSelf stateHasChangedTo:weakSelf.state];
-    }];
 }
 -(void)unsafeClose {
     state = closed;
@@ -108,7 +99,6 @@
 -(void)performIO {
     [resourceLock aquireLock];
     NSData * dataToSent = nil;
-    BOOL stateChanged = NO;
     @try {
         if ([outgoingMessages count] > 0) {
             NSData * data = [outgoingMessages objectAtIndex:0];
@@ -130,18 +120,12 @@
         }
     } @catch (IOException *exception) {
         [self unsafeClose];
-        stateChanged = YES;
     }
     [resourceLock releaseLock];
     __weak Connection * weakSelf = self;
     if (dataToSent) {
         [notificationQueue async:^{
             [weakSelf.delegate connection:weakSelf chunkHasArrived:dataToSent];
-        }];
-    }
-    if (stateChanged) {
-        [notificationQueue async:^{
-            [weakSelf.delegate connection:weakSelf stateHasChangedTo:weakSelf.state];
         }];
     }
 }

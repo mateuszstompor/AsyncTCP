@@ -29,6 +29,9 @@
 -(void)newClientHasConnected: (Connection *)connection {
     [clientConnectedExpectation fulfill];
 }
+-(void)clientHasDisconnected:(Connection *)connection {
+    
+}
 @end
 
 @interface ReceivingEventsAfterConnectingTests : XCTestCase

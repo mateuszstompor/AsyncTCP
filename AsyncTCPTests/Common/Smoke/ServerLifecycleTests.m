@@ -42,6 +42,7 @@
                                  notificationQueue:[Dispatch new] 
                                     networkManager:[NetworkManager new]
                                       resourceLock:[ResourceLock new]
+                                        tasksGroup: [TasksGroup new]
                                      threadFactory:factory];
 }
 -(void)testLifecycleState {

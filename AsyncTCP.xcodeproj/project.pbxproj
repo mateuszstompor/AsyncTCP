@@ -121,6 +121,12 @@
 		56BB01E9237ED4F100A1618C /* ClientConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BB01E6237ED21400A1618C /* ClientConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56BB01ED237EDD4A00A1618C /* Exceptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BB01EB237EDD4A00A1618C /* Exceptions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56BB01EE237EDD4A00A1618C /* Exceptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BB01EC237EDD4A00A1618C /* Exceptions.m */; };
+		56BDB6D423869AFC00D00BF2 /* TasksGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BDB6D223869AFC00D00BF2 /* TasksGroup.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		56BDB6D523869AFC00D00BF2 /* TasksGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BDB6D223869AFC00D00BF2 /* TasksGroup.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		56BDB6D623869AFC00D00BF2 /* TasksGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BDB6D323869AFC00D00BF2 /* TasksGroup.m */; };
+		56BDB6D723869AFC00D00BF2 /* TasksGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BDB6D323869AFC00D00BF2 /* TasksGroup.m */; };
+		56BDB6D923869CFE00D00BF2 /* TasksGroupable.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BDB6D823869B1C00D00BF2 /* TasksGroupable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		56BDB6DA23869CFF00D00BF2 /* TasksGroupable.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BDB6D823869B1C00D00BF2 /* TasksGroupable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BC74FD1BBBDEF84F391E8160 /* Pods_AsyncTCPTests_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB18CA55D9379FF5E8636634 /* Pods_AsyncTCPTests_macOS.framework */; };
 		F61E4E903440CD048679E2AA /* Pods_AsyncTCPTests_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC4DD610C29523E0D9AD93E1 /* Pods_AsyncTCPTests_iOS.framework */; };
 /* End PBXBuildFile section */
@@ -212,6 +218,9 @@
 		56BB01E6237ED21400A1618C /* ClientConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClientConfiguration.h; sourceTree = "<group>"; };
 		56BB01EB237EDD4A00A1618C /* Exceptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Exceptions.h; sourceTree = "<group>"; };
 		56BB01EC237EDD4A00A1618C /* Exceptions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Exceptions.m; sourceTree = "<group>"; };
+		56BDB6D223869AFC00D00BF2 /* TasksGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TasksGroup.h; sourceTree = "<group>"; };
+		56BDB6D323869AFC00D00BF2 /* TasksGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TasksGroup.m; sourceTree = "<group>"; };
+		56BDB6D823869B1C00D00BF2 /* TasksGroupable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TasksGroupable.h; sourceTree = "<group>"; };
 		A3C3EF8AC4D4CC4DB53B392B /* Pods-AsyncTCPTests-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AsyncTCPTests-iOS.debug.xcconfig"; path = "Target Support Files/Pods-AsyncTCPTests-iOS/Pods-AsyncTCPTests-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		AC4DD610C29523E0D9AD93E1 /* Pods_AsyncTCPTests_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AsyncTCPTests_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB18CA55D9379FF5E8636634 /* Pods_AsyncTCPTests_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AsyncTCPTests_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -399,6 +408,7 @@
 			children = (
 				567CE13E238479CE00C4EBF8 /* Lock */,
 				567CE15623853D7A00C4EBF8 /* Thread */,
+				56BDB6D123869AD600D00BF2 /* DispatchGroup */,
 				563875132385E9C100E85106 /* DispatchQueue */,
 				567CE13223842C7300C4EBF8 /* SocketOptions */,
 				567CE13123842C6B00C4EBF8 /* Network */,
@@ -555,6 +565,16 @@
 			path = Exceptions;
 			sourceTree = "<group>";
 		};
+		56BDB6D123869AD600D00BF2 /* DispatchGroup */ = {
+			isa = PBXGroup;
+			children = (
+				56BDB6D823869B1C00D00BF2 /* TasksGroupable.h */,
+				56BDB6D223869AFC00D00BF2 /* TasksGroup.h */,
+				56BDB6D323869AFC00D00BF2 /* TasksGroup.m */,
+			);
+			path = DispatchGroup;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -586,9 +606,11 @@
 				567CE168238541AF00C4EBF8 /* ThreadProducible.h in Headers */,
 				56BB01E7237ED4F100A1618C /* ClientHandle.h in Headers */,
 				56BB01E8237ED4F100A1618C /* ClientDelegate.h in Headers */,
+				56BDB6D923869CFE00D00BF2 /* TasksGroupable.h in Headers */,
 				567CE11C2384152800C4EBF8 /* NetworkWrappable.h in Headers */,
 				56BB01ED237EDD4A00A1618C /* Exceptions.h in Headers */,
 				567CE12B23842A4800C4EBF8 /* SocketOptionsWrapper.h in Headers */,
+				56BDB6D423869AFC00D00BF2 /* TasksGroup.h in Headers */,
 				56A177E92382A1E600C9AA63 /* AsyncTCP.h in Headers */,
 				567CE13A23843E7D00C4EBF8 /* Identity.h in Headers */,
 				567CE13323842F9900C4EBF8 /* SocketOptionsWrappable.h in Headers */,
@@ -626,9 +648,11 @@
 				567CE167238541AF00C4EBF8 /* ThreadProducible.h in Headers */,
 				56A177DA2382A02F00C9AA63 /* Connection.h in Headers */,
 				56A177DB2382A02F00C9AA63 /* ConnectionHandle.h in Headers */,
+				56BDB6DA23869CFF00D00BF2 /* TasksGroupable.h in Headers */,
 				567CE11D2384152800C4EBF8 /* NetworkWrappable.h in Headers */,
 				56A177DC2382A02F00C9AA63 /* ConnectionDelegate.h in Headers */,
 				567CE12C23842A4800C4EBF8 /* SocketOptionsWrapper.h in Headers */,
+				56BDB6D523869AFC00D00BF2 /* TasksGroup.h in Headers */,
 				567CE13423842FA800C4EBF8 /* SocketOptionsWrappable.h in Headers */,
 				567CE16123853F1B00C4EBF8 /* ThreadFactory.h in Headers */,
 				567CE15A23853D9300C4EBF8 /* Thread.h in Headers */,
@@ -884,6 +908,7 @@
 				5607F85B2371D742001A9AE9 /* IONetworkHandler.m in Sources */,
 				56BB01EE237EDD4A00A1618C /* Exceptions.m in Sources */,
 				567CE12D23842A4800C4EBF8 /* SocketOptionsWrapper.m in Sources */,
+				56BDB6D623869AFC00D00BF2 /* TasksGroup.m in Sources */,
 				56BB01E1237ECF0100A1618C /* Client.m in Sources */,
 				56744C262372C32D00C2B37D /* DescriptorControlWrapper.m in Sources */,
 				567CE13C23843E7D00C4EBF8 /* Identity.m in Sources */,
@@ -905,6 +930,7 @@
 				56A177F72382A73D00C9AA63 /* NetworkManager.m in Sources */,
 				56A177F82382A73D00C9AA63 /* DescriptorControlWrapper.m in Sources */,
 				567CE12E23842A4800C4EBF8 /* SocketOptionsWrapper.m in Sources */,
+				56BDB6D723869AFC00D00BF2 /* TasksGroup.m in Sources */,
 				56A177F92382A73D00C9AA63 /* IONetworkHandler.m in Sources */,
 				56A177FA2382A73D00C9AA63 /* Server.m in Sources */,
 				567CE13D23843E7D00C4EBF8 /* Identity.m in Sources */,
