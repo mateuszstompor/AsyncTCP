@@ -57,6 +57,9 @@ Notifications will be send only if the delegate of the server is set. Otherwise 
 -(void)newClientHasConnected: (Connection*) connection {
     // Handle the connection here somehow
 }
+-(void)clientHasDisconnected: (Connection*) connection {
+    // Ivoked when a client disconnected or the connection hung 
+}
 @end
 ```
 One additional step to make is to implement `ConnectionDelegate` protocol. It is an interface which lets you receive a notification when data is received or connection's state updated.
@@ -72,9 +75,6 @@ One additional step to make is to implement `ConnectionDelegate` protocol. It is
 @implementation ConnectionHandler
 -(void)connection:(NSObject<ConnectionHandle> *)connection chunkHasArrived:(NSData *)data {
     // Parse the data or pass it through 
-}
--(void)connection:(NSObject<ConnectionHandle> *)connection stateHasChangedTo:(ConnectionState)state {
-    // Ivoked when a client disconnected or the connection hung 
 }
 @end
 ```
