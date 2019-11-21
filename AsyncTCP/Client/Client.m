@@ -69,8 +69,9 @@
         return;
     }
     @try {
-        identity = [networkManager clientIdentityToHost:[NSString stringWithCString:_configuration.address
-                                                                                 encoding:NSUTF8StringEncoding]
+        NSString * host = [NSString stringWithCString:_configuration.address
+                                             encoding:NSUTF8StringEncoding];
+        identity = [networkManager clientIdentityToHost:host
                                                withPort:_configuration.port];
     } @catch (IdentityCreationException *exception) {
         [BootingException exceptionWithName:@"BootingException"
@@ -79,8 +80,7 @@
     }
     
     thread = [threadFactory createNewThreadWithTarget:self
-                                             selector:@selector(serve)
-                                               object:nil];
+                                             selector:@selector(serve)];
     thread.name = @"ClientThread";
     [thread start];
     [resourceLock releaseLock];
