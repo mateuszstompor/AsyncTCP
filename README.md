@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./Assets/icon.png" width="40%">
+  <img src="https://github.com/mateuszstompor/AsyncTCP/blob/master/Assets/icon.png?raw=true" width="40%">
 </p>
 <h1 align="center">AsyncTCP</h1>
 <p align="center">
