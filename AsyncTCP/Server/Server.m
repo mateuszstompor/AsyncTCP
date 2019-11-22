@@ -90,8 +90,7 @@
                                               userInfo:nil];
         }
     }
-    thread = [threadFactory createNewThreadWithTarget:self selector:@selector(serve)];
-    thread.name = @"ServerThread";
+    thread = [threadFactory createNewThreadWithTarget:self selector:@selector(serve) name:@"ServerThread"];
     [thread start];
     [resourceLock releaseLock];
 }

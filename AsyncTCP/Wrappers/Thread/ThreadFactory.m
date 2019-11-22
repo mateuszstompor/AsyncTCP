@@ -10,7 +10,11 @@
 #import "Thread.h"
 
 @implementation ThreadFactory
--(NSObject<Threadable> *)createNewThreadWithTarget:(id)target selector:(SEL)selector {
-    return [[Thread alloc] initWithTarget:target selector:selector object:nil];
+-(NSObject<Threadable>*)createNewThreadWithTarget:(id)target
+                                         selector:(SEL)selector
+                                             name:(NSString*)name {
+    Thread * thread = [[Thread alloc] initWithTarget:target selector:selector object:nil];
+    thread.name = name;
+    return thread;
 }
 @end

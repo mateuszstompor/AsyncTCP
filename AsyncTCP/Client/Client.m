@@ -82,9 +82,7 @@
                                    userInfo:nil];
     }
     
-    thread = [threadFactory createNewThreadWithTarget:self
-                                             selector:@selector(serve)];
-    thread.name = @"ClientThread";
+    thread = [threadFactory createNewThreadWithTarget:self selector:@selector(serve) name:@"ClientThread"];
     [thread start];
     [resourceLock releaseLock];
 

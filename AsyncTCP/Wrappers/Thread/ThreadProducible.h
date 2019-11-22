@@ -12,7 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol ThreadProducible<NSObject>
 -(NSObject<Threadable>*)createNewThreadWithTarget:(id)target
-                                         selector:(SEL)selector;
+                                         selector:(SEL)selector
+                                             name:(NSString*)name;
 @end
 
 NS_ASSUME_NONNULL_END
