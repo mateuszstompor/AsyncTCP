@@ -8,6 +8,9 @@
 
 #import "Exceptions.h"
 
+@implementation IOException
+@end
+
 @implementation BootingException
 @end
 

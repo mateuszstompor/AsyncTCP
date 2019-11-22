@@ -8,12 +8,10 @@
 
 #import "IONetworkHandler.h"
 
+#import "Exceptions.h"
 #import "NetworkWrapper.h"
 
 #import <netdb.h>
-
-@implementation IOException : NSException
-@end
 
 @interface IONetworkHandler()
 {
@@ -23,11 +21,7 @@
 
 @implementation IONetworkHandler
 -(instancetype)init {
-    self = [super init];
-    if (self) {
-        self->networkWrapper = [NetworkWrapper new];
-    }
-    return self;
+    return [self initWithWrapper:[NetworkWrapper new]];
 }
 -(instancetype)initWithWrapper:(NSObject<NetworkWrappable> *)networkWrapper {
     self = [super init];

@@ -10,6 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@interface IOException: NSException
+@end
+
 @interface BootingException: NSException
 @end
 

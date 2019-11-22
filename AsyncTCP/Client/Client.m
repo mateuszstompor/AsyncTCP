@@ -20,7 +20,7 @@
 #import "SocketOptionsWrapper.h"
 #import "DescriptorControlWrapper.h"
 
-#include <arpa/inet.h>
+#import <arpa/inet.h>
 
 @interface Client()
 {

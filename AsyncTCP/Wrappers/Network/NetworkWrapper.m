@@ -8,8 +8,8 @@
 
 #import "NetworkWrapper.h"
 
-#include <sys/types.h>
-#include <sys/socket.h>
+#import <sys/types.h>
+#import <sys/socket.h>
 
 @implementation NetworkWrapper
 -(int)socket {

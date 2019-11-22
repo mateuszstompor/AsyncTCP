@@ -14,6 +14,7 @@
 #import <sys/types.h>
 #import <sys/socket.h>
 
+#import "Exceptions.h"
 #import "ResourceLock.h"
 #import "NetworkManager.h"
 #import "NetworkWrapper.h"

@@ -8,9 +8,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface IOException: NSException
-@end
-
 @protocol IONetworkHandleable<NSObject>
 @required
 -(nullable NSData*)send: (NSData*) data fileDescriptor: (int) fileDescriptor;

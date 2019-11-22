@@ -9,18 +9,13 @@
 #import <Foundation/Foundation.h>
 
 #import "Lockable.h"
-
 #import "Threadable.h"
 #import "Dispatchable.h"
 #import "ClientHandle.h"
 #import "LockProducible.h"
-#import "NetworkManager.h"
 #import "ThreadProducible.h"
-#import "NetworkWrappable.h"
+#import "NetworkManageable.h"
 #import "ClientConfiguration.h"
-#import "IONetworkHandleable.h"
-#import "SocketOptionsWrappable.h"
-#import "DescriptorControlWrappable.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
