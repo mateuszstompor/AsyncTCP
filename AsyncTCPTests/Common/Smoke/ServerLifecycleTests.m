@@ -14,8 +14,8 @@
 @end
 
 @implementation CountingThreadFactory
--(NSObject<Threadable> *)createNewThreadWithTarget:(id)target selector:(SEL)selector {
-    id newThread = [super createNewThreadWithTarget:target selector:selector];
+-(NSObject<Threadable> *)createNewThreadWithTarget:(id)target selector:(SEL)selector name: (NSString *) name {
+    id newThread = [super createNewThreadWithTarget:target selector:selector name: name];
     _instancesCreated += 1;
     return newThread;
 }
