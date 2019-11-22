@@ -11,7 +11,6 @@
 #import <netdb.h>
 
 #import "Dispatch.h"
-#import "TasksGroup.h"
 #import "Exceptions.h"
 #import "ResourceLock.h"
 #import "ThreadFactory.h"
@@ -32,7 +31,6 @@
     NSObject<LockProducible> * lockFactory;
     NSObject<NetworkManageable>* networkManager;
 }
-@property (nonatomic) NSObject<TasksGroupable> * tasksGroup;
 @end
 
 @implementation Server
@@ -45,14 +43,12 @@
     return [self initWithConfiguratoin:configuration
                      notificationQueue:[[Dispatch alloc] initWithDispatchQueue: notificationQueue]
                         networkManager:[NetworkManager new]
-                            tasksGroup:[TasksGroup new]
                          threadFactory:[ThreadFactory new]
                            lockFactory:[ResourceLockFactory new]];
 }
 -(instancetype)initWithConfiguratoin: (struct ServerConfiguration) configuration
                    notificationQueue: (NSObject<Dispatchable>*) notificationQueue
                       networkManager: (NSObject<NetworkManageable>*) networkManager
-                          tasksGroup: (NSObject<TasksGroupable>*) tasksGroup
                        threadFactory: (NSObject<ThreadProducible>*) threadFactory
                          lockFactory: (NSObject<LockProducible>*) lockFactory {
     self = [super init];
@@ -67,7 +63,6 @@
         self->networkManager = networkManager;
         self->notificationQueue = notificationQueue;
         self->connections = [NSMutableArray new];
-        self->_tasksGroup = tasksGroup;
         self->_delegate = nil;
         self->_configuration = configuration;
     }

@@ -105,7 +105,6 @@
     server = [[Server alloc] initWithConfiguratoin:configuration
                                  notificationQueue:[Dispatch new]
                                     networkManager:[NetworkManager new]
-                                        tasksGroup:[TasksGroup new]
                                      threadFactory:[ThreadFactory new]
                                        lockFactory:[[LockFactoryMock alloc] initWithLock: serverLock]];
     server.delegate = serverHandler;

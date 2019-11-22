@@ -41,7 +41,6 @@
     server = [[Server alloc] initWithConfiguratoin:configuration
                                  notificationQueue:[Dispatch new]
                                     networkManager:[NetworkManager new]
-                                        tasksGroup: [TasksGroup new]
                                      threadFactory:factory
                                        lockFactory:[ResourceLockFactory new]];
 }
