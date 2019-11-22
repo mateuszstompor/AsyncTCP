@@ -40,6 +40,8 @@
 		5638751D2385EA5700E85106 /* Dispatchable.h in Headers */ = {isa = PBXBuildFile; fileRef = 5638751B2385EA0600E85106 /* Dispatchable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		564D447323738F2E00FA0140 /* IONetworkHandleable.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F85C2371D765001A9AE9 /* IONetworkHandleable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		564D447423738F2E00FA0140 /* ConnectionState.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F8562371CCD0001A9AE9 /* ConnectionState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		565ED4872387DC6B00F5D04D /* BootingProblemsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 565ED4862387DC6B00F5D04D /* BootingProblemsTests.m */; };
+		565ED4882387DC6B00F5D04D /* BootingProblemsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 565ED4862387DC6B00F5D04D /* BootingProblemsTests.m */; };
 		56744C212372C32000C2B37D /* DescriptorControlWrappable.h in Headers */ = {isa = PBXBuildFile; fileRef = 56744C1F2372C32000C2B37D /* DescriptorControlWrappable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56744C252372C32D00C2B37D /* DescriptorControlWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 56744C232372C32D00C2B37D /* DescriptorControlWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56744C262372C32D00C2B37D /* DescriptorControlWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 56744C242372C32D00C2B37D /* DescriptorControlWrapper.m */; };
@@ -188,6 +190,7 @@
 		563875142385E9ED00E85106 /* Dispatch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Dispatch.h; sourceTree = "<group>"; };
 		563875152385E9ED00E85106 /* Dispatch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Dispatch.m; sourceTree = "<group>"; };
 		5638751B2385EA0600E85106 /* Dispatchable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Dispatchable.h; sourceTree = "<group>"; };
+		565ED4862387DC6B00F5D04D /* BootingProblemsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BootingProblemsTests.m; sourceTree = "<group>"; };
 		56744C1F2372C32000C2B37D /* DescriptorControlWrappable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DescriptorControlWrappable.h; sourceTree = "<group>"; };
 		56744C232372C32D00C2B37D /* DescriptorControlWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DescriptorControlWrapper.h; sourceTree = "<group>"; };
 		56744C242372C32D00C2B37D /* DescriptorControlWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DescriptorControlWrapper.m; sourceTree = "<group>"; };
@@ -390,6 +393,7 @@
 			children = (
 				563874FF23856D5300E85106 /* ReceivingEventsAfterConnectingTests.m */,
 				563875092385855100E85106 /* ReceivingConnectionEventsTests.m */,
+				565ED4862387DC6B00F5D04D /* BootingProblemsTests.m */,
 				56BDB6DB23872F2800D00BF2 /* SendingDataTests.m */,
 				5638750F2385BC9700E85106 /* LockingTests.m */,
 			);
@@ -969,6 +973,7 @@
 			files = (
 				5638750723856FC600E85106 /* TCPTestsClient.m in Sources */,
 				5638750123856D5300E85106 /* ReceivingEventsAfterConnectingTests.m in Sources */,
+				565ED4882387DC6B00F5D04D /* BootingProblemsTests.m in Sources */,
 				563875112385BC9700E85106 /* LockingTests.m in Sources */,
 				56A177F42382A6D000C9AA63 /* ClientConfigurationTests.m in Sources */,
 				563874FE23855D3900E85106 /* ClientLifeCycleTests.m in Sources */,
@@ -986,6 +991,7 @@
 			files = (
 				5638750623856FC600E85106 /* TCPTestsClient.m in Sources */,
 				5638750023856D5300E85106 /* ReceivingEventsAfterConnectingTests.m in Sources */,
+				565ED4872387DC6B00F5D04D /* BootingProblemsTests.m in Sources */,
 				563875102385BC9700E85106 /* LockingTests.m in Sources */,
 				56A177E52382A1B000C9AA63 /* ClientConfigurationTests.m in Sources */,
 				563874FD23855D3900E85106 /* ClientLifeCycleTests.m in Sources */,
