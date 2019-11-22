@@ -97,7 +97,7 @@
     XCTestExpectation * clientHasConnected = [self expectationForPredicate:[NSPredicate predicateWithFormat:@"connect >= 0"]
                                                        evaluatedWithObject:client
                                                                    handler:nil];
-    [self waitForExpectations:@[clientHasConnected, clientConnected] timeout:4 enforceOrder:YES];
+    [self waitForExpectations:@[clientHasConnected, clientConnected] timeout:4];
     NSString * literalToSend = @"hello";
     NSInteger length = [literalToSend length];
     XCTAssertTrue([handler sendData:[literalToSend dataUsingEncoding:NSUTF8StringEncoding]]);
