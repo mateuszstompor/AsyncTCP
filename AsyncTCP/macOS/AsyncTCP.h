@@ -29,6 +29,7 @@ FOUNDATION_EXPORT const unsigned char AsyncTCP_macOSVersionString[];
 #import "ResourceLock.h"
 #import "ClientHandle.h"
 #import "ThreadFactory.h"
+#import "LockProducible.h"
 #import "TasksGroupable.h"
 #import "ClientDelegate.h"
 #import "ServerDelegate.h"
@@ -37,7 +38,9 @@ FOUNDATION_EXPORT const unsigned char AsyncTCP_macOSVersionString[];
 #import "ConnectionState.h"
 #import "ThreadProducible.h"
 #import "IONetworkHandler.h"
+#import "ResourceLockFactory.h"
 #import "ServerConfiguration.h"
 #import "ClientConfiguration.h"
 #import "SocketOptionsWrapper.h"
 #import "DescriptorControlWrapper.h"
+

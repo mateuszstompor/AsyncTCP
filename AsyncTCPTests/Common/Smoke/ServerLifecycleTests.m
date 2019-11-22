@@ -41,9 +41,9 @@
     server = [[Server alloc] initWithConfiguratoin:configuration
                                  notificationQueue:[Dispatch new] 
                                     networkManager:[NetworkManager new]
-                                      resourceLock:[ResourceLock new]
                                         tasksGroup: [TasksGroup new]
-                                     threadFactory:factory];
+                                     threadFactory:factory
+                                       lockFactory:[ResourceLockFactory new]];
 }
 -(void)testLifecycleState {
     XCTAssertFalse([server isRunning]);

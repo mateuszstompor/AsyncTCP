@@ -18,6 +18,7 @@
 #import "NetworkManager.h"
 #import "NetworkWrapper.h"
 #import "IONetworkHandler.h"
+#import "ResourceLockFactory.h"
 #import "DescriptorControlWrapper.h"
 
 @interface Server()
@@ -28,6 +29,7 @@
     NSMutableArray<Connection*> * connections;
     NSObject<Dispatchable> * notificationQueue;
     NSObject<ThreadProducible> * threadFactory;
+    NSObject<LockProducible> * lockFactory;
     NSObject<NetworkManageable>* networkManager;
 }
 @property (nonatomic) NSObject<TasksGroupable> * tasksGroup;
@@ -43,24 +45,25 @@
     return [self initWithConfiguratoin:configuration
                      notificationQueue:[[Dispatch alloc] initWithDispatchQueue: notificationQueue]
                         networkManager:[NetworkManager new]
-                          resourceLock:[ResourceLock new]
                             tasksGroup:[TasksGroup new]
-                         threadFactory:[ThreadFactory new]];
+                         threadFactory:[ThreadFactory new]
+                           lockFactory:[ResourceLockFactory new]];
 }
 -(instancetype)initWithConfiguratoin: (struct ServerConfiguration) configuration
                    notificationQueue: (NSObject<Dispatchable>*) notificationQueue
                       networkManager: (NSObject<NetworkManageable>*) networkManager
-                        resourceLock: (NSObject<Lockable>*) resourceLock
                           tasksGroup: (NSObject<TasksGroupable>*) tasksGroup
-                       threadFactory: (NSObject<ThreadProducible>*) threadFactory {
+                       threadFactory: (NSObject<ThreadProducible>*) threadFactory
+                         lockFactory: (NSObject<LockProducible>*) lockFactory {
     self = [super init];
     if (self) {
         NSAssert([networkManager hasPortValidRange: configuration.port],
                  @"Port number should be within the range");
         self->identity = nil;
         self->thread = nil;
+        self->lockFactory = lockFactory;
         self->threadFactory = threadFactory;
-        self->resourceLock = resourceLock;
+        self->resourceLock = [lockFactory newLock];
         self->networkManager = networkManager;
         self->notificationQueue = notificationQueue;
         self->connections = [NSMutableArray new];
@@ -127,7 +130,7 @@
                                                                          chunkSize:_configuration.chunkSize
                                                                  notificationQueue:notificationQueue
                                                                     networkManager:networkManager
-                                                                      resourceLock:[ResourceLock new]];
+                                                                      resourceLock:[lockFactory newLock]];
                     __weak Server * weakSelf = self;
                     [notificationQueue async:^{
                         [weakSelf.delegate newClientHasConnected:connection];

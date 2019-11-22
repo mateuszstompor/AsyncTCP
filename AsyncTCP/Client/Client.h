@@ -13,6 +13,7 @@
 #import "Threadable.h"
 #import "Dispatchable.h"
 #import "ClientHandle.h"
+#import "LockProducible.h"
 #import "NetworkManager.h"
 #import "ThreadProducible.h"
 #import "NetworkWrappable.h"
@@ -32,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(instancetype)initWithConfiguration: (struct ClientConfiguration) configuration
                    notificationQueue: (NSObject<Dispatchable>*) notificationQueue
                       networkManager: (NSObject<NetworkManageable>*) networkManager
-                        resourceLock: (NSObject<Lockable>*) resourceLock
+                         lockFactory: (NSObject<LockProducible>*) lockFactory
                        threadFactory: (NSObject<ThreadProducible>*) threadFactory;
 @end
 

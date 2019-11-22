@@ -56,6 +56,33 @@
 }
 @end
 
+@interface LockFactoryMock: NSObject<LockProducible>
+{
+    NSObject<Lockable>* lock;
+    int count;
+}
+-(instancetype)initWithLock: (NSObject<Lockable>*) lock;
+@end
+
+@implementation LockFactoryMock
+-(instancetype)initWithLock: (NSObject<Lockable>*) lock {
+    self = [super init];
+    if (self) {
+        self->lock = lock;
+        self->count = 0;
+    }
+    return self;
+}
+-(NSObject<Lockable> *)newLock {
+    ++count;
+    if (count == 1) {
+        return lock;
+    } else {
+        return [ResourceLock new];
+    }
+}
+@end
+
 @interface LockingTests : XCTestCase
 {
     Server * server;
@@ -78,9 +105,9 @@
     server = [[Server alloc] initWithConfiguratoin:configuration
                                  notificationQueue:[[Dispatch alloc] initWithDispatchQueue: dispatch_get_main_queue()]
                                     networkManager:[NetworkManager new]
-                                      resourceLock:serverLock
                                         tasksGroup:[TasksGroup new]
-                                     threadFactory:[ThreadFactory new]];
+                                     threadFactory:[ThreadFactory new]
+                                       lockFactory:[[LockFactoryMock alloc] initWithLock: serverLock]];
     server.delegate = serverHandler;
 }
 -(void)testLifeCycle {

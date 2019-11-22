@@ -12,6 +12,7 @@
 #import "Connection.h"
 #import "Dispatchable.h"
 #import "ServerHandle.h"
+#import "LockProducible.h"
 #import "TasksGroupable.h"
 #import "ThreadProducible.h"
 #import "NetworkWrappable.h"
@@ -30,9 +31,9 @@ NS_ASSUME_NONNULL_BEGIN
 -(instancetype)initWithConfiguratoin: (struct ServerConfiguration) configuration
                    notificationQueue: (NSObject<Dispatchable>*) notificationQueue
                       networkManager: (NSObject<NetworkManageable>*) networkManager
-                        resourceLock: (NSObject<Lockable>*) resourceLock
                           tasksGroup: (NSObject<TasksGroupable>*) tasksGroup
-                       threadFactory: (NSObject<ThreadProducible>*) threadFactory;
+                       threadFactory: (NSObject<ThreadProducible>*) threadFactory
+                         lockFactory: (NSObject<LockProducible>*) lockFactory;
 @end
 
 NS_ASSUME_NONNULL_END

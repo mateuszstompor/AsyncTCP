@@ -16,6 +16,7 @@
 #import "NetworkWrapper.h"
 #import "NetworkManager.h"
 #import "IONetworkHandler.h"
+#import "ResourceLockFactory.h"
 #import "SocketOptionsWrapper.h"
 #import "DescriptorControlWrapper.h"
 
@@ -27,6 +28,7 @@
     Connection * connection;
     NSObject<Threadable> * thread;
     NSObject<Lockable> * resourceLock;
+    NSObject<LockProducible> * lockFactory;
     NSObject<ThreadProducible> * threadFactory;
     NSObject<Dispatchable> * notificationQueue;
     NSObject<NetworkManageable>* networkManager;
@@ -42,13 +44,13 @@
     return [self initWithConfiguration:configuration
                      notificationQueue:[[Dispatch alloc] initWithDispatchQueue:notificationQueue]
                         networkManager:[NetworkManager new]
-                          resourceLock:[ResourceLock new]
+                           lockFactory:[ResourceLockFactory new]
                          threadFactory:[ThreadFactory new]];
 }
 -(instancetype)initWithConfiguration: (struct ClientConfiguration) configuration
                    notificationQueue: (NSObject<Dispatchable>*) notificationQueue
                       networkManager: (NSObject<NetworkManageable>*) networkManager
-                        resourceLock: (NSObject<Lockable>*) resourceLock
+                         lockFactory: (NSObject<LockProducible>*) lockFactory
                        threadFactory: (NSObject<ThreadProducible>*) threadFactory {
     self = [super init];
     if(self) {
@@ -56,8 +58,9 @@
         self->connection = nil;
         self->notificationQueue = notificationQueue;
         self->networkManager = networkManager;
-        self->resourceLock = resourceLock;
         self->threadFactory = threadFactory;
+        self->lockFactory = lockFactory;
+        self->resourceLock = [lockFactory newLock];
         self->_configuration = configuration;
     }
     return self;
@@ -96,7 +99,7 @@
                                                                             chunkSize:_configuration.chunkSize
                                                                     notificationQueue:notificationQueue
                                                                        networkManager:networkManager
-                                                                         resourceLock:[ResourceLock new]];
+                                                                         resourceLock:[lockFactory newLock]];
                     connection = newConnection;
                     [resourceLock releaseLock];
                     __weak Client * weakSelf = self;
