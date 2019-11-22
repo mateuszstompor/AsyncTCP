@@ -68,7 +68,8 @@
 -(struct sockaddr_in)identityWithHost: (NSString*) host withPort: (int) port {
     in_addr_t address = inet_addr([host cStringUsingEncoding:NSASCIIStringEncoding]);
     if((int)address == 0) {
-        [IdentityCreationException exceptionWithName:@"IdentityCreationException" reason:@"Could not resolve address" userInfo:nil];
+        [IdentityCreationException exceptionWithName:@"IdentityCreationException"
+                                              reason:@"Could not resolve address" userInfo:nil];
     }
     return [self identityWithAddress: address
                             withPort:port];
@@ -77,13 +78,16 @@
     struct sockaddr_in address = [self identityWithHost: host withPort:port];
     int clientSocket;
     if((clientSocket = [networkWrapper socket]) < 0) {
-        [IdentityCreationException exceptionWithName:@"IdentityCreationException" reason:@"Could not create socket" userInfo:nil];
+        [IdentityCreationException exceptionWithName:@"IdentityCreationException"
+                                              reason:@"Could not create socket" userInfo:nil];
     }
     if ([descriptorControlWrapper makeNonBlocking:clientSocket] == -1) {
-        [IdentityCreationException exceptionWithName:@"IdentityCreationException" reason:@"Could not make socket non blocking" userInfo:nil];
+        [IdentityCreationException exceptionWithName:@"IdentityCreationException"
+                                              reason:@"Could not make socket non blocking" userInfo:nil];
     }
     if ([socketOptionsWrapper noSigPipe:clientSocket] == -1) {
-        [IdentityCreationException exceptionWithName:@"IdentityCreationException" reason:@"Could not avoid sigpipe" userInfo:nil];
+        [IdentityCreationException exceptionWithName:@"IdentityCreationException"
+                                              reason:@"Could not avoid sigpipe" userInfo:nil];
     }
     return [[Identity alloc] initWithDescriptor:clientSocket addressLength:sizeof(struct sockaddr_in) address:address];
 }
@@ -161,8 +165,9 @@
     return [ioNetworkHandler send:data fileDescriptor:identity.descriptor];
 }
 -(BOOL)connect: (Identity*) identity {
-    return [networkWrapper connect:identity.descriptor
-                       withAddress:(struct sockaddr *)identity.addressPointer
-                            length:identity.addressLength] != -1;
+    int result = [networkWrapper connect:identity.descriptor
+                             withAddress:(struct sockaddr *)identity.addressPointer
+                                  length:identity.addressLength];
+    return result == 0 || ([networkWrapper errnoValue] == EISCONN && result == -1);
 }
 @end

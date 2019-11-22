@@ -65,7 +65,7 @@
     configuration.eventLoopMicrosecondsDelay = 10;
     configuration.connectionTimeout = 5;
     configuration.chunkSize = 10;
-    server = [[Server alloc] initWithConfiguratoin:configuration];
+    server = [[Server alloc] initWithConfiguratoin:configuration notificationQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)];
 }
 -(void)testEventsReceivedWhileConnectionDelegateIsNotSet {
     XCTestExpectation * clientDisconnected = [[XCTestExpectation alloc] initWithDescription:@"Client has disconnected"];

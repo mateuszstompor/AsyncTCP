@@ -108,17 +108,7 @@
                     [connection performIO];
                 }
             }
-            // remove timed out or not open connections
-            for (Connection * connection in connectionsToRemove) {
-                [connection close];
-                [_tasksGroup enter];
-                __unsafe_unretained Server * unownedSelf = self;
-                [notificationQueue async:^{
-                    [unownedSelf.delegate clientHasDisconnected:connection];
-                    [unownedSelf.tasksGroup leave];
-                }];
-            }
-            [_tasksGroup waitForever];
+            [self unsafeCloseConnectionWithNotifying: connectionsToRemove];
             for (Connection * connection in connectionsToRemove) {
                 [connections removeObject:connection];
             }
@@ -146,10 +136,20 @@
         usleep(_configuration.eventLoopMicrosecondsDelay);
     }
     [resourceLock aquireLock];
-    for (Connection * connection in connections) {
-        [connection close];
-    }
+    [self unsafeCloseConnectionWithNotifying: connections];
     [resourceLock releaseLock];
+}
+-(void)unsafeCloseConnectionWithNotifying: (NSArray<Connection *>*) connectionsToClose {
+    for (Connection * connection in connectionsToClose) {
+        [connection close];
+        [_tasksGroup enter];
+        __unsafe_unretained Server * unownedSelf = self;
+        [notificationQueue async:^{
+            [unownedSelf.delegate clientHasDisconnected:connection];
+            [unownedSelf.tasksGroup leave];
+        }];
+    }
+    [_tasksGroup waitForever];
 }
 -(void)shutDown {
     [resourceLock aquireLock];
