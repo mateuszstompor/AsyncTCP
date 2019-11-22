@@ -80,8 +80,7 @@
     configuration.eventLoopMicrosecondsDelay = 10;
     configuration.connectionTimeout = 3;
     configuration.chunkSize = 10;
-    server = [[Server alloc] initWithConfiguratoin:configuration
-                                 notificationQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)];
+    server = [[Server alloc] initWithConfiguratoin:configuration];
 }
 -(void)setUpClient {
     struct ClientConfiguration configuration;
@@ -90,8 +89,7 @@
     configuration.eventLoopMicrosecondsDelay = 10;
     configuration.connectionTimeout = 10;
     configuration.chunkSize = 10;
-    client = [[Client alloc] initWithConfiguration:configuration
-                                 notificationQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)];
+    client = [[Client alloc] initWithConfiguration:configuration];
 }
 -(void)setUp {
     [self setUpServer];

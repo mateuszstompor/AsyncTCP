@@ -58,7 +58,7 @@
     self = [super init];
     if (self) {
         NSAssert([networkManager hasPortValidRange: configuration.port],
-                 @"Port number should be within the range");
+                 @"Port number is not within the valid range");
         self->identity = nil;
         self->thread = nil;
         self->lockFactory = lockFactory;
@@ -141,14 +141,11 @@
 -(void)unsafeCloseConnectionWithNotifying: (NSArray<Connection *>*) connectionsToClose {
     for (Connection * connection in connectionsToClose) {
         [connection close];
-        [_tasksGroup enter];
-        __unsafe_unretained Server * unownedSelf = self;
+        __weak Server * weakSelf = self;
         [notificationQueue async:^{
-            [unownedSelf.delegate clientHasDisconnected:connection];
-            [unownedSelf.tasksGroup leave];
+            [weakSelf.delegate clientHasDisconnected:connection];
         }];
     }
-    [_tasksGroup waitForever];
 }
 -(void)shutDown {
     [resourceLock aquireLock];
