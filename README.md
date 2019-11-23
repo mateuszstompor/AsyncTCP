@@ -2,7 +2,10 @@
   <img src="https://github.com/mateuszstompor/AsyncTCP/blob/master/Assets/icon.png?raw=true" width="40%">
 </p>
 <h1 align="center">AsyncTCP</h1>
-<p align="center">
+<p align="center">    
+    <a href="https://cocoapods.org/pods/AsyncTCP">
+        <img src="https://img.shields.io/cocoapods/v/AsyncTCP" height="18pt" alt="Cocoapod"/>
+    </a>
     <a href="https://codecov.io/gh/mateuszstompor/AsyncTCP">
         <img src="https://codecov.io/gh/mateuszstompor/AsyncTCP/branch/master/graph/badge.svg" height="18pt" alt="Coverage"/>
     </a>
