@@ -92,7 +92,7 @@
 -(void)serve {
     while(YES) {
         [resourceLock aquireLock];
-        if(!thread.cancelled) {
+        if(thread != nil && !thread.cancelled) {
             NSMutableArray<Connection*>* connectionsToRemove = [NSMutableArray new];
             // perform IO
             for (Connection * connection in connections) {
