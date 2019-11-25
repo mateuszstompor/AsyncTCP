@@ -153,7 +153,9 @@
     thread = nil;
     [self unsafeCloseConnectionsWithNotifying: connections];
     [connections removeAllObjects];
-    if (![networkManager close:identity]) {
+    BOOL closedSuccessfully = [networkManager close:identity];
+    identity = nil;
+    if (!closedSuccessfully) {
         [resourceLock releaseLock];
         @throw [ShuttingDownException exceptionWithName:@"ShuttingDownException"
                                                  reason:@"Could not close server's socket" userInfo:nil];

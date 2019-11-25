@@ -212,6 +212,7 @@
 		567CE15E23853F1B00C4EBF8 /* ThreadFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThreadFactory.h; sourceTree = "<group>"; };
 		567CE15F23853F1B00C4EBF8 /* ThreadFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThreadFactory.m; sourceTree = "<group>"; };
 		567CE16423853F3900C4EBF8 /* ThreadProducible.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThreadProducible.h; sourceTree = "<group>"; };
+		56942665238C40C200367993 /* AsyncTCP.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = AsyncTCP.podspec; sourceTree = "<group>"; };
 		56A1779523829E6300C9AA63 /* AsyncTCP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AsyncTCP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		56A1779723829E6300C9AA63 /* AsyncTCP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AsyncTCP.h; sourceTree = "<group>"; };
 		56A1779823829E6300C9AA63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -285,6 +286,7 @@
 		5607F810237189AC001A9AE9 = {
 			isa = PBXGroup;
 			children = (
+				56942665238C40C200367993 /* AsyncTCP.podspec */,
 				56A177AE23829F1700C9AA63 /* AsyncTCPTests */,
 				5607F81C237189AC001A9AE9 /* AsyncTCP */,
 				5607F81B237189AC001A9AE9 /* Products */,
