@@ -110,7 +110,7 @@
     [client boot];
     [self waitForExpectations:@[clientHasEstablishedConnection, serverHasEstablishedConnection] timeout:10];
     [client shutDown];
-    [server shutDown];
+    [server shutDown:YES];
     [self waitForExpectations:@[serverHasLostConnection] timeout:10];
 }
 @end

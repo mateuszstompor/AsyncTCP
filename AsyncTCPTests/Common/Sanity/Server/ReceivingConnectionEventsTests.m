@@ -102,7 +102,7 @@
     [connectionStateHasChanged setInverted:YES];
     [self waitForExpectations:@[connectionStateHasChanged, dataHasBeenReceived] timeout:3];
     [client close];
-    [server shutDown];
+    [server shutDown:YES];
 }
 -(void)testCallbackIsReceivedWhenClientDisconnects {
     TCPTestsClient * client = [[TCPTestsClient alloc] initWithHost:"localhost" port:8091];
@@ -120,7 +120,7 @@
     [self waitForExpectations:@[clientHasConnected] timeout:3];
     [client close];
     [self waitForExpectations:@[connectionStateHasChanged] timeout:10];
-    [server shutDown];
+    [server shutDown:YES];
 }
 -(void)testCallbackIsReceivedWhenDataIsSent {
     TCPTestsClient * client = [[TCPTestsClient alloc] initWithHost:"localhost" port:8091];
@@ -140,7 +140,7 @@
     [self waitForExpectations:@[dataHasBeenReceived] timeout:6];
     XCTAssertEqual([dataHasBeenReceived expectedFulfillmentCount], 1);
     [client close];
-    [server shutDown];
+    [server shutDown:YES];
 }
 @end
 

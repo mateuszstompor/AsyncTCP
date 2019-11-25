@@ -117,7 +117,7 @@
     [serverLock aquireLock];
     XCTAssertEqual(serverLock.releaseCounts + 1, serverLock.aquireCounts);
     [serverLock releaseLock];
-    [server shutDown];
+    [server shutDown:YES];
     [serverLock aquireLock];
     XCTAssertEqual(serverLock.releaseCounts + 1, serverLock.aquireCounts);
     [serverLock releaseLock];
@@ -133,7 +133,7 @@
     XCTAssertEqual(serverLock.releaseCounts + 1, serverLock.aquireCounts);
     [serverLock releaseLock];
     [client close];
-    [server shutDown];
+    [server shutDown:YES];
     [serverLock aquireLock];
     XCTAssertEqual(serverLock.releaseCounts + 1, serverLock.aquireCounts);
     [serverLock releaseLock];
@@ -150,6 +150,6 @@
     XCTAssertEqual(serverLock.releaseCounts + 1, serverLock.aquireCounts);
     [serverLock releaseLock];
     [client close];
-    [server shutDown];
+    [server shutDown:YES];
 }
 @end

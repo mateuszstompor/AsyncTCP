@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (atomic, nullable, weak) NSObject<ServerDelegate>* delegate;
 -(void)boot;
 -(BOOL)isRunning;
--(void)shutDown;
+-(void)shutDown: (BOOL) waitForServerThread;
 -(NSInteger)connectedClientsCount;
 @end
 

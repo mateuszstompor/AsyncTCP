@@ -61,7 +61,7 @@
     [client connect];
     [self waitForExpectations:@[delegateHasReceivedEvent] timeout:10 enforceOrder:YES];
     [client close];
-    [server shutDown];
+    [server shutDown:YES];
 }
 -(void)testReceivingEventsWhenClientConnectsAndDelegateIsNotSet {
     TCPTestsClient * client = [[TCPTestsClient alloc] initWithHost:"localhost" port:8090];
@@ -71,6 +71,6 @@
     [server boot];
     [self waitForExpectations:@[clientHasConnected] timeout:10];
     [client close];
-    [server shutDown];
+    [server shutDown:YES];
 }
 @end

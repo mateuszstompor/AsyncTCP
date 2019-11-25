@@ -84,7 +84,7 @@
     XCTAssertTrue([handler sendData:[@"hello" dataUsingEncoding:NSUTF8StringEncoding]]);
     [self waitForExpectations:@[clientConnectedCallback, dataSendExpectation, clientDisconnected] timeout:10 enforceOrder:YES];
     [client close];
-    [server shutDown];
+    [server shutDown:YES];
 }
 -(void)testSendingDataWhileConnectionDelegateIsNotSet {
     XCTestExpectation * clientConnected = [[XCTestExpectation alloc] initWithDescription:@"Client has connected"];
@@ -106,7 +106,7 @@
     NSData * dataReceived = [NSData dataWithBytes:buffer length:5];
     XCTAssertTrue([[[NSString alloc] initWithData:dataReceived encoding:NSUTF8StringEncoding] isEqualToString:literalToSend]);
     [client close];
-    [server shutDown];
+    [server shutDown:YES];
 }
 -(void)testSendingDataWhileConnectionIsClosed {
     XCTestExpectation * clientDisconnected = [[XCTestExpectation alloc]
@@ -128,6 +128,6 @@
     void * buffer[10];
     XCTAssertEqual([client readToBuffer:buffer size:length * 10], 0);
     [client close];
-    [server shutDown];
+    [server shutDown:YES];
 }
 @end

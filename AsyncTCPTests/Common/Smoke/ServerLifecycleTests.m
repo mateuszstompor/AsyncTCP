@@ -50,7 +50,7 @@
     NSPredicate * serverIsRunning = [NSPredicate predicateWithFormat:@"isRunning == YES"];
     [self waitForExpectations:@[[self expectationForPredicate:serverIsRunning
                                           evaluatedWithObject:server handler:nil]] timeout:10];
-    [server shutDown];
+    [server shutDown:YES];
     NSPredicate * serverIsStopped = [NSPredicate predicateWithFormat:@"isRunning == NO"];
     [self waitForExpectations:@[[self expectationForPredicate:serverIsStopped
                                           evaluatedWithObject:server handler:nil]] timeout:10];
@@ -61,7 +61,7 @@
     NSPredicate * connectedClientsCount = [NSPredicate predicateWithFormat:@"connectedClientsCount == 0"];
     [self waitForExpectations:@[[self expectationForPredicate:connectedClientsCount
                                           evaluatedWithObject:server handler:nil]] timeout:10];
-    [server shutDown];
+    [server shutDown:YES];
     XCTAssertEqual([server connectedClientsCount], 0);
 }
 -(void)testRepeatableBoots {
@@ -74,17 +74,17 @@
     [server boot];
     [server boot];
     XCTAssertEqual(factory.instancesCreated, 1);
-    [server shutDown];
+    [server shutDown:YES];
     XCTAssertEqual(factory.instancesCreated, 1);
 }
 -(void)testRepeatableShutdowns {
     XCTAssertEqual(factory.instancesCreated, 0);
     [server boot];
     XCTAssertEqual(factory.instancesCreated, 1);
-    [server shutDown];
-    [server shutDown];
-    [server shutDown];
-    [server shutDown];
+    [server shutDown:YES];
+    [server shutDown:YES];
+    [server shutDown:YES];
+    [server shutDown:YES];
     XCTAssertEqual(factory.instancesCreated, 1);
 }
 @end

@@ -102,7 +102,7 @@
                     [connection performIO];
                 }
             }
-            [self unsafeCloseConnectionWithNotifying: connectionsToRemove];
+            [self unsafeCloseConnectionsWithNotifying: connectionsToRemove];
             for (Connection * connection in connectionsToRemove) {
                 [connections removeObject:connection];
             }
@@ -129,29 +129,29 @@
         [resourceLock releaseLock];
         usleep(_configuration.eventLoopMicrosecondsDelay);
     }
-    [resourceLock aquireLock];
-    [self unsafeCloseConnectionWithNotifying: connections];
-    [resourceLock releaseLock];
 }
--(void)unsafeCloseConnectionWithNotifying: (NSArray<Connection *>*) connectionsToClose {
+-(void)unsafeCloseConnectionsWithNotifying: (NSArray<Connection *>*) connectionsToClose {
+    __weak Server * weakSelf = self;
     for (Connection * connection in connectionsToClose) {
         [connection close];
-        __weak Server * weakSelf = self;
         [notificationQueue async:^{
             [weakSelf.delegate clientHasDisconnected:connection];
         }];
     }
 }
--(void)shutDown {
+-(void)shutDown: (BOOL) waitForServerThread {
     [resourceLock aquireLock];
     [thread cancel];
     // wait for server to shutdown
-    while([thread isExecuting]) {
-        [resourceLock releaseLock];
-        usleep(self.configuration.eventLoopMicrosecondsDelay);
-        [resourceLock aquireLock];
+    if(waitForServerThread) {
+        while([thread isExecuting]) {
+            [resourceLock releaseLock];
+            usleep(self.configuration.eventLoopMicrosecondsDelay);
+            [resourceLock aquireLock];
+        }
     }
     thread = nil;
+    [self unsafeCloseConnectionsWithNotifying: connections];
     [connections removeAllObjects];
     if (![networkManager close:identity]) {
         [resourceLock releaseLock];

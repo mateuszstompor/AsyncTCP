@@ -33,7 +33,7 @@
     } @catch (BootingException * exception) {
         XCTFail("Booting should not raise exception if the same port is used");
     }
-    [serverB shutDown];
-    [server shutDown];
+    [serverB shutDown:YES];
+    [server shutDown:YES];
 }
 @end
