@@ -87,4 +87,12 @@
     [server shutDown:YES];
     XCTAssertEqual(factory.instancesCreated, 1);
 }
+-(void)testShutdownWithoutBoot {
+    @try {
+        [server shutDown:NO];
+        [server shutDown:YES];
+    } @catch (NSException *exception) {
+        XCTFail("An exception was raised while shuting down not running server");
+    }
+}
 @end

@@ -141,24 +141,30 @@
 }
 -(void)shutDown: (BOOL) waitForServerThread {
     [resourceLock aquireLock];
-    [thread cancel];
-    // wait for server to shutdown
-    if(waitForServerThread) {
-        while([thread isExecuting]) {
-            [resourceLock releaseLock];
-            usleep(self.configuration.eventLoopMicrosecondsDelay);
-            [resourceLock aquireLock];
+    if(thread != nil) {
+        [thread cancel];
+        // wait for server to shutdown
+        if(waitForServerThread) {
+            while([thread isExecuting]) {
+                [resourceLock releaseLock];
+                usleep(self.configuration.eventLoopMicrosecondsDelay);
+                [resourceLock aquireLock];
+            }
         }
+        thread = nil;
     }
-    thread = nil;
-    [self unsafeCloseConnectionsWithNotifying: connections];
-    [connections removeAllObjects];
-    BOOL closedSuccessfully = [networkManager close:identity];
-    identity = nil;
-    if (!closedSuccessfully) {
-        [resourceLock releaseLock];
-        @throw [ShuttingDownException exceptionWithName:@"ShuttingDownException"
-                                                 reason:@"Could not close server's socket" userInfo:nil];
+    if([connections count] > 0) {
+        [self unsafeCloseConnectionsWithNotifying: connections];
+        [connections removeAllObjects];
+    }
+    if(identity != nil) {
+        BOOL closedSuccessfully = [networkManager close:identity];
+        identity = nil;
+        if (!closedSuccessfully) {
+            [resourceLock releaseLock];
+            @throw [ShuttingDownException exceptionWithName:@"ShuttingDownException"
+                                                     reason:@"Could not close server's socket" userInfo:nil];
+        }
     }
     [resourceLock releaseLock];
 }
