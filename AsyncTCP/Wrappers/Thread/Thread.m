@@ -35,9 +35,6 @@
 -(BOOL)isCancelled {
     return [thread isCancelled];
 }
--(BOOL)isFinished {
-    return [thread isFinished];
-}
 -(void)setName:(NSString *)name {
     [thread setName:name];
 }

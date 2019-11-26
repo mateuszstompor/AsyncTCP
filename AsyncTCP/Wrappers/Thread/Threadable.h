@@ -10,7 +10,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol Threadable<NSObject>
 @property (nullable, copy) NSString * name;
-@property (readonly, getter=isFinished) BOOL finished;
 @property (readonly, getter=isExecuting) BOOL executing;
 @property (readonly, getter=isCancelled) BOOL cancelled;
 -(void)start;
