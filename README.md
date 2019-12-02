@@ -41,6 +41,8 @@ configuration.connectionTimeout = 5;
 configuration.maximalConnectionsCount = 1;
 // Interval between server's main loop evaluations. Adjust depending on your network speed and device's resources utilization
 configuration.eventLoopMicrosecondsDelay = 20;
+// Number of errors after which the connection will be closed
+configuration.errorsBeforeConnectionClosing = 3;
 ```
 Create a server with this specific configuration. By default all notification will be passed to the main dispatch queue.
 ```objective-c
