@@ -16,6 +16,7 @@ struct ServerConfiguration {
     ssize_t chunkSize;
     useconds_t connectionTimeout;
     useconds_t eventLoopMicrosecondsDelay;
+    ssize_t errorsBeforeConnectionClosing;
 };
 
 NS_ASSUME_NONNULL_END

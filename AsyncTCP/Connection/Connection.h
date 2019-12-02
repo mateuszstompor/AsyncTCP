@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
                    resourceLock: (NSObject<Lockable>*) resourceLock;
 -(NSTimeInterval)lastInteractionInterval;
 -(BOOL)isClosed;
+-(ssize_t)totalErrorsInRow;
 -(void)performIO;
 @end
 

@@ -37,6 +37,7 @@
     configuration.eventLoopMicrosecondsDelay = 2;
     configuration.connectionTimeout = 3;
     configuration.chunkSize = 50;
+    configuration.errorsBeforeConnectionClosing = 3;
     factory = [CountingThreadFactory new];
     server = [[Server alloc] initWithConfiguratoin:configuration
                                  notificationQueue:[Dispatch new]

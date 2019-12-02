@@ -99,6 +99,7 @@
     configuration.eventLoopMicrosecondsDelay = 10;
     configuration.connectionTimeout = 5;
     configuration.chunkSize = 1;
+    configuration.errorsBeforeConnectionClosing = 3;
     serverLock = [CountingLock new];
     serverHandler = [[ServerHandlerLocks alloc]
                      initWithConnectionHandler:[ConnectionHandlerLocks new]];

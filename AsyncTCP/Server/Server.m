@@ -96,7 +96,7 @@
             NSMutableArray<Connection*>* connectionsToRemove = [NSMutableArray new];
             // perform IO
             for (Connection * connection in connections) {
-                if ([self hasConnectionTimedOut: connection] || [connection isClosed]) {
+                if ([self shouldBeClosed:connection]) {
                     [connectionsToRemove addObject:connection];
                 } else {
                     [connection performIO];
@@ -129,6 +129,11 @@
         [resourceLock releaseLock];
         usleep(_configuration.eventLoopMicrosecondsDelay);
     }
+}
+-(BOOL)shouldBeClosed: (Connection *) connection {
+    return [connection totalErrorsInRow] > _configuration.errorsBeforeConnectionClosing ||
+    [self hasConnectionTimedOut: connection] ||
+    [connection isClosed];
 }
 -(void)unsafeCloseConnectionsWithNotifying: (NSArray<Connection *>*) connectionsToClose {
     __weak Server * weakSelf = self;

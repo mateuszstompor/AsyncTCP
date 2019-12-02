@@ -25,6 +25,8 @@
 @interface Connection()
 {
     ssize_t chunkSize;
+    ssize_t readErrorsInRow;
+    ssize_t writeErrorsInRow;
     Identity * identity;
     NSDate* lastActivity;
     NSMutableData* buffer;
@@ -32,12 +34,13 @@
     NSObject<Lockable>* resourceLock;
     NSMutableArray<NSData*>* outgoingMessages;
     NSObject<NetworkManageable>* networkManager;
-    NSObject<Dispatchable>* notificationQueue;
 }
+@property (atomic, nonnull) NSObject<Dispatchable>* notificationQueue;
 @end
 
 @implementation Connection
 @synthesize delegate=_delegate;
+@synthesize notificationQueue=_notificationQueue;
 -(instancetype)initWithIdentity: (Identity*) identity
                       chunkSize: (ssize_t) chunkSize
               notificationQueue: (NSObject<Dispatchable>*) notificationQueue
@@ -50,10 +53,12 @@
         self->lastActivity = [NSDate new];
         self->buffer = [NSMutableData new];
         self->chunkSize = chunkSize;
-        self->notificationQueue = notificationQueue;
         self->state = active;
         self->networkManager = networkManager;
         self->outgoingMessages = [NSMutableArray new];
+        self->writeErrorsInRow = 0;
+        self->readErrorsInRow = 0;
+        self.notificationQueue = notificationQueue;
     }
     return self;
 }
@@ -97,38 +102,65 @@
     [resourceLock releaseLock];
     return currentBuffer;
 }
--(void)performIO {
+-(void)send {
     [resourceLock aquireLock];
+    if ([outgoingMessages count] > 0) {
+        NSData * data = [outgoingMessages objectAtIndex:0];
+        NSData * dataLeft = nil;
+        @try {
+            dataLeft = [networkManager send:data identity:identity];
+            writeErrorsInRow = 0;
+        } @catch (IOException * exception) {
+            writeErrorsInRow += 1;
+            [resourceLock releaseLock];
+            return;
+        }
+        lastActivity = [NSDate new];
+        [outgoingMessages removeObjectAtIndex:0];
+        if (dataLeft) {
+            [outgoingMessages insertObject:dataLeft atIndex:0];
+        }
+    }
+    [resourceLock releaseLock];
+}
+-(void)read {
+    NSData * dataRead = nil;
     NSData * dataToSent = nil;
+    [resourceLock aquireLock];
     @try {
-        if ([outgoingMessages count] > 0) {
-            NSData * data = [outgoingMessages objectAtIndex:0];
-            [outgoingMessages removeObjectAtIndex:0];
-            lastActivity = [NSDate new];
-            NSData * dataLeft = [networkManager send:data identity:identity];
-            if (dataLeft) {
-                [outgoingMessages insertObject:dataLeft atIndex:0];
-            }
+        dataRead = [networkManager readBytes:chunkSize identity:identity];
+        readErrorsInRow = 0;
+    } @catch (IOException * exception) {
+        readErrorsInRow += 1;
+        [resourceLock releaseLock];
+        return;
+    }
+    if(dataRead) {
+        lastActivity = [NSDate new];
+        [buffer appendData:dataRead];
+        if([buffer length] >= chunkSize) {
+            dataToSent = [buffer subdataWithRange:NSMakeRange(0, chunkSize)];
+            buffer = [[buffer subdataWithRange:NSMakeRange(chunkSize, [buffer length] - chunkSize)] mutableCopy];
         }
-        NSData * dataRead = [networkManager readBytes:chunkSize identity:identity];
-        if(dataRead) {
-            lastActivity = [NSDate new];
-            [buffer appendData:dataRead];
-            if([buffer length] >= chunkSize) {
-                dataToSent = [buffer subdataWithRange:NSMakeRange(0, chunkSize)];
-                buffer = [[buffer subdataWithRange:NSMakeRange(chunkSize, [buffer length] - chunkSize)] mutableCopy];
-            }
-        }
-    } @catch (IOException *exception) {
-        [self unsafeClose];
     }
     [resourceLock releaseLock];
     __weak Connection * weakSelf = self;
     if (dataToSent) {
-        [notificationQueue async:^{
+        [self.notificationQueue async:^{
             [weakSelf.delegate connection:weakSelf chunkHasArrived:dataToSent];
         }];
     }
+}
+-(void)performIO {
+    [self send];
+    [self read];
+}
+-(ssize_t)totalErrorsInRow {
+    ssize_t total;
+    [resourceLock aquireLock];
+    total = writeErrorsInRow + readErrorsInRow;
+    [resourceLock releaseLock];
+    return total;
 }
 -(BOOL)isClosed {
     [resourceLock aquireLock];

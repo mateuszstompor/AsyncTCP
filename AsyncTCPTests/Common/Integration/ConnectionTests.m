@@ -80,6 +80,7 @@
     configuration.eventLoopMicrosecondsDelay = 10;
     configuration.connectionTimeout = 3;
     configuration.chunkSize = 10;
+    configuration.errorsBeforeConnectionClosing = 3;
     server = [[Server alloc] initWithConfiguratoin:configuration];
 }
 -(void)setUpClient {

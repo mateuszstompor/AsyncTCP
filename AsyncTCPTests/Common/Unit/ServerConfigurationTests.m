@@ -23,6 +23,7 @@
     configuration.eventLoopMicrosecondsDelay = 40;
     configuration.connectionTimeout = 4;
     configuration.chunkSize = 40;
+    configuration.errorsBeforeConnectionClosing = 3;
     server = [[Server alloc] initWithConfiguratoin:configuration];
 }
 -(void)testConfiguration {
@@ -31,5 +32,6 @@
     XCTAssertEqual([server configuration].eventLoopMicrosecondsDelay, 40);
     XCTAssertEqual([server configuration].maximalConnectionsCount, 5);
     XCTAssertEqual([server configuration].port, 57880);
+    XCTAssertEqual([server configuration].errorsBeforeConnectionClosing, 3);
 }
 @end
