@@ -120,6 +120,8 @@
 		56A177FA2382A73D00C9AA63 /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = 5607F82A23718AD5001A9AE9 /* Server.m */; };
 		56A177FB2382A73D00C9AA63 /* Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BB01DF237ECF0100A1618C /* Client.m */; };
 		56A177FC2382A73D00C9AA63 /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5607F82623718AC6001A9AE9 /* Connection.m */; };
+		56BA6ACB2395AC4000AA0157 /* SocketPortCollisionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA6ACA2395AC4000AA0157 /* SocketPortCollisionTests.m */; };
+		56BA6ACC2395AC4000AA0157 /* SocketPortCollisionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA6ACA2395AC4000AA0157 /* SocketPortCollisionTests.m */; };
 		56BB01E0237ECF0100A1618C /* Client.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BB01DE237ECF0100A1618C /* Client.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56BB01E1237ECF0100A1618C /* Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BB01DF237ECF0100A1618C /* Client.m */; };
 		56BB01E7237ED4F100A1618C /* ClientHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BB01E2237ECF5600A1618C /* ClientHandle.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -223,6 +225,7 @@
 		56A177A723829F0500C9AA63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56A177B423829F5200C9AA63 /* AsyncTCPTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AsyncTCPTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		56A177B823829F5200C9AA63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		56BA6ACA2395AC4000AA0157 /* SocketPortCollisionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocketPortCollisionTests.m; sourceTree = "<group>"; };
 		56BB01DE237ECF0100A1618C /* Client.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Client.h; sourceTree = "<group>"; };
 		56BB01DF237ECF0100A1618C /* Client.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Client.m; sourceTree = "<group>"; };
 		56BB01E2237ECF5600A1618C /* ClientHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClientHandle.h; sourceTree = "<group>"; };
@@ -396,6 +399,7 @@
 				56BDB6DB23872F2800D00BF2 /* SendingDataTests.m */,
 				5638750F2385BC9700E85106 /* LockingTests.m */,
 				564BE500238D500B00279F3E /* ReceivingServerEventsConditionsTests.m */,
+				56BA6ACA2395AC4000AA0157 /* SocketPortCollisionTests.m */,
 			);
 			path = Server;
 			sourceTree = "<group>";
@@ -973,6 +977,7 @@
 				563875112385BC9700E85106 /* LockingTests.m in Sources */,
 				56A177F42382A6D000C9AA63 /* ClientConfigurationTests.m in Sources */,
 				563874FE23855D3900E85106 /* ClientLifeCycleTests.m in Sources */,
+				56BA6ACC2395AC4000AA0157 /* SocketPortCollisionTests.m in Sources */,
 				56A177C623829F7B00C9AA63 /* ServerConfigurationTests.m in Sources */,
 				567CE1282384182C00C4EBF8 /* IONetworkHandlerTests.m in Sources */,
 				5638750B2385855100E85106 /* ReceivingConnectionEventsTests.m in Sources */,
@@ -993,6 +998,7 @@
 				563875102385BC9700E85106 /* LockingTests.m in Sources */,
 				56A177E52382A1B000C9AA63 /* ClientConfigurationTests.m in Sources */,
 				563874FD23855D3900E85106 /* ClientLifeCycleTests.m in Sources */,
+				56BA6ACB2395AC4000AA0157 /* SocketPortCollisionTests.m in Sources */,
 				56A177E62382A1B000C9AA63 /* ServerConfigurationTests.m in Sources */,
 				567CE1272384182C00C4EBF8 /* IONetworkHandlerTests.m in Sources */,
 				5638750A2385855100E85106 /* ReceivingConnectionEventsTests.m in Sources */,
