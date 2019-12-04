@@ -67,7 +67,7 @@
 }
 -(void)boot {
     [resourceLock aquireLock];
-    if([thread isExecuting] && ![thread isCancelled]) {
+    if(thread != nil) {
         [resourceLock releaseLock];
         return;
     }
@@ -128,13 +128,18 @@
     [resourceLock releaseLock];
     return running;
 }
--(void)shutDown {
+-(void)shutDown: (BOOL) waitForClientThread {
     [resourceLock aquireLock];
-    [thread cancel];
-    while([thread isExecuting]) {
-        [resourceLock releaseLock];
-        usleep(_configuration.eventLoopMicrosecondsDelay);
-        [resourceLock aquireLock];
+    if(thread != nil) {
+        [thread cancel];
+        if(waitForClientThread) {
+            while([thread isExecuting]) {
+                [resourceLock releaseLock];
+                usleep(_configuration.eventLoopMicrosecondsDelay);
+                [resourceLock aquireLock];
+            }
+        }
+        thread = nil;
     }
     connection = nil;
     [resourceLock releaseLock];

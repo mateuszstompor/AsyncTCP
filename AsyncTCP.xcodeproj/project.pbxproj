@@ -120,6 +120,10 @@
 		56A177FA2382A73D00C9AA63 /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = 5607F82A23718AD5001A9AE9 /* Server.m */; };
 		56A177FB2382A73D00C9AA63 /* Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BB01DF237ECF0100A1618C /* Client.m */; };
 		56A177FC2382A73D00C9AA63 /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5607F82623718AC6001A9AE9 /* Connection.m */; };
+		56BA3CD7239843D300E66A8B /* CountingThreadFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA3CD6239843D300E66A8B /* CountingThreadFactory.m */; };
+		56BA3CD8239843D300E66A8B /* CountingThreadFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA3CD6239843D300E66A8B /* CountingThreadFactory.m */; };
+		56BA3CDB23984AC300E66A8B /* StateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA3CDA23984AC300E66A8B /* StateTests.m */; };
+		56BA3CDC23984AC300E66A8B /* StateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA3CDA23984AC300E66A8B /* StateTests.m */; };
 		56BA6ACB2395AC4000AA0157 /* SocketPortCollisionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA6ACA2395AC4000AA0157 /* SocketPortCollisionTests.m */; };
 		56BA6ACC2395AC4000AA0157 /* SocketPortCollisionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA6ACA2395AC4000AA0157 /* SocketPortCollisionTests.m */; };
 		56BB01E0237ECF0100A1618C /* Client.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BB01DE237ECF0100A1618C /* Client.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -225,6 +229,9 @@
 		56A177A723829F0500C9AA63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56A177B423829F5200C9AA63 /* AsyncTCPTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AsyncTCPTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		56A177B823829F5200C9AA63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		56BA3CD5239843D300E66A8B /* CountingThreadFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CountingThreadFactory.h; sourceTree = "<group>"; };
+		56BA3CD6239843D300E66A8B /* CountingThreadFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CountingThreadFactory.m; sourceTree = "<group>"; };
+		56BA3CDA23984AC300E66A8B /* StateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StateTests.m; sourceTree = "<group>"; };
 		56BA6ACA2395AC4000AA0157 /* SocketPortCollisionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocketPortCollisionTests.m; sourceTree = "<group>"; };
 		56BB01DE237ECF0100A1618C /* Client.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Client.h; sourceTree = "<group>"; };
 		56BB01DF237ECF0100A1618C /* Client.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Client.m; sourceTree = "<group>"; };
@@ -367,6 +374,7 @@
 		563874F7238558E000E85106 /* Sanity */ = {
 			isa = PBXGroup;
 			children = (
+				56BA3CD92398467C00E66A8B /* Client */,
 				563875122385BC9B00E85106 /* Server */,
 			);
 			path = Sanity;
@@ -386,6 +394,8 @@
 			children = (
 				5638750423856FC600E85106 /* TCPTestsClient.h */,
 				5638750523856FC600E85106 /* TCPTestsClient.m */,
+				56BA3CD5239843D300E66A8B /* CountingThreadFactory.h */,
+				56BA3CD6239843D300E66A8B /* CountingThreadFactory.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -574,6 +584,14 @@
 				CB18CA55D9379FF5E8636634 /* Pods_AsyncTCPTests_macOS.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		56BA3CD92398467C00E66A8B /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				56BA3CDA23984AC300E66A8B /* StateTests.m */,
+			);
+			path = Client;
 			sourceTree = "<group>";
 		};
 		56BB01DD237ECEE100A1618C /* Client */ = {
@@ -972,6 +990,7 @@
 				5638750723856FC600E85106 /* TCPTestsClient.m in Sources */,
 				5638750123856D5300E85106 /* ReceivingEventsAfterConnectingTests.m in Sources */,
 				565ED4882387DC6B00F5D04D /* BootingProblemsTests.m in Sources */,
+				56BA3CD8239843D300E66A8B /* CountingThreadFactory.m in Sources */,
 				564BE502238D500B00279F3E /* ReceivingServerEventsConditionsTests.m in Sources */,
 				563D399F2387F72500FD23F2 /* ConnectionTests.m in Sources */,
 				563875112385BC9700E85106 /* LockingTests.m in Sources */,
@@ -979,6 +998,7 @@
 				563874FE23855D3900E85106 /* ClientLifeCycleTests.m in Sources */,
 				56BA6ACC2395AC4000AA0157 /* SocketPortCollisionTests.m in Sources */,
 				56A177C623829F7B00C9AA63 /* ServerConfigurationTests.m in Sources */,
+				56BA3CDC23984AC300E66A8B /* StateTests.m in Sources */,
 				567CE1282384182C00C4EBF8 /* IONetworkHandlerTests.m in Sources */,
 				5638750B2385855100E85106 /* ReceivingConnectionEventsTests.m in Sources */,
 				56BDB6DD23872F2800D00BF2 /* SendingDataTests.m in Sources */,
@@ -993,6 +1013,7 @@
 				5638750623856FC600E85106 /* TCPTestsClient.m in Sources */,
 				5638750023856D5300E85106 /* ReceivingEventsAfterConnectingTests.m in Sources */,
 				565ED4872387DC6B00F5D04D /* BootingProblemsTests.m in Sources */,
+				56BA3CD7239843D300E66A8B /* CountingThreadFactory.m in Sources */,
 				564BE501238D500B00279F3E /* ReceivingServerEventsConditionsTests.m in Sources */,
 				563D399E2387F72500FD23F2 /* ConnectionTests.m in Sources */,
 				563875102385BC9700E85106 /* LockingTests.m in Sources */,
@@ -1000,6 +1021,7 @@
 				563874FD23855D3900E85106 /* ClientLifeCycleTests.m in Sources */,
 				56BA6ACB2395AC4000AA0157 /* SocketPortCollisionTests.m in Sources */,
 				56A177E62382A1B000C9AA63 /* ServerConfigurationTests.m in Sources */,
+				56BA3CDB23984AC300E66A8B /* StateTests.m in Sources */,
 				567CE1272384182C00C4EBF8 /* IONetworkHandlerTests.m in Sources */,
 				5638750A2385855100E85106 /* ReceivingConnectionEventsTests.m in Sources */,
 				56BDB6DC23872F2800D00BF2 /* SendingDataTests.m in Sources */,
@@ -1258,6 +1280,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = R78NEXF6E2;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"RETRIES=3",
+				);
 				INFOPLIST_FILE = "AsyncTCPTests/AsyncTCPTests-macOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1282,6 +1309,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = R78NEXF6E2;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"RETRIES=3",
+				);
 				INFOPLIST_FILE = "AsyncTCPTests/AsyncTCPTests-macOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, atomic) NSObject<ClientDelegate> * delegate;
 -(void)boot;
 -(BOOL)isRunning;
--(void)shutDown;
+-(void)shutDown: (BOOL) waitForClientThread;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -9,18 +9,7 @@
 #import <XCTest/XCTest.h>
 #import <AsyncTCP/AsyncTCP.h>
 
-@interface CountingThreadFactory: ThreadFactory
-@property (atomic) int instancesCreated;
-@end
-
-@implementation CountingThreadFactory
--(NSObject<Threadable> *)createNewThreadWithTarget:(id)target selector:(SEL)selector name: (NSString *) name {
-    id newThread = [super createNewThreadWithTarget:target selector:selector name: name];
-    _instancesCreated += 1;
-    return newThread;
-}
-@end
-
+#import "CountingThreadFactory.h"
 
 @interface ServerLifecycleTests: XCTestCase
 {
@@ -71,9 +60,9 @@
     XCTAssertEqual(factory.instancesCreated, 1);
     [server boot];
     XCTAssertEqual(factory.instancesCreated, 1);
-    [server boot];
-    [server boot];
-    [server boot];
+    for(int i=0; i<RETRIES; ++i) {
+        [server boot];
+    }
     XCTAssertEqual(factory.instancesCreated, 1);
     [server shutDown:YES];
     XCTAssertEqual(factory.instancesCreated, 1);
@@ -82,10 +71,9 @@
     XCTAssertEqual(factory.instancesCreated, 0);
     [server boot];
     XCTAssertEqual(factory.instancesCreated, 1);
-    [server shutDown:YES];
-    [server shutDown:YES];
-    [server shutDown:YES];
-    [server shutDown:YES];
+    for(int i=0; i<RETRIES; ++i) {
+        [server shutDown:YES];
+    }
     XCTAssertEqual(factory.instancesCreated, 1);
 }
 -(void)testShutdownWithoutBoot {
