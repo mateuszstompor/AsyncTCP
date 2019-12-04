@@ -124,6 +124,8 @@
 		56BA3CD8239843D300E66A8B /* CountingThreadFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA3CD6239843D300E66A8B /* CountingThreadFactory.m */; };
 		56BA3CDB23984AC300E66A8B /* StateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA3CDA23984AC300E66A8B /* StateTests.m */; };
 		56BA3CDC23984AC300E66A8B /* StateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA3CDA23984AC300E66A8B /* StateTests.m */; };
+		56BA3CDE239851FC00E66A8B /* CreatingLocalIdentityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA3CDD239851FC00E66A8B /* CreatingLocalIdentityTests.m */; };
+		56BA3CDF239851FC00E66A8B /* CreatingLocalIdentityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA3CDD239851FC00E66A8B /* CreatingLocalIdentityTests.m */; };
 		56BA6ACB2395AC4000AA0157 /* SocketPortCollisionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA6ACA2395AC4000AA0157 /* SocketPortCollisionTests.m */; };
 		56BA6ACC2395AC4000AA0157 /* SocketPortCollisionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA6ACA2395AC4000AA0157 /* SocketPortCollisionTests.m */; };
 		56BB01E0237ECF0100A1618C /* Client.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BB01DE237ECF0100A1618C /* Client.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -232,6 +234,7 @@
 		56BA3CD5239843D300E66A8B /* CountingThreadFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CountingThreadFactory.h; sourceTree = "<group>"; };
 		56BA3CD6239843D300E66A8B /* CountingThreadFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CountingThreadFactory.m; sourceTree = "<group>"; };
 		56BA3CDA23984AC300E66A8B /* StateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StateTests.m; sourceTree = "<group>"; };
+		56BA3CDD239851FC00E66A8B /* CreatingLocalIdentityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreatingLocalIdentityTests.m; sourceTree = "<group>"; };
 		56BA6ACA2395AC4000AA0157 /* SocketPortCollisionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocketPortCollisionTests.m; sourceTree = "<group>"; };
 		56BB01DE237ECF0100A1618C /* Client.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Client.h; sourceTree = "<group>"; };
 		56BB01DF237ECF0100A1618C /* Client.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Client.m; sourceTree = "<group>"; };
@@ -514,6 +517,7 @@
 		567CE1692385546E00C4EBF8 /* Unit */ = {
 			isa = PBXGroup;
 			children = (
+				56BA3CE02398521A00E66A8B /* NetworkManagerTests */,
 				567CE1262384182C00C4EBF8 /* IONetworkHandlerTests.m */,
 				567744E82381AEDF00CDB409 /* ClientConfigurationTests.m */,
 				567744EB2381AFCD00CDB409 /* ServerConfigurationTests.m */,
@@ -592,6 +596,14 @@
 				56BA3CDA23984AC300E66A8B /* StateTests.m */,
 			);
 			path = Client;
+			sourceTree = "<group>";
+		};
+		56BA3CE02398521A00E66A8B /* NetworkManagerTests */ = {
+			isa = PBXGroup;
+			children = (
+				56BA3CDD239851FC00E66A8B /* CreatingLocalIdentityTests.m */,
+			);
+			path = NetworkManagerTests;
 			sourceTree = "<group>";
 		};
 		56BB01DD237ECEE100A1618C /* Client */ = {
@@ -996,6 +1008,7 @@
 				563875112385BC9700E85106 /* LockingTests.m in Sources */,
 				56A177F42382A6D000C9AA63 /* ClientConfigurationTests.m in Sources */,
 				563874FE23855D3900E85106 /* ClientLifeCycleTests.m in Sources */,
+				56BA3CDF239851FC00E66A8B /* CreatingLocalIdentityTests.m in Sources */,
 				56BA6ACC2395AC4000AA0157 /* SocketPortCollisionTests.m in Sources */,
 				56A177C623829F7B00C9AA63 /* ServerConfigurationTests.m in Sources */,
 				56BA3CDC23984AC300E66A8B /* StateTests.m in Sources */,
@@ -1019,6 +1032,7 @@
 				563875102385BC9700E85106 /* LockingTests.m in Sources */,
 				56A177E52382A1B000C9AA63 /* ClientConfigurationTests.m in Sources */,
 				563874FD23855D3900E85106 /* ClientLifeCycleTests.m in Sources */,
+				56BA3CDE239851FC00E66A8B /* CreatingLocalIdentityTests.m in Sources */,
 				56BA6ACB2395AC4000AA0157 /* SocketPortCollisionTests.m in Sources */,
 				56A177E62382A1B000C9AA63 /* ServerConfigurationTests.m in Sources */,
 				56BA3CDB23984AC300E66A8B /* StateTests.m in Sources */,

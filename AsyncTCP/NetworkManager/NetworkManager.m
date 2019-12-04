@@ -100,27 +100,33 @@
     struct sockaddr_in address = [self localServerIdentityWithPort:port];
     Identity * identity = [[Identity alloc] initWithDescriptor:descriptor addressLength:sizeof(struct sockaddr_in) address:address];
     if ([socketOptionsWrapper reuseAddress:descriptor] == -1) {
+        [networkWrapper close:descriptor];
         @throw [IdentityCreationException exceptionWithName:@"IdentityCreationException"
                                             reason:@"Could not reuse exisitng address" userInfo:nil];
     }
     if ([socketOptionsWrapper reusePort:descriptor] == -1) {
+        [networkWrapper close:descriptor];
         @throw [IdentityCreationException exceptionWithName:@"IdentityCreationException"
                                             reason:@"Could not reuse exisitng port" userInfo:nil];
     }
     if ([socketOptionsWrapper noSigPipe:descriptor] == -1) {
+        [networkWrapper close:descriptor];
         @throw [IdentityCreationException exceptionWithName:@"IdentityCreationException"
                                             reason:@"Could not protect against sigPipe" userInfo:nil];
     }
     if ([descriptorControlWrapper makeNonBlocking:descriptor] == -1) {
+        [networkWrapper close:descriptor];
         @throw [IdentityCreationException exceptionWithName:@"IdentityCreationException"
                                             reason:@"Could not make the socket nonblocking" userInfo:nil];
     }
     if([networkWrapper bind:descriptor
                 withAddress:(struct sockaddr *)&address length:sizeof(struct sockaddr_in)] < 0) {
+        [networkWrapper close:descriptor];
         @throw [IdentityCreationException exceptionWithName:@"IdentityCreationException"
                                             reason:@"Could not bind the address" userInfo:nil];
     }
     if([networkWrapper listen:descriptor maximalConnectionsCount:maximalConnectionsCount] < 0) {
+        [networkWrapper close:descriptor];
         @throw [IdentityCreationException exceptionWithName:@"IdentityCreationException"
                                             reason:@"Could not listen for new clients" userInfo:nil];
     }
