@@ -14,6 +14,7 @@
 #import "Exceptions.h"
 #import "ResourceLock.h"
 #import "ThreadFactory.h"
+#import "SystemWrapper.h"
 #import "NetworkManager.h"
 #import "NetworkWrapper.h"
 #import "IONetworkHandler.h"
@@ -29,7 +30,8 @@
     NSObject<Dispatchable> * notificationQueue;
     NSObject<ThreadProducible> * threadFactory;
     NSObject<LockProducible> * lockFactory;
-    NSObject<NetworkManageable>* networkManager;
+    NSObject<NetworkManageable> * networkManager;
+    NSObject<SystemWrappable> * systemWrapper;
 }
 @end
 
@@ -44,13 +46,15 @@
                      notificationQueue:[[Dispatch alloc] initWithDispatchQueue: notificationQueue]
                         networkManager:[NetworkManager new]
                          threadFactory:[ThreadFactory new]
-                           lockFactory:[ResourceLockFactory new]];
+                           lockFactory:[ResourceLockFactory new]
+                         systemWrapper:[SystemWrapper new]];
 }
 -(instancetype)initWithConfiguratoin: (struct ServerConfiguration) configuration
                    notificationQueue: (NSObject<Dispatchable>*) notificationQueue
                       networkManager: (NSObject<NetworkManageable>*) networkManager
                        threadFactory: (NSObject<ThreadProducible>*) threadFactory
-                         lockFactory: (NSObject<LockProducible>*) lockFactory {
+                         lockFactory: (NSObject<LockProducible>*) lockFactory
+                       systemWrapper: (NSObject<SystemWrappable> *) systemWrapper {
     self = [super init];
     if (self) {
         NSAssert([networkManager hasPortValidRange: configuration.port],
@@ -63,6 +67,7 @@
         self->networkManager = networkManager;
         self->notificationQueue = notificationQueue;
         self->connections = [NSMutableArray new];
+        self->systemWrapper = systemWrapper;
         self->_delegate = nil;
         self->_configuration = configuration;
     }
@@ -127,7 +132,7 @@
             break;
         }
         [resourceLock releaseLock];
-        usleep(_configuration.eventLoopMicrosecondsDelay);
+        [systemWrapper waitMicroseconds:_configuration.eventLoopMicrosecondsDelay];
     }
 }
 -(BOOL)shouldBeClosed: (Connection *) connection {
@@ -152,7 +157,7 @@
         if(waitForServerThread) {
             while([thread isExecuting]) {
                 [resourceLock releaseLock];
-                usleep(self.configuration.eventLoopMicrosecondsDelay);
+                [systemWrapper waitMicroseconds:_configuration.eventLoopMicrosecondsDelay];
                 [resourceLock aquireLock];
             }
         }

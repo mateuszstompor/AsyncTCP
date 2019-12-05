@@ -12,6 +12,7 @@
 #import "Connection.h"
 #import "Exceptions.h"
 #import "ResourceLock.h"
+#import "SystemWrapper.h"
 #import "ThreadFactory.h"
 #import "NetworkWrapper.h"
 #import "NetworkManager.h"
@@ -31,7 +32,8 @@
     NSObject<LockProducible> * lockFactory;
     NSObject<ThreadProducible> * threadFactory;
     NSObject<Dispatchable> * notificationQueue;
-    NSObject<NetworkManageable>* networkManager;
+    NSObject<NetworkManageable> * networkManager;
+    NSObject<SystemWrappable> * systemWrapper;
 }
 @end
 
@@ -45,13 +47,15 @@
                      notificationQueue:[[Dispatch alloc] initWithDispatchQueue:notificationQueue]
                         networkManager:[NetworkManager new]
                            lockFactory:[ResourceLockFactory new]
-                         threadFactory:[ThreadFactory new]];
+                         threadFactory:[ThreadFactory new]
+                         systemWrapper:[SystemWrapper new]];
 }
 -(instancetype)initWithConfiguration: (struct ClientConfiguration) configuration
                    notificationQueue: (NSObject<Dispatchable>*) notificationQueue
                       networkManager: (NSObject<NetworkManageable>*) networkManager
                          lockFactory: (NSObject<LockProducible>*) lockFactory
-                       threadFactory: (NSObject<ThreadProducible>*) threadFactory {
+                       threadFactory: (NSObject<ThreadProducible>*) threadFactory
+                       systemWrapper: (NSObject<SystemWrappable> *) systemWrapper {
     self = [super init];
     if(self) {
         self->thread = nil;
@@ -61,6 +65,7 @@
         self->threadFactory = threadFactory;
         self->lockFactory = lockFactory;
         self->resourceLock = [lockFactory newLock];
+        self->systemWrapper = systemWrapper;
         self->_configuration = configuration;
     }
     return self;
@@ -114,7 +119,7 @@
             break;
         }
         [resourceLock releaseLock];
-        usleep(_configuration.eventLoopMicrosecondsDelay);
+        [systemWrapper waitMicroseconds:_configuration.eventLoopMicrosecondsDelay];
     }
     [resourceLock aquireLock];
     if (connection) {
@@ -135,7 +140,7 @@
         if(waitForClientThread) {
             while([thread isExecuting]) {
                 [resourceLock releaseLock];
-                usleep(_configuration.eventLoopMicrosecondsDelay);
+                [systemWrapper waitMicroseconds:_configuration.eventLoopMicrosecondsDelay];
                 [resourceLock aquireLock];
             }
         }

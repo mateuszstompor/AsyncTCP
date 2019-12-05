@@ -126,6 +126,12 @@
 		56BA3CDC23984AC300E66A8B /* StateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA3CDA23984AC300E66A8B /* StateTests.m */; };
 		56BA3CDE239851FC00E66A8B /* CreatingLocalIdentityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA3CDD239851FC00E66A8B /* CreatingLocalIdentityTests.m */; };
 		56BA3CDF239851FC00E66A8B /* CreatingLocalIdentityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA3CDD239851FC00E66A8B /* CreatingLocalIdentityTests.m */; };
+		56BA3CE423991DDD00E66A8B /* SystemWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BA3CE223991DDD00E66A8B /* SystemWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		56BA3CE523991DDD00E66A8B /* SystemWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BA3CE223991DDD00E66A8B /* SystemWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		56BA3CE623991DDD00E66A8B /* SystemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA3CE323991DDD00E66A8B /* SystemWrapper.m */; };
+		56BA3CE723991DDD00E66A8B /* SystemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA3CE323991DDD00E66A8B /* SystemWrapper.m */; };
+		56BA3CEA23991DF300E66A8B /* SystemWrappable.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BA3CE823991DF300E66A8B /* SystemWrappable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		56BA3CEB23991DF300E66A8B /* SystemWrappable.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BA3CE823991DF300E66A8B /* SystemWrappable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56BA6ACB2395AC4000AA0157 /* SocketPortCollisionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA6ACA2395AC4000AA0157 /* SocketPortCollisionTests.m */; };
 		56BA6ACC2395AC4000AA0157 /* SocketPortCollisionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA6ACA2395AC4000AA0157 /* SocketPortCollisionTests.m */; };
 		56BB01E0237ECF0100A1618C /* Client.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BB01DE237ECF0100A1618C /* Client.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -230,6 +236,9 @@
 		56BA3CD6239843D300E66A8B /* CountingThreadFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CountingThreadFactory.m; sourceTree = "<group>"; };
 		56BA3CDA23984AC300E66A8B /* StateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StateTests.m; sourceTree = "<group>"; };
 		56BA3CDD239851FC00E66A8B /* CreatingLocalIdentityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreatingLocalIdentityTests.m; sourceTree = "<group>"; };
+		56BA3CE223991DDD00E66A8B /* SystemWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SystemWrapper.h; sourceTree = "<group>"; };
+		56BA3CE323991DDD00E66A8B /* SystemWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SystemWrapper.m; sourceTree = "<group>"; };
+		56BA3CE823991DF300E66A8B /* SystemWrappable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SystemWrappable.h; sourceTree = "<group>"; };
 		56BA6ACA2395AC4000AA0157 /* SocketPortCollisionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocketPortCollisionTests.m; sourceTree = "<group>"; };
 		56BB01DE237ECF0100A1618C /* Client.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Client.h; sourceTree = "<group>"; };
 		56BB01DF237ECF0100A1618C /* Client.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Client.m; sourceTree = "<group>"; };
@@ -433,6 +442,7 @@
 		567CE119238414DF00C4EBF8 /* Wrappers */ = {
 			isa = PBXGroup;
 			children = (
+				56BA3CE123991DC600E66A8B /* System */,
 				567CE13E238479CE00C4EBF8 /* Lock */,
 				567CE15623853D7A00C4EBF8 /* Thread */,
 				563875132385E9C100E85106 /* DispatchQueue */,
@@ -582,6 +592,16 @@
 			path = NetworkManagerTests;
 			sourceTree = "<group>";
 		};
+		56BA3CE123991DC600E66A8B /* System */ = {
+			isa = PBXGroup;
+			children = (
+				56BA3CE223991DDD00E66A8B /* SystemWrapper.h */,
+				56BA3CE323991DDD00E66A8B /* SystemWrapper.m */,
+				56BA3CE823991DF300E66A8B /* SystemWrappable.h */,
+			);
+			path = System;
+			sourceTree = "<group>";
+		};
 		56BB01DD237ECEE100A1618C /* Client */ = {
 			isa = PBXGroup;
 			children = (
@@ -617,6 +637,7 @@
 				56ED83D123875ADC0068D9D4 /* ResourceLockFactory.h in Headers */,
 				56744C322372C66900C2B37D /* NetworkManageable.h in Headers */,
 				5607F82F23718E06001A9AE9 /* ServerDelegate.h in Headers */,
+				56BA3CE423991DDD00E66A8B /* SystemWrapper.h in Headers */,
 				56744C252372C32D00C2B37D /* DescriptorControlWrapper.h in Headers */,
 				5607F82B23718AD5001A9AE9 /* Server.h in Headers */,
 				5607F82723718AC6001A9AE9 /* Connection.h in Headers */,
@@ -632,6 +653,7 @@
 				564D447423738F2E00FA0140 /* ConnectionState.h in Headers */,
 				56BB01E0237ECF0100A1618C /* Client.h in Headers */,
 				5607F8542371B02A001A9AE9 /* ServerConfiguration.h in Headers */,
+				56BA3CEA23991DF300E66A8B /* SystemWrappable.h in Headers */,
 				56ED83D723875B6E0068D9D4 /* LockProducible.h in Headers */,
 				567CE168238541AF00C4EBF8 /* ThreadProducible.h in Headers */,
 				56BB01E7237ED4F100A1618C /* ClientHandle.h in Headers */,
@@ -659,6 +681,7 @@
 				56ED83D223875ADC0068D9D4 /* ResourceLockFactory.h in Headers */,
 				56A177CD2382A02F00C9AA63 /* NetworkManageable.h in Headers */,
 				56A177CE2382A02F00C9AA63 /* DescriptorControlWrappable.h in Headers */,
+				56BA3CE523991DDD00E66A8B /* SystemWrapper.h in Headers */,
 				56A177CF2382A02F00C9AA63 /* DescriptorControlWrapper.h in Headers */,
 				56A177D02382A02F00C9AA63 /* IONetworkHandler.h in Headers */,
 				56A177D12382A02F00C9AA63 /* IONetworkHandleable.h in Headers */,
@@ -674,6 +697,7 @@
 				56A177D72382A02F00C9AA63 /* ClientHandle.h in Headers */,
 				56A177D82382A02F00C9AA63 /* ClientDelegate.h in Headers */,
 				56A177D92382A02F00C9AA63 /* ClientConfiguration.h in Headers */,
+				56BA3CEB23991DF300E66A8B /* SystemWrappable.h in Headers */,
 				56ED83D623875B6D0068D9D4 /* LockProducible.h in Headers */,
 				567CE167238541AF00C4EBF8 /* ThreadProducible.h in Headers */,
 				56A177DA2382A02F00C9AA63 /* Connection.h in Headers */,
@@ -847,6 +871,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56BA3CE623991DDD00E66A8B /* SystemWrapper.m in Sources */,
 				5607F82C23718AD5001A9AE9 /* Server.m in Sources */,
 				563875182385E9ED00E85106 /* Dispatch.m in Sources */,
 				567CE1242384153600C4EBF8 /* NetworkWrapper.m in Sources */,
@@ -869,6 +894,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56BA3CE723991DDD00E66A8B /* SystemWrapper.m in Sources */,
 				56A177F62382A73D00C9AA63 /* Exceptions.m in Sources */,
 				563875192385E9ED00E85106 /* Dispatch.m in Sources */,
 				567CE1252384153600C4EBF8 /* NetworkWrapper.m in Sources */,

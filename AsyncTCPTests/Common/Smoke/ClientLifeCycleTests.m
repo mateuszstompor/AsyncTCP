@@ -31,7 +31,8 @@
                                  notificationQueue:[Dispatch new]
                                     networkManager:[NetworkManager new]
                                        lockFactory:[ResourceLockFactory new]
-                                     threadFactory:threadFactory];
+                                     threadFactory:threadFactory
+                                     systemWrapper: [SystemWrapper new]];
 }
 -(void)testLifecycleState {
     XCTAssertFalse([client isRunning]);

@@ -13,6 +13,7 @@
 #import "Dispatchable.h"
 #import "ClientHandle.h"
 #import "LockProducible.h"
+#import "SystemWrappable.h"
 #import "ThreadProducible.h"
 #import "NetworkManageable.h"
 #import "ClientConfiguration.h"
@@ -29,7 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
                    notificationQueue: (NSObject<Dispatchable>*) notificationQueue
                       networkManager: (NSObject<NetworkManageable>*) networkManager
                          lockFactory: (NSObject<LockProducible>*) lockFactory
-                       threadFactory: (NSObject<ThreadProducible>*) threadFactory;
+                       threadFactory: (NSObject<ThreadProducible>*) threadFactory
+                       systemWrapper: (NSObject<SystemWrappable> *) systemWrapper;
 @end
 
 NS_ASSUME_NONNULL_END

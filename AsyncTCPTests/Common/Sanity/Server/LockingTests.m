@@ -107,7 +107,8 @@
                                  notificationQueue:[Dispatch new]
                                     networkManager:[NetworkManager new]
                                      threadFactory:[ThreadFactory new]
-                                       lockFactory:[[LockFactoryMock alloc] initWithLock: serverLock]];
+                                       lockFactory:[[LockFactoryMock alloc] initWithLock: serverLock]
+                                     systemWrapper:[SystemWrapper new]];
     server.delegate = serverHandler;
 }
 -(void)testLifeCycle {
