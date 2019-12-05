@@ -21,12 +21,12 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Client: NSObject<ClientHandle>
-@property (atomic, readonly) struct ClientConfiguration configuration;
+@property (atomic, readonly) ClientConfiguration * configuration;
 @property (nullable, atomic) NSObject<ClientDelegate> * delegate;
--(instancetype)initWithConfiguration: (struct ClientConfiguration) configuration;
--(instancetype)initWithConfiguration: (struct ClientConfiguration) configuration
+-(instancetype)initWithConfiguration: (ClientConfiguration *) configuration;
+-(instancetype)initWithConfiguration: (ClientConfiguration *) configuration
                    notificationQueue: (dispatch_queue_t) notificationQueue;
--(instancetype)initWithConfiguration: (struct ClientConfiguration) configuration
+-(instancetype)initWithConfiguration: (ClientConfiguration *) configuration
                    notificationQueue: (NSObject<Dispatchable>*) notificationQueue
                       networkManager: (NSObject<NetworkManageable>*) networkManager
                          lockFactory: (NSObject<LockProducible>*) lockFactory

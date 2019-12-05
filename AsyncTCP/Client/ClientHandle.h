@@ -9,12 +9,13 @@
 #import <Foundation/Foundation.h>
 
 #import "ClientDelegate.h"
+#import "ClientConfiguration.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol ClientHandle<NSObject>
 @required
-@property (atomic, readonly) struct ClientConfiguration configuration;
+@property (atomic, readonly) ClientConfiguration * configuration;
 @property (nullable, atomic) NSObject<ClientDelegate> * delegate;
 -(void)boot;
 -(BOOL)isRunning;

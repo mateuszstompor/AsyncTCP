@@ -38,10 +38,10 @@
 @end
 
 @implementation Client
--(instancetype)initWithConfiguration:(struct ClientConfiguration)configuration {
+-(instancetype)initWithConfiguration:(ClientConfiguration *)configuration {
     return [self initWithConfiguration:configuration notificationQueue:dispatch_get_main_queue()];
 }
--(instancetype)initWithConfiguration:(struct ClientConfiguration)configuration
+-(instancetype)initWithConfiguration:(ClientConfiguration *)configuration
                    notificationQueue: (dispatch_queue_t) notificationQueue {
     return [self initWithConfiguration:configuration
                      notificationQueue:[[Dispatch alloc] initWithDispatchQueue:notificationQueue]
@@ -50,7 +50,7 @@
                          threadFactory:[ThreadFactory new]
                          systemWrapper:[SystemWrapper new]];
 }
--(instancetype)initWithConfiguration: (struct ClientConfiguration) configuration
+-(instancetype)initWithConfiguration: (ClientConfiguration *) configuration
                    notificationQueue: (NSObject<Dispatchable>*) notificationQueue
                       networkManager: (NSObject<NetworkManageable>*) networkManager
                          lockFactory: (NSObject<LockProducible>*) lockFactory
@@ -77,9 +77,7 @@
         return;
     }
     @try {
-        NSString * host = [NSString stringWithCString:_configuration.address
-                                             encoding:NSUTF8StringEncoding];
-        identity = [networkManager clientIdentityToHost:host
+        identity = [networkManager clientIdentityToHost:_configuration.address
                                                withPort:_configuration.port];
     } @catch (IdentityCreationException *exception) {
         [BootingException exceptionWithName:@"BootingException"

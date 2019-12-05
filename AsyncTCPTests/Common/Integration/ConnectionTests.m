@@ -84,12 +84,11 @@
     server = [[Server alloc] initWithConfiguratoin:configuration];
 }
 -(void)setUpClient {
-    struct ClientConfiguration configuration;
-    configuration.address = "127.0.0.1";
-    configuration.port = 8090;
-    configuration.eventLoopMicrosecondsDelay = 10;
-    configuration.connectionTimeout = 10;
-    configuration.chunkSize = 10;
+    ClientConfiguration * configuration = [[ClientConfiguration alloc] initWithAddress:@"127.0.0.1"
+                                                                                  port:8090
+                                                                             chunkSize:10
+                                                                     connectionTimeout:10
+                                                            eventLoopMicrosecondsDelay:10];
     client = [[Client alloc] initWithConfiguration:configuration];
 }
 -(void)setUp {

@@ -17,12 +17,11 @@
 
 @implementation StateTests
 -(void)setUp {
-    struct ClientConfiguration configuration;
-    configuration.port = 5001;
-    configuration.eventLoopMicrosecondsDelay = 50;
-    configuration.connectionTimeout = 5;
-    configuration.chunkSize = 50;
-    configuration.address = "localhost";
+    ClientConfiguration * configuration = [[ClientConfiguration alloc] initWithAddress:@"localhost"
+                                                                                  port:5001
+                                                                             chunkSize:50
+                                                                     connectionTimeout:5
+                                                            eventLoopMicrosecondsDelay:50];
     client = [[Client alloc] initWithConfiguration:configuration];
 }
 -(void)testInitialState {

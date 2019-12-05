@@ -17,16 +17,15 @@
 
 @implementation ClientConfigurationTests
 -(void)setUp {
-    struct ClientConfiguration configuration;
-    configuration.port = 57800;
-    configuration.address = "localhost";
-    configuration.chunkSize = 30;
-    configuration.connectionTimeout = 5;
-    configuration.eventLoopMicrosecondsDelay = 40;
+    ClientConfiguration * configuration = [[ClientConfiguration alloc] initWithAddress:@"localhost"
+                                                                                  port:57800
+                                                                             chunkSize:30
+                                                                     connectionTimeout:5
+                                                            eventLoopMicrosecondsDelay:40];
     client = [[Client alloc] initWithConfiguration:configuration];
 }
 -(void)testConfiguration {
-    XCTAssertEqual(strcmp([client configuration].address, "localhost"), 0);
+    XCTAssertTrue([[client configuration].address isEqualToString:@"localhost"]);
     XCTAssertEqual([client configuration].port, 57800);
     XCTAssertEqual([client configuration].chunkSize, 30);
     XCTAssertEqual([client configuration].connectionTimeout, 5);
