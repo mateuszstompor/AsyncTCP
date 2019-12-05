@@ -58,6 +58,7 @@
                        systemWrapper: (NSObject<SystemWrappable> *) systemWrapper {
     self = [super init];
     if(self) {
+        self->identity = nil;
         self->thread = nil;
         self->connection = nil;
         self->notificationQueue = notificationQueue;
@@ -144,7 +145,14 @@
         }
         thread = nil;
     }
-    connection = nil;
+    if(connection != nil) {
+        [connection close];
+        connection = nil;
+    }
+    if(identity != nil) {
+        [networkManager close:identity];
+        identity = nil;
+    }
     [resourceLock releaseLock];
 }
 @end

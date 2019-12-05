@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ClientConfiguration : NSObject
+@interface ClientConfiguration: NSObject
 @property (nonatomic) NSString * address;
 @property (nonatomic) int port;
 @property (nonatomic) ssize_t chunkSize;
