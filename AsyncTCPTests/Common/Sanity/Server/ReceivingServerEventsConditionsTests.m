@@ -51,13 +51,12 @@
 
 @implementation ReceivingServerEventsConditionsTests
 -(void)setUp {
-    struct ServerConfiguration configuration;
-    configuration.port = 8090;
-    configuration.maximalConnectionsCount = 1;
-    configuration.eventLoopMicrosecondsDelay = 10;
-    configuration.connectionTimeout = 3;
-    configuration.chunkSize = 10;
-    configuration.errorsBeforeConnectionClosing = 3;
+    ServerConfiguration * configuration = [[ServerConfiguration alloc] initWithPort:8090
+                                                            maximalConnectionsCount:1
+                                                                          chunkSize:10
+                                                                  connectionTimeout:5
+                                                         eventLoopMicrosecondsDelay:10
+                                                      errorsBeforeConnectionClosing:3];
     server = [[Server alloc] initWithConfiguratoin:configuration];
 }
 -(void)testConnectionStateWhenCallbacksAreReceived {

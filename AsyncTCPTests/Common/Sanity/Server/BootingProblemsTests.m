@@ -12,18 +12,18 @@
 @interface BootingProblemsTests : XCTestCase
 {
     Server * server;
-    struct ServerConfiguration configuration;
+    ServerConfiguration * configuration;
 }
 @end
 
 @implementation BootingProblemsTests
 -(void)setUp {
-    configuration.port = 8091;
-    configuration.maximalConnectionsCount = 1;
-    configuration.eventLoopMicrosecondsDelay = 10;
-    configuration.connectionTimeout = 5;
-    configuration.chunkSize = 10;
-    configuration.errorsBeforeConnectionClosing = 3;
+    configuration = [[ServerConfiguration alloc] initWithPort:8091
+                                      maximalConnectionsCount:1
+                                                    chunkSize:10
+                                            connectionTimeout:5
+                                   eventLoopMicrosecondsDelay:10
+                                errorsBeforeConnectionClosing:3];
     server = [[Server alloc] initWithConfiguratoin:configuration];
 }
 -(void)testBootingTwoServerOnTheSamePort {

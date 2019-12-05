@@ -17,13 +17,12 @@
 
 @implementation ServerConfigurationTests
 -(void)setUp {
-    struct ServerConfiguration configuration;
-    configuration.port = 57880;
-    configuration.maximalConnectionsCount = 5;
-    configuration.eventLoopMicrosecondsDelay = 40;
-    configuration.connectionTimeout = 4;
-    configuration.chunkSize = 40;
-    configuration.errorsBeforeConnectionClosing = 3;
+    ServerConfiguration * configuration = [[ServerConfiguration alloc] initWithPort:57880
+                                                            maximalConnectionsCount:5
+                                                                          chunkSize:40
+                                                                  connectionTimeout:4
+                                                         eventLoopMicrosecondsDelay:40
+                                                      errorsBeforeConnectionClosing:3];
     server = [[Server alloc] initWithConfiguratoin:configuration];
 }
 -(void)testConfiguration {

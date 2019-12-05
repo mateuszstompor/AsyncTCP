@@ -20,13 +20,12 @@
 
 @implementation ServerLifecycleTests
 -(void)setUp {
-    struct ServerConfiguration configuration;
-    configuration.port = 5005;
-    configuration.maximalConnectionsCount = 1;
-    configuration.eventLoopMicrosecondsDelay = 2;
-    configuration.connectionTimeout = 3;
-    configuration.chunkSize = 50;
-    configuration.errorsBeforeConnectionClosing = 3;
+    ServerConfiguration * configuration = [[ServerConfiguration alloc] initWithPort:8090
+                                                            maximalConnectionsCount:1
+                                                                          chunkSize:10
+                                                                  connectionTimeout:5
+                                                         eventLoopMicrosecondsDelay:10
+                                                      errorsBeforeConnectionClosing:3];
     factory = [CountingThreadFactory new];
     server = [[Server alloc] initWithConfiguratoin:configuration
                                  notificationQueue:[Dispatch new]

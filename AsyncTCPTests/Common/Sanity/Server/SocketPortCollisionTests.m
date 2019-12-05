@@ -17,13 +17,12 @@
 
 @implementation SocketPortCollisionTests
 -(void)setUp {
-    struct ServerConfiguration configuration;
-    configuration.port = 9000;
-    configuration.maximalConnectionsCount = 1;
-    configuration.eventLoopMicrosecondsDelay = 10;
-    configuration.connectionTimeout = 3;
-    configuration.chunkSize = 10;
-    configuration.errorsBeforeConnectionClosing = 3;
+    ServerConfiguration * configuration = [[ServerConfiguration alloc] initWithPort:9000
+                                                            maximalConnectionsCount:1
+                                                                          chunkSize:10
+                                                                  connectionTimeout:3
+                                                         eventLoopMicrosecondsDelay:10
+                                                      errorsBeforeConnectionClosing:3];
     server = [[Server alloc] initWithConfiguratoin:configuration];
 }
 -(void)testCollidingPorts {

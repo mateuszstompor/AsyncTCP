@@ -20,15 +20,15 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Server: NSObject<ServerHandle>
-@property (atomic, readonly) struct ServerConfiguration configuration;
--(instancetype)initWithConfiguratoin: (struct ServerConfiguration) configuration;
--(instancetype)initWithConfiguratoin: (struct ServerConfiguration) configuration
+@property (atomic, readonly) ServerConfiguration * configuration;
+-(instancetype)initWithConfiguratoin: (ServerConfiguration *) configuration;
+-(instancetype)initWithConfiguratoin: (ServerConfiguration *) configuration
                    notificationQueue: (dispatch_queue_t) notificationQueue;
--(instancetype)initWithConfiguratoin: (struct ServerConfiguration) configuration
-                   notificationQueue: (NSObject<Dispatchable>*) notificationQueue
-                      networkManager: (NSObject<NetworkManageable>*) networkManager
-                       threadFactory: (NSObject<ThreadProducible>*) threadFactory
-                         lockFactory: (NSObject<LockProducible>*) lockFactory
+-(instancetype)initWithConfiguratoin: (ServerConfiguration *) configuration
+                   notificationQueue: (NSObject<Dispatchable> *) notificationQueue
+                      networkManager: (NSObject<NetworkManageable> *) networkManager
+                       threadFactory: (NSObject<ThreadProducible> *) threadFactory
+                         lockFactory: (NSObject<LockProducible> *) lockFactory
                        systemWrapper: (NSObject<SystemWrappable> *) systemWrapper;
 @end
 

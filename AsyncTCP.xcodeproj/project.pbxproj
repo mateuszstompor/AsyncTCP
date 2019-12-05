@@ -15,7 +15,6 @@
 		5607F8462371937D001A9AE9 /* NetworkManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F8442371937D001A9AE9 /* NetworkManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5607F8472371937D001A9AE9 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5607F8452371937D001A9AE9 /* NetworkManager.m */; };
 		5607F84F2371AA57001A9AE9 /* ConnectionDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F84D2371AA57001A9AE9 /* ConnectionDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5607F8542371B02A001A9AE9 /* ServerConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F8522371B02A001A9AE9 /* ServerConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5607F85A2371D742001A9AE9 /* IONetworkHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F8582371D742001A9AE9 /* IONetworkHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5607F85B2371D742001A9AE9 /* IONetworkHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5607F8592371D742001A9AE9 /* IONetworkHandler.m */; };
 		560C3DA42373217200E711F4 /* ConnectionHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = 560C3DA22373217200E711F4 /* ConnectionHandle.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -97,7 +96,6 @@
 		56A177D22382A02F00C9AA63 /* Server.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F82923718AD5001A9AE9 /* Server.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56A177D32382A02F00C9AA63 /* ServerHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = 560C3DA6237321F200E711F4 /* ServerHandle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56A177D42382A02F00C9AA63 /* ServerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F82D23718E06001A9AE9 /* ServerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		56A177D52382A02F00C9AA63 /* ServerConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F8522371B02A001A9AE9 /* ServerConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56A177D62382A02F00C9AA63 /* Client.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BB01DE237ECF0100A1618C /* Client.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56A177D72382A02F00C9AA63 /* ClientHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BB01E2237ECF5600A1618C /* ClientHandle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56A177D82382A02F00C9AA63 /* ClientDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BB01E3237ECF6000A1618C /* ClientDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -123,6 +121,10 @@
 		56AAC100239945CF0035E6C9 /* ClientConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 56AAC0FD239945CF0035E6C9 /* ClientConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56AAC101239945CF0035E6C9 /* ClientConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 56AAC0FE239945CF0035E6C9 /* ClientConfiguration.m */; };
 		56AAC102239945CF0035E6C9 /* ClientConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 56AAC0FE239945CF0035E6C9 /* ClientConfiguration.m */; };
+		56AAC10523994FBE0035E6C9 /* ServerConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 56AAC10323994FBE0035E6C9 /* ServerConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		56AAC10623994FBE0035E6C9 /* ServerConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 56AAC10323994FBE0035E6C9 /* ServerConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		56AAC10723994FBE0035E6C9 /* ServerConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 56AAC10423994FBE0035E6C9 /* ServerConfiguration.m */; };
+		56AAC10823994FBE0035E6C9 /* ServerConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 56AAC10423994FBE0035E6C9 /* ServerConfiguration.m */; };
 		56BA3CD7239843D300E66A8B /* CountingThreadFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA3CD6239843D300E66A8B /* CountingThreadFactory.m */; };
 		56BA3CD8239843D300E66A8B /* CountingThreadFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA3CD6239843D300E66A8B /* CountingThreadFactory.m */; };
 		56BA3CDB23984AC300E66A8B /* StateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA3CDA23984AC300E66A8B /* StateTests.m */; };
@@ -182,7 +184,6 @@
 		5607F8442371937D001A9AE9 /* NetworkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
 		5607F8452371937D001A9AE9 /* NetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		5607F84D2371AA57001A9AE9 /* ConnectionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectionDelegate.h; sourceTree = "<group>"; };
-		5607F8522371B02A001A9AE9 /* ServerConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServerConfiguration.h; sourceTree = "<group>"; };
 		5607F8562371CCD0001A9AE9 /* ConnectionState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectionState.h; sourceTree = "<group>"; };
 		5607F8582371D742001A9AE9 /* IONetworkHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IONetworkHandler.h; sourceTree = "<group>"; };
 		5607F8592371D742001A9AE9 /* IONetworkHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IONetworkHandler.m; sourceTree = "<group>"; };
@@ -236,6 +237,8 @@
 		56A177B823829F5200C9AA63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56AAC0FD239945CF0035E6C9 /* ClientConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClientConfiguration.h; sourceTree = "<group>"; };
 		56AAC0FE239945CF0035E6C9 /* ClientConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClientConfiguration.m; sourceTree = "<group>"; };
+		56AAC10323994FBE0035E6C9 /* ServerConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServerConfiguration.h; sourceTree = "<group>"; };
+		56AAC10423994FBE0035E6C9 /* ServerConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ServerConfiguration.m; sourceTree = "<group>"; };
 		56BA3CD5239843D300E66A8B /* CountingThreadFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CountingThreadFactory.h; sourceTree = "<group>"; };
 		56BA3CD6239843D300E66A8B /* CountingThreadFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CountingThreadFactory.m; sourceTree = "<group>"; };
 		56BA3CDA23984AC300E66A8B /* StateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StateTests.m; sourceTree = "<group>"; };
@@ -348,7 +351,8 @@
 				5607F82A23718AD5001A9AE9 /* Server.m */,
 				560C3DA6237321F200E711F4 /* ServerHandle.h */,
 				5607F82D23718E06001A9AE9 /* ServerDelegate.h */,
-				5607F8522371B02A001A9AE9 /* ServerConfiguration.h */,
+				56AAC10323994FBE0035E6C9 /* ServerConfiguration.h */,
+				56AAC10423994FBE0035E6C9 /* ServerConfiguration.m */,
 			);
 			path = Server;
 			sourceTree = "<group>";
@@ -648,10 +652,10 @@
 				563875162385E9ED00E85106 /* Dispatch.h in Headers */,
 				564D447423738F2E00FA0140 /* ConnectionState.h in Headers */,
 				56BB01E0237ECF0100A1618C /* Client.h in Headers */,
-				5607F8542371B02A001A9AE9 /* ServerConfiguration.h in Headers */,
 				56BA3CEA23991DF300E66A8B /* SystemWrappable.h in Headers */,
 				56ED83D723875B6E0068D9D4 /* LockProducible.h in Headers */,
 				567CE168238541AF00C4EBF8 /* ThreadProducible.h in Headers */,
+				56AAC10523994FBE0035E6C9 /* ServerConfiguration.h in Headers */,
 				56BB01E7237ED4F100A1618C /* ClientHandle.h in Headers */,
 				56AAC0FF239945CF0035E6C9 /* ClientConfiguration.h in Headers */,
 				56BB01E8237ED4F100A1618C /* ClientDelegate.h in Headers */,
@@ -687,7 +691,6 @@
 				56A177D32382A02F00C9AA63 /* ServerHandle.h in Headers */,
 				56A177D42382A02F00C9AA63 /* ServerDelegate.h in Headers */,
 				567CE142238479F300C4EBF8 /* Lockable.h in Headers */,
-				56A177D52382A02F00C9AA63 /* ServerConfiguration.h in Headers */,
 				56A177D62382A02F00C9AA63 /* Client.h in Headers */,
 				563875172385E9ED00E85106 /* Dispatch.h in Headers */,
 				56A177D72382A02F00C9AA63 /* ClientHandle.h in Headers */,
@@ -696,6 +699,7 @@
 				56ED83D623875B6D0068D9D4 /* LockProducible.h in Headers */,
 				567CE167238541AF00C4EBF8 /* ThreadProducible.h in Headers */,
 				56A177DA2382A02F00C9AA63 /* Connection.h in Headers */,
+				56AAC10623994FBE0035E6C9 /* ServerConfiguration.h in Headers */,
 				56A177DB2382A02F00C9AA63 /* ConnectionHandle.h in Headers */,
 				56AAC100239945CF0035E6C9 /* ClientConfiguration.h in Headers */,
 				567CE11D2384152800C4EBF8 /* NetworkWrappable.h in Headers */,
@@ -870,6 +874,7 @@
 				56BA3CE623991DDD00E66A8B /* SystemWrapper.m in Sources */,
 				5607F82C23718AD5001A9AE9 /* Server.m in Sources */,
 				563875182385E9ED00E85106 /* Dispatch.m in Sources */,
+				56AAC10723994FBE0035E6C9 /* ServerConfiguration.m in Sources */,
 				567CE1242384153600C4EBF8 /* NetworkWrapper.m in Sources */,
 				567CE14923847B3800C4EBF8 /* ResourceLock.m in Sources */,
 				5607F85B2371D742001A9AE9 /* IONetworkHandler.m in Sources */,
@@ -894,6 +899,7 @@
 				56BA3CE723991DDD00E66A8B /* SystemWrapper.m in Sources */,
 				56A177F62382A73D00C9AA63 /* Exceptions.m in Sources */,
 				563875192385E9ED00E85106 /* Dispatch.m in Sources */,
+				56AAC10823994FBE0035E6C9 /* ServerConfiguration.m in Sources */,
 				567CE1252384153600C4EBF8 /* NetworkWrapper.m in Sources */,
 				567CE14A23847B3800C4EBF8 /* ResourceLock.m in Sources */,
 				56A177F72382A73D00C9AA63 /* NetworkManager.m in Sources */,

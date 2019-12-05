@@ -9,12 +9,13 @@
 #import <Foundation/Foundation.h>
 
 #import "ServerDelegate.h"
+#import "ServerConfiguration.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol ServerHandle<NSObject>
 @required
-@property (atomic, readonly) struct ServerConfiguration configuration;
+@property (atomic, readonly) ServerConfiguration * configuration;
 @property (atomic, nullable, weak) NSObject<ServerDelegate>* delegate;
 -(void)boot;
 -(BOOL)isRunning;

@@ -37,10 +37,10 @@
 
 @implementation Server
 @synthesize delegate=_delegate;
--(instancetype)initWithConfiguratoin: (struct ServerConfiguration) configuration {
+-(instancetype)initWithConfiguratoin: (ServerConfiguration *) configuration {
     return [self initWithConfiguratoin:configuration notificationQueue:dispatch_get_main_queue()];
 }
--(instancetype)initWithConfiguratoin: (struct ServerConfiguration) configuration
+-(instancetype)initWithConfiguratoin: (ServerConfiguration *) configuration
                    notificationQueue: (dispatch_queue_t) notificationQueue {
     return [self initWithConfiguratoin:configuration
                      notificationQueue:[[Dispatch alloc] initWithDispatchQueue: notificationQueue]
@@ -49,11 +49,11 @@
                            lockFactory:[ResourceLockFactory new]
                          systemWrapper:[SystemWrapper new]];
 }
--(instancetype)initWithConfiguratoin: (struct ServerConfiguration) configuration
-                   notificationQueue: (NSObject<Dispatchable>*) notificationQueue
-                      networkManager: (NSObject<NetworkManageable>*) networkManager
-                       threadFactory: (NSObject<ThreadProducible>*) threadFactory
-                         lockFactory: (NSObject<LockProducible>*) lockFactory
+-(instancetype)initWithConfiguratoin: (ServerConfiguration *) configuration
+                   notificationQueue: (NSObject<Dispatchable> *) notificationQueue
+                      networkManager: (NSObject<NetworkManageable> *) networkManager
+                       threadFactory: (NSObject<ThreadProducible> *) threadFactory
+                         lockFactory: (NSObject<LockProducible> *) lockFactory
                        systemWrapper: (NSObject<SystemWrappable> *) systemWrapper {
     self = [super init];
     if (self) {
