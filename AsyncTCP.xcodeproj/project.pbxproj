@@ -287,13 +287,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5289F437CDCCB44B1AE6F9FF /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		5607F810237189AC001A9AE9 = {
 			isa = PBXGroup;
 			children = (
@@ -301,7 +294,6 @@
 				56A177AE23829F1700C9AA63 /* AsyncTCPTests */,
 				5607F81C237189AC001A9AE9 /* AsyncTCP */,
 				5607F81B237189AC001A9AE9 /* Products */,
-				5289F437CDCCB44B1AE6F9FF /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
