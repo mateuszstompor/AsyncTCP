@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "AsyncTCP"
-  spec.version      = "0.0.8"
+  spec.version      = "0.0.9"
   spec.summary      = "Lightweight, simple and asynchronous TCP sockets"
 
   # This description is used to generate tags and improve search results.
@@ -28,7 +28,7 @@ Pod::Spec.new do |spec|
   spec.description  = "A tiny library easing TCP connections handling. Provides a set of classes for the user to connect to a remote server as a client and is able to host a server on its own"
   spec.homepage     = "https://github.com/mateuszstompor/AsyncTCP"
   spec.license      = "MIT"
-  spec.license      = { :type => "MIT", :file => "LICENSE" }
+  spec.license      = {:type => "MIT", :file => "LICENSE"}
 
   # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -40,7 +40,7 @@ Pod::Spec.new do |spec|
   #  profile URL.
   #
 
-  spec.author             = { "Mateusz Stompór" => "mateusz.stompor@gmail.com" }
+  spec.author             = {"Mateusz Stompór" => "mateusz.stompor@gmail.com"}
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -57,7 +57,7 @@ Pod::Spec.new do |spec|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  spec.source       = { :git => "https://github.com/mateuszstompor/AsyncTCP.git", :tag => "#{spec.version}" }
+  spec.source       = {:git => "https://github.com/mateuszstompor/AsyncTCP.git", :tag => "#{spec.version}"}
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
