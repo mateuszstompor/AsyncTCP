@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -1087,6 +1087,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stompor.mateusz.asynctcp.ios;
 				PRODUCT_MODULE_NAME = AsyncTCP;
 				PRODUCT_NAME = AsyncTCP;
@@ -1114,6 +1115,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stompor.mateusz.asynctcp.ios;
 				PRODUCT_MODULE_NAME = AsyncTCP;
 				PRODUCT_NAME = AsyncTCP;
@@ -1143,6 +1145,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MARKETING_VERSION = 0.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stompor.mateusz.asynctcp.macos;
 				PRODUCT_NAME = AsyncTCP;
 				SDKROOT = macosx;
@@ -1170,6 +1173,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MARKETING_VERSION = 0.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stompor.mateusz.asynctcp.macos;
 				PRODUCT_NAME = AsyncTCP;
 				SDKROOT = macosx;
