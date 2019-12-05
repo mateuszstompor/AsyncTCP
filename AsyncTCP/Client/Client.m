@@ -95,7 +95,7 @@
     while(YES) {
         [resourceLock aquireLock];
         if(!thread.cancelled) {
-            if (connection == nil) {
+            if (connection == nil || [connection state] == closed) {
                 if ([networkManager connect:identity]) {
                     Connection * newConnection = [[Connection alloc] initWithIdentity:identity
                                                                             chunkSize:_configuration.chunkSize
@@ -111,7 +111,17 @@
                     [resourceLock aquireLock];
                 }
             } else {
-                [connection performIO];
+                if ([self shouldBeClosed:connection]) {
+                    [connection close];
+                    __weak Client * weakSelf = self;
+                    Connection * conn = connection;
+                    [notificationQueue async:^{
+                        [weakSelf.delegate connectionHasBeenClosed: conn];
+                    }];
+                    
+                } else {
+                    [connection performIO];
+                }
             }
         } else {
             [resourceLock releaseLock];
@@ -145,14 +155,26 @@
         }
         thread = nil;
     }
-    if(connection != nil) {
+    if(connection != nil && connection.state != closed) {
         [connection close];
-        connection = nil;
+        __weak Client * weakSelf = self;
+        Connection * conn = connection;
+        [notificationQueue async:^{
+            [weakSelf.delegate connectionHasBeenClosed: conn];
+        }];
     }
     if(identity != nil) {
         [networkManager close:identity];
         identity = nil;
     }
     [resourceLock releaseLock];
+}
+-(BOOL)shouldBeClosed: (Connection *) connection {
+    return [connection totalErrorsInRow] > _configuration.errorsBeforeConnectionClosing ||
+    [self hasConnectionTimedOut: connection] ||
+    [connection isClosed];
+}
+-(BOOL)hasConnectionTimedOut: (Connection *) connection {
+    return [connection lastInteractionInterval] > _configuration.connectionTimeout;
 }
 @end

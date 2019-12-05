@@ -21,7 +21,8 @@
                                                                                   port:57800
                                                                              chunkSize:30
                                                                      connectionTimeout:5
-                                                            eventLoopMicrosecondsDelay:40];
+                                                            eventLoopMicrosecondsDelay:40
+                                                         errorsBeforeConnectionClosing:3];
     client = [[Client alloc] initWithConfiguration:configuration];
 }
 -(void)testConfiguration {
@@ -30,5 +31,6 @@
     XCTAssertEqual([client configuration].chunkSize, 30);
     XCTAssertEqual([client configuration].connectionTimeout, 5);
     XCTAssertEqual([client configuration].eventLoopMicrosecondsDelay, 40);
+    XCTAssertEqual([client configuration].errorsBeforeConnectionClosing, 3);
 }
 @end

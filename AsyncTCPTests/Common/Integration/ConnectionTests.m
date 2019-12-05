@@ -87,7 +87,8 @@
                                                                                   port:8090
                                                                              chunkSize:10
                                                                      connectionTimeout:10
-                                                            eventLoopMicrosecondsDelay:10];
+                                                            eventLoopMicrosecondsDelay:10
+                                                         errorsBeforeConnectionClosing:3];
     client = [[Client alloc] initWithConfiguration:configuration];
 }
 -(void)setUp {
@@ -107,9 +108,53 @@
     client.delegate = clientHandler;
     [server boot];
     [client boot];
-    [self waitForExpectations:@[clientHasEstablishedConnection, serverHasEstablishedConnection] timeout:10];
+    [self waitForExpectations:@[clientHasEstablishedConnection,
+                                serverHasEstablishedConnection] timeout:10];
     [client shutDown: YES];
     [server shutDown:YES];
     [self waitForExpectations:@[serverHasLostConnection] timeout:10];
+}
+-(void)testClosingConnectionWhenClientGoesDown {
+    XCTestExpectation * clientHasEstablishedConnection = [XCTestExpectation new];
+    XCTestExpectation * clientHasLostConnection = [XCTestExpectation new];
+    ConnectionClientHandler * clientHandler = [[ConnectionClientHandler alloc] initWithConnectionEstablishedExpectation:clientHasEstablishedConnection
+                                                                                                       connectionClosed:clientHasLostConnection];
+    XCTestExpectation * serverHasEstablishedConnection = [XCTestExpectation new];
+    XCTestExpectation * serverHasLostConnection = [XCTestExpectation new];
+    ConnectionServerHandler * serverHandler = [[ConnectionServerHandler alloc] initWithConnectionEstablished:serverHasEstablishedConnection
+                                                                                            connectionBroken:serverHasLostConnection];
+    server.delegate = serverHandler;
+    client.delegate = clientHandler;
+    [server boot];
+    [client boot];
+    [self waitForExpectations:@[clientHasEstablishedConnection,
+                                serverHasEstablishedConnection]
+                      timeout:10];
+    [client shutDown: NO];
+    [self waitForExpectations: @[clientHasLostConnection, serverHasLostConnection]
+                      timeout:10];
+    [server shutDown: NO];
+}
+-(void)testClosingConnectionWhenServerGoesDown {
+    XCTestExpectation * clientHasEstablishedConnection = [XCTestExpectation new];
+    XCTestExpectation * clientHasLostConnection = [XCTestExpectation new];
+    ConnectionClientHandler * clientHandler = [[ConnectionClientHandler alloc] initWithConnectionEstablishedExpectation:clientHasEstablishedConnection
+                                                                                                       connectionClosed:clientHasLostConnection];
+    XCTestExpectation * serverHasEstablishedConnection = [XCTestExpectation new];
+    XCTestExpectation * serverHasLostConnection = [XCTestExpectation new];
+    ConnectionServerHandler * serverHandler = [[ConnectionServerHandler alloc] initWithConnectionEstablished:serverHasEstablishedConnection
+                                                                                            connectionBroken:serverHasLostConnection];
+    server.delegate = serverHandler;
+    client.delegate = clientHandler;
+    [server boot];
+    [client boot];
+    [self waitForExpectations:@[clientHasEstablishedConnection,
+                                serverHasEstablishedConnection]
+                      timeout:10];
+    [server shutDown: NO];
+    [self waitForExpectations: @[clientHasLostConnection,
+                                 serverHasLostConnection]
+                      timeout:10];
+    [client shutDown: NO];
 }
 @end

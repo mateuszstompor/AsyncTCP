@@ -24,7 +24,8 @@
                                                                                   port:5001
                                                                              chunkSize:50
                                                                      connectionTimeout:5
-                                                            eventLoopMicrosecondsDelay:40];
+                                                            eventLoopMicrosecondsDelay:40
+                                                         errorsBeforeConnectionClosing:3];
     threadFactory = [CountingThreadFactory new];
     client = [[Client alloc] initWithConfiguration:configuration
                                  notificationQueue:[Dispatch new]

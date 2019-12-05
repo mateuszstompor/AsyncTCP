@@ -9,7 +9,7 @@
 #import <XCTest/XCTest.h>
 #import <AsyncTCP/AsyncTCP.h>
 
-@interface StateTests : XCTestCase
+@interface StateTests: XCTestCase
 {
     Client * client;
 }
@@ -21,7 +21,8 @@
                                                                                   port:5001
                                                                              chunkSize:50
                                                                      connectionTimeout:5
-                                                            eventLoopMicrosecondsDelay:50];
+                                                            eventLoopMicrosecondsDelay:50
+                                                         errorsBeforeConnectionClosing:3];
     client = [[Client alloc] initWithConfiguration:configuration];
 }
 -(void)testInitialState {
