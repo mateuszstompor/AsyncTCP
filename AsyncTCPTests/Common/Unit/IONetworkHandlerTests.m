@@ -10,7 +10,7 @@
 
 #import <AsyncTCP/AsyncTCP.h>
 
-@interface PartialSendMock: NSObject<NetworkWrappable>
+@interface PartialSendMock: NetworkWrapper
 @end
 
 @implementation PartialSendMock
@@ -22,7 +22,7 @@
 }
 @end
 
-@interface CompleteSendMock: NSObject<NetworkWrappable>
+@interface CompleteSendMock: NetworkWrapper
 @end
 
 @implementation CompleteSendMock
@@ -40,7 +40,7 @@
 }
 @end
 
-@interface ResourceTemporarilyUnavailableMock: NSObject<NetworkWrappable>
+@interface ResourceTemporarilyUnavailableMock: NetworkWrapper
 @end
 
 @implementation ResourceTemporarilyUnavailableMock
@@ -55,7 +55,7 @@
 }
 @end
 
-@interface OperationWouldBlockMock: NSObject<NetworkWrappable>
+@interface OperationWouldBlockMock: NetworkWrapper
 @end
 
 @implementation OperationWouldBlockMock
@@ -70,7 +70,7 @@
 }
 @end
 
-@interface ConnectionResentWhileSendMock: NSObject<NetworkWrappable>
+@interface ConnectionResentWhileSendMock: NetworkWrapper
 @end
 
 @implementation ConnectionResentWhileSendMock
