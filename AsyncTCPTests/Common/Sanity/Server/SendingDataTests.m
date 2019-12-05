@@ -71,8 +71,7 @@
 -(void)testEventsReceivedWhileConnectionDelegateIsNotSet {
     XCTestExpectation * clientDisconnected = [[XCTestExpectation alloc] initWithDescription:@"Client has disconnected"];
     XCTestExpectation * clientConnectedCallback = [[XCTestExpectation alloc] initWithDescription:@"Client has connected"];
-    XCTestExpectation * dataSendExpectation = [[XCTestExpectation alloc] initWithDescription:@"Data send to client successfully"];
-    handler = [[SendingDataServerHandler alloc] initWithExpectectionAfterSuccessfulDataSending:dataSendExpectation
+    handler = [[SendingDataServerHandler alloc] initWithExpectectionAfterSuccessfulDataSending:nil
                                                                             clientHasConnected:clientConnectedCallback
                                                                          clientHasDisconnected:clientDisconnected];
     server.delegate = handler;
@@ -83,7 +82,7 @@
                                                                    handler:nil];
     [self waitForExpectations:@[clientHasConnected] timeout:3];
     XCTAssertTrue([handler sendData:[@"hello" dataUsingEncoding:NSUTF8StringEncoding]]);
-    [self waitForExpectations:@[clientConnectedCallback, dataSendExpectation, clientDisconnected] timeout:10 enforceOrder:YES];
+    [self waitForExpectations:@[clientConnectedCallback, clientDisconnected] timeout:10 enforceOrder:YES];
     [client close];
     [server shutDown:YES];
 }
