@@ -30,23 +30,28 @@ All components are loosly coupled, as a result the code is testable and **tested
 ### Setting up a server
 First of all define server's boot parameters
 ```objective-c
-struct ServerConfiguration configuration;
-// Port is a number in range from 0 to 65535
-configuration.port = 47851;
-// Chunk size is a buffer size
-configuration.chunkSize = 36;
-// Time of inactivity after which client's connection is going to be closed
-configuration.connectionTimeout = 5;
-// Number of clients allowed to connect
-configuration.maximalConnectionsCount = 1;
-// Interval between server's main loop evaluations. Adjust depending on your network speed and device's resources utilization
-configuration.eventLoopMicrosecondsDelay = 20;
-// Number of errors after which the connection will be closed
-configuration.errorsBeforeConnectionClosing = 3;
+ServerConfiguration * configuration = [[ServerConfiguration alloc] initWithPort:57880
+                                                        maximalConnectionsCount:5
+                                                                      chunkSize:40
+                                                              connectionTimeout:4
+                                                     eventLoopMicrosecondsDelay:40
+                                                  errorsBeforeConnectionClosing:3];
+
+// Port - A number in range from 0 to 65535
+// Chunk size - Buffer size
+// Connection Timeout - Time of inactivity after which client's connection is going to be closed
+// Maximal connections count - Number of clients allowed to connect
+// Eventloop microseconds delay - Interval between server's main loop evaluations. Adjust depending on your network speed and device's resources utilization
+// Errors begore connection closing - Number of errors after which the connection will be closed
 ```
 Create a server with this specific configuration. By default all notification will be passed to the main dispatch queue.
 ```objective-c
 NSObject<ServerHandle> * asyncServer = [[Server alloc] initWithConfiguratoin:configuration];
+```
+If you wish to use a different queue then create an instance in the following way:
+```objective-c
+server = [[Server alloc] initWithConfiguratoin:configuration 
+                             notificationQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)];
 ```
 Notifications will be send only if the delegate of the server is set. Otherwise connections won't be accepted and data received. To receive notifications implement `ServerDelegate` protocol.
 <h4>ServerDelegate</h4>
@@ -60,14 +65,32 @@ Notifications will be send only if the delegate of the server is set. Otherwise 
 ```objective-c
 @implementation ServerHandler
 -(void)newClientHasConnected: (Connection*) connection {
-    // Handle the connection here somehow
+    // Handle the connection here somehow, set connection's delegate
 }
 -(void)clientHasDisconnected: (Connection*) connection {
     // Ivoked when a client disconnected or the connection hung 
 }
 @end
 ```
-One additional step to make is to implement `ConnectionDelegate` protocol. It is an interface which lets you receive a notification when data is received or connection's state updated.
+<h4>ClientDelegate</h4>
+
+If you want to use client analyse interface below:
+```objective-c
+@interface ClientHandler: NSObject<ClientDelegate>
+@end
+```
+**Implementation**
+```objective-c
+@implementation ClientHandler
+-(void)connectionHasBeenEstablished: (Connection *) connection {
+    // Handle the connection here somehow, set connection's delegate
+}
+-(void)connectionHasBeenClosed: (Connection*) connection {
+    // Ivoked when a client disconnected or the connection hung 
+}
+@end
+```
+One additional step to make is to implement `ConnectionDelegate` protocol. It is an interface which lets you receive a notification when data is received. Set an instance as `ConnectionDelegate` as soon as you receive `newClientHasConnected` callback in case of `ServerDelegate` or `connectionHasBeenEstablished` in case of `ClientDelegate`.
 <h4>ConnectionDelegate</h4>
 
 **Interface**
