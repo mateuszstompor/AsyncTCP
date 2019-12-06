@@ -162,7 +162,8 @@
     }
 }
 -(BOOL)isValidAndHealthy:(nonnull Identity *)identity {
-    return [descriptorControlWrapper descriptorStatus:identity.descriptor] != 0;
+    return [descriptorControlWrapper descriptorStatus:identity.descriptor] != -1 ||
+    [networkWrapper errnoValue] != EBADF;
 }
 -(nonnull NSData *)readBytes:(ssize_t)amount identity:(nonnull Identity *)identity {
     return [ioNetworkHandler readBytes:amount fileDescriptor:identity.descriptor];

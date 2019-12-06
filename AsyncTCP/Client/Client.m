@@ -85,11 +85,11 @@
                                      reason:exception.reason
                                    userInfo:nil];
     }
-    
-    thread = [threadFactory createNewThreadWithTarget:self selector:@selector(serve) name:@"ClientThread"];
+    thread = [threadFactory createNewThreadWithTarget:self
+                                             selector:@selector(serve)
+                                                 name:@"ClientThread"];
     [thread start];
     [resourceLock releaseLock];
-
 }
 -(void)serve {
     while(YES) {
@@ -109,6 +109,12 @@
                         [weakSelf.delegate connectionHasBeenEstablished:newConnection];
                     }];
                     [resourceLock aquireLock];
+                } else if (![networkManager isValidAndHealthy:identity]) {
+                    [networkManager close:identity];
+                    @try {
+                        identity = [networkManager clientIdentityToHost:_configuration.address
+                                                               withPort:_configuration.port];
+                    } @catch (IdentityCreationException * exception) { }
                 }
             } else {
                 if ([self shouldBeClosed:connection]) {
@@ -118,7 +124,6 @@
                     [notificationQueue async:^{
                         [weakSelf.delegate connectionHasBeenClosed: conn];
                     }];
-                    
                 } else {
                     [connection performIO];
                 }
