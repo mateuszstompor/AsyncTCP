@@ -77,7 +77,7 @@
     ServerConfiguration * configuration = [[ServerConfiguration alloc] initWithPort:8090
                                                             maximalConnectionsCount:1
                                                                           chunkSize:10
-                                                                  connectionTimeout:5
+                                                                  connectionTimeout:20
                                                          eventLoopMicrosecondsDelay:10
                                                       errorsBeforeConnectionClosing:3];
     server = [[Server alloc] initWithConfiguratoin:configuration];
@@ -86,7 +86,7 @@
     ClientConfiguration * configuration = [[ClientConfiguration alloc] initWithAddress:@"127.0.0.1"
                                                                                   port:8090
                                                                              chunkSize:10
-                                                                     connectionTimeout:10
+                                                                     connectionTimeout:20
                                                             eventLoopMicrosecondsDelay:10
                                                          errorsBeforeConnectionClosing:3];
     client = [[Client alloc] initWithConfiguration:configuration];
