@@ -120,9 +120,9 @@
                 if ([self shouldBeClosed:connection]) {
                     [connection close];
                     __weak Client * weakSelf = self;
-                    Connection * conn = connection;
+                    Connection * connectionCopy = connection;
                     [notificationQueue async:^{
-                        [weakSelf.delegate connectionHasBeenClosed: conn];
+                        [weakSelf.delegate connectionHasBeenClosed: connectionCopy];
                     }];
                 } else {
                     [connection performIO];
@@ -163,9 +163,9 @@
     if(connection != nil && connection.state != closed) {
         [connection close];
         __weak Client * weakSelf = self;
-        Connection * conn = connection;
+        Connection * connectionCopy = connection;
         [notificationQueue async:^{
-            [weakSelf.delegate connectionHasBeenClosed: conn];
+            [weakSelf.delegate connectionHasBeenClosed: connectionCopy];
         }];
     }
     if(identity != nil) {
