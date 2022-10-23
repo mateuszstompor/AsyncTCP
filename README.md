@@ -4,7 +4,7 @@
 <h1 align="center">AsyncTCP</h1>
 <p align="center">  
     <a href="https://github.com/mateuszstompor/AsyncTCP/actions/workflows/tests.yml">
-        <img src="https://github.com/mateuszstompor/AsyncTCP/actions/workflows/tests.yml/badge.svg" height="18pt" alt="Build status"/>
+        <img src="https://github.com/mateuszstompor/AsyncTCP/actions/workflows/tests.yml/badge.svg?branch=master" height="18pt" alt="Build status"/>
     </a>  
     <a href="https://cocoapods.org/pods/AsyncTCP">
         <img src="https://img.shields.io/cocoapods/v/AsyncTCP" height="18pt" alt="Cocoapod"/>
