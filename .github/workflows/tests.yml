@@ -1,0 +1,16 @@
+name: Tests
+
+on:
+  workflow_call:
+  pull_request:
+
+jobs:
+  unittests:
+    runs-on: macOS-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v1
+    - name: Test Swift Framework
+      run: xcodebuild -project AsyncTCP.xcodeproj
+                      -scheme AsyncTCPTests test
+                      -destination 'platform=macOS'

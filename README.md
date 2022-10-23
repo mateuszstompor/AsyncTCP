@@ -13,7 +13,7 @@
         <img src="https://img.shields.io/badge/License-MIT-yellow.svg" height="18pt" alt="License"/>
     </a>
     <a href="https://www.travis-ci.org/mateuszstompor/AsyncTCP">
-        <img src="https://www.travis-ci.org/mateuszstompor/AsyncTCP.svg?branch=master" height="18pt" alt="Build status"/>
+        <img src="https://github.com/mateuszstompor/AsyncTCP/actions/workflows/tests.yml/badge.svg" height="18pt" alt="Build status"/>
     </a>
 </p>
 

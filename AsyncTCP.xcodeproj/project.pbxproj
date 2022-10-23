@@ -20,125 +20,56 @@
 		560C3DA42373217200E711F4 /* ConnectionHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = 560C3DA22373217200E711F4 /* ConnectionHandle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		560C3DA8237321F200E711F4 /* ServerHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = 560C3DA6237321F200E711F4 /* ServerHandle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		563874F92385590700E85106 /* ServerLifecycleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 563874F82385590700E85106 /* ServerLifecycleTests.m */; };
-		563874FA2385590700E85106 /* ServerLifecycleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 563874F82385590700E85106 /* ServerLifecycleTests.m */; };
 		563874FD23855D3900E85106 /* ClientLifeCycleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 563874FC23855D3900E85106 /* ClientLifeCycleTests.m */; };
-		563874FE23855D3900E85106 /* ClientLifeCycleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 563874FC23855D3900E85106 /* ClientLifeCycleTests.m */; };
 		5638750023856D5300E85106 /* ReceivingEventsAfterConnectingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 563874FF23856D5300E85106 /* ReceivingEventsAfterConnectingTests.m */; };
-		5638750123856D5300E85106 /* ReceivingEventsAfterConnectingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 563874FF23856D5300E85106 /* ReceivingEventsAfterConnectingTests.m */; };
 		5638750623856FC600E85106 /* TCPTestsClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5638750523856FC600E85106 /* TCPTestsClient.m */; };
-		5638750723856FC600E85106 /* TCPTestsClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5638750523856FC600E85106 /* TCPTestsClient.m */; };
 		5638750A2385855100E85106 /* ReceivingConnectionEventsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 563875092385855100E85106 /* ReceivingConnectionEventsTests.m */; };
-		5638750B2385855100E85106 /* ReceivingConnectionEventsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 563875092385855100E85106 /* ReceivingConnectionEventsTests.m */; };
 		563875102385BC9700E85106 /* LockingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5638750F2385BC9700E85106 /* LockingTests.m */; };
-		563875112385BC9700E85106 /* LockingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5638750F2385BC9700E85106 /* LockingTests.m */; };
 		563875162385E9ED00E85106 /* Dispatch.h in Headers */ = {isa = PBXBuildFile; fileRef = 563875142385E9ED00E85106 /* Dispatch.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		563875172385E9ED00E85106 /* Dispatch.h in Headers */ = {isa = PBXBuildFile; fileRef = 563875142385E9ED00E85106 /* Dispatch.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		563875182385E9ED00E85106 /* Dispatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 563875152385E9ED00E85106 /* Dispatch.m */; };
-		563875192385E9ED00E85106 /* Dispatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 563875152385E9ED00E85106 /* Dispatch.m */; };
 		5638751C2385EA5600E85106 /* Dispatchable.h in Headers */ = {isa = PBXBuildFile; fileRef = 5638751B2385EA0600E85106 /* Dispatchable.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5638751D2385EA5700E85106 /* Dispatchable.h in Headers */ = {isa = PBXBuildFile; fileRef = 5638751B2385EA0600E85106 /* Dispatchable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		563D399E2387F72500FD23F2 /* ConnectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 563D399D2387F72500FD23F2 /* ConnectionTests.m */; };
-		563D399F2387F72500FD23F2 /* ConnectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 563D399D2387F72500FD23F2 /* ConnectionTests.m */; };
 		564BE501238D500B00279F3E /* ReceivingServerEventsConditionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 564BE500238D500B00279F3E /* ReceivingServerEventsConditionsTests.m */; };
-		564BE502238D500B00279F3E /* ReceivingServerEventsConditionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 564BE500238D500B00279F3E /* ReceivingServerEventsConditionsTests.m */; };
 		564D447323738F2E00FA0140 /* IONetworkHandleable.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F85C2371D765001A9AE9 /* IONetworkHandleable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		564D447423738F2E00FA0140 /* ConnectionState.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F8562371CCD0001A9AE9 /* ConnectionState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		565ED4872387DC6B00F5D04D /* BootingProblemsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 565ED4862387DC6B00F5D04D /* BootingProblemsTests.m */; };
-		565ED4882387DC6B00F5D04D /* BootingProblemsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 565ED4862387DC6B00F5D04D /* BootingProblemsTests.m */; };
 		56744C212372C32000C2B37D /* DescriptorControlWrappable.h in Headers */ = {isa = PBXBuildFile; fileRef = 56744C1F2372C32000C2B37D /* DescriptorControlWrappable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56744C252372C32D00C2B37D /* DescriptorControlWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 56744C232372C32D00C2B37D /* DescriptorControlWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56744C262372C32D00C2B37D /* DescriptorControlWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 56744C242372C32D00C2B37D /* DescriptorControlWrapper.m */; };
 		56744C322372C66900C2B37D /* NetworkManageable.h in Headers */ = {isa = PBXBuildFile; fileRef = 56744C302372C66900C2B37D /* NetworkManageable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		567CE11C2384152800C4EBF8 /* NetworkWrappable.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE11A2384152800C4EBF8 /* NetworkWrappable.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		567CE11D2384152800C4EBF8 /* NetworkWrappable.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE11A2384152800C4EBF8 /* NetworkWrappable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		567CE1222384153600C4EBF8 /* NetworkWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE1202384153600C4EBF8 /* NetworkWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		567CE1232384153600C4EBF8 /* NetworkWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE1202384153600C4EBF8 /* NetworkWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		567CE1242384153600C4EBF8 /* NetworkWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 567CE1212384153600C4EBF8 /* NetworkWrapper.m */; };
-		567CE1252384153600C4EBF8 /* NetworkWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 567CE1212384153600C4EBF8 /* NetworkWrapper.m */; };
 		567CE1272384182C00C4EBF8 /* IONetworkHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 567CE1262384182C00C4EBF8 /* IONetworkHandlerTests.m */; };
-		567CE1282384182C00C4EBF8 /* IONetworkHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 567CE1262384182C00C4EBF8 /* IONetworkHandlerTests.m */; };
 		567CE12B23842A4800C4EBF8 /* SocketOptionsWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE12923842A4800C4EBF8 /* SocketOptionsWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		567CE12C23842A4800C4EBF8 /* SocketOptionsWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE12923842A4800C4EBF8 /* SocketOptionsWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		567CE12D23842A4800C4EBF8 /* SocketOptionsWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 567CE12A23842A4800C4EBF8 /* SocketOptionsWrapper.m */; };
-		567CE12E23842A4800C4EBF8 /* SocketOptionsWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 567CE12A23842A4800C4EBF8 /* SocketOptionsWrapper.m */; };
 		567CE13323842F9900C4EBF8 /* SocketOptionsWrappable.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE12F23842A5400C4EBF8 /* SocketOptionsWrappable.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		567CE13423842FA800C4EBF8 /* SocketOptionsWrappable.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE12F23842A5400C4EBF8 /* SocketOptionsWrappable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		567CE13A23843E7D00C4EBF8 /* Identity.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE13823843E7D00C4EBF8 /* Identity.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		567CE13B23843E7D00C4EBF8 /* Identity.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE13823843E7D00C4EBF8 /* Identity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		567CE13C23843E7D00C4EBF8 /* Identity.m in Sources */ = {isa = PBXBuildFile; fileRef = 567CE13923843E7D00C4EBF8 /* Identity.m */; };
-		567CE13D23843E7D00C4EBF8 /* Identity.m in Sources */ = {isa = PBXBuildFile; fileRef = 567CE13923843E7D00C4EBF8 /* Identity.m */; };
 		567CE141238479F300C4EBF8 /* Lockable.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE13F238479F300C4EBF8 /* Lockable.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		567CE142238479F300C4EBF8 /* Lockable.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE13F238479F300C4EBF8 /* Lockable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		567CE14723847B3800C4EBF8 /* ResourceLock.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE14523847B3800C4EBF8 /* ResourceLock.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		567CE14823847B3800C4EBF8 /* ResourceLock.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE14523847B3800C4EBF8 /* ResourceLock.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		567CE14923847B3800C4EBF8 /* ResourceLock.m in Sources */ = {isa = PBXBuildFile; fileRef = 567CE14623847B3800C4EBF8 /* ResourceLock.m */; };
-		567CE14A23847B3800C4EBF8 /* ResourceLock.m in Sources */ = {isa = PBXBuildFile; fileRef = 567CE14623847B3800C4EBF8 /* ResourceLock.m */; };
 		567CE15923853D9300C4EBF8 /* Thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE15723853D9300C4EBF8 /* Thread.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		567CE15A23853D9300C4EBF8 /* Thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE15723853D9300C4EBF8 /* Thread.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		567CE15B23853D9300C4EBF8 /* Thread.m in Sources */ = {isa = PBXBuildFile; fileRef = 567CE15823853D9300C4EBF8 /* Thread.m */; };
-		567CE15C23853D9300C4EBF8 /* Thread.m in Sources */ = {isa = PBXBuildFile; fileRef = 567CE15823853D9300C4EBF8 /* Thread.m */; };
 		567CE16023853F1B00C4EBF8 /* ThreadFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE15E23853F1B00C4EBF8 /* ThreadFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		567CE16123853F1B00C4EBF8 /* ThreadFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE15E23853F1B00C4EBF8 /* ThreadFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		567CE16223853F1B00C4EBF8 /* ThreadFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 567CE15F23853F1B00C4EBF8 /* ThreadFactory.m */; };
-		567CE16323853F1B00C4EBF8 /* ThreadFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 567CE15F23853F1B00C4EBF8 /* ThreadFactory.m */; };
-		567CE165238541A300C4EBF8 /* Threadable.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE15D23853D9D00C4EBF8 /* Threadable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		567CE166238541A300C4EBF8 /* Threadable.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE15D23853D9D00C4EBF8 /* Threadable.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		567CE167238541AF00C4EBF8 /* ThreadProducible.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE16423853F3900C4EBF8 /* ThreadProducible.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		567CE168238541AF00C4EBF8 /* ThreadProducible.h in Headers */ = {isa = PBXBuildFile; fileRef = 567CE16423853F3900C4EBF8 /* ThreadProducible.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		56A177C623829F7B00C9AA63 /* ServerConfigurationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 567744EB2381AFCD00CDB409 /* ServerConfigurationTests.m */; };
-		56A177CB2382A02F00C9AA63 /* Exceptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BB01EB237EDD4A00A1618C /* Exceptions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		56A177CC2382A02F00C9AA63 /* NetworkManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F8442371937D001A9AE9 /* NetworkManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		56A177CD2382A02F00C9AA63 /* NetworkManageable.h in Headers */ = {isa = PBXBuildFile; fileRef = 56744C302372C66900C2B37D /* NetworkManageable.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		56A177CE2382A02F00C9AA63 /* DescriptorControlWrappable.h in Headers */ = {isa = PBXBuildFile; fileRef = 56744C1F2372C32000C2B37D /* DescriptorControlWrappable.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		56A177CF2382A02F00C9AA63 /* DescriptorControlWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 56744C232372C32D00C2B37D /* DescriptorControlWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		56A177D02382A02F00C9AA63 /* IONetworkHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F8582371D742001A9AE9 /* IONetworkHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		56A177D12382A02F00C9AA63 /* IONetworkHandleable.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F85C2371D765001A9AE9 /* IONetworkHandleable.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		56A177D22382A02F00C9AA63 /* Server.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F82923718AD5001A9AE9 /* Server.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		56A177D32382A02F00C9AA63 /* ServerHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = 560C3DA6237321F200E711F4 /* ServerHandle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		56A177D42382A02F00C9AA63 /* ServerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F82D23718E06001A9AE9 /* ServerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		56A177D62382A02F00C9AA63 /* Client.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BB01DE237ECF0100A1618C /* Client.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		56A177D72382A02F00C9AA63 /* ClientHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BB01E2237ECF5600A1618C /* ClientHandle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		56A177D82382A02F00C9AA63 /* ClientDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BB01E3237ECF6000A1618C /* ClientDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		56A177DA2382A02F00C9AA63 /* Connection.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F82523718AC6001A9AE9 /* Connection.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		56A177DB2382A02F00C9AA63 /* ConnectionHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = 560C3DA22373217200E711F4 /* ConnectionHandle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		56A177DC2382A02F00C9AA63 /* ConnectionDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F84D2371AA57001A9AE9 /* ConnectionDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		56A177DD2382A02F00C9AA63 /* ConnectionState.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F8562371CCD0001A9AE9 /* ConnectionState.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		56A177DE2382A04100C9AA63 /* AsyncTCP.h in Headers */ = {isa = PBXBuildFile; fileRef = 56A1779723829E6300C9AA63 /* AsyncTCP.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56A177E52382A1B000C9AA63 /* ClientConfigurationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 567744E82381AEDF00CDB409 /* ClientConfigurationTests.m */; };
 		56A177E62382A1B000C9AA63 /* ServerConfigurationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 567744EB2381AFCD00CDB409 /* ServerConfigurationTests.m */; };
 		56A177E92382A1E600C9AA63 /* AsyncTCP.h in Headers */ = {isa = PBXBuildFile; fileRef = 5607F81D237189AC001A9AE9 /* AsyncTCP.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56A177F02382A2CA00C9AA63 /* AsyncTCP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5607F81A237189AC001A9AE9 /* AsyncTCP.framework */; };
-		56A177F32382A5A200C9AA63 /* AsyncTCP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56A1779523829E6300C9AA63 /* AsyncTCP.framework */; };
-		56A177F42382A6D000C9AA63 /* ClientConfigurationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 567744E82381AEDF00CDB409 /* ClientConfigurationTests.m */; };
-		56A177F62382A73D00C9AA63 /* Exceptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BB01EC237EDD4A00A1618C /* Exceptions.m */; };
-		56A177F72382A73D00C9AA63 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5607F8452371937D001A9AE9 /* NetworkManager.m */; };
-		56A177F82382A73D00C9AA63 /* DescriptorControlWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 56744C242372C32D00C2B37D /* DescriptorControlWrapper.m */; };
-		56A177F92382A73D00C9AA63 /* IONetworkHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5607F8592371D742001A9AE9 /* IONetworkHandler.m */; };
-		56A177FA2382A73D00C9AA63 /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = 5607F82A23718AD5001A9AE9 /* Server.m */; };
-		56A177FB2382A73D00C9AA63 /* Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BB01DF237ECF0100A1618C /* Client.m */; };
-		56A177FC2382A73D00C9AA63 /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5607F82623718AC6001A9AE9 /* Connection.m */; };
 		56AAC0FF239945CF0035E6C9 /* ClientConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 56AAC0FD239945CF0035E6C9 /* ClientConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		56AAC100239945CF0035E6C9 /* ClientConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 56AAC0FD239945CF0035E6C9 /* ClientConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56AAC101239945CF0035E6C9 /* ClientConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 56AAC0FE239945CF0035E6C9 /* ClientConfiguration.m */; };
-		56AAC102239945CF0035E6C9 /* ClientConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 56AAC0FE239945CF0035E6C9 /* ClientConfiguration.m */; };
 		56AAC10523994FBE0035E6C9 /* ServerConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 56AAC10323994FBE0035E6C9 /* ServerConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		56AAC10623994FBE0035E6C9 /* ServerConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 56AAC10323994FBE0035E6C9 /* ServerConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56AAC10723994FBE0035E6C9 /* ServerConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 56AAC10423994FBE0035E6C9 /* ServerConfiguration.m */; };
-		56AAC10823994FBE0035E6C9 /* ServerConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 56AAC10423994FBE0035E6C9 /* ServerConfiguration.m */; };
 		56BA3CD7239843D300E66A8B /* CountingThreadFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA3CD6239843D300E66A8B /* CountingThreadFactory.m */; };
-		56BA3CD8239843D300E66A8B /* CountingThreadFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA3CD6239843D300E66A8B /* CountingThreadFactory.m */; };
 		56BA3CDB23984AC300E66A8B /* StateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA3CDA23984AC300E66A8B /* StateTests.m */; };
-		56BA3CDC23984AC300E66A8B /* StateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA3CDA23984AC300E66A8B /* StateTests.m */; };
 		56BA3CDE239851FC00E66A8B /* CreatingLocalIdentityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA3CDD239851FC00E66A8B /* CreatingLocalIdentityTests.m */; };
-		56BA3CDF239851FC00E66A8B /* CreatingLocalIdentityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA3CDD239851FC00E66A8B /* CreatingLocalIdentityTests.m */; };
 		56BA3CE423991DDD00E66A8B /* SystemWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BA3CE223991DDD00E66A8B /* SystemWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		56BA3CE523991DDD00E66A8B /* SystemWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BA3CE223991DDD00E66A8B /* SystemWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56BA3CE623991DDD00E66A8B /* SystemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA3CE323991DDD00E66A8B /* SystemWrapper.m */; };
-		56BA3CE723991DDD00E66A8B /* SystemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA3CE323991DDD00E66A8B /* SystemWrapper.m */; };
 		56BA3CEA23991DF300E66A8B /* SystemWrappable.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BA3CE823991DF300E66A8B /* SystemWrappable.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		56BA3CEB23991DF300E66A8B /* SystemWrappable.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BA3CE823991DF300E66A8B /* SystemWrappable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56BA6ACB2395AC4000AA0157 /* SocketPortCollisionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA6ACA2395AC4000AA0157 /* SocketPortCollisionTests.m */; };
-		56BA6ACC2395AC4000AA0157 /* SocketPortCollisionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BA6ACA2395AC4000AA0157 /* SocketPortCollisionTests.m */; };
 		56BB01E0237ECF0100A1618C /* Client.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BB01DE237ECF0100A1618C /* Client.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56BB01E1237ECF0100A1618C /* Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BB01DF237ECF0100A1618C /* Client.m */; };
 		56BB01E7237ED4F100A1618C /* ClientHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BB01E2237ECF5600A1618C /* ClientHandle.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -146,12 +77,8 @@
 		56BB01ED237EDD4A00A1618C /* Exceptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BB01EB237EDD4A00A1618C /* Exceptions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56BB01EE237EDD4A00A1618C /* Exceptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BB01EC237EDD4A00A1618C /* Exceptions.m */; };
 		56BDB6DC23872F2800D00BF2 /* SendingDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BDB6DB23872F2800D00BF2 /* SendingDataTests.m */; };
-		56BDB6DD23872F2800D00BF2 /* SendingDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BDB6DB23872F2800D00BF2 /* SendingDataTests.m */; };
 		56ED83D123875ADC0068D9D4 /* ResourceLockFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 56ED83CF23875ADC0068D9D4 /* ResourceLockFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		56ED83D223875ADC0068D9D4 /* ResourceLockFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 56ED83CF23875ADC0068D9D4 /* ResourceLockFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56ED83D323875ADC0068D9D4 /* ResourceLockFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 56ED83D023875ADC0068D9D4 /* ResourceLockFactory.m */; };
-		56ED83D423875ADC0068D9D4 /* ResourceLockFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 56ED83D023875ADC0068D9D4 /* ResourceLockFactory.m */; };
-		56ED83D623875B6D0068D9D4 /* LockProducible.h in Headers */ = {isa = PBXBuildFile; fileRef = 56ED83D523875AED0068D9D4 /* LockProducible.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56ED83D723875B6E0068D9D4 /* LockProducible.h in Headers */ = {isa = PBXBuildFile; fileRef = 56ED83D523875AED0068D9D4 /* LockProducible.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -162,13 +89,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 5607F819237189AC001A9AE9;
 			remoteInfo = "AsyncTCP-iOS";
-		};
-		56A177F12382A59C00C9AA63 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5607F811237189AC001A9AE9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 56A1779423829E6300C9AA63;
-			remoteInfo = "AsyncTCP-macOS";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -203,6 +123,7 @@
 		563D399D2387F72500FD23F2 /* ConnectionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectionTests.m; sourceTree = "<group>"; };
 		564BE500238D500B00279F3E /* ReceivingServerEventsConditionsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReceivingServerEventsConditionsTests.m; sourceTree = "<group>"; };
 		565ED4862387DC6B00F5D04D /* BootingProblemsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BootingProblemsTests.m; sourceTree = "<group>"; };
+		566DA3BA2905C6BF00AF8090 /* .github */ = {isa = PBXFileReference; lastKnownFileType = folder; path = .github; sourceTree = "<group>"; };
 		56744C1F2372C32000C2B37D /* DescriptorControlWrappable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DescriptorControlWrappable.h; sourceTree = "<group>"; };
 		56744C232372C32D00C2B37D /* DescriptorControlWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DescriptorControlWrapper.h; sourceTree = "<group>"; };
 		56744C242372C32D00C2B37D /* DescriptorControlWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DescriptorControlWrapper.m; sourceTree = "<group>"; };
@@ -228,12 +149,9 @@
 		567CE15F23853F1B00C4EBF8 /* ThreadFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThreadFactory.m; sourceTree = "<group>"; };
 		567CE16423853F3900C4EBF8 /* ThreadProducible.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThreadProducible.h; sourceTree = "<group>"; };
 		56942665238C40C200367993 /* AsyncTCP.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = AsyncTCP.podspec; sourceTree = "<group>"; };
-		56A1779523829E6300C9AA63 /* AsyncTCP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AsyncTCP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		56A1779723829E6300C9AA63 /* AsyncTCP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AsyncTCP.h; sourceTree = "<group>"; };
 		56A1779823829E6300C9AA63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		56A177A323829F0500C9AA63 /* AsyncTCPTests-macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AsyncTCPTests-macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		56A177A723829F0500C9AA63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		56A177B423829F5200C9AA63 /* AsyncTCPTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AsyncTCPTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		56A177B423829F5200C9AA63 /* AsyncTCPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AsyncTCPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		56A177B823829F5200C9AA63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56AAC0FD239945CF0035E6C9 /* ClientConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClientConfiguration.h; sourceTree = "<group>"; };
 		56AAC0FE239945CF0035E6C9 /* ClientConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClientConfiguration.m; sourceTree = "<group>"; };
@@ -270,21 +188,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		56A1779223829E6300C9AA63 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		56A177A023829F0500C9AA63 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				56A177F32382A5A200C9AA63 /* AsyncTCP.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		56A177B123829F5200C9AA63 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -299,6 +202,7 @@
 		5607F810237189AC001A9AE9 = {
 			isa = PBXGroup;
 			children = (
+				566DA3BA2905C6BF00AF8090 /* .github */,
 				56942665238C40C200367993 /* AsyncTCP.podspec */,
 				56DC863A239A4F7300D54371 /* Gemfile */,
 				56DC8637239A4F7300D54371 /* LICENSE */,
@@ -313,9 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				5607F81A237189AC001A9AE9 /* AsyncTCP.framework */,
-				56A1779523829E6300C9AA63 /* AsyncTCP.framework */,
-				56A177A323829F0500C9AA63 /* AsyncTCPTests-macOS.xctest */,
-				56A177B423829F5200C9AA63 /* AsyncTCPTests-iOS.xctest */,
+				56A177B423829F5200C9AA63 /* AsyncTCPTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -543,21 +445,12 @@
 			path = macOS;
 			sourceTree = "<group>";
 		};
-		56A177A423829F0500C9AA63 /* AsyncTCPTests-macOS */ = {
-			isa = PBXGroup;
-			children = (
-				56A177A723829F0500C9AA63 /* Info.plist */,
-			);
-			path = "AsyncTCPTests-macOS";
-			sourceTree = "<group>";
-		};
 		56A177AE23829F1700C9AA63 /* AsyncTCPTests */ = {
 			isa = PBXGroup;
 			children = (
 				5638750323856FAF00E85106 /* Utilities */,
 				56A177AF23829F2100C9AA63 /* Common */,
-				56A177A423829F0500C9AA63 /* AsyncTCPTests-macOS */,
-				56A177B523829F5200C9AA63 /* AsyncTCPTests-iOS */,
+				56A177B523829F5200C9AA63 /* Supporting Files */,
 			);
 			path = AsyncTCPTests;
 			sourceTree = "<group>";
@@ -573,12 +466,12 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
-		56A177B523829F5200C9AA63 /* AsyncTCPTests-iOS */ = {
+		56A177B523829F5200C9AA63 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
 				56A177B823829F5200C9AA63 /* Info.plist */,
 			);
-			path = "AsyncTCPTests-iOS";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		56BA3CD92398467C00E66A8B /* Client */ = {
@@ -676,56 +569,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		56A1779023829E6300C9AA63 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				56A177CB2382A02F00C9AA63 /* Exceptions.h in Headers */,
-				567CE14823847B3800C4EBF8 /* ResourceLock.h in Headers */,
-				567CE1232384153600C4EBF8 /* NetworkWrapper.h in Headers */,
-				56A177CC2382A02F00C9AA63 /* NetworkManager.h in Headers */,
-				56ED83D223875ADC0068D9D4 /* ResourceLockFactory.h in Headers */,
-				56A177CD2382A02F00C9AA63 /* NetworkManageable.h in Headers */,
-				56A177CE2382A02F00C9AA63 /* DescriptorControlWrappable.h in Headers */,
-				56BA3CE523991DDD00E66A8B /* SystemWrapper.h in Headers */,
-				56A177CF2382A02F00C9AA63 /* DescriptorControlWrapper.h in Headers */,
-				56A177D02382A02F00C9AA63 /* IONetworkHandler.h in Headers */,
-				56A177D12382A02F00C9AA63 /* IONetworkHandleable.h in Headers */,
-				56A177D22382A02F00C9AA63 /* Server.h in Headers */,
-				567CE165238541A300C4EBF8 /* Threadable.h in Headers */,
-				5638751D2385EA5700E85106 /* Dispatchable.h in Headers */,
-				56A177D32382A02F00C9AA63 /* ServerHandle.h in Headers */,
-				56A177D42382A02F00C9AA63 /* ServerDelegate.h in Headers */,
-				567CE142238479F300C4EBF8 /* Lockable.h in Headers */,
-				56A177D62382A02F00C9AA63 /* Client.h in Headers */,
-				563875172385E9ED00E85106 /* Dispatch.h in Headers */,
-				56A177D72382A02F00C9AA63 /* ClientHandle.h in Headers */,
-				56A177D82382A02F00C9AA63 /* ClientDelegate.h in Headers */,
-				56BA3CEB23991DF300E66A8B /* SystemWrappable.h in Headers */,
-				56ED83D623875B6D0068D9D4 /* LockProducible.h in Headers */,
-				567CE167238541AF00C4EBF8 /* ThreadProducible.h in Headers */,
-				56A177DA2382A02F00C9AA63 /* Connection.h in Headers */,
-				56AAC10623994FBE0035E6C9 /* ServerConfiguration.h in Headers */,
-				56A177DB2382A02F00C9AA63 /* ConnectionHandle.h in Headers */,
-				56AAC100239945CF0035E6C9 /* ClientConfiguration.h in Headers */,
-				567CE11D2384152800C4EBF8 /* NetworkWrappable.h in Headers */,
-				56A177DC2382A02F00C9AA63 /* ConnectionDelegate.h in Headers */,
-				567CE12C23842A4800C4EBF8 /* SocketOptionsWrapper.h in Headers */,
-				567CE13423842FA800C4EBF8 /* SocketOptionsWrappable.h in Headers */,
-				567CE16123853F1B00C4EBF8 /* ThreadFactory.h in Headers */,
-				567CE15A23853D9300C4EBF8 /* Thread.h in Headers */,
-				567CE13B23843E7D00C4EBF8 /* Identity.h in Headers */,
-				56A177DD2382A02F00C9AA63 /* ConnectionState.h in Headers */,
-				56A177DE2382A04100C9AA63 /* AsyncTCP.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		5607F819237189AC001A9AE9 /* AsyncTCP-iOS */ = {
+		5607F819237189AC001A9AE9 /* AsyncTCP */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5607F822237189AC001A9AE9 /* Build configuration list for PBXNativeTarget "AsyncTCP-iOS" */;
+			buildConfigurationList = 5607F822237189AC001A9AE9 /* Build configuration list for PBXNativeTarget "AsyncTCP" */;
 			buildPhases = (
 				5607F815237189AC001A9AE9 /* Headers */,
 				5607F816237189AC001A9AE9 /* Sources */,
@@ -736,50 +585,14 @@
 			);
 			dependencies = (
 			);
-			name = "AsyncTCP-iOS";
+			name = AsyncTCP;
 			productName = AsyncTCP;
 			productReference = 5607F81A237189AC001A9AE9 /* AsyncTCP.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		56A1779423829E6300C9AA63 /* AsyncTCP-macOS */ = {
+		56A177B323829F5200C9AA63 /* AsyncTCPTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 56A1779C23829E6300C9AA63 /* Build configuration list for PBXNativeTarget "AsyncTCP-macOS" */;
-			buildPhases = (
-				56A1779023829E6300C9AA63 /* Headers */,
-				56A1779123829E6300C9AA63 /* Sources */,
-				56A1779223829E6300C9AA63 /* Frameworks */,
-				56A1779323829E6300C9AA63 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "AsyncTCP-macOS";
-			productName = "AsyncTCP-macOS";
-			productReference = 56A1779523829E6300C9AA63 /* AsyncTCP.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		56A177A223829F0500C9AA63 /* AsyncTCPTests-macOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 56A177AB23829F0500C9AA63 /* Build configuration list for PBXNativeTarget "AsyncTCPTests-macOS" */;
-			buildPhases = (
-				56A1779F23829F0500C9AA63 /* Sources */,
-				56A177A023829F0500C9AA63 /* Frameworks */,
-				56A177A123829F0500C9AA63 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				56A177F22382A59C00C9AA63 /* PBXTargetDependency */,
-			);
-			name = "AsyncTCPTests-macOS";
-			productName = "AsyncTCPTests-macOS";
-			productReference = 56A177A323829F0500C9AA63 /* AsyncTCPTests-macOS.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		56A177B323829F5200C9AA63 /* AsyncTCPTests-iOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 56A177BC23829F5200C9AA63 /* Build configuration list for PBXNativeTarget "AsyncTCPTests-iOS" */;
+			buildConfigurationList = 56A177BC23829F5200C9AA63 /* Build configuration list for PBXNativeTarget "AsyncTCPTests" */;
 			buildPhases = (
 				56A177B023829F5200C9AA63 /* Sources */,
 				56A177B123829F5200C9AA63 /* Frameworks */,
@@ -790,9 +603,9 @@
 			dependencies = (
 				56A177EE2382A2C100C9AA63 /* PBXTargetDependency */,
 			);
-			name = "AsyncTCPTests-iOS";
+			name = AsyncTCPTests;
 			productName = "AsyncTCPTests-iOS";
-			productReference = 56A177B423829F5200C9AA63 /* AsyncTCPTests-iOS.xctest */;
+			productReference = 56A177B423829F5200C9AA63 /* AsyncTCPTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -806,13 +619,6 @@
 				TargetAttributes = {
 					5607F819237189AC001A9AE9 = {
 						CreatedOnToolsVersion = 10.3;
-					};
-					56A1779423829E6300C9AA63 = {
-						CreatedOnToolsVersion = 10.3;
-					};
-					56A177A223829F0500C9AA63 = {
-						CreatedOnToolsVersion = 10.3;
-						LastSwiftMigration = 1030;
 					};
 					56A177B323829F5200C9AA63 = {
 						CreatedOnToolsVersion = 10.3;
@@ -833,30 +639,14 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5607F819237189AC001A9AE9 /* AsyncTCP-iOS */,
-				56A1779423829E6300C9AA63 /* AsyncTCP-macOS */,
-				56A177B323829F5200C9AA63 /* AsyncTCPTests-iOS */,
-				56A177A223829F0500C9AA63 /* AsyncTCPTests-macOS */,
+				5607F819237189AC001A9AE9 /* AsyncTCP */,
+				56A177B323829F5200C9AA63 /* AsyncTCPTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		5607F818237189AC001A9AE9 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		56A1779323829E6300C9AA63 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		56A177A123829F0500C9AA63 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -898,55 +688,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		56A1779123829E6300C9AA63 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				56BA3CE723991DDD00E66A8B /* SystemWrapper.m in Sources */,
-				56A177F62382A73D00C9AA63 /* Exceptions.m in Sources */,
-				563875192385E9ED00E85106 /* Dispatch.m in Sources */,
-				56AAC10823994FBE0035E6C9 /* ServerConfiguration.m in Sources */,
-				567CE1252384153600C4EBF8 /* NetworkWrapper.m in Sources */,
-				567CE14A23847B3800C4EBF8 /* ResourceLock.m in Sources */,
-				56A177F72382A73D00C9AA63 /* NetworkManager.m in Sources */,
-				56A177F82382A73D00C9AA63 /* DescriptorControlWrapper.m in Sources */,
-				567CE12E23842A4800C4EBF8 /* SocketOptionsWrapper.m in Sources */,
-				56A177F92382A73D00C9AA63 /* IONetworkHandler.m in Sources */,
-				56ED83D423875ADC0068D9D4 /* ResourceLockFactory.m in Sources */,
-				56A177FA2382A73D00C9AA63 /* Server.m in Sources */,
-				56AAC102239945CF0035E6C9 /* ClientConfiguration.m in Sources */,
-				567CE13D23843E7D00C4EBF8 /* Identity.m in Sources */,
-				56A177FB2382A73D00C9AA63 /* Client.m in Sources */,
-				567CE16323853F1B00C4EBF8 /* ThreadFactory.m in Sources */,
-				56A177FC2382A73D00C9AA63 /* Connection.m in Sources */,
-				567CE15C23853D9300C4EBF8 /* Thread.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		56A1779F23829F0500C9AA63 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5638750723856FC600E85106 /* TCPTestsClient.m in Sources */,
-				5638750123856D5300E85106 /* ReceivingEventsAfterConnectingTests.m in Sources */,
-				565ED4882387DC6B00F5D04D /* BootingProblemsTests.m in Sources */,
-				56BA3CD8239843D300E66A8B /* CountingThreadFactory.m in Sources */,
-				564BE502238D500B00279F3E /* ReceivingServerEventsConditionsTests.m in Sources */,
-				563D399F2387F72500FD23F2 /* ConnectionTests.m in Sources */,
-				563875112385BC9700E85106 /* LockingTests.m in Sources */,
-				56A177F42382A6D000C9AA63 /* ClientConfigurationTests.m in Sources */,
-				563874FE23855D3900E85106 /* ClientLifeCycleTests.m in Sources */,
-				56BA3CDF239851FC00E66A8B /* CreatingLocalIdentityTests.m in Sources */,
-				56BA6ACC2395AC4000AA0157 /* SocketPortCollisionTests.m in Sources */,
-				56A177C623829F7B00C9AA63 /* ServerConfigurationTests.m in Sources */,
-				56BA3CDC23984AC300E66A8B /* StateTests.m in Sources */,
-				567CE1282384182C00C4EBF8 /* IONetworkHandlerTests.m in Sources */,
-				5638750B2385855100E85106 /* ReceivingConnectionEventsTests.m in Sources */,
-				56BDB6DD23872F2800D00BF2 /* SendingDataTests.m in Sources */,
-				563874FA2385590700E85106 /* ServerLifecycleTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		56A177B023829F5200C9AA63 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -976,13 +717,8 @@
 /* Begin PBXTargetDependency section */
 		56A177EE2382A2C100C9AA63 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 5607F819237189AC001A9AE9 /* AsyncTCP-iOS */;
+			target = 5607F819237189AC001A9AE9 /* AsyncTCP */;
 			targetProxy = 56A177ED2382A2C100C9AA63 /* PBXContainerItemProxy */;
-		};
-		56A177F22382A59C00C9AA63 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 56A1779423829E6300C9AA63 /* AsyncTCP-macOS */;
-			targetProxy = 56A177F12382A59C00C9AA63 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1123,8 +859,9 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 0.0.11;
-				PRODUCT_BUNDLE_IDENTIFIER = com.stompor.mateusz.asynctcp.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stompor.mateusz.asynctcp;
 				PRODUCT_MODULE_NAME = AsyncTCP;
 				PRODUCT_NAME = AsyncTCP;
 				SKIP_INSTALL = YES;
@@ -1151,8 +888,9 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 0.0.11;
-				PRODUCT_BUNDLE_IDENTIFIER = com.stompor.mateusz.asynctcp.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stompor.mateusz.asynctcp;
 				PRODUCT_MODULE_NAME = AsyncTCP;
 				PRODUCT_NAME = AsyncTCP;
 				SKIP_INSTALL = YES;
@@ -1161,136 +899,31 @@
 			};
 			name = Release;
 		};
-		56A1779A23829E6300C9AA63 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "$(SRCROOT)/AsyncTCP/macOS/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MARKETING_VERSION = 0.0.11;
-				PRODUCT_BUNDLE_IDENTIFIER = com.stompor.mateusz.asynctcp.macos;
-				PRODUCT_NAME = AsyncTCP;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		56A1779B23829E6300C9AA63 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "$(SRCROOT)/AsyncTCP/macOS/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MARKETING_VERSION = 0.0.11;
-				PRODUCT_BUNDLE_IDENTIFIER = com.stompor.mateusz.asynctcp.macos;
-				PRODUCT_NAME = AsyncTCP;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		56A177AC23829F0500C9AA63 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = R78NEXF6E2;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-					"COCOAPODS=1",
-					"RETRIES=3",
-				);
-				INFOPLIST_FILE = "AsyncTCPTests/AsyncTCPTests-macOS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.stompor.mateusz.AsyncTCPTests-macOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		56A177AD23829F0500C9AA63 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = R78NEXF6E2;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-					"COCOAPODS=1",
-					"RETRIES=3",
-				);
-				INFOPLIST_FILE = "AsyncTCPTests/AsyncTCPTests-macOS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.stompor.mateusz.AsyncTCPTests-macOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
 		56A177BD23829F5200C9AA63 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = R78NEXF6E2;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"COCOAPODS=1",
 					"RETRIES=3",
 				);
-				INFOPLIST_FILE = "AsyncTCPTests/AsyncTCPTests-iOS/Info.plist";
+				INFOPLIST_FILE = "AsyncTCPTests/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.stompor.mateusz.AsyncTCPTests-iOS";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stompor.mateusz.asynctcp.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1302,21 +935,26 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = R78NEXF6E2;
+				DEVELOPMENT_TEAM = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"COCOAPODS=1",
 					"RETRIES=3",
 				);
-				INFOPLIST_FILE = "AsyncTCPTests/AsyncTCPTests-iOS/Info.plist";
+				INFOPLIST_FILE = "AsyncTCPTests/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.stompor.mateusz.AsyncTCPTests-iOS";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stompor.mateusz.asynctcp.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
@@ -1335,7 +973,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5607F822237189AC001A9AE9 /* Build configuration list for PBXNativeTarget "AsyncTCP-iOS" */ = {
+		5607F822237189AC001A9AE9 /* Build configuration list for PBXNativeTarget "AsyncTCP" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5607F823237189AC001A9AE9 /* Debug */,
@@ -1344,25 +982,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		56A1779C23829E6300C9AA63 /* Build configuration list for PBXNativeTarget "AsyncTCP-macOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				56A1779A23829E6300C9AA63 /* Debug */,
-				56A1779B23829E6300C9AA63 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		56A177AB23829F0500C9AA63 /* Build configuration list for PBXNativeTarget "AsyncTCPTests-macOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				56A177AC23829F0500C9AA63 /* Debug */,
-				56A177AD23829F0500C9AA63 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		56A177BC23829F5200C9AA63 /* Build configuration list for PBXNativeTarget "AsyncTCPTests-iOS" */ = {
+		56A177BC23829F5200C9AA63 /* Build configuration list for PBXNativeTarget "AsyncTCPTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				56A177BD23829F5200C9AA63 /* Debug */,
