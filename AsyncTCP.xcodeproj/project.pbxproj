@@ -174,7 +174,6 @@
 		56BDB6DB23872F2800D00BF2 /* SendingDataTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SendingDataTests.m; sourceTree = "<group>"; };
 		56DC8637239A4F7300D54371 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		56DC8638239A4F7300D54371 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		56DC863A239A4F7300D54371 /* Gemfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile; sourceTree = "<group>"; };
 		56ED83CF23875ADC0068D9D4 /* ResourceLockFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResourceLockFactory.h; sourceTree = "<group>"; };
 		56ED83D023875ADC0068D9D4 /* ResourceLockFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResourceLockFactory.m; sourceTree = "<group>"; };
 		56ED83D523875AED0068D9D4 /* LockProducible.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LockProducible.h; sourceTree = "<group>"; };
@@ -204,7 +203,6 @@
 			children = (
 				566DA3BA2905C6BF00AF8090 /* .github */,
 				56942665238C40C200367993 /* AsyncTCP.podspec */,
-				56DC863A239A4F7300D54371 /* Gemfile */,
 				56DC8637239A4F7300D54371 /* LICENSE */,
 				56DC8638239A4F7300D54371 /* README.md */,
 				56A177AE23829F1700C9AA63 /* AsyncTCPTests */,

@@ -43,7 +43,8 @@ ServerConfiguration * configuration = [[ServerConfiguration alloc] initWithPort:
 // Eventloop microseconds delay - Interval between server's main loop evaluations. Adjust depending on your network speed and device's resources utilization
 // Errors begore connection closing - Number of errors after which the connection will be closed
 ```
-Create a server with this specific configuration. By default all notification will be passed to the main dispatch queue.
+Create a server with this specific configuration. 
+By default all notification will be passed to the main dispatch queue.
 ```objective-c
 NSObject<ServerHandle> * asyncServer = [[Server alloc] initWithConfiguratoin:configuration];
 ```
@@ -54,15 +55,15 @@ server = [[Server alloc] initWithConfiguratoin:configuration
 ```
 Notifications will be send only if the delegate of the server is set. 
 Otherwise connections won't be accepted and data received. 
-To receive notifications implement `ServerDelegate` protocol.
-<h4>ServerDelegate</h4>
+To receive notifications implement `ServerDelegate` protocol
+## ServerDelegate
 
-**Interface**
+Interface
 ```objective-c
 @interface ServerHandler: NSObject<ServerDelegate>
 @end
 ```
-**Implementation**
+Implementation
 ```objective-c
 @implementation ServerHandler
 -(void)newClientHasConnected: (Connection*) connection {
@@ -73,14 +74,14 @@ To receive notifications implement `ServerDelegate` protocol.
 }
 @end
 ```
-<h4>ClientDelegate</h4>
+## ClientDelegate
 
 If you want to use client analyse interface below:
 ```objective-c
 @interface ClientHandler: NSObject<ClientDelegate>
 @end
 ```
-**Implementation**
+Implementation
 ```objective-c
 @implementation ClientHandler
 -(void)connectionHasBeenEstablished: (Connection *) connection {
@@ -91,17 +92,19 @@ If you want to use client analyse interface below:
 }
 @end
 ```
+## Common
 One additional step to make is to implement `ConnectionDelegate` protocol. 
-It is an interface which lets you receive a notification when data is received. 
+It is an interface which lets you be notified whenever data is received. 
 Set an instance as `ConnectionDelegate` as soon as you receive `newClientHasConnected` callback in case of `ServerDelegate` or `connectionHasBeenEstablished` in case of `ClientDelegate`.
-<h4>ConnectionDelegate</h4>
 
-**Interface**
+## ConnectionDelegate
+
+Interface
 ```objective-c
 @interface ConnectionHandler: NSObject<ConnectionDelegate>
 @end
 ```
-**Implementation**
+Implementation
 ```objective-c
 @implementation ConnectionHandler
 -(void)connection:(NSObject<ConnectionHandle> *)connection chunkHasArrived:(NSData *)data {
