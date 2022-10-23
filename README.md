@@ -3,7 +3,7 @@
 </p>
 <h1 align="center">AsyncTCP</h1>
 <p align="center">  
-    <a href="https://www.travis-ci.org/mateuszstompor/AsyncTCP">
+    <a href="https://github.com/mateuszstompor/AsyncTCP/actions/workflows/tests.yml">
         <img src="https://github.com/mateuszstompor/AsyncTCP/actions/workflows/tests.yml/badge.svg" height="18pt" alt="Build status"/>
     </a>  
     <a href="https://cocoapods.org/pods/AsyncTCP">
