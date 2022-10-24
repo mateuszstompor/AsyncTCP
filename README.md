@@ -6,9 +6,6 @@
     <a href="https://github.com/mateuszstompor/AsyncTCP/actions/workflows/tests.yml">
         <img src="https://github.com/mateuszstompor/AsyncTCP/actions/workflows/tests.yml/badge.svg?branch=master" height="18pt" alt="Build status"/>
     </a>  
-    <a href="https://cocoapods.org/pods/AsyncTCP">
-        <img src="https://img.shields.io/cocoapods/v/AsyncTCP" height="18pt" alt="Cocoapod"/>
-    </a>
     <a href="https://opensource.org/licenses/MIT">
         <img src="https://img.shields.io/badge/License-MIT-yellow.svg" height="18pt" alt="License"/>
     </a>
