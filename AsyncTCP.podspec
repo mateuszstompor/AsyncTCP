@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "AsyncTCP"
-  spec.version      = "0.0.11"
+  spec.version      = "1.0.0"
   spec.summary      = "Lightweight, simple and asynchronous TCP sockets"
 
   # This description is used to generate tags and improve search results.
@@ -48,8 +48,8 @@ Pod::Spec.new do |spec|
   #  the deployment target. You can optionally include the target after the platform.
   #
 
-  spec.ios.deployment_target = "8.0"
-  spec.osx.deployment_target = "10.10"
+  spec.ios.deployment_target = "12.0"
+  spec.osx.deployment_target = "11.0"
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
