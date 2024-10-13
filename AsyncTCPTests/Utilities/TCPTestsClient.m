@@ -9,6 +9,7 @@
 #import "TCPTestsClient.h"
 
 #import <netdb.h>
+#import <sys/socket.h>
 
 @interface TCPTestsClient()
 {

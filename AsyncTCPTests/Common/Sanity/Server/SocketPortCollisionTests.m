@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import <AsyncTCP/AsyncTCP.h>
+#import <sys/socket.h>
 
 @interface SocketPortCollisionTests: XCTestCase
 {

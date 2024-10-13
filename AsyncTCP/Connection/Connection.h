@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import <sys/types.h>
+
 #import "Lockable.h"
 #import "Identity.h"
 #import "Dispatchable.h"

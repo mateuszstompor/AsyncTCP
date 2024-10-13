@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import <sys/types.h>
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ClientConfiguration: NSObject

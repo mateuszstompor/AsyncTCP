@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import <sys/types.h>
+
 #import "Identity.h"
 
 NS_ASSUME_NONNULL_BEGIN

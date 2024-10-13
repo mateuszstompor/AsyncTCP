@@ -13,7 +13,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Thread: NSObject<Threadable>
--(instancetype)initWithTarget:(id)target selector:(SEL)selector object:(nullable id)argument;
+-(instancetype)initWithTarget:(id)target 
+                     selector:(SEL)selector
+                       object:(nullable id)argument;
 @end
 
 NS_ASSUME_NONNULL_END

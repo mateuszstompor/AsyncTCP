@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import <netdb.h>
+#import <sys/socket.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
